@@ -1,9 +1,8 @@
-import React from "react";
 import Button from "../Button/Button";
 
 const Navbar = () => {
   return (
-    <div className="flex justify-between items-center mt-10">
+    <div className="flex justify-between z-50 items-center fixed top-0 left-0 right-0 py-10 px-[8.4rem]">
       <svg
         width="65"
         height="40"

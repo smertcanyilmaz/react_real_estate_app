@@ -1,17 +1,25 @@
 import React, { useEffect, useState } from "react";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { visible } from "../../../redux/popularOffersVisibleReducer";
 
-const PopularOffersButton = ({ handleButtonClick }) => {
+const PopularOffersButton = () => {
   const popularOffersVisible = useSelector(
     (state) => state.popularOffersVisible.visible
   );
+
+  const dispatch = useDispatch();
+
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
+
+  const handleButtonClick = () => {
+    dispatch(visible());
+  };
 
   return (
     <>

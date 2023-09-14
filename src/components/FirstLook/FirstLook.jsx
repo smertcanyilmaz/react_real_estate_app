@@ -1,10 +1,15 @@
+import { useSelector } from "react-redux";
 import Search from "./Search/Search";
 
-const FirstLook = ({ section2Visible }) => {
+const FirstLook = () => {
+  const popularOffersVisible = useSelector(
+    (state) => state.popularOffersVisible.visible
+  );
+
   return (
     <div
       className={`w-full h-[100vh] mt-32 duration-1000 ${
-        section2Visible ? "-translate-y-[100%]" : ""
+        popularOffersVisible ? "-translate-y-[100%] opacity-0" : ""
       }`}
     >
       <div className="w-full h-[30.9rem] flex justify-between mt-20 ">

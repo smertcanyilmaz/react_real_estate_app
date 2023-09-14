@@ -1,10 +1,14 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
-const PopularOffers = ({ section2Visible }) => {
+const PopularOffers = () => {
+  const popularOffersVisible = useSelector(
+    (state) => state.popularOffersVisible.visible
+  );
   return (
     <div
       className={`h-[30rem] w-full duration-1000 ${
-        section2Visible ? "-translate-y-[200%] mt-36" : "translate-y-0"
+        popularOffersVisible ? "-translate-y-[200%] mt-36" : "translate-y-0"
       }`}
     >
       deneme

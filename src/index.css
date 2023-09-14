@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --dark_blue: #091638;
+  --blue: #1c3988;
+  --light_blue: #f3f3fa;
+  --hover: #6e8ae9;
+  --white: #ffffff;
+  --bg_color: #e5e5e5;
+}
+
 body {
   font-family: "Poppins", sans-serif;
+  background-color: var(--bg_color);
 }

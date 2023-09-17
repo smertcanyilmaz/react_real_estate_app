@@ -1,17 +1,18 @@
-import React from "react";
 import { useSelector } from "react-redux";
+import SliderSection from "./SliderSection/SliderSection";
 
 const PopularOffers = () => {
   const popularOffersVisible = useSelector(
     (state) => state.popularOffersVisible.visible
   );
+
   return (
     <div
-      className={`h-[30rem] w-full duration-1000 ${
-        popularOffersVisible ? "-translate-y-[200%] mt-36" : "translate-y-0"
+      className={`h-[40rem] w-full duration-1000  ${
+        popularOffersVisible ? "-translate-y-[130%] " : "translate-y-0"
       }`}
     >
-      deneme
+      <SliderSection />
     </div>
   );
 };

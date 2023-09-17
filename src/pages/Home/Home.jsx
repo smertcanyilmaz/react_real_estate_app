@@ -6,7 +6,7 @@ import PopularOffersButton from "../../components/FirstLook/PopularOffersButton/
 
 const Home = () => {
   return (
-    <div className="max-w-6xl mx-auto">
+    <div className="max-w-6xl  mx-auto">
       <Navbar />
       <FirstLook />
       <PopularOffersButton />

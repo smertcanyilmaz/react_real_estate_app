@@ -6,19 +6,13 @@ import { useState } from "react";
 
 const Home = () => {
   const [myClass, setMyClass] = useState("translate-y-0");
-  const [rent, setRent] = useState(false);
 
   return (
     <div className="max-w-6xl  mx-auto">
       <Navbar />
       <FirstLook />
       <PopularOffers sale={true} myClass={myClass} />
-      <PopularOffersButton
-        sale={false}
-        rent={rent}
-        setRent={setRent}
-        setMyClass={setMyClass}
-      />
+      <PopularOffersButton setMyClass={setMyClass} />
       <PopularOffers sale={false} myClass={myClass} />
     </div>
   );

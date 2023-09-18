@@ -4,14 +4,15 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { useDispatch, useSelector } from "react-redux";
 import { visible, down } from "../../../redux/popularOffersVisibleReducer";
 
-const PopularOffersButton = ({ setMyClass, rent, setRent }) => {
+const PopularOffersButton = ({ setMyClass }) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [rent, setRent] = useState(false);
+
   const popularOffersVisible = useSelector(
     (state) => state.popularOffersVisible.visible
   );
 
   const dispatch = useDispatch();
-
-  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     setIsVisible(true);

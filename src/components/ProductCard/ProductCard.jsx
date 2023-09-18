@@ -2,12 +2,18 @@ import React from "react";
 import useFetch from "../hooks/useFetch";
 import { useId } from "react-id-generator";
 
-const ProductCard = ({ currentSlide }) => {
+const ProductCard = ({ currentSlide, sale }) => {
   const { estates } = useFetch();
   const [htmlId] = useId();
+
+  const estateRent = estates.filter((estate) => estate.topOffers === "rent");
+  const estateSell = estates.filter((estate) => estate.topOffers === "sale");
+
+  const products = sale === true ? estateSell : estateRent;
+
   return (
     <div className="w-6xl flex gap-6 overflow-hidden">
-      {estates.map((estate) => (
+      {products?.map((estate) => (
         <div
           key={htmlId}
           className={`flex flex-col min-w-[14.40rem] h-64 bg-white rounded-2xl transform transition-transform duration-300 cursor-pointer
@@ -34,7 +40,3 @@ const ProductCard = ({ currentSlide }) => {
 };
 
 export default ProductCard;
-
-// // {estate.title} {estate.price} {estate.place.country}
-// //             {estate.place.city}
-// //             <img src={estate.images} alt="" srcset="" /> */

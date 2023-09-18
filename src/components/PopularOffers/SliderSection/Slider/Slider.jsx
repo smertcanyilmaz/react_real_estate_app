@@ -3,7 +3,7 @@ import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ProductCard from "../../../ProductCard/ProductCard";
 
-const Slider = () => {
+const Slider = ({ sale }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const prevSlide = () => {
@@ -41,7 +41,7 @@ const Slider = () => {
         </div>
       </div>
 
-      <ProductCard currentSlide={currentSlide} />
+      <ProductCard currentSlide={currentSlide} sale={sale} />
     </div>
   );
 };

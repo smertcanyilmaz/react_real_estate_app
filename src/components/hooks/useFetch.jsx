@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { db } from "../../firebase-config";
 import { collection, getDocs } from "firebase/firestore";
+import { useSelector } from "react-redux";
 
 const useFetch = () => {
   const [estates, setEstates] = useState([]);
@@ -14,7 +15,7 @@ const useFetch = () => {
     };
     getUsers();
   }, []);
-
+  console.log(estates);
   return { estates };
 };
 

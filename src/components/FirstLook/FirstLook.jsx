@@ -8,7 +8,7 @@ const FirstLook = () => {
 
   return (
     <div
-      className={`w-full h-[100vh] mt-32 duration-1000 ${
+      className={`w-full h-[100vh] mt-32 duration-500 ${
         popularOffersVisible ? "-translate-y-[100%] opacity-0" : ""
       }`}
     >

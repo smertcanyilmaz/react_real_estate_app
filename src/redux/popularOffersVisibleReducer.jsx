@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialPopularOffersVisibleState = { visible: false };
+const initialPopularOffersVisibleState = { visible: false, down: false };
 
 export const popularOffersVisibleSlice = createSlice({
   name: "popularOffersVisible",
@@ -9,9 +9,12 @@ export const popularOffersVisibleSlice = createSlice({
     visible: (state) => {
       state.visible = !state.visible;
     },
+    down: (state) => {
+      state.down = true;
+    },
   },
 });
 
-export const { visible } = popularOffersVisibleSlice.actions;
+export const { visible, down } = popularOffersVisibleSlice.actions;
 
 export default popularOffersVisibleSlice.reducer;

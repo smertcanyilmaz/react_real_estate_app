@@ -21,7 +21,7 @@ const PopularOffersButton = ({ setMyClass }) => {
   const handleButtonClick = () => {
     dispatch(visible());
     setMyClass(
-      !popularOffersVisible ? "-translate-y-[130%]" : "-translate-y-0"
+      !popularOffersVisible ? "-translate-y-[100%]" : "-translate-y-0"
     );
     setRent(false);
   };

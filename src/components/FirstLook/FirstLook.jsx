@@ -5,14 +5,14 @@ const FirstLook = () => {
   const popularOffersVisible = useSelector(
     (state) => state.popularOffersVisible.visible
   );
-
+  // mt-32 mb-28
   return (
     <div
-      className={`w-full h-[100vh] mt-32 duration-500 ${
+      className={`max-w-6xl max-h-[90vh] mx-auto mt-32 mb-28  duration-500 ${
         popularOffersVisible ? "-translate-y-[100%] opacity-0" : ""
       }`}
     >
-      <div className="w-full h-[30.9rem] flex justify-between mt-20 ">
+      <div className="max-w-full max-h-[68vh] flex justify-between  ">
         <div className="flex-1 flex flex-col gap-10 justify-center items-center">
           <h1 className="text-5xl font-bold leading-snug">
             Modern Living For Everyone
@@ -25,10 +25,13 @@ const FirstLook = () => {
           <Search />
         </div>
         <div className="flex-1 flex justify-end relative">
-          <img src="src\assets\FirstLook\pexels-timur-saglambilek-87223 2.png" />
+          <img
+            src="src\assets\FirstLook\pexels-timur-saglambilek-87223 2.png"
+            className="max-h-full  object-cover"
+          />
           <img
             src="src\assets\FirstLook\pexels-timur-saglambilek-87223 1.png"
-            className="absolute bottom-0"
+            className="absolute bottom-0 max-h-full object-cover"
           />
         </div>
       </div>

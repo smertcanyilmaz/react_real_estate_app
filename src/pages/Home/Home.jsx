@@ -8,7 +8,7 @@ const Home = () => {
   const [myClass, setMyClass] = useState("translate-y-0");
 
   return (
-    <div className="max-w-6xl  mx-auto">
+    <div className="max-w-6xl max-h-[300vh] mx-auto flex flex-col">
       <Navbar />
       <FirstLook />
       <PopularOffers sale={true} myClass={myClass} />

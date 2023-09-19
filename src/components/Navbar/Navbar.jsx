@@ -2,7 +2,7 @@ import Button from "../Button/Button";
 
 const Navbar = () => {
   return (
-    <div className="flex justify-between z-50 items-center fixed top-0 left-0 right-0 py-10 px-[9rem]">
+    <div className="flex max-w-6xl max-h-[12vh] mx-auto justify-between fixed right-0 left-0 top-0 pt-12 z-50 items-center ">
       <svg
         width="65"
         height="40"

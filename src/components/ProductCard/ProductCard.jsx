@@ -12,7 +12,7 @@ const ProductCard = ({ currentSlide, sale }) => {
   const products = sale === true ? estateSell : estateRent;
 
   return (
-    <div className="w-6xl flex gap-6 overflow-hidden">
+    <div className="max-w-6xl flex gap-6 overflow-hidden ">
       {products?.map((estate) => (
         <div
           key={htmlId}

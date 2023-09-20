@@ -1,0 +1,7 @@
+.quick {
+  @apply text-[12px] flex flex-col items-center justify-center gap-1 w-24 h-16  rounded-md border border-[--dark_blue] hover:border-2 cursor-pointer;
+}
+
+.icons {
+  @apply text-[#282829];
+}

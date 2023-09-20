@@ -1,11 +1,6 @@
-import { useSelector } from "react-redux";
 import Search from "./Search/Search";
 
 const FirstLook = () => {
-  const popularOffersVisible = useSelector(
-    (state) => state.popularOffersVisible.visible
-  );
-
   return (
     <div className={`max-w-6xl h-[100vh]  mx-auto mt-20  duration-500 `}>
       <div className="max-w-full max-h-[68vh] flex justify-between  ">

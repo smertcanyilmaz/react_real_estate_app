@@ -4,8 +4,7 @@ import PopularOffers from "../../components/PopularOffers/PopularOffers";
 import PopularOffersButton from "../../components/FirstLook/PopularOffersButton/PopularOffersButton";
 import { useEffect, useRef, useState } from "react";
 
-const Home = () => {
-  const ref0 = useRef(null);
+const Home = ({ ref0 }) => {
   const ref1 = useRef(null);
   const ref2 = useRef(null);
 
@@ -34,8 +33,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="max-w-6xl mx-auto flex flex-col">
-      <Navbar ref0={ref0} />
+    <>
       <FirstLook />
       <PopularOffers sale={true} refStatus={ref1} />
       <PopularOffersButton
@@ -46,7 +44,7 @@ const Home = () => {
         refStatus={refStatus}
       />
       <PopularOffers sale={false} refStatus={ref2} />
-    </div>
+    </>
   );
 };
 

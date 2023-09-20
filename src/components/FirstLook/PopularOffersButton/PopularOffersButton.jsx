@@ -1,6 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import { useSelector } from "react-redux";
 
 const PopularOffersButton = ({
   handleButtonClick,
@@ -10,7 +11,6 @@ const PopularOffersButton = ({
   refStatus,
 }) => {
   const [isVisible, setIsVisible] = useState(false);
-  const [rent, setRent] = useState(false);
 
   useEffect(() => {
     setIsVisible(true);

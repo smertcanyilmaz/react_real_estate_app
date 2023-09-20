@@ -2,6 +2,7 @@ import React from "react";
 import Button from "../../Button/Button";
 import Slider from "./Slider/Slider";
 import useFetch from "../../hooks/useFetch";
+import { Link } from "react-router-dom";
 
 const SliderSection = ({ sale }) => {
   const { estates } = useFetch();
@@ -18,7 +19,9 @@ const SliderSection = ({ sale }) => {
               Fulfill your career dreams, enjoy all the achievements of the city
               center and luxury housing to the fullest.
             </p>
-            <Button showAllOffers={true}>Show all offers</Button>
+            <Link to="/estateslist">
+              <Button showAllOffers={true}>Show all offers</Button>
+            </Link>
           </div>
           <Slider sale={sale} />
         </div>

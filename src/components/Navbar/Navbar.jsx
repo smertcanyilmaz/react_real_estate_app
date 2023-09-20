@@ -1,8 +1,12 @@
 import Button from "../Button/Button";
 
-const Navbar = () => {
+const Navbar = ({ ref0 }) => {
   return (
-    <div className="flex max-w-6xl max-h-[12vh] mx-auto justify-between fixed right-0 left-0 top-0 pt-12 z-50 items-center ">
+    // <div className="flex max-w-6xl max-h-[12vh] mx-auto justify-between fixed right-0 left-0 top-0 pt-12 z-50 items-center ">
+    <div
+      ref={ref0}
+      className="flex w-full h-[10vh] mx-auto justify-between items-center pt-10"
+    >
       <svg
         width="65"
         height="40"

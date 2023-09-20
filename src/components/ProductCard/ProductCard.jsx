@@ -16,7 +16,7 @@ const ProductCard = ({ currentSlide, sale }) => {
       {products?.map((estate) => (
         <div
           key={htmlId}
-          className={`flex flex-col min-w-[14.40rem] h-64 bg-white rounded-2xl transform transition-transform duration-300 cursor-pointer
+          className={`flex flex-col min-w-[14.60rem] h-64 bg-white rounded-2xl transform transition-transform duration-300 cursor-pointer
         }`}
           style={{
             transform: `translateX(-${currentSlide * 15.9}rem)`,

@@ -5,13 +5,9 @@ const FirstLook = () => {
   const popularOffersVisible = useSelector(
     (state) => state.popularOffersVisible.visible
   );
-  // mt-32 mb-28
+
   return (
-    <div
-      className={`max-w-6xl max-h-[90vh] mx-auto mt-32 mb-28  duration-500 ${
-        popularOffersVisible ? "-translate-y-[100%] opacity-0" : ""
-      }`}
-    >
+    <div className={`max-w-6xl h-[100vh]  mx-auto mt-20  duration-500 `}>
       <div className="max-w-full max-h-[68vh] flex justify-between  ">
         <div className="flex-1 flex flex-col gap-10 justify-center items-center">
           <h1 className="text-5xl font-bold leading-snug">

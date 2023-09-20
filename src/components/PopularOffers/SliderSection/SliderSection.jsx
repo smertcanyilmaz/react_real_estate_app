@@ -7,10 +7,8 @@ const SliderSection = ({ sale }) => {
   const { estates } = useFetch();
 
   return (
-    <div className="flex flex-col w-full h-full  p-20">
+    <div className="flex flex-col w-full  items-center justify-center ">
       <div className="content-buy w-full flex flex-col">
-        {/* TODO:SLİDER SECTİON BURADAN BAŞLIYOR ŞİMDİLİK W-FULL AMA DURUMA GÖRE
-          İKİYE BÖL */}
         <div className="content flex flex-col gap-8 ">
           <h1 className="text-3xl font-bold">
             Popular Offers for {sale === true ? "Sale" : "Rent"}

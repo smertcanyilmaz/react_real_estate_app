@@ -1,14 +1,13 @@
+import { forwardRef } from "react";
 import SliderSection from "./SliderSection/SliderSection";
 
-const PopularOffers = ({ sale, myClass }) => {
+const PopularOffers = ({ refStatus, sale }) => {
   return (
     <>
-      {/* ${
-          !sale && "mt-16"
-        } */}
       <main
-        className={`max-h-[90vh] w-full duration-500 
-        } ${myClass}  ${!sale && "mt-[260px]"}`}
+        className={`h-[100vh] max-w-[70vw] mx-auto duration-500 flex justify-center items-center 
+        }`}
+        ref={refStatus}
       >
         <SliderSection sale={sale} />
       </main>
@@ -16,4 +15,4 @@ const PopularOffers = ({ sale, myClass }) => {
   );
 };
 
-export default PopularOffers;
+export default forwardRef(PopularOffers);

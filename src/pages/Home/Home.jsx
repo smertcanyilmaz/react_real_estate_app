@@ -2,18 +2,50 @@ import Navbar from "../../components/Navbar/Navbar";
 import FirstLook from "../../components/FirstLook/FirstLook";
 import PopularOffers from "../../components/PopularOffers/PopularOffers";
 import PopularOffersButton from "../../components/FirstLook/PopularOffersButton/PopularOffersButton";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const Home = () => {
-  const [myClass, setMyClass] = useState("translate-y-0");
+  const ref0 = useRef(null);
+  const ref1 = useRef(null);
+  const ref2 = useRef(null);
+
+  const [refStatus, setRefStatus] = useState(ref1);
+  const [start, setStart] = useState(true);
+
+  const handleButtonClick = () => {
+    if (refStatus === ref1) {
+      ref1.current?.scrollIntoView({ behavior: "smooth" });
+      setRefStatus(ref2);
+    } else if (refStatus === ref2) {
+      ref2.current?.scrollIntoView({ behavior: "smooth" });
+      setRefStatus(ref1);
+    }
+    setStart(false);
+  };
+
+  const handleGoTop = () => {
+    ref0.current?.scrollIntoView({ behavior: "smooth" });
+    setStart(true);
+    setRefStatus(ref1);
+  };
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
 
   return (
-    <div className="max-w-6xl max-h-[300vh] mx-auto flex flex-col">
-      <Navbar />
+    <div className="max-w-6xl mx-auto flex flex-col">
+      <Navbar ref0={ref0} />
       <FirstLook />
-      <PopularOffers sale={true} myClass={myClass} />
-      <PopularOffersButton setMyClass={setMyClass} />
-      <PopularOffers sale={false} myClass={myClass} />
+      <PopularOffers sale={true} refStatus={ref1} />
+      <PopularOffersButton
+        handleButtonClick={handleButtonClick}
+        handleGoTop={handleGoTop}
+        start={start}
+        ref1={ref1}
+        refStatus={refStatus}
+      />
+      <PopularOffers sale={false} refStatus={ref2} />
     </div>
   );
 };

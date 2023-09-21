@@ -19,7 +19,7 @@ const SliderSection = ({ sale }) => {
               Fulfill your career dreams, enjoy all the achievements of the city
               center and luxury housing to the fullest.
             </p>
-            <Link to="/estateslist">
+            <Link to="/estates">
               <Button showAllOffers={true}>Show all offers</Button>
             </Link>
           </div>

@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Layout from "./pages/Layout/Layout";
 import Home from "./pages/Home/Home";
-import EstatesList from "./pages/EstatesList/EstatesList";
+import Estates from "./pages/Estates/Estates";
 import { useReducer } from "react";
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout ref0={ref0} />}>
             <Route index element={<Home ref0={ref0} />} />
-            <Route path="estateslist" element={<EstatesList />} />
+            <Route path="estates" element={<Estates />} />
           </Route>
         </Routes>
       </BrowserRouter>

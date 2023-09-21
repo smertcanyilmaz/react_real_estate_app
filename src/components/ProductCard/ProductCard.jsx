@@ -2,17 +2,27 @@ import React from "react";
 import useFetch from "../hooks/useFetch";
 import { useId } from "react-id-generator";
 
-const ProductCard = ({ currentSlide, sale }) => {
+const ProductCard = ({ currentSlide, sale, EstatesList }) => {
   const { estates } = useFetch();
   const [htmlId] = useId();
 
   const estateRent = estates.filter((estate) => estate.topOffers === "rent");
   const estateSell = estates.filter((estate) => estate.topOffers === "sale");
 
-  const products = sale === true ? estateSell : estateRent;
+  const products = EstatesList
+    ? estates
+    : sale === true
+    ? estateSell
+    : estateRent;
 
   return (
-    <div className="max-w-6xl flex gap-6 overflow-hidden ">
+    <div
+      className={
+        EstatesList
+          ? "grid grid-cols-4 gap-x-5 gap-y-7"
+          : "max-w-6xl flex gap-6 overflow-hidden"
+      }
+    >
       {products?.map((estate) => (
         <div
           key={htmlId}

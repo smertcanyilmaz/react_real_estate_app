@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./EstatesFilters.css";
 import ApartmentIcon from "@mui/icons-material/Apartment";
 import BungalowOutlinedIcon from "@mui/icons-material/BungalowOutlined";
@@ -11,7 +11,8 @@ import LandscapeOutlinedIcon from "@mui/icons-material/LandscapeOutlined";
 import SortOutlinedIcon from "@mui/icons-material/SortOutlined";
 import SnowmobileOutlinedIcon from "@mui/icons-material/SnowmobileOutlined";
 
-const EstatesFilters = () => {
+const EstatesFilters = ({ openFilters }) => {
+  const [selectedButton, setSelectedButtons] = useState(null);
   const buttons = [
     {
       id: 1,
@@ -59,17 +60,29 @@ const EstatesFilters = () => {
       title: "Luxe",
     },
   ];
+
+  const selectedButtonHandler = (id) => {
+    setSelectedButtons(id);
+  };
+
   return (
-    <div className="categories  w-full flex justify-between items-center gap-5">
+    <div className="categories w-full flex justify-between items-center gap-5">
       <div className="quickSelection flex gap-5">
         {buttons.map((button) => (
-          <div key={button.id} className="quick">
+          <div
+            key={button.id}
+            className={`quick ${selectedButton === button.id && "border-2"} `}
+            onClick={() => selectedButtonHandler(button.id)}
+          >
             {button.icon}
             {button.title}
           </div>
         ))}
       </div>
-      <div className="flex items-center justify-center gap-2 w-28 h-12 rounded-xl bg-[--white] border border-gray-400 hover:border-2 hover:bg-gray-700 hover:border-none hover:text-white duration-100 cursor-pointer">
+      <div
+        className="flex items-center justify-center gap-2 w-28 h-12 rounded-xl bg-[--white] border border-gray-400 hover:border-2 hover:bg-gray-800 hover:border-none hover:text-white duration-100 cursor-pointer"
+        onClick={openFilters}
+      >
         <SortOutlinedIcon />
         Filters
       </div>

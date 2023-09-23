@@ -1,19 +1,57 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import useFetch from "../hooks/useFetch";
-import { useId } from "react-id-generator";
 
-const ProductCard = ({ currentSlide, sale, EstatesList }) => {
+const ProductCard = ({
+  currentSlide,
+  sale,
+  EstatesList,
+
+  filter,
+}) => {
   const { estates } = useFetch();
-  const [htmlId] = useId();
 
-  const estateRent = estates.filter((estate) => estate.topOffers === "rent");
-  const estateSell = estates.filter((estate) => estate.topOffers === "sale");
+  const estateTopRent = estates.filter((estate) => estate.topOffers === "rent");
+  const estateTopSell = estates.filter((estate) => estate.topOffers === "sale");
+  // const estateSale = estates.filter((estate) => estate.status === "sale");
+  // const estateRent = estates.filter((estate) => estate.status === "rent");
+
+  // const products = checker
+  //   ? estateSale
+  //   : EstatesList
+  //   ? estates
+  //   : sale === true
+  //   ? estateTopSell
+  //   : estateTopRent;
 
   const products = EstatesList
     ? estates
     : sale === true
-    ? estateSell
-    : estateRent;
+    ? estateTopSell
+    : estateTopRent;
+
+  const [filteredList, setFilteredList] = useState(products);
+
+  useEffect(() => {
+    const temp = products;
+
+    if (filter !== "") {
+      const tempCat = temp.filter((estate) => estate.category === filter);
+      setFilteredList(tempCat);
+    }
+    if (filter === "sale") {
+      const tempSale = temp.filter((estate) => estate.status === filter);
+      setFilteredList(tempSale);
+    } else if (filter === "rent") {
+      const tempRent = temp.filter((estate) => estate.status === filter);
+      setFilteredList(tempRent);
+    }
+  }, [filter]);
+
+  useEffect(() => {
+    setFilteredList(products);
+  }, [products]);
+
+  console.log(filter);
 
   return (
     <div
@@ -23,9 +61,9 @@ const ProductCard = ({ currentSlide, sale, EstatesList }) => {
           : "max-w-6xl flex gap-6 overflow-hidden"
       }
     >
-      {products?.map((estate) => (
+      {filteredList?.map((estate) => (
         <div
-          key={htmlId}
+          key={estate.id}
           className={`flex flex-col min-w-[14.60rem] h-64 bg-white rounded-2xl transform transition-transform duration-300 cursor-pointer
         }`}
           style={{
@@ -35,7 +73,6 @@ const ProductCard = ({ currentSlide, sale, EstatesList }) => {
           <img
             src={estate?.image}
             alt=""
-            srcset=""
             className="h-40 object-cover rounded-t-lg"
           />
           <div className="px-4 py-2 w-full space-y-1">

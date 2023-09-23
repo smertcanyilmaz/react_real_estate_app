@@ -11,59 +11,67 @@ import LandscapeOutlinedIcon from "@mui/icons-material/LandscapeOutlined";
 import SortOutlinedIcon from "@mui/icons-material/SortOutlined";
 import SnowmobileOutlinedIcon from "@mui/icons-material/SnowmobileOutlined";
 
-const EstatesFilters = ({ openFilters }) => {
-  const [selectedButton, setSelectedButtons] = useState(null);
+const EstatesFilters = ({
+  openFilters,
+  selectedButtonHandler,
+  selectedButton,
+}) => {
   const buttons = [
     {
-      id: 1,
+      id: 0,
       icon: <HouseOutlinedIcon className="icons" />,
       title: "Sale",
+      name: "sale",
+    },
+    {
+      id: 1,
+      icon: <HomeOutlinedIcon className="icons" />,
+      title: "Rent",
+      name: "rent",
     },
     {
       id: 2,
-      icon: <HomeOutlinedIcon className="icons" />,
-      title: "Rent",
+      icon: <LocalFireDepartmentOutlinedIcon className="icons" />,
+      title: "Trending",
+      name: "trending",
     },
     {
       id: 3,
-      icon: <LocalFireDepartmentOutlinedIcon className="icons" />,
-      title: "Trending",
+      icon: <TsunamiOutlinedIcon className="icons" />,
+      title: "Amazing Views",
+      name: "amazingViews",
     },
     {
       id: 4,
-      icon: <TsunamiOutlinedIcon className="icons" />,
-      title: "Amazing Views",
+      icon: <ApartmentIcon className="icons" />,
+      title: "Apartment",
+      name: "apartment",
     },
     {
       id: 5,
-      icon: <ApartmentIcon className="icons" />,
-      title: "Apartment",
+      icon: <BungalowOutlinedIcon className="icons" />,
+      title: "Tiny Houses",
+      name: "tinyHouses",
     },
     {
       id: 6,
-      icon: <BungalowOutlinedIcon className="icons" />,
-      title: "Tiny Houses",
+      icon: <PoolOutlinedIcon className="icons" />,
+      title: "Amazing Pools",
+      name: "amazingPools",
     },
     {
       id: 7,
-      icon: <PoolOutlinedIcon className="icons" />,
-      title: "Amazing Pools",
+      icon: <LandscapeOutlinedIcon className="icons" />,
+      title: "In Nature",
+      name: "inNature",
     },
     {
       id: 8,
-      icon: <LandscapeOutlinedIcon className="icons" />,
-      title: "In Nature",
-    },
-    {
-      id: 9,
       icon: <SnowmobileOutlinedIcon className="icons" />,
       title: "Luxe",
+      name: "luxe",
     },
   ];
-
-  const selectedButtonHandler = (id) => {
-    setSelectedButtons(id);
-  };
 
   return (
     <div className="categories w-full flex justify-between items-center gap-5">
@@ -72,7 +80,7 @@ const EstatesFilters = ({ openFilters }) => {
           <div
             key={button.id}
             className={`quick ${selectedButton === button.id && "border-2"} `}
-            onClick={() => selectedButtonHandler(button.id)}
+            onClick={() => selectedButtonHandler(button.id, button.name)}
           >
             {button.icon}
             {button.title}

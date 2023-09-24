@@ -12,16 +12,6 @@ const ProductCard = ({
 
   const estateTopRent = estates.filter((estate) => estate.topOffers === "rent");
   const estateTopSell = estates.filter((estate) => estate.topOffers === "sale");
-  // const estateSale = estates.filter((estate) => estate.status === "sale");
-  // const estateRent = estates.filter((estate) => estate.status === "rent");
-
-  // const products = checker
-  //   ? estateSale
-  //   : EstatesList
-  //   ? estates
-  //   : sale === true
-  //   ? estateTopSell
-  //   : estateTopRent;
 
   const products = EstatesList
     ? estates

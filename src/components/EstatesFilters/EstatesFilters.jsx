@@ -79,7 +79,7 @@ const EstatesFilters = ({
         {buttons.map((button) => (
           <div
             key={button.id}
-            className={`quick ${selectedButton === button.id && "border-2"} `}
+            className={`quick ${selectedButton === button.id && "border-2 "} `}
             onClick={() => selectedButtonHandler(button.id, button.name)}
           >
             {button.icon}

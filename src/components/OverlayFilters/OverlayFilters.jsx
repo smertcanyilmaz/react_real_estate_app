@@ -6,7 +6,7 @@ import HouseOutlinedIcon from "@mui/icons-material/HouseOutlined";
 import HomeWorkOutlinedIcon from "@mui/icons-material/HomeWorkOutlined";
 
 const OverlayFilters = ({ openFilters }) => {
-  const numbers = [1, 2, 3, 4, 5, 6, 7, "8+"];
+  const numbers = ["Any", 1, 2, 3, 4, 5, 6, 7, "8+"];
   const [selectedNumbers1, setSelectedNumbers1] = useState(null);
   const [selectedNumbers2, setSelectedNumbers2] = useState(null);
   const selectedNumbersHandler1 = (id) => {
@@ -65,13 +65,16 @@ const OverlayFilters = ({ openFilters }) => {
                   "bg-gray-100 text-gray-800 border border-gray-800"
                 }`}
               >
-                Any
+                {numbers[0]}
               </div>
               {numbers.map((number, index) => (
                 <div
                   className={`numbers ${
                     selectedNumbers1 === index &&
                     "border-2 border-gray-800 text-white bg-gray-800"
+                  } ${
+                    selectedNumbers1 === 1 &&
+                    "w-20 h-10 rounded-2xl bg-gray-800 text-white flex justify-center items-center cursor-pointer duration-300 "
                   } `}
                   key={index}
                   onClick={() => selectedNumbersHandler1(index)}

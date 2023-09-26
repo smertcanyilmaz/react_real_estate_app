@@ -11,14 +11,21 @@ const OverlayFilters = ({
   selectedButtonsStatus,
   setSelectedButtonsStatus,
   showHandler,
+  setSelectedRoomNumbers,
 }) => {
-  // const [selectedButtonsStatus, setSelectedButtonsStatus] = useState(null);
-
   const buttonsStatusHandler = (id) => {
     setSelectedButtonsStatus(id);
   };
 
-  console.log(selectedButtonsStatus);
+  // const [rooms, setRooms] = useState(null);
+
+  // const roomsFunc = (room) => {
+  //   if (room === bedrooms) {
+  //     setRooms(bedrooms === true);
+  //   } else {
+  //     setRooms(bathrooms === true);
+  //   }
+  // };
 
   const buttonsStatus = [
     {
@@ -61,11 +68,6 @@ const OverlayFilters = ({
       title: "Rent",
     },
   ];
-
-  // const showHandler = () => {
-  //   console.log("tıklandı");
-  //   openFilters();
-  // };
 
   return (
     <div className="overlayFilters absolute w-[55vw] h-[90vh] top-1/2 left-1/2 rounded-2xl bg-white z-50 flex flex-col justify-between py-6 px-10 ">
@@ -110,11 +112,17 @@ const OverlayFilters = ({
           <h1 className="text-2xl font-semibold">Rooms</h1>
           <div className="flex flex-col gap-3">
             Bedrooms
-            <Rooms bedrooms={true} />
+            <Rooms
+              bedrooms={true}
+              setSelectedRoomNumbers={setSelectedRoomNumbers}
+            />
           </div>
           <div className="flex flex-col gap-3">
             Bathrooms
-            <Rooms bathrooms={true} />
+            <Rooms
+              bathrooms={true}
+              setSelectedRoomNumbers={setSelectedRoomNumbers}
+            />
           </div>
         </div>
       </div>

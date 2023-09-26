@@ -8,6 +8,7 @@ const EstatesList = ({
   showHandler,
   filtersApplied,
   setFiltersApplied,
+  selectedRoomNumbers,
 }) => {
   return (
     <div className="w-full">
@@ -18,6 +19,7 @@ const EstatesList = ({
         showHandler={showHandler}
         filtersApplied={filtersApplied}
         setFiltersApplied={setFiltersApplied}
+        selectedRoomNumbers={selectedRoomNumbers}
       />
     </div>
   );

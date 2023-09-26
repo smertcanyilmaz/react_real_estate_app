@@ -7,14 +7,17 @@ const ProductCard = ({
   EstatesList,
   filter,
   selectedButtonsStatus,
-
   filtersApplied,
   setFiltersApplied,
+  selectedRoomNumbers,
 }) => {
   const { estates } = useFetch();
 
   const estateTopRent = estates.filter((estate) => estate.topOffers === "rent");
   const estateTopSell = estates.filter((estate) => estate.topOffers === "sale");
+  // const estateBedrooms = estates.filter((estate) => estate.rooms.bedrooms);
+
+  // console.log(estateBedrooms);
 
   const products = EstatesList
     ? estates
@@ -59,6 +62,14 @@ const ProductCard = ({
         setFiltersApplied(false);
       } else if (selectedButtonsStatus === 0) {
         setFilteredList(temp2);
+        setFiltersApplied(false);
+      }
+
+      if (selectedRoomNumbers) {
+        const estateBedrooms = temp2.filter(
+          (estate) => estate.rooms.bedrooms === selectedRoomNumbers + 1
+        );
+        setFilteredList(estateBedrooms);
         setFiltersApplied(false);
       }
     }

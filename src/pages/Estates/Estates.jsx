@@ -10,22 +10,26 @@ const Estates = () => {
   const [filter, setFilter] = useState("");
 
   const openFilters = () => {
+    // overlayFilters componentini açar ve kapatır
     setOpenFilterOverlay((prev) => !prev);
   };
 
   const selectedButtonHandler = (id, name) => {
+    // quick section seçim
     setSelectedButtons(id);
     setFilter(name);
   };
 
-  const [selectedButtonsStatus, setSelectedButtonsStatus] = useState(null);
-  const [filtersApplied, setFiltersApplied] = useState(false);
+  const [selectedButtonsStatus, setSelectedButtonsStatus] = useState(null); // property type seçim
+  const [filtersApplied, setFiltersApplied] = useState(false); // property type tıklamadan önce listelemeyi engellemek için yazılan state
 
   const showHandler = () => {
-    console.log("tıklandı");
+    // overlayFilter'da show places butonuna yazılan click fonksiyonu
     openFilters();
     setFiltersApplied(true);
   };
+
+  const [selectedRoomNumbers, setSelectedRoomNumbers] = useState(null); // overlayFilters room numbers state
 
   return (
     <div className="max-w-6xl mt-10 flex flex-col gap-10">
@@ -41,6 +45,7 @@ const Estates = () => {
             selectedButtonsStatus={selectedButtonsStatus}
             setSelectedButtonsStatus={setSelectedButtonsStatus}
             showHandler={showHandler}
+            setSelectedRoomNumbers={setSelectedRoomNumbers}
           />
         </>
       )}
@@ -55,6 +60,7 @@ const Estates = () => {
         showHandler={showHandler}
         filtersApplied={filtersApplied}
         setFiltersApplied={setFiltersApplied}
+        selectedRoomNumbers={selectedRoomNumbers}
       />
     </div>
   );

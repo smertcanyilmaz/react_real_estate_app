@@ -1,7 +1,16 @@
 import React, { useEffect, useState } from "react";
 import useFetch from "../hooks/useFetch";
 
-const ProductCard = ({ currentSlide, sale, EstatesList, filter }) => {
+const ProductCard = ({
+  currentSlide,
+  sale,
+  EstatesList,
+  filter,
+  selectedButtonsStatus,
+
+  filtersApplied,
+  setFiltersApplied,
+}) => {
   const { estates } = useFetch();
 
   const estateTopRent = estates.filter((estate) => estate.topOffers === "rent");
@@ -28,6 +37,8 @@ const ProductCard = ({ currentSlide, sale, EstatesList, filter }) => {
     } else if (filter === "rent") {
       const tempRent = temp.filter((estate) => estate.status === filter);
       setFilteredList(tempRent);
+    } else if (filter === "trending") {
+      setFilteredList(temp);
     }
   }, [filter]);
 
@@ -35,7 +46,23 @@ const ProductCard = ({ currentSlide, sale, EstatesList, filter }) => {
     setFilteredList(products);
   }, [products]);
 
-  console.log(filter);
+  useEffect(() => {
+    const temp2 = products;
+    if (filtersApplied) {
+      if (selectedButtonsStatus === 1) {
+        const tempSale = temp2.filter((estate) => estate.status === "sale");
+        setFilteredList(tempSale);
+        setFiltersApplied(false);
+      } else if (selectedButtonsStatus === 2) {
+        const tempRent = temp2.filter((estate) => estate.status === "rent");
+        setFilteredList(tempRent);
+        setFiltersApplied(false);
+      } else if (selectedButtonsStatus === 0) {
+        setFilteredList(temp2);
+        setFiltersApplied(false);
+      }
+    }
+  }, [filtersApplied]);
 
   return (
     <div

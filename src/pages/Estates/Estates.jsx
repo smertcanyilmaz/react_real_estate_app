@@ -18,6 +18,15 @@ const Estates = () => {
     setFilter(name);
   };
 
+  const [selectedButtonsStatus, setSelectedButtonsStatus] = useState(null);
+  const [filtersApplied, setFiltersApplied] = useState(false);
+
+  const showHandler = () => {
+    console.log("tıklandı");
+    openFilters();
+    setFiltersApplied(true);
+  };
+
   return (
     <div className="max-w-6xl mt-10 flex flex-col gap-10">
       {openFiltersOverlay && (
@@ -29,6 +38,9 @@ const Estates = () => {
           <OverlayFilters
             openFilters={openFilters}
             selectedButtonHandler={selectedButtonHandler}
+            selectedButtonsStatus={selectedButtonsStatus}
+            setSelectedButtonsStatus={setSelectedButtonsStatus}
+            showHandler={showHandler}
           />
         </>
       )}
@@ -37,7 +49,13 @@ const Estates = () => {
         selectedButton={selectedButton}
         selectedButtonHandler={selectedButtonHandler}
       />
-      <EstatesList filter={filter} />
+      <EstatesList
+        filter={filter}
+        selectedButtonsStatus={selectedButtonsStatus}
+        showHandler={showHandler}
+        filtersApplied={filtersApplied}
+        setFiltersApplied={setFiltersApplied}
+      />
     </div>
   );
 };

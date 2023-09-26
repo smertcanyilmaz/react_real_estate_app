@@ -6,12 +6,20 @@ import HouseOutlinedIcon from "@mui/icons-material/HouseOutlined";
 import HomeWorkOutlinedIcon from "@mui/icons-material/HomeWorkOutlined";
 import Rooms from "./Rooms/Rooms";
 
-const OverlayFilters = ({ openFilters }) => {
-  const [selectedButtonsStatus, setSelectedButtonsStatus] = useState(null);
+const OverlayFilters = ({
+  openFilters,
+  selectedButtonsStatus,
+  setSelectedButtonsStatus,
+  showHandler,
+}) => {
+  // const [selectedButtonsStatus, setSelectedButtonsStatus] = useState(null);
 
   const buttonsStatusHandler = (id) => {
     setSelectedButtonsStatus(id);
   };
+
+  console.log(selectedButtonsStatus);
+
   const buttonsStatus = [
     {
       id: 1,
@@ -53,6 +61,11 @@ const OverlayFilters = ({ openFilters }) => {
       title: "Rent",
     },
   ];
+
+  // const showHandler = () => {
+  //   console.log("tıklandı");
+  //   openFilters();
+  // };
 
   return (
     <div className="overlayFilters absolute w-[55vw] h-[90vh] top-1/2 left-1/2 rounded-2xl bg-white z-50 flex flex-col justify-between py-6 px-10 ">
@@ -107,7 +120,10 @@ const OverlayFilters = ({ openFilters }) => {
       </div>
       <div className="section3 w-full flex justify-between items-center">
         <p className="underline font-semibold cursor-pointer">Clear all</p>
-        <div className="w-40 h-12 rounded-lg bg-gray-800 flex justify-center items-center text-white cursor-pointer">
+        <div
+          className="w-40 h-12 rounded-lg bg-gray-800 flex justify-center items-center text-white cursor-pointer"
+          onClick={showHandler}
+        >
           Show 100 places
         </div>
       </div>

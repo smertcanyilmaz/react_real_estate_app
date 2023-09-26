@@ -7,15 +7,53 @@ import HomeWorkOutlinedIcon from "@mui/icons-material/HomeWorkOutlined";
 import Rooms from "./Rooms/Rooms";
 
 const OverlayFilters = ({ openFilters }) => {
-  // const numbers = ["Any", 1, 2, 3, 4, 5, 6, 7, "8+"];
-  // const [selectedNumbers1, setSelectedNumbers1] = useState(null);
-  // const [selectedNumbers2, setSelectedNumbers2] = useState(null);
-  // const selectedNumbersHandler1 = (id) => {
-  //   setSelectedNumbers1(id);
-  // };
-  // const selectedNumbersHandler2 = (id) => {
-  //   setSelectedNumbers2(id);
-  // };
+  const [selectedButtonsStatus, setSelectedButtonsStatus] = useState(null);
+
+  const buttonsStatusHandler = (id) => {
+    setSelectedButtonsStatus(id);
+  };
+  const buttonsStatus = [
+    {
+      id: 1,
+      icon: (
+        <HomeWorkOutlinedIcon
+          className="icons"
+          fontSize="large"
+          style={{
+            color: selectedButtonsStatus === 0 ? "rgb(209 213 219)" : "initial",
+          }}
+        />
+      ),
+      title: "Any",
+    },
+    {
+      id: 2,
+      icon: (
+        <HouseOutlinedIcon
+          className="icons"
+          fontSize="large"
+          style={{
+            color: selectedButtonsStatus === 1 ? "rgb(209 213 219)" : "initial",
+          }}
+        />
+      ),
+      title: "Sell",
+    },
+    {
+      id: 3,
+      icon: (
+        <HomeOutlinedIcon
+          className="icons"
+          fontSize="large"
+          style={{
+            color: selectedButtonsStatus === 2 ? "rgb(209 213 219)" : "initial",
+          }}
+        />
+      ),
+      title: "Rent",
+    },
+  ];
+
   return (
     <div className="overlayFilters absolute w-[55vw] h-[90vh] top-1/2 left-1/2 rounded-2xl bg-white z-50 flex flex-col justify-between py-6 px-10 ">
       <div className="section1 w-full flex justify-between">
@@ -42,18 +80,18 @@ const OverlayFilters = ({ openFilters }) => {
           </div>
         </div>
         <div className="section2_2 w-full flex justify-between gap-10">
-          <div className="house">
-            <HomeWorkOutlinedIcon className="icons" fontSize="large" />
-            Any
-          </div>
-          <div className="house">
-            <HouseOutlinedIcon className="icons" fontSize="large" />
-            Sell
-          </div>
-          <div className="house">
-            <HomeOutlinedIcon className="icons" fontSize="large" />
-            Rent
-          </div>
+          {buttonsStatus.map((buttonStatus, index) => (
+            <div
+              key={buttonStatus.id}
+              className={`house ${
+                selectedButtonsStatus === index && "bg-gray-800 text-gray-300"
+              }`}
+              onClick={() => buttonsStatusHandler(index)}
+            >
+              {buttonStatus.icon}
+              {buttonStatus.title}
+            </div>
+          ))}
         </div>
         <div className="section2_3 flex flex-col gap-5">
           <h1 className="text-2xl font-semibold">Rooms</h1>
@@ -68,8 +106,8 @@ const OverlayFilters = ({ openFilters }) => {
         </div>
       </div>
       <div className="section3 w-full flex justify-between items-center">
-        <p className="underline font-semibold">Clear all</p>
-        <div className="w-40 h-12 rounded-lg bg-gray-800 flex justify-center items-center text-white">
+        <p className="underline font-semibold cursor-pointer">Clear all</p>
+        <div className="w-40 h-12 rounded-lg bg-gray-800 flex justify-center items-center text-white cursor-pointer">
           Show 100 places
         </div>
       </div>

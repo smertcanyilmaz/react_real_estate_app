@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Rooms.css";
 
-const Rooms = () => {
+const Rooms = ({ bedrooms, bathrooms }) => {
   const numbers = [1, 2, 3, 4, 5, 6, 7, "8+"];
   const [selectedNumbers, setSelectedNumbers] = useState(null);
 
@@ -17,7 +17,7 @@ const Rooms = () => {
             ? "bg-gray-800"
             : "bg-gray-100 text-gray-900 border border-gray-800"
         }`}
-        onClick={() => selectedNumbersHandler(null)} // Any düğmesine tıklanınca selectedNumbers'i null yapar.
+        onClick={() => selectedNumbersHandler(null)}
       >
         Any
       </div>

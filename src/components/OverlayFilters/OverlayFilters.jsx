@@ -4,17 +4,18 @@ import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import HouseOutlinedIcon from "@mui/icons-material/HouseOutlined";
 import HomeWorkOutlinedIcon from "@mui/icons-material/HomeWorkOutlined";
+import Rooms from "./Rooms/Rooms";
 
 const OverlayFilters = ({ openFilters }) => {
-  const numbers = ["Any", 1, 2, 3, 4, 5, 6, 7, "8+"];
-  const [selectedNumbers1, setSelectedNumbers1] = useState(null);
-  const [selectedNumbers2, setSelectedNumbers2] = useState(null);
-  const selectedNumbersHandler1 = (id) => {
-    setSelectedNumbers1(id);
-  };
-  const selectedNumbersHandler2 = (id) => {
-    setSelectedNumbers2(id);
-  };
+  // const numbers = ["Any", 1, 2, 3, 4, 5, 6, 7, "8+"];
+  // const [selectedNumbers1, setSelectedNumbers1] = useState(null);
+  // const [selectedNumbers2, setSelectedNumbers2] = useState(null);
+  // const selectedNumbersHandler1 = (id) => {
+  //   setSelectedNumbers1(id);
+  // };
+  // const selectedNumbersHandler2 = (id) => {
+  //   setSelectedNumbers2(id);
+  // };
   return (
     <div className="overlayFilters absolute w-[55vw] h-[90vh] top-1/2 left-1/2 rounded-2xl bg-white z-50 flex flex-col justify-between py-6 px-10 ">
       <div className="section1 w-full flex justify-between">
@@ -58,56 +59,11 @@ const OverlayFilters = ({ openFilters }) => {
           <h1 className="text-2xl font-semibold">Rooms</h1>
           <div className="flex flex-col gap-3">
             Bedrooms
-            <div className="flex gap-4 items-center">
-              <div
-                className={`w-20 h-10 rounded-2xl bg-gray-800 text-white flex justify-center items-center cursor-pointer duration-300 ${
-                  selectedNumbers1 &&
-                  "bg-gray-100 text-gray-800 border border-gray-800"
-                }`}
-              >
-                {numbers[0]}
-              </div>
-              {numbers.map((number, index) => (
-                <div
-                  className={`numbers ${
-                    selectedNumbers1 === index &&
-                    "border-2 border-gray-800 text-white bg-gray-800"
-                  } ${
-                    selectedNumbers1 === 1 &&
-                    "w-20 h-10 rounded-2xl bg-gray-800 text-white flex justify-center items-center cursor-pointer duration-300 "
-                  } `}
-                  key={index}
-                  onClick={() => selectedNumbersHandler1(index)}
-                >
-                  {number}
-                </div>
-              ))}
-            </div>
+            <Rooms bedrooms={true} />
           </div>
           <div className="flex flex-col gap-3">
             Bathrooms
-            <div className="flex gap-4 items-center">
-              <div
-                className={`w-20 h-10 rounded-2xl bg-gray-800 text-white flex justify-center items-center cursor-pointer duration-300 ${
-                  selectedNumbers2 &&
-                  "bg-gray-100 text-gray-800 border border-gray-800"
-                }`}
-              >
-                Any
-              </div>
-              {numbers.map((number, index) => (
-                <div
-                  className={`numbers ${
-                    selectedNumbers2 === index &&
-                    "border-2 border-gray-800 text-white bg-gray-800"
-                  } `}
-                  key={index}
-                  onClick={() => selectedNumbersHandler2(index)}
-                >
-                  {number}
-                </div>
-              ))}
-            </div>
+            <Rooms bathrooms={true} />
           </div>
         </div>
       </div>

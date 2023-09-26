@@ -1,13 +1,7 @@
 import React, { useEffect, useState } from "react";
 import useFetch from "../hooks/useFetch";
 
-const ProductCard = ({
-  currentSlide,
-  sale,
-  EstatesList,
-
-  filter,
-}) => {
+const ProductCard = ({ currentSlide, sale, EstatesList, filter }) => {
   const { estates } = useFetch();
 
   const estateTopRent = estates.filter((estate) => estate.topOffers === "rent");

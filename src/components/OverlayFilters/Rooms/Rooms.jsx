@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import "./Rooms.css";
 
-const Rooms = ({ bedrooms, bathrooms, setSelectedRoomNumbers }) => {
+const Rooms = ({
+  bedrooms,
+  bathrooms,
+  setSelectedRoomNumbers,
+  setSelectedRoomNumbers2,
+}) => {
   const numbers = [1, 2, 3, 4, 5, 6, 7, "8+"];
   const [selectedNumbers, setSelectedNumbers] = useState(null);
 
@@ -10,7 +15,7 @@ const Rooms = ({ bedrooms, bathrooms, setSelectedRoomNumbers }) => {
     if (bedrooms) {
       setSelectedRoomNumbers(id);
     } else if (bathrooms) {
-      setSelectedNumbers(id);
+      setSelectedRoomNumbers2(id);
     }
   };
 

@@ -12,6 +12,7 @@ const OverlayFilters = ({
   setSelectedButtonsStatus,
   showHandler,
   setSelectedRoomNumbers,
+  setSelectedRoomNumbers2,
 }) => {
   const buttonsStatusHandler = (id) => {
     setSelectedButtonsStatus(id);
@@ -121,7 +122,7 @@ const OverlayFilters = ({
             Bathrooms
             <Rooms
               bathrooms={true}
-              setSelectedRoomNumbers={setSelectedRoomNumbers}
+              setSelectedRoomNumbers2={setSelectedRoomNumbers2}
             />
           </div>
         </div>

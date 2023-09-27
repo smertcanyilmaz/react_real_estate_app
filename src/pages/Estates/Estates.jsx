@@ -30,6 +30,7 @@ const Estates = () => {
   };
 
   const [selectedRoomNumbers, setSelectedRoomNumbers] = useState(null); // overlayFilters room numbers state
+  const [selectedRoomNumbers2, setSelectedRoomNumbers2] = useState(null); // overlayFilters room numbers state
 
   return (
     <div className="max-w-6xl mt-10 flex flex-col gap-10">
@@ -46,6 +47,7 @@ const Estates = () => {
             setSelectedButtonsStatus={setSelectedButtonsStatus}
             showHandler={showHandler}
             setSelectedRoomNumbers={setSelectedRoomNumbers}
+            setSelectedRoomNumbers2={setSelectedRoomNumbers2}
           />
         </>
       )}
@@ -61,6 +63,7 @@ const Estates = () => {
         filtersApplied={filtersApplied}
         setFiltersApplied={setFiltersApplied}
         selectedRoomNumbers={selectedRoomNumbers}
+        selectedRoomNumbers2={selectedRoomNumbers2}
       />
     </div>
   );

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./OverlayFilters.css";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
@@ -13,20 +13,14 @@ const OverlayFilters = ({
   showHandler,
   setSelectedRoomNumbers,
   setSelectedRoomNumbers2,
+  selectedNumbers,
+  setSelectedNumbers,
+  selectedNumbers2,
+  setSelectedNumbers2,
 }) => {
   const buttonsStatusHandler = (id) => {
     setSelectedButtonsStatus(id);
   };
-
-  // const [rooms, setRooms] = useState(null);
-
-  // const roomsFunc = (room) => {
-  //   if (room === bedrooms) {
-  //     setRooms(bedrooms === true);
-  //   } else {
-  //     setRooms(bathrooms === true);
-  //   }
-  // };
 
   const buttonsStatus = [
     {
@@ -114,15 +108,21 @@ const OverlayFilters = ({
           <div className="flex flex-col gap-3">
             Bedrooms
             <Rooms
-              bedrooms={true}
+              //bedrooms={true}
               setSelectedRoomNumbers={setSelectedRoomNumbers}
+              selectedNumbers={selectedNumbers}
+              setSelectedNumbers={setSelectedNumbers}
+              type="bedrooms"
             />
           </div>
           <div className="flex flex-col gap-3">
             Bathrooms
             <Rooms
-              bathrooms={true}
+              //bathrooms={true}
               setSelectedRoomNumbers2={setSelectedRoomNumbers2}
+              selectedNumbers2={selectedNumbers2}
+              setSelectedNumbers2={setSelectedNumbers2}
+              type="bathrooms"
             />
           </div>
         </div>

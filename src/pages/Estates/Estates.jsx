@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Estates.css";
 import EstatesFilters from "../../components/EstatesFilters/EstatesFilters";
 import EstatesList from "../../components/EstatesList/EstatesList";
@@ -19,6 +19,8 @@ const Estates = () => {
     setSelectedButtons(id);
     setFilter(name);
   };
+  const [selectedNumbers, setSelectedNumbers] = useState(null); // rooms butonlarını seçer. NOT: overlayFilters'da yapılmış filtrelemeler, estate sayfası tekrar render edilmeden kaybolmasın istedim. bundan dolayı bu ve selectedButtonsStatus stateleri estate içine yazılıp prop edildi.
+  const [selectedNumbers2, setSelectedNumbers2] = useState(null);
 
   const [selectedButtonsStatus, setSelectedButtonsStatus] = useState(null); // property type seçim
   const [filtersApplied, setFiltersApplied] = useState(false); // property type tıklamadan önce listelemeyi engellemek için yazılan state
@@ -29,8 +31,8 @@ const Estates = () => {
     setFiltersApplied(true);
   };
 
-  const [selectedRoomNumbers, setSelectedRoomNumbers] = useState(null); // overlayFilters room numbers state
-  const [selectedRoomNumbers2, setSelectedRoomNumbers2] = useState(null); // overlayFilters room numbers state
+  const [selectedRoomNumbers, setSelectedRoomNumbers] = useState(null); // overlayFilters bedroom numbers state
+  const [selectedRoomNumbers2, setSelectedRoomNumbers2] = useState(null); // overlayFilters bathroom numbers state
 
   return (
     <div className="max-w-6xl mt-10 flex flex-col gap-10">
@@ -48,6 +50,10 @@ const Estates = () => {
             showHandler={showHandler}
             setSelectedRoomNumbers={setSelectedRoomNumbers}
             setSelectedRoomNumbers2={setSelectedRoomNumbers2}
+            selectedNumbers={selectedNumbers}
+            setSelectedNumbers={setSelectedNumbers}
+            selectedNumbers2={selectedNumbers2}
+            setSelectedNumbers2={setSelectedNumbers2}
           />
         </>
       )}

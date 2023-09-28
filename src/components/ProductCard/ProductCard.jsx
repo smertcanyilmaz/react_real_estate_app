@@ -27,8 +27,14 @@ const ProductCard = ({
     : estateTopRent;
 
   const [filteredList, setFilteredList] = useState(products);
+  const [notFound, setNotFound] = useState(false);
 
   useEffect(() => {
+    setFilteredList(products);
+  }, [products]);
+
+  useEffect(() => {
+    //quick section
     const temp = products;
 
     if (filter !== "") {
@@ -44,41 +50,45 @@ const ProductCard = ({
     } else if (filter === "trending") {
       setFilteredList(temp);
     }
+
+    setNotFound(false);
   }, [filter]);
 
   useEffect(() => {
-    setFilteredList(products);
-  }, [products]);
-
-  useEffect(() => {
+    //overlayFilter section
     const temp2 = products;
 
     if (filtersApplied) {
-      let filteredList = temp2;
+      let filteredNumbers = temp2;
 
       if (selectedButtonsStatus === 1) {
-        filteredList = filteredList.filter(
+        filteredNumbers = filteredNumbers.filter(
           (estate) => estate.status === "sale"
         );
       } else if (selectedButtonsStatus === 2) {
-        filteredList = filteredList.filter(
+        filteredNumbers = filteredNumbers.filter(
           (estate) => estate.status === "rent"
         );
       }
 
       if (selectedRoomNumbers) {
-        filteredList = filteredList.filter(
+        filteredNumbers = filteredNumbers.filter(
           (estate) => estate.rooms.bedrooms === selectedRoomNumbers + 1
         );
       }
 
       if (selectedRoomNumbers2) {
-        filteredList = filteredList.filter(
+        filteredNumbers = filteredNumbers.filter(
           (estate) => estate.rooms.bathrooms === selectedRoomNumbers2 + 1
         );
       }
+      if (filteredNumbers.length === 0) {
+        setNotFound(true);
+      } else {
+        setNotFound(false);
+      }
 
-      setFilteredList(filteredList);
+      setFilteredList(filteredNumbers);
       setFiltersApplied(false);
     }
   }, [
@@ -117,25 +127,9 @@ const ProductCard = ({
           </div>
         </div>
       ))}
+      {notFound && <p>Not Found</p>}
     </div>
   );
 };
 
 export default ProductCard;
-
-// if (selectedRoomNumbers) {
-//   const estateBedrooms = temp2.filter(
-//     (estate) => estate.rooms.bedrooms === selectedRoomNumbers + 1
-//   );
-//   const estateBathrooms = temp2.filter(
-//     (estate) => estate.rooms.bathrooms === selectedRoomNumbers + 1
-//   );
-
-//   const arr = [...estateBedrooms, ...estateBathrooms];
-//   if (arr !== null) {
-//     setFilteredList(arr);
-//     setFiltersApplied(false);
-//   }
-
-//   console.log(arr);
-// }

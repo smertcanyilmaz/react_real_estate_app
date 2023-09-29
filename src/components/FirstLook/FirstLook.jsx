@@ -17,11 +17,11 @@ const FirstLook = () => {
         </div>
         <div className="flex-1 flex justify-end relative">
           <img
-            src="src\assets\FirstLook\pexels-timur-saglambilek-87223 2.png"
+            src="src\assets\FirstLook\apart2.png"
             className="max-h-full  object-cover"
           />
           <img
-            src="src\assets\FirstLook\pexels-timur-saglambilek-87223 1.png"
+            src="src\assets\FirstLook\apart.png"
             className="absolute bottom-0 max-h-full object-cover"
           />
         </div>

@@ -25,10 +25,22 @@ const Estates = () => {
   const [selectedButtonsStatus, setSelectedButtonsStatus] = useState(null); // property type seçim
   const [filtersApplied, setFiltersApplied] = useState(false); // property type tıklamadan önce listelemeyi engellemek için yazılan state
 
+  const [filterTypeValue, setFilterTypeValue] = useState(""); // myArray içine pushlanacak typeları içeren state
+  const [filterTypes, setFilterTypes] = useState([]); // overlayFilters'da seçilen filtrelemelerin typelarını tutan state
+
+  const handleAddItem = () => {
+    //filters butonun seçilen filter sayısını göstermesini sağlayan fonksiyon
+    if (filterTypeValue && !filterTypes.includes(filterTypeValue)) {
+      setFilterTypes([...filterTypes, filterTypeValue]);
+    }
+    setFilterTypeValue("");
+  };
+
   const showHandler = () => {
     // overlayFilter'da show places butonuna yazılan click fonksiyonu
     openFilters();
     setFiltersApplied(true);
+    handleAddItem();
   };
 
   const [selectedRoomNumbers, setSelectedRoomNumbers] = useState(null); // overlayFilters bedroom numbers state
@@ -54,6 +66,7 @@ const Estates = () => {
             setSelectedNumbers={setSelectedNumbers}
             selectedNumbers2={selectedNumbers2}
             setSelectedNumbers2={setSelectedNumbers2}
+            setFilterTypeValue={setFilterTypeValue}
           />
         </>
       )}
@@ -61,6 +74,7 @@ const Estates = () => {
         openFilters={openFilters}
         selectedButton={selectedButton}
         selectedButtonHandler={selectedButtonHandler}
+        filterTypes={filterTypes}
       />
       <EstatesList
         filter={filter}

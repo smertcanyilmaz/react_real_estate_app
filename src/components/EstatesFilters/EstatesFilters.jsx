@@ -15,6 +15,7 @@ const EstatesFilters = ({
   openFilters,
   selectedButtonHandler,
   selectedButton,
+  filterTypes,
 }) => {
   const buttons = [
     {
@@ -88,9 +89,22 @@ const EstatesFilters = ({
         ))}
       </div>
       <div
-        className="flex items-center justify-center gap-2 w-28 h-12 rounded-xl bg-[--white] border border-gray-400 hover:border-2 hover:bg-gray-800 hover:border-none hover:text-white duration-100 cursor-pointer"
+        className={`flex items-center justify-center gap-2 w-28 h-12 rounded-xl bg-[--white] border border-gray-400 hover:bg-gray-800  hover:text-white duration-200 cursor-pointer relative 
+        ${
+          filterTypes.length !== 0 &&
+          "border-2 border-gray-800 hover:bg-white hover:bg-[--white] hover:text-inherit duration-0 "
+        }
+        
+        `}
         onClick={openFilters}
       >
+        {filterTypes.length !== 0 && (
+          <div className="bg-[--bg_color] absolute -top-1 -right-1 w-5 h-5 rounded-full  flex justify-center items-center ">
+            <div className="bg-black rounded-full text-xs text-white flex justify-center items-center  w-[1.125rem] h-[1.125rem] ">
+              {filterTypes.length}
+            </div>
+          </div>
+        )}
         <SortOutlinedIcon />
         Filters
       </div>

@@ -16,9 +16,6 @@ const ProductCard = ({
 
   const estateTopRent = estates.filter((estate) => estate.topOffers === "rent");
   const estateTopSell = estates.filter((estate) => estate.topOffers === "sale");
-  // const estateBedrooms = estates.filter((estate) => estate.rooms.bedrooms);
-
-  // console.log(estateBedrooms);
 
   const products = EstatesList
     ? estates

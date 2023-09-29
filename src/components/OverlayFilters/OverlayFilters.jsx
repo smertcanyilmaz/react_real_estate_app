@@ -17,9 +17,11 @@ const OverlayFilters = ({
   setSelectedNumbers,
   selectedNumbers2,
   setSelectedNumbers2,
+  setFilterTypeValue,
 }) => {
   const buttonsStatusHandler = (id) => {
     setSelectedButtonsStatus(id);
+    setFilterTypeValue("property");
   };
 
   const buttonsStatus = [
@@ -89,7 +91,7 @@ const OverlayFilters = ({
             </div>
           </div>
         </div>
-        <div className="section2_2 w-full flex justify-between gap-10">
+        <div className="section2_2 w-full flex justify-around">
           {buttonsStatus.map((buttonStatus, index) => (
             <div
               key={buttonStatus.id}
@@ -113,6 +115,7 @@ const OverlayFilters = ({
               selectedNumbers={selectedNumbers}
               setSelectedNumbers={setSelectedNumbers}
               type="bedrooms"
+              setFilterTypeValue={setFilterTypeValue}
             />
           </div>
           <div className="flex flex-col gap-3">
@@ -122,6 +125,7 @@ const OverlayFilters = ({
               selectedNumbers2={selectedNumbers2}
               setSelectedNumbers2={setSelectedNumbers2}
               type="bathrooms"
+              setFilterTypeValue={setFilterTypeValue}
             />
           </div>
         </div>

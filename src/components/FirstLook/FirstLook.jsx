@@ -11,7 +11,9 @@ const FirstLook = () => {
           <p className="text-justify text-xl leading-normal">
             We provide a complete service for the sale, purchase or rental of
             real estate. We have been operating in Madrid and Barcelona more
-            than 15 years..
+            than 15 years. We provide a complete service for the sale, purchase
+            or rental of real estate. We have been operating in Madrid and
+            Barcelona more than 15 years.
           </p>
           <Search />
         </div>

@@ -29,9 +29,9 @@ const OverlayFilters = ({
         <HomeWorkOutlinedIcon
           className="icons"
           fontSize="large"
-          style={{
-            color: selectedButtonsStatus === 0 ? "rgb(209 213 219)" : "initial",
-          }}
+          // style={{
+          //   color: selectedButtonsStatus === 0 ? "rgb(209 213 219)" : "initial",
+          // }}
         />
       ),
       title: "Any",
@@ -42,9 +42,9 @@ const OverlayFilters = ({
         <HouseOutlinedIcon
           className="icons"
           fontSize="large"
-          style={{
-            color: selectedButtonsStatus === 1 ? "rgb(209 213 219)" : "initial",
-          }}
+          // style={{
+          //   color: selectedButtonsStatus === 1 ? "rgb(209 213 219)" : "initial",
+          // }}
         />
       ),
       title: "Sell",
@@ -55,9 +55,9 @@ const OverlayFilters = ({
         <HomeOutlinedIcon
           className="icons"
           fontSize="large"
-          style={{
-            color: selectedButtonsStatus === 2 ? "rgb(209 213 219)" : "initial",
-          }}
+          // style={{
+          //   color: selectedButtonsStatus === 2 ? "rgb(209 213 219)" : "initial",
+          // }}
         />
       ),
       title: "Rent",
@@ -94,7 +94,8 @@ const OverlayFilters = ({
             <div
               key={buttonStatus.id}
               className={`house ${
-                selectedButtonsStatus === index && "bg-gray-800 text-gray-300"
+                selectedButtonsStatus === index &&
+                "bg-[#f6f6f6] border-2 border-gray-800 "
               }`}
               onClick={() => buttonsStatusHandler(index)}
             >
@@ -108,7 +109,6 @@ const OverlayFilters = ({
           <div className="flex flex-col gap-3">
             Bedrooms
             <Rooms
-              //bedrooms={true}
               setSelectedRoomNumbers={setSelectedRoomNumbers}
               selectedNumbers={selectedNumbers}
               setSelectedNumbers={setSelectedNumbers}
@@ -118,7 +118,6 @@ const OverlayFilters = ({
           <div className="flex flex-col gap-3">
             Bathrooms
             <Rooms
-              //bathrooms={true}
               setSelectedRoomNumbers2={setSelectedRoomNumbers2}
               selectedNumbers2={selectedNumbers2}
               setSelectedNumbers2={setSelectedNumbers2}

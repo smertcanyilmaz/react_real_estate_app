@@ -73,13 +73,13 @@ const ProductCard = ({
 
       if (selectedRoomNumbers) {
         filteredNumbers = filteredNumbers.filter(
-          (estate) => estate.rooms.bedrooms === selectedRoomNumbers + 1
+          (estate) => estate.rooms.bedrooms === selectedRoomNumbers //+ 1
         );
       }
 
       if (selectedRoomNumbers2) {
         filteredNumbers = filteredNumbers.filter(
-          (estate) => estate.rooms.bathrooms === selectedRoomNumbers2 + 1
+          (estate) => estate.rooms.bathrooms === selectedRoomNumbers2 //+ 1
         );
       }
       if (filteredNumbers.length === 0) {

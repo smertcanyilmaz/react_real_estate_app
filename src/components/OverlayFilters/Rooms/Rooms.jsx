@@ -12,7 +12,7 @@ const Rooms = ({
   setSelectedNumbers2,
   type,
 }) => {
-  const numbers = [1, 2, 3, 4, 5, 6, 7, "8+"];
+  const numbers = ["Any", 1, 2, 3, 4, 5, 6, 7, "8+"];
   //const [selectedNumbers, setSelectedNumbers] = useState(null);
 
   const selectedNumbersHandler = (id) => {
@@ -28,28 +28,35 @@ const Rooms = ({
 
   return (
     <div className="flex gap-4 items-center">
-      <div
-        className={`w-20 h-10 rounded-2xl text-white flex justify-center items-center cursor-pointer duration-300 ${
-          (type === "bedrooms" ? selectedNumbers : selectedNumbers2) === null
-            ? "bg-gray-800"
-            : "bg-gray-100 text-gray-900 border border-gray-800"
-        }`}
-        onClick={() => selectedNumbersHandler(null)}
-      >
-        Any
-      </div>
       {numbers.map((number, index) => (
-        <div
-          className={`numbers ${
-            (type === "bedrooms" ? selectedNumbers : selectedNumbers2) === index
-              ? "bg-gray-800 text-white"
-              : "bg-gray-100 text-gray-800"
-          } flex justify-center items-center cursor-pointer duration-300`}
-          key={index}
-          onClick={() => selectedNumbersHandler(index)}
-        >
-          {number}
-        </div>
+        <>
+          {number === "Any" ? (
+            <div
+              className={`w-20 h-10 rounded-2xl text-white flex justify-center items-center cursor-pointer duration-300 ${
+                (type === "bedrooms" ? selectedNumbers : selectedNumbers2) ===
+                null
+                  ? "bg-gray-800"
+                  : "bg-gray-100 text-gray-700 border border-gray-800"
+              }`}
+              onClick={() => selectedNumbersHandler(null)}
+            >
+              {number}
+            </div>
+          ) : (
+            <div
+              className={`numbers ${
+                (type === "bedrooms" ? selectedNumbers : selectedNumbers2) ===
+                index
+                  ? "bg-gray-800 text-white"
+                  : "bg-gray-100 text-gray-800"
+              } flex justify-center items-center cursor-pointer duration-300`}
+              key={index}
+              onClick={() => selectedNumbersHandler(index)}
+            >
+              {number}
+            </div>
+          )}
+        </>
       ))}
     </div>
   );

@@ -10,9 +10,6 @@ const EstatesList = ({
   setFiltersApplied,
   selectedRoomNumbers,
   selectedRoomNumbers2,
-  setMemory,
-  setButtonList,
-  buttonList,
 }) => {
   return (
     <div className="w-full">

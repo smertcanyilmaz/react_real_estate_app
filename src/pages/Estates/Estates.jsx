@@ -77,6 +77,7 @@ const Estates = () => {
             setFilterTypeValue={setFilterTypeValue}
             checker={checker}
             setChecker={setChecker}
+            setFilterTypes={setFilterTypes}
           />
         </>
       )}

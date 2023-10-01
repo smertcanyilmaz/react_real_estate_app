@@ -19,18 +19,22 @@ const Rooms = ({
     if (type === "bedrooms") {
       if (selectedNumbers === id) {
         setSelectedNumbers(null);
+        setSelectedRoomNumbers(null);
       } else {
         setSelectedNumbers(id);
+        setSelectedRoomNumbers(id);
       }
-      setSelectedRoomNumbers(id);
+
       setFilterTypeValue(type);
     } else if (type === "bathrooms") {
       if (selectedNumbers2 === id) {
         setSelectedNumbers2(null);
+        setSelectedRoomNumbers2(null);
       } else {
         setSelectedNumbers2(id);
+        setSelectedRoomNumbers2(id);
       }
-      setSelectedRoomNumbers2(id);
+
       setFilterTypeValue(type);
     }
   };

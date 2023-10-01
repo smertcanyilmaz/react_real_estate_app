@@ -20,10 +20,16 @@ const OverlayFilters = ({
   setFilterTypeValue,
   checker,
   setChecker,
+  setFilterTypes,
 }) => {
   const buttonsStatusHandler = (id) => {
-    setSelectedButtonsStatus(id);
-    setFilterTypeValue("property");
+    if (selectedButtonsStatus === id) {
+      setSelectedButtonsStatus(null);
+      setFilterTypes((prev) => prev.filter((item) => item !== "property"));
+    } else {
+      setSelectedButtonsStatus(id);
+      setFilterTypeValue("property");
+    }
   };
 
   const buttonsStatus = [

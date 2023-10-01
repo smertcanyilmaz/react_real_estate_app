@@ -73,6 +73,9 @@ const Estates = () => {
     openFilters();
     setFiltersApplied(true);
     setChecker(true);
+    setSelectedButtons(null);
+    setFilter("");
+
     //handleAddItem();
   };
 

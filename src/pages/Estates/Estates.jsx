@@ -54,6 +54,11 @@ const Estates = () => {
   const [selectedRoomNumbers, setSelectedRoomNumbers] = useState(null); // overlayFilters bedroom numbers state
   const [selectedRoomNumbers2, setSelectedRoomNumbers2] = useState(null); // overlayFilters bathroom numbers state
 
+  const [filterPriceValues, setFilterPriceValues] = useState({
+    min: "",
+    max: "",
+  }); //overlayFilters minimum ve maximum price state
+
   return (
     <div className="max-w-6xl mt-10 flex flex-col gap-10">
       {openFiltersOverlay && (
@@ -78,6 +83,8 @@ const Estates = () => {
             checker={checker}
             setChecker={setChecker}
             setFilterTypes={setFilterTypes}
+            filterPriceValues={filterPriceValues}
+            setFilterPriceValues={setFilterPriceValues}
           />
         </>
       )}
@@ -98,6 +105,7 @@ const Estates = () => {
         setFiltersApplied={setFiltersApplied}
         selectedRoomNumbers={selectedRoomNumbers}
         selectedRoomNumbers2={selectedRoomNumbers2}
+        filterPriceValues={filterPriceValues}
       />
     </div>
   );

@@ -10,6 +10,7 @@ const EstatesList = ({
   setFiltersApplied,
   selectedRoomNumbers,
   selectedRoomNumbers2,
+  filterPriceValues,
 }) => {
   return (
     <div className="w-full">
@@ -22,6 +23,7 @@ const EstatesList = ({
         setFiltersApplied={setFiltersApplied}
         selectedRoomNumbers={selectedRoomNumbers}
         selectedRoomNumbers2={selectedRoomNumbers2}
+        filterPriceValues={filterPriceValues}
       />
     </div>
   );

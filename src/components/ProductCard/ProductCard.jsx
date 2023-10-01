@@ -11,11 +11,14 @@ const ProductCard = ({
   setFiltersApplied,
   selectedRoomNumbers,
   selectedRoomNumbers2,
+  filterPriceValues,
 }) => {
   const { estates } = useFetch();
 
   const estateTopRent = estates.filter((estate) => estate.topOffers === "rent");
   const estateTopSell = estates.filter((estate) => estate.topOffers === "sale");
+  const priceFilter = estates.filter((estate) => estate.price === 450);
+  console.log(priceFilter);
 
   const products = EstatesList
     ? estates
@@ -58,6 +61,14 @@ const ProductCard = ({
     if (filtersApplied) {
       let filteredNumbers = temp2;
 
+      if (filterPriceValues.min !== "" && filterPriceValues.max !== "") {
+        filteredNumbers = filteredNumbers.filter(
+          (estate) =>
+            estate.price >= parseInt(filterPriceValues.min) &&
+            estate.price <= parseInt(filterPriceValues.max)
+        );
+      }
+
       if (selectedButtonsStatus === 1) {
         filteredNumbers = filteredNumbers.filter(
           (estate) => estate.status === "sale"
@@ -94,6 +105,8 @@ const ProductCard = ({
     selectedButtonsStatus,
     selectedRoomNumbers,
     selectedRoomNumbers2,
+    filterPriceValues.min,
+    filterPriceValues.max,
   ]);
 
   return (

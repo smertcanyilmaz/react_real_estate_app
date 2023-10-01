@@ -5,6 +5,7 @@ import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import HouseOutlinedIcon from "@mui/icons-material/HouseOutlined";
 import HomeWorkOutlinedIcon from "@mui/icons-material/HomeWorkOutlined";
 import Rooms from "./Rooms/Rooms";
+import Prices from "./Prices/Prices";
 
 const OverlayFilters = ({
   openFilters,
@@ -21,6 +22,8 @@ const OverlayFilters = ({
   checker,
   setChecker,
   setFilterTypes,
+  filterPriceValues,
+  setFilterPriceValues,
 }) => {
   const buttonsStatusHandler = (id) => {
     if (selectedButtonsStatus === id) {
@@ -82,23 +85,12 @@ const OverlayFilters = ({
         <div>{/* empty div */}</div>
       </div>
       <div className="section2 flex-1 flex flex-col gap-10 mt-10">
-        <div className="section2_1 w-full flex justify-between items-center px-10 gap-10">
-          <div className="inputbox ">
-            <span className="text-xs text-gray-600">Minimum</span>
-            <div className="flex items-center gap-1">
-              <span>€</span>
-              <input type="text" name="max" id="min" placeholder="300" />
-            </div>
-          </div>
-          <div className="w-[5vw] h-[1px] bg-gray-400">{/* empty div */}</div>
-          <div className="inputbox">
-            <span className="text-xs text-gray-600">Maximum</span>
-            <div className="flex items-center gap-1">
-              <span>€</span>
-              <input type="text" name="min" id="max" placeholder="100000+" />
-            </div>
-          </div>
-        </div>
+        <Prices
+          filterPriceValues={filterPriceValues}
+          setFilterPriceValues={setFilterPriceValues}
+          setFilterTypeValue={setFilterTypeValue}
+          setFilterTypes={setFilterTypes}
+        />
         <div className="section2_2 w-full flex justify-around">
           {buttonsStatus.map((buttonStatus, index) => (
             <div

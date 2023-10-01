@@ -35,6 +35,22 @@ const OverlayFilters = ({
     }
   };
 
+  const clearHandler = (e) => {
+    setSelectedButtonsStatus(null);
+    setSelectedNumbers(null);
+    setSelectedRoomNumbers(null);
+    setSelectedNumbers2(null);
+    setSelectedRoomNumbers2(null);
+    setFilterPriceValues({
+      min: "",
+      max: "",
+    });
+    setFilterTypes((prev) => prev.filter((item) => item !== "property"));
+    setFilterTypes((prev) => prev.filter((item) => item !== "bedrooms"));
+    setFilterTypes((prev) => prev.filter((item) => item !== "bathrooms"));
+    setFilterTypes((prev) => prev.filter((item) => item !== "price"));
+  };
+
   const buttonsStatus = [
     {
       id: 1,
@@ -137,7 +153,12 @@ const OverlayFilters = ({
         </div>
       </div>
       <div className="section3 w-full flex justify-between items-center">
-        <p className="underline font-semibold cursor-pointer">Clear all</p>
+        <p
+          className="underline font-semibold cursor-pointer"
+          onClick={clearHandler}
+        >
+          Clear all
+        </p>
         <div
           className="w-40 h-12 rounded-lg bg-gray-800 flex justify-center items-center text-white cursor-pointer"
           onClick={showHandler}

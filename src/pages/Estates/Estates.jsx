@@ -3,12 +3,14 @@ import "./Estates.css";
 import EstatesFilters from "../../components/EstatesFilters/EstatesFilters";
 import EstatesList from "../../components/EstatesList/EstatesList";
 import OverlayFilters from "../../components/OverlayFilters/OverlayFilters";
+import useFetch from "../../components/hooks/useFetch";
 
 const Estates = () => {
   const [openFiltersOverlay, setOpenFilterOverlay] = useState(false);
   const [selectedButton, setSelectedButtons] = useState(null);
   const [filter, setFilter] = useState("");
   const [checker, setChecker] = useState(false);
+  const { estates } = useFetch();
 
   const openFilters = () => {
     // overlayFilters componentini açar ve kapatır
@@ -16,10 +18,33 @@ const Estates = () => {
     //setChecker(false);
   };
 
+  const clearHandler = (e) => {
+    // clear all funksiyonu
+    setSelectedButtonsStatus(null);
+    setSelectedNumbers(null);
+    setSelectedRoomNumbers(null);
+    setSelectedNumbers2(null);
+    setSelectedRoomNumbers2(null);
+    setFilterPriceValues({
+      min: "",
+      max: "",
+    });
+    setFilterTypes((prev) => prev.filter((item) => item !== "property"));
+    setFilterTypes((prev) => prev.filter((item) => item !== "bedrooms"));
+    setFilterTypes((prev) => prev.filter((item) => item !== "bathrooms"));
+    setFilterTypes((prev) => prev.filter((item) => item !== "price"));
+  };
+
   const selectedButtonHandler = (id, name) => {
     // quick section seçim
-    setSelectedButtons(id);
-    setFilter(name);
+    if (selectedButton === id) {
+      setSelectedButtons(null);
+      setFilter("all");
+    } else {
+      setSelectedButtons(id);
+      setFilter(name);
+      clearHandler();
+    }
   };
   const [selectedNumbers, setSelectedNumbers] = useState(null); // rooms butonlarını seçer. NOT: overlayFilters'da yapılmış filtrelemeler, estate sayfası tekrar render edilmeden kaybolmasın istedim. bundan dolayı bu ve selectedButtonsStatus stateleri estate içine yazılıp prop edildi.
   const [selectedNumbers2, setSelectedNumbers2] = useState(null);
@@ -85,6 +110,7 @@ const Estates = () => {
             setFilterTypes={setFilterTypes}
             filterPriceValues={filterPriceValues}
             setFilterPriceValues={setFilterPriceValues}
+            clearHandler={clearHandler}
           />
         </>
       )}

@@ -49,6 +49,8 @@ const ProductCard = ({
       setFilteredList(tempRent);
     } else if (filter === "trending") {
       setFilteredList(temp);
+    } else if (filter === "all") {
+      setFilteredList(temp);
     }
 
     setNotFound(false);
@@ -105,8 +107,7 @@ const ProductCard = ({
     selectedButtonsStatus,
     selectedRoomNumbers,
     selectedRoomNumbers2,
-    filterPriceValues.min,
-    filterPriceValues.max,
+    filterPriceValues,
   ]);
 
   return (

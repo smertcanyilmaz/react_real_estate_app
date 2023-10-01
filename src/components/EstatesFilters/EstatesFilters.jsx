@@ -19,6 +19,7 @@ const EstatesFilters = ({
   handleAddItem,
   setChecker,
   checker,
+  clearHandler,
 }) => {
   const buttons = [
     {

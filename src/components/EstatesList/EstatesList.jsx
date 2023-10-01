@@ -11,6 +11,7 @@ const EstatesList = ({
   selectedRoomNumbers,
   selectedRoomNumbers2,
   filterPriceValues,
+  products,
 }) => {
   return (
     <div className="w-full">

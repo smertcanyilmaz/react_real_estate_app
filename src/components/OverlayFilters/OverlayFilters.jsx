@@ -126,6 +126,7 @@ const OverlayFilters = ({
               setFilterTypeValue={setFilterTypeValue}
               checker={checker}
               setChecker={setChecker}
+              setFilterTypes={setFilterTypes}
             />
           </div>
           <div className="flex flex-col gap-3">
@@ -138,6 +139,7 @@ const OverlayFilters = ({
               setFilterTypeValue={setFilterTypeValue}
               checker={checker}
               setChecker={setChecker}
+              setFilterTypes={setFilterTypes}
             />
           </div>
         </div>

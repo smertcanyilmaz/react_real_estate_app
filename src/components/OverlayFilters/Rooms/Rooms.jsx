@@ -12,6 +12,7 @@ const Rooms = ({
   setFilterTypeValue,
   checker,
   setChecker,
+  setFilterTypes,
 }) => {
   const numbers = ["Any", 1, 2, 3, 4, 5, 6, 7, "8+"];
 
@@ -20,22 +21,22 @@ const Rooms = ({
       if (selectedNumbers === id) {
         setSelectedNumbers(null);
         setSelectedRoomNumbers(null);
+        setFilterTypes((prev) => prev.filter((item) => item !== type));
       } else {
         setSelectedNumbers(id);
         setSelectedRoomNumbers(id);
+        setFilterTypeValue(type);
       }
-
-      setFilterTypeValue(type);
     } else if (type === "bathrooms") {
       if (selectedNumbers2 === id) {
         setSelectedNumbers2(null);
         setSelectedRoomNumbers2(null);
+        setFilterTypes((prev) => prev.filter((item) => item !== type));
       } else {
         setSelectedNumbers2(id);
         setSelectedRoomNumbers2(id);
+        setFilterTypeValue(type);
       }
-
-      setFilterTypeValue(type);
     }
   };
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./EstatesFilters.css";
 import ApartmentIcon from "@mui/icons-material/Apartment";
 import BungalowOutlinedIcon from "@mui/icons-material/BungalowOutlined";
@@ -16,6 +16,9 @@ const EstatesFilters = ({
   selectedButtonHandler,
   selectedButton,
   filterTypes,
+  handleAddItem,
+  setChecker,
+  checker,
 }) => {
   const buttons = [
     {
@@ -89,16 +92,17 @@ const EstatesFilters = ({
         ))}
       </div>
       <div
-        className={`flex items-center justify-center gap-2 w-28 h-12 rounded-xl bg-[--white] border border-gray-400 hover:bg-gray-800  hover:text-white duration-200 cursor-pointer relative 
+        className={`flex items-center justify-center gap-2 w-28 h-12 rounded-xl bg-[--white] border border-gray-400 hover:bg-gray-800  hover:text-white  cursor-pointer relative 
         ${
           filterTypes.length !== 0 &&
-          "border-2 border-gray-800 hover:bg-white hover:bg-[--white] hover:text-inherit duration-0 "
+          checker &&
+          "border-2 border-gray-800 hover:bg-white hover:text-black"
         }
         
         `}
         onClick={openFilters}
       >
-        {filterTypes.length !== 0 && (
+        {filterTypes.length !== 0 && checker && (
           <div className="bg-[--bg_color] absolute -top-1 -right-1 w-5 h-5 rounded-full  flex justify-center items-center ">
             <div className="bg-black rounded-full text-xs text-white flex justify-center items-center  w-[1.125rem] h-[1.125rem] ">
               {filterTypes.length}

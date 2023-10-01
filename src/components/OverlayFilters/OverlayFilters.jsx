@@ -18,6 +18,8 @@ const OverlayFilters = ({
   selectedNumbers2,
   setSelectedNumbers2,
   setFilterTypeValue,
+  checker,
+  setChecker,
 }) => {
   const buttonsStatusHandler = (id) => {
     setSelectedButtonsStatus(id);
@@ -116,6 +118,8 @@ const OverlayFilters = ({
               setSelectedNumbers={setSelectedNumbers}
               type="bedrooms"
               setFilterTypeValue={setFilterTypeValue}
+              checker={checker}
+              setChecker={setChecker}
             />
           </div>
           <div className="flex flex-col gap-3">
@@ -126,6 +130,8 @@ const OverlayFilters = ({
               setSelectedNumbers2={setSelectedNumbers2}
               type="bathrooms"
               setFilterTypeValue={setFilterTypeValue}
+              checker={checker}
+              setChecker={setChecker}
             />
           </div>
         </div>

@@ -79,6 +79,7 @@ const ProductCard = ({
           (estate) => estate.rooms.bathrooms === selectedRoomNumbers2 //+ 1
         );
       }
+
       if (filteredNumbers.length === 0) {
         setNotFound(true);
       } else {

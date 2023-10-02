@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import EstateImages from "../../components/EstateImages/EstateImages";
 import useFetch from "../../components/hooks/useFetch";
 import { Link } from "react-router-dom";
@@ -6,6 +6,7 @@ import { IconButton } from "@mui/material";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import GitHubIcon from "@mui/icons-material/GitHub";
+import OverlayEstate from "../../components/OverlayEstate/OverlayEstate";
 
 const Estate = () => {
   const { estates } = useFetch();
@@ -16,10 +17,15 @@ const Estate = () => {
 
   const special = temp.map((estate) => estate.specials);
 
+  const [openOverlayEstate, setOpenOverlayEstate] = useState(false);
+
   return (
-    <div className="w-full mt-10 ">
+    <div className="max-w-6xl max-h-[100vh] mt-10 mb-10">
+      {openOverlayEstate && (
+        <OverlayEstate setOpenOverlayEstate={setOpenOverlayEstate} />
+      )}
       {temp.map((item) => (
-        <div key={item.id} className="flex flex-col gap-5">
+        <div key={item.id} className="flex flex-col gap-10 ">
           <div className="content flex flex-col gap-2">
             <h1 className="text-3xl font-bold">{item?.title}</h1>
             <div className="text-sm">
@@ -27,9 +33,12 @@ const Estate = () => {
               {item?.place?.country}
             </div>
           </div>
-          <EstateImages item={item} />
-          <div className="info flex justify-between">
-            <div className="info1 flex-1 flex flex-col gap-2  mt-2 ">
+          <EstateImages
+            item={item}
+            setOpenOverlayEstate={setOpenOverlayEstate}
+          />
+          <div className="info flex justify-between mt-5">
+            <div className="info1 flex-1 flex flex-col gap-2">
               <div className="w-full flex justify-between text-xl font-bold">
                 House Status: {item.status.toUpperCase()}
                 <div className="flex-1 text-2xl font-bold text-end">
@@ -41,7 +50,7 @@ const Estate = () => {
                 bathrooms | {special}
               </div>
             </div>
-            <div className="info2 flex-1 flex items-center justify-between ">
+            <div className="info2 flex-1 flex items-center justify-between">
               <div className="flex-1 flex flex-col items-center justify-center  font-semibold text-[15px]">
                 Contact the owner: Mertcan Yılmaz
                 <div className="flex justify-between items-center gap-5">

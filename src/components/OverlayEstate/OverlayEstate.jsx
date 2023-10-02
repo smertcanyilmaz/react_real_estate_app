@@ -2,11 +2,8 @@ import React, { useEffect, useState } from "react";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import useFetch from "../hooks/useFetch";
 
-const OverlayEstate = ({ setOpenOverlayEstate }) => {
-  const { estates } = useFetch();
-
+const OverlayEstate = ({ setOpenOverlayEstate, estates, imagesIndex }) => {
   const temp = estates.filter(
     (estate) => estate.title === "Apartment Monolith"
   );
@@ -15,7 +12,7 @@ const OverlayEstate = ({ setOpenOverlayEstate }) => {
 
   console.log(images);
 
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(imagesIndex);
   const [showRightArrow, setShowRightArrow] = useState(true);
   const [showLeftArrow, setShowLeftArrow] = useState(true);
 

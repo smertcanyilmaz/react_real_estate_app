@@ -18,11 +18,16 @@ const Estate = () => {
   const special = temp.map((estate) => estate.specials);
 
   const [openOverlayEstate, setOpenOverlayEstate] = useState(false);
+  const [imagesIndex, setImagesIndex] = useState(0);
 
   return (
     <div className="max-w-6xl max-h-[100vh] mt-10 mb-10">
       {openOverlayEstate && (
-        <OverlayEstate setOpenOverlayEstate={setOpenOverlayEstate} />
+        <OverlayEstate
+          setOpenOverlayEstate={setOpenOverlayEstate}
+          estates={estates}
+          imagesIndex={imagesIndex}
+        />
       )}
       {temp.map((item) => (
         <div key={item.id} className="flex flex-col gap-10 ">
@@ -36,6 +41,7 @@ const Estate = () => {
           <EstateImages
             item={item}
             setOpenOverlayEstate={setOpenOverlayEstate}
+            setImagesIndex={setImagesIndex}
           />
           <div className="info flex justify-between mt-5">
             <div className="info1 flex-1 flex flex-col gap-2">

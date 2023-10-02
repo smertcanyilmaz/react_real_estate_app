@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import useFetch from "../hooks/useFetch";
+import { Link } from "react-router-dom";
 
 const ProductCard = ({
   currentSlide,
@@ -111,36 +112,42 @@ const ProductCard = ({
   ]);
 
   return (
-    <div
-      className={
-        EstatesList
-          ? "grid grid-cols-4 gap-x-5 gap-y-7"
-          : "max-w-6xl flex gap-6 overflow-hidden"
-      }
-    >
-      {filteredList?.map((estate) => (
+    <>
+      <Link to="/estate">
         <div
-          key={estate.id}
-          className={`flex flex-col min-w-[14.60rem] h-64 bg-white rounded-2xl transform transition-transform duration-300 cursor-pointer
-        }`}
-          style={{
-            transform: `translateX(-${currentSlide * 15.9}rem)`,
-          }}
+          className={
+            EstatesList
+              ? "grid grid-cols-4 gap-x-5 gap-y-7"
+              : "max-w-6xl flex gap-6 overflow-hidden"
+          }
         >
-          <img
-            src={estate?.image}
-            alt=""
-            className="h-40 object-cover rounded-t-lg"
-          />
-          <div className="px-4 py-2 w-full space-y-1">
-            <h3 className="text-md font-bold">{estate?.title}</h3>
-            <p className="text-[--blue] font-bold text-sm">{estate?.price} €</p>
-            <p className="text-xs">{estate?.place?.city}</p>
-          </div>
+          {filteredList?.map((estate) => (
+            <div
+              key={estate.id}
+              className={`flex flex-col min-w-[14.60rem] h-64 bg-white rounded-2xl transform transition-transform duration-300 cursor-pointer
+        }`}
+              style={{
+                transform: `translateX(-${currentSlide * 15.9}rem)`,
+              }}
+            >
+              <img
+                src={estate?.image}
+                alt=""
+                className="h-40 object-cover rounded-t-lg"
+              />
+              <div className="px-4 py-2 w-full space-y-1">
+                <h3 className="text-md font-bold">{estate?.title}</h3>
+                <p className="text-[--blue] font-bold text-sm">
+                  {estate?.price} €
+                </p>
+                <p className="text-xs">{estate?.place?.city}</p>
+              </div>
+            </div>
+          ))}
+          {notFound && <p>Not Found</p>}
         </div>
-      ))}
-      {notFound && <p>Not Found</p>}
-    </div>
+      </Link>
+    </>
   );
 };
 

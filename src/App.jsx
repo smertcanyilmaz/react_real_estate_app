@@ -4,6 +4,7 @@ import Layout from "./pages/Layout/Layout";
 import Home from "./pages/Home/Home";
 import Estates from "./pages/Estates/Estates";
 import { useReducer } from "react";
+import Estate from "./pages/Estate/Estate";
 
 function App() {
   const ref0 = useReducer(null);
@@ -15,6 +16,7 @@ function App() {
           <Route path="/" element={<Layout ref0={ref0} />}>
             <Route index element={<Home ref0={ref0} />} />
             <Route path="estates" element={<Estates />} />
+            <Route path="estate" element={<Estate />} />
           </Route>
         </Routes>
       </BrowserRouter>

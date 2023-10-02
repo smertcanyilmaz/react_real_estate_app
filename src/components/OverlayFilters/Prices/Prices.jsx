@@ -8,7 +8,7 @@ const Prices = ({
 }) => {
   const handleChange = (e) => {
     const updatedFilterPriceValues = {
-      // eğer farklı bir değişkene almasaydım referans sorunundan dolayı dengeli çalışmayacaktı. bundan dolayı kopyalayarak işlem yapmak her zaman daha güvenli.
+      // eğer farklı bir değişkene almasaydım referans sorunundan dolayı dengeli çalışmayacaktı. react render ederken state güncellemesini referans değişmediği için anlayamayabiliyor. bundan dolayı reference data types'da kopyalayarak işlem yapmak her zaman daha güvenli.
       ...filterPriceValues,
       [e.target.name]: e.target.value,
     };

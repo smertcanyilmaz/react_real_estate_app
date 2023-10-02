@@ -3,14 +3,12 @@ import "./Estates.css";
 import EstatesFilters from "../../components/EstatesFilters/EstatesFilters";
 import EstatesList from "../../components/EstatesList/EstatesList";
 import OverlayFilters from "../../components/OverlayFilters/OverlayFilters";
-import useFetch from "../../components/hooks/useFetch";
 
 const Estates = () => {
   const [openFiltersOverlay, setOpenFilterOverlay] = useState(false);
   const [selectedButton, setSelectedButtons] = useState(null);
   const [filter, setFilter] = useState("");
   const [checker, setChecker] = useState(false);
-  const { estates } = useFetch();
 
   const openFilters = () => {
     // overlayFilters componentini açar ve kapatır
@@ -75,7 +73,6 @@ const Estates = () => {
     setChecker(true);
     setSelectedButtons(null);
     setFilter("");
-
     //handleAddItem();
   };
 

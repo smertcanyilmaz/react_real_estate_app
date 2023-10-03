@@ -11,7 +11,7 @@ const EstateImages = ({ item, setOpenOverlayEstate, setImagesIndex }) => {
       <div className=" flex-1 rounded-l-lg" onClick={() => clickHandler(0)}>
         <img
           src={item?.images[0]}
-          className="object-cover  rounded-l-lg duration-200 hover:brightness-90 hover:cursor-pointer"
+          className="object-cover h-full rounded-l-lg duration-200 hover:brightness-90 hover:cursor-pointer"
         />
       </div>
       <div className="flex-1 flex flex-col gap-3 ">

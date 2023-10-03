@@ -3,12 +3,20 @@ import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
-const OverlayEstate = ({ setOpenOverlayEstate, estates, imagesIndex }) => {
-  const temp = estates.filter(
-    (estate) => estate.title === "Apartment Monolith"
-  );
+const OverlayEstate = ({
+  setOpenOverlayEstate,
+  estates,
+  imagesIndex,
+  item,
+}) => {
+  //   const temp = estates.filter(
+  //     (estate) => estate.title === "Apartment Monolith"
+  //   );
 
-  const images = temp.flatMap((t) => t.images);
+  const imagesDatas = item.images;
+  console.log(imagesDatas);
+
+  const images = imagesDatas.flatMap((t) => t);
 
   console.log(images);
 
@@ -46,7 +54,6 @@ const OverlayEstate = ({ setOpenOverlayEstate, estates, imagesIndex }) => {
       setShowRightArrow(true);
     }
   }, [count, images.length]);
-  console.log(count);
 
   return (
     <div className="overlayEstate absolute top-0 left-0 w-full h-full p-12 bg-black z-30 text-gray-200">

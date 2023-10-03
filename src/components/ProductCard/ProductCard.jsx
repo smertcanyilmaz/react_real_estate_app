@@ -112,16 +112,16 @@ const ProductCard = ({
   ]);
 
   return (
-    <>
-      <Link to="/estate">
-        <div
-          className={
-            EstatesList
-              ? "grid grid-cols-4 gap-x-5 gap-y-7"
-              : "max-w-6xl flex gap-6 overflow-hidden"
-          }
-        >
-          {filteredList?.map((estate) => (
+    <div
+      className={
+        EstatesList
+          ? "grid grid-cols-4 gap-x-5 gap-y-7"
+          : "max-w-6xl flex gap-6 overflow-hidden"
+      }
+    >
+      {filteredList?.map((estate) => (
+        <>
+          <Link to={`/estates/${estate.id}`}>
             <div
               key={estate.id}
               className={`flex flex-col min-w-[14.60rem] h-64 bg-white rounded-2xl transform transition-transform duration-300 cursor-pointer
@@ -143,11 +143,11 @@ const ProductCard = ({
                 <p className="text-xs">{estate?.place?.city}</p>
               </div>
             </div>
-          ))}
-          {notFound && <p>Not Found</p>}
-        </div>
-      </Link>
-    </>
+          </Link>
+        </>
+      ))}
+      {notFound && <p>Not Found</p>}
+    </div>
   );
 };
 

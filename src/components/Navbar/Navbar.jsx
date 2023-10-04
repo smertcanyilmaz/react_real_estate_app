@@ -1,11 +1,23 @@
 import { Link } from "react-router-dom";
 import Button from "../Button/Button";
+import "./Navbar.css";
+import { useState } from "react";
 
 const Navbar = ({ ref0 }) => {
+  const [showBox, setShowBox] = useState(false);
+
+  const handleMouseEnter = () => {
+    setShowBox(true);
+  };
+
+  const handleMouseLeave = () => {
+    setShowBox(false);
+  };
+
   return (
     <div
       ref={ref0}
-      className="flex w-full h-[10vh] mx-auto justify-between items-center pt-10"
+      className="flex w-full h-[10vh] mx-auto justify-between items-center pt-10 relative"
     >
       <Link to="/">
         <svg
@@ -28,9 +40,15 @@ const Navbar = ({ ref0 }) => {
         <li>About us</li>
         <li>Our team</li>
       </ul>
-      <div>
-        <Button>Contact us</Button>
+      <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+        <Button post="true">Post Ad</Button>
       </div>
+      {showBox && (
+        <div className="box absolute -bottom-12 -right-10 border border-gray-800 flex items-center justify-center p-2 gap-1 rounded-md">
+          Post first three ads for
+          <span className="font-semibold text-red-500">free!</span>
+        </div>
+      )}
     </div>
   );
 };

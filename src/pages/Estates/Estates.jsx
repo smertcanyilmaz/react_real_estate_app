@@ -17,7 +17,7 @@ const Estates = () => {
   };
 
   const clearHandler = (e) => {
-    // clear all funksiyonu
+    // clear all fonksiyonu
     setSelectedButtonsStatus(null);
     setSelectedNumbers(null);
     setSelectedRoomNumbers(null);
@@ -44,7 +44,7 @@ const Estates = () => {
       clearHandler();
     }
   };
-  const [selectedNumbers, setSelectedNumbers] = useState(null); // rooms butonlarını seçer. NOT: overlayFilters'da yapılmış filtrelemeler, estate sayfası tekrar render edilmeden kaybolmasın istedim. bundan dolayı bu ve selectedButtonsStatus stateleri estate içine yazılıp prop edildi.
+  const [selectedNumbers, setSelectedNumbers] = useState(null); // rooms butonlarını seçer. NOT: overlayFilters'da yapılmış filtrelemeler, estates sayfası tekrar render edilmeden kaybolmasın istedim. bundan dolayı bu ve selectedButtonsStatus stateleri estates içine yazılıp prop edildi.
   const [selectedNumbers2, setSelectedNumbers2] = useState(null);
 
   const [selectedButtonsStatus, setSelectedButtonsStatus] = useState(null); // property type seçim

@@ -2,21 +2,20 @@ import React, { useEffect, useState } from "react";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import "./OverlayEstate.css";
 
 const OverlayEstate = ({
   setOpenOverlayEstate,
-  estates,
   imagesIndex,
   item,
+  openOverlayEstate,
+  translateState,
+  setTranslateState,
 }) => {
-  //   const temp = estates.filter(
-  //     (estate) => estate.title === "Apartment Monolith"
-  //   );
-
   const imagesDatas = item.images;
   console.log(imagesDatas);
 
-  const images = imagesDatas.flatMap((t) => t);
+  const images = imagesDatas.flatMap((data) => data);
 
   console.log(images);
 
@@ -44,6 +43,14 @@ const OverlayEstate = ({
     }
   };
 
+  const closeHandler = () => {
+    setOpenOverlayEstate(false);
+  };
+
+  //   useEffect(() => {
+  //     setTranslateState(false);
+  //   }, [!openOverlayEstate]);
+
   useEffect(() => {
     if (count === 0) {
       setShowLeftArrow(false);
@@ -56,11 +63,15 @@ const OverlayEstate = ({
   }, [count, images.length]);
 
   return (
-    <div className="overlayEstate absolute top-0 left-0 w-full h-full p-12 bg-black z-30 text-gray-200">
+    <div
+      className={`overlayEstate absolute left-0 -bottom-[8rem] w-full h-full p-12 bg-black z-30 text-gray-200 duration-500 transition-transform  ${
+        translateState ? "-translate-y-[8rem]" : "translate-y-full" //TODO: açılırken duration ile açılıyor kapanırken bir anda kapanıyor
+      }   `}
+    >
       <div className=" flex items-center justify-between ">
         <div
           className="w-24 p-2 text-gray-200 hover:bg-gray-800 hover:border-black rounded-lg flex items-center gap-2 cursor-pointer"
-          onClick={() => setOpenOverlayEstate(false)}
+          onClick={closeHandler}
         >
           <CloseOutlinedIcon /> Close
         </div>
@@ -79,7 +90,11 @@ const OverlayEstate = ({
           <ArrowBackIosNewIcon fontSize="small" />
         </div>
         <div className="max-w-4xl h-[75vh] flex-1 ">
-          <img src={images[count]} alt="" />
+          <img
+            src={images[count]}
+            alt=""
+            className="object-cover h-full w-full"
+          />
         </div>
 
         <div

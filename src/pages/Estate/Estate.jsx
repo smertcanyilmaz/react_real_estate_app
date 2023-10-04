@@ -12,29 +12,23 @@ const Estate = () => {
   const { id } = useParams();
   const { estates } = useFetch();
 
-  const item = estates.find((i) => i.id === id);
+  const item = estates.find((estate) => estate.id === id);
   console.log(item);
-  // const specialsData = item.specials;
-
-  // const temp = estates.filter(
-  //   (estate) => estate.title === "Apartment Monolith"
-  // );
-
-  // const special = item.map((estate) => estate.specials);
-
-  // const special = item.specials.map((speacial) => speacial);
 
   const [openOverlayEstate, setOpenOverlayEstate] = useState(false);
   const [imagesIndex, setImagesIndex] = useState(null); // tıklanan seçili resmin büyütülebilmesi için index tutan state
 
+  const [translateState, setTranslateState] = useState(false); // overlayEstate transition koşulunu tutan state
   return (
     <div className="max-w-6xl max-h-[100vh] mt-10 mb-10">
       {openOverlayEstate && (
         <OverlayEstate
           setOpenOverlayEstate={setOpenOverlayEstate}
-          estates={estates}
           imagesIndex={imagesIndex}
           item={item}
+          openOverlayEstate={openOverlayEstate}
+          translateState={translateState}
+          setTranslateState={setTranslateState}
         />
       )}
 
@@ -42,13 +36,15 @@ const Estate = () => {
         <div className="content flex flex-col gap-2">
           <h1 className="text-3xl font-bold">{item?.title}</h1>
           <div className="text-sm">
-            {item?.place?.district}, {item?.place?.city},{item?.place?.country}
+            {item?.place?.district}, {item?.place?.city}, {item?.place?.country}
           </div>
         </div>
         <EstateImages
           item={item}
           setOpenOverlayEstate={setOpenOverlayEstate}
           setImagesIndex={setImagesIndex}
+          setTranslateState={setTranslateState}
+          openOverlayEstate={openOverlayEstate}
         />
         <div className="info flex justify-between mt-5">
           <div className="info1 flex-1 flex flex-col gap-2">

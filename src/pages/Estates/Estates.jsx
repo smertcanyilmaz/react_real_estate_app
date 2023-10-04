@@ -84,6 +84,10 @@ const Estates = () => {
     max: "",
   }); //overlayFilters minimum ve maximum price state
 
+  useEffect(() => {
+    document.body.style.overflow = openFiltersOverlay ? "hidden" : "auto"; // TODO:scrollbar hidden yerine transparent olması için alternatif ara
+  }, [openFiltersOverlay]);
+
   return (
     <div className="max-w-6xl mt-10 flex flex-col gap-10">
       {openFiltersOverlay && (

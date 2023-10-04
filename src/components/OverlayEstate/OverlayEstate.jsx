@@ -64,8 +64,8 @@ const OverlayEstate = ({
 
   return (
     <div
-      className={`overlayEstate absolute left-0 -bottom-[8rem] w-full h-full p-12 bg-black z-30 text-gray-200 duration-500 transition-transform  ${
-        translateState ? "-translate-y-[8rem]" : "translate-y-full" //TODO: açılırken duration ile açılıyor kapanırken bir anda kapanıyor
+      className={`overlayEstate fixed left-0 top-0 bottom-0 right-0 w-full   p-12 bg-black z-30 text-gray-200 duration-500 transition-transform  ${
+        translateState ? "-translate-y-0" : "translate-y-full" //TODO: açılırken duration ile açılıyor kapanırken bir anda kapanıyor
       }   `}
     >
       <div className=" flex items-center justify-between ">
@@ -84,23 +84,23 @@ const OverlayEstate = ({
         <div
           onClick={prevHandler}
           className={`w-12 h-12 rounded-full border-2 border-gray-400 flex items-center justify-center cursor-pointer ${
-            !showLeftArrow && "opacity-0"
+            !showLeftArrow && "opacity-0 cursor-default "
           }`}
         >
           <ArrowBackIosNewIcon fontSize="small" />
         </div>
-        <div className="max-w-4xl h-[75vh] flex-1 ">
+        <div className="max-w-4xl h-[75vh] max-h-screen flex-1 ">
           <img
             src={images[count]}
             alt=""
-            className="object-cover h-full w-full"
+            className="object-contain w-full h-full "
           />
         </div>
 
         <div
           onClick={nextHandler}
           className={`w-12 h-12 rounded-full border-2 border-gray-400 flex items-center justify-center cursor-pointer ${
-            !showRightArrow && "opacity-0"
+            !showRightArrow && "opacity-0 cursor-default"
           }`}
         >
           <ArrowForwardIosIcon fontSize="small" />

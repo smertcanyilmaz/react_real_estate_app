@@ -79,65 +79,67 @@ const OverlayFilters = ({
   ];
 
   return (
-    <div className="overlayFilters absolute w-[55vw] h-[90vh] top-1/2 left-1/2 rounded-2xl bg-white z-50 flex flex-col justify-between py-6 px-10 ">
-      <div className="section1 w-full flex justify-between">
+    <div className="overlayFilters absolute w-[55vw] h-[90vh] top-1/2 left-1/2 rounded-2xl bg-white z-50 flex flex-col justify-between ">
+      <div className="section1 w-full flex justify-between py-6 px-10">
         <CloseOutlinedIcon className="cursor-pointer" onClick={openFilters} />
         <h3 className=" font-semibold mr-5">Filters</h3>
         <div>{/* empty div */}</div>
       </div>
-      <div className="section2 flex-1 flex flex-col gap-10 mt-10">
-        <Prices
-          filterPriceValues={filterPriceValues}
-          setFilterPriceValues={setFilterPriceValues}
-          setFilterTypeValue={setFilterTypeValue}
-          setFilterTypes={setFilterTypes}
-        />
-        <div className="section2_2 w-full flex justify-around">
-          {buttonsStatus.map((buttonStatus, index) => (
-            <div
-              key={buttonStatus.id}
-              className={`house ${
-                selectedButtonsStatus === index &&
-                "bg-[#f6f6f6] border-2 border-gray-800 "
-              }`}
-              onClick={() => buttonsStatusHandler(index)}
-            >
-              {buttonStatus.icon}
-              {buttonStatus.title}
-            </div>
-          ))}
-        </div>
-        <div className="section2_3 flex flex-col gap-5">
-          <h1 className="text-2xl font-semibold">Rooms</h1>
-          <div className="flex flex-col gap-3">
-            Bedrooms
-            <Rooms
-              setSelectedRoomNumbers={setSelectedRoomNumbers}
-              selectedNumbers={selectedNumbers}
-              setSelectedNumbers={setSelectedNumbers}
-              type="bedrooms"
-              setFilterTypeValue={setFilterTypeValue}
-              checker={checker}
-              setChecker={setChecker}
-              setFilterTypes={setFilterTypes}
-            />
+      <div className="overflow-auto flex-1 border-t border-b border-gray-200">
+        <div className="section2 flex-1 flex flex-col gap-10 mt-4 py-6 px-10">
+          <Prices
+            filterPriceValues={filterPriceValues}
+            setFilterPriceValues={setFilterPriceValues}
+            setFilterTypeValue={setFilterTypeValue}
+            setFilterTypes={setFilterTypes}
+          />
+          <div className="section2_2 w-full flex justify-around">
+            {buttonsStatus.map((buttonStatus, index) => (
+              <div
+                key={buttonStatus.id}
+                className={`house ${
+                  selectedButtonsStatus === index &&
+                  "bg-[#f6f6f6] border-2 border-gray-800 "
+                }`}
+                onClick={() => buttonsStatusHandler(index)}
+              >
+                {buttonStatus.icon}
+                {buttonStatus.title}
+              </div>
+            ))}
           </div>
-          <div className="flex flex-col gap-3">
-            Bathrooms
-            <Rooms
-              setSelectedRoomNumbers2={setSelectedRoomNumbers2}
-              selectedNumbers2={selectedNumbers2}
-              setSelectedNumbers2={setSelectedNumbers2}
-              type="bathrooms"
-              setFilterTypeValue={setFilterTypeValue}
-              checker={checker}
-              setChecker={setChecker}
-              setFilterTypes={setFilterTypes}
-            />
+          <div className="section2_3 flex flex-col gap-5">
+            <h1 className="text-2xl font-semibold">Rooms</h1>
+            <div className="flex flex-col gap-3">
+              Bedrooms
+              <Rooms
+                setSelectedRoomNumbers={setSelectedRoomNumbers}
+                selectedNumbers={selectedNumbers}
+                setSelectedNumbers={setSelectedNumbers}
+                type="bedrooms"
+                setFilterTypeValue={setFilterTypeValue}
+                checker={checker}
+                setChecker={setChecker}
+                setFilterTypes={setFilterTypes}
+              />
+            </div>
+            <div className="flex flex-col gap-3">
+              Bathrooms
+              <Rooms
+                setSelectedRoomNumbers2={setSelectedRoomNumbers2}
+                selectedNumbers2={selectedNumbers2}
+                setSelectedNumbers2={setSelectedNumbers2}
+                type="bathrooms"
+                setFilterTypeValue={setFilterTypeValue}
+                checker={checker}
+                setChecker={setChecker}
+                setFilterTypes={setFilterTypes}
+              />
+            </div>
           </div>
         </div>
       </div>
-      <div className="section3 w-full flex justify-between items-center">
+      <div className="section3 w-full flex justify-between items-center py-6 px-10">
         <p
           className="underline font-semibold cursor-pointer"
           onClick={clearHandler}

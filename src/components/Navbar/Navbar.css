@@ -2,12 +2,12 @@
   content: "";
   width: 15px;
   height: 15px;
-  background-color: var(--bg_color);
+  background-color: inherit;
   position: absolute;
-  top: -19%;
+  top: -15%;
   left: 50%;
   transform: rotate(45deg);
-  border: 1px solid #2d3748;
+  border: 1px solid #e2e8f0;
   border-bottom-color: transparent;
   border-right-color: transparent;
   z-index: 50;

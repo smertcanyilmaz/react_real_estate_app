@@ -2,12 +2,20 @@ import { Link } from "react-router-dom";
 import Button from "../Button/Button";
 import "./Navbar.css";
 import { useState } from "react";
+import PersonIcon from "@mui/icons-material/Person";
+import MenuIcon from "@mui/icons-material/Menu";
 
 const Navbar = ({ ref0 }) => {
   const [showBox, setShowBox] = useState(false);
+  const [showUser, setShowUser] = useState(false);
+
+  const showUserHandler = () => {
+    setShowUser((prev) => !prev); //TODO: boşluğa tıklandığında üyelik girişi kısmı kapanabilir. fırsat olursa bir bak
+  };
 
   const handleMouseEnter = () => {
     setShowBox(true);
+    setShowUser(false);
   };
 
   const handleMouseLeave = () => {
@@ -33,22 +41,47 @@ const Navbar = ({ ref0 }) => {
           />
         </svg>
       </Link>
-      <ul className="flex gap-10">
+      {/* <ul className="flex gap-10">
         <li>Top offers</li>
         <li>Search in offers</li>
         <li>References</li>
         <li>About us</li>
         <li>Our team</li>
-      </ul>
-      <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-        <Button post="true">Post Ad</Button>
-      </div>
-      {showBox && (
-        <div className="box absolute -bottom-12 -right-10 border border-gray-800 flex items-center justify-center p-2 gap-1 rounded-md">
-          Post first three ads for
-          <span className="font-semibold text-red-500">free!</span>
+      </ul> */}
+      <div className="related_user flex gap-5 items-center ">
+        <div
+          onClick={showUserHandler}
+          className={`user cursor-pointer flex items-center gap-2 border border-gray-400/80 rounded-3xl py-1 px-2 ${
+            showUser ? "shadow-md shadow-gray-500/50" : " hover:shadow-md"
+          } hover:shadow-gray-500/50 duration-300`}
+        >
+          <MenuIcon />
+          <div className="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center">
+            <PersonIcon style={{ color: "rgb(229 231 235)" }} />
+          </div>
         </div>
-      )}
+        <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+          <Button post="true">Post Ad</Button>
+        </div>
+        {showUser && (
+          <div className="absolute -bottom-[6rem] right-24 border border-gray-300 shadow-md flex flex-col w-48 gap-2 rounded-md z-50 bg-gray-100 text-gray-800 p-2 text-sm">
+            <Link to="register">
+              <span className="cursor-pointer pl-2 pt-2 font-semibold hover:text-gray-700">
+                Sign up
+              </span>
+            </Link>
+            <span className="cursor-pointer pl-2 pb-2 hover:text-gray-700">
+              Log in
+            </span>
+          </div>
+        )}
+        {showBox && (
+          <div className="box absolute -bottom-[3.7rem] -right-10 border border-gray-300 shadow-lg flex items-center justify-center p-3 gap-1 rounded-md z-50 bg-gray-100">
+            Post first three ads for
+            <span className="font-semibold text-red-500">free!</span>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

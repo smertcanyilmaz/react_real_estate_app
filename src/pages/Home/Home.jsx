@@ -1,10 +1,9 @@
-import Navbar from "../../components/Navbar/Navbar";
 import FirstLook from "../../components/FirstLook/FirstLook";
 import PopularOffers from "../../components/PopularOffers/PopularOffers";
 import PopularOffersButton from "../../components/FirstLook/PopularOffersButton/PopularOffersButton";
 import { useEffect, useRef, useState } from "react";
 
-const Home = ({ ref0 }) => {
+const Home = ({ ref0, setUnAuthNavbar }) => {
   const ref1 = useRef(null);
   const ref2 = useRef(null);
 
@@ -30,6 +29,7 @@ const Home = ({ ref0 }) => {
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
+    setUnAuthNavbar(false); // anasayfanın navbar'ı her zaman unAuth durumunu koruması için burada false olması lazım
   }, []);
 
   return (

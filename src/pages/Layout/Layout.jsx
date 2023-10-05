@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import { Outlet } from "react-router-dom";
-import SideEntrance from "../../components/sideEntrance/sideEntrance";
+import AuthEntranceSide from "../../components/AuthEntranceSide/AuthEntranceSide";
 
 //TODO: NAVBAR SİTE İCONU TIKLANDIĞINDA VE ANASAYFAYA GİTTİĞİNDE KAYIYOR. ÇÖZÜM: SCROLLBAR AÇIK KAPALI OLDUĞUNDA OLUYOR.
 
@@ -16,7 +16,7 @@ const Layout = ({ ref0 = { ref0 }, unAuthNavbar }) => {
         unAuthNavbar && "max-w-full"
       }`}
     >
-      {!unAuthNavbar ? <Navbar ref0={ref0} /> : <SideEntrance />}
+      {!unAuthNavbar ? <Navbar ref0={ref0} /> : <AuthEntranceSide />}
 
       <Outlet />
     </div>

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import SideEntrance from "../../../components/sideEntrance/sideEntrance";
+import AuthEntranceSide from "../../../components/AuthEntranceSide/AuthEntranceSide";
 
 const Register = ({ setUnAuthNavbar }) => {
   useEffect(() => {
@@ -7,7 +7,7 @@ const Register = ({ setUnAuthNavbar }) => {
   }, []);
   return (
     <div className="flex max-w-full">
-      <SideEntrance />
+      <AuthEntranceSide />
 
       <div className="flex-1 bg-gray-500"> register side</div>
     </div>

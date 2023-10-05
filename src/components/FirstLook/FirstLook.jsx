@@ -17,7 +17,7 @@ const FirstLook = () => {
         </div>
         <div className="flex-1 flex justify-end relative">
           <img
-            src="public\images\house.gif"
+            src="images\house.gif"
             //className="max-h-full  object-cover"
           />
         </div>

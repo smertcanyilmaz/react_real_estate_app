@@ -24,8 +24,14 @@ function App() {
               index
               element={<Home ref0={ref0} setUnAuthNavbar={setUnAuthNavbar} />}
             />
-            <Route path="estates" element={<Estates />} />
-            <Route path="estates/:id" element={<Estate />} />
+            <Route
+              path="estates"
+              element={<Estates setUnAuthNavbar={setUnAuthNavbar} />}
+            />
+            <Route
+              path="estates/:id"
+              element={<Estate setUnAuthNavbar={setUnAuthNavbar} />}
+            />
             <Route
               path="register"
               element={<Register setUnAuthNavbar={setUnAuthNavbar} />}

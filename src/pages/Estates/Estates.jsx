@@ -4,7 +4,7 @@ import EstatesFilters from "../../components/EstatesFilters/EstatesFilters";
 import EstatesList from "../../components/EstatesList/EstatesList";
 import OverlayFilters from "../../components/OverlayFilters/OverlayFilters";
 
-const Estates = () => {
+const Estates = ({ setUnAuthNavbar }) => {
   const [openFiltersOverlay, setOpenFilterOverlay] = useState(false);
   const [selectedButton, setSelectedButtons] = useState(null);
   const [filter, setFilter] = useState("");
@@ -66,6 +66,10 @@ const Estates = () => {
     handleAddItem();
   }, [openFilters]);
 
+  useEffect(() => {
+    setUnAuthNavbar(false);
+  }, []);
+
   const showHandler = () => {
     // overlayFilter'da show places butonuna yazılan click fonksiyonu
     openFilters();
@@ -86,6 +90,7 @@ const Estates = () => {
 
   useEffect(() => {
     document.body.style.overflow = openFiltersOverlay ? "hidden" : "auto"; // TODO:scrollbar hidden yerine transparent olması için alternatif ara
+    setUnAuthNavbar(false);
   }, [openFiltersOverlay]);
 
   return (

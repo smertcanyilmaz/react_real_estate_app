@@ -16,7 +16,7 @@ const Layout = ({ ref0 = { ref0 }, unAuthNavbar }) => {
         unAuthNavbar && "max-w-full"
       }`}
     >
-      {!unAuthNavbar ? <Navbar ref0={ref0} /> : <AuthEntranceSide />}
+      {!unAuthNavbar && <Navbar ref0={ref0} />}
 
       <Outlet />
     </div>

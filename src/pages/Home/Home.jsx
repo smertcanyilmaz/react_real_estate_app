@@ -3,6 +3,7 @@ import PopularOffers from "../../components/PopularOffers/PopularOffers";
 import PopularOffersButton from "../../components/FirstLook/PopularOffersButton/PopularOffersButton";
 import { useEffect, useRef, useState } from "react";
 
+
 const Home = ({ ref0, setUnAuthNavbar }) => {
   const ref1 = useRef(null);
   const ref2 = useRef(null);

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import EstateImages from "../../components/EstateImages/EstateImages";
 import useFetch from "../../components/hooks/useFetch";
 import { Link, useParams } from "react-router-dom";
@@ -8,7 +8,7 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import OverlayEstate from "../../components/OverlayEstate/OverlayEstate";
 
-const Estate = () => {
+const Estate = ({ setUnAuthNavbar }) => {
   const { id } = useParams();
   const { estates } = useFetch();
 
@@ -19,6 +19,11 @@ const Estate = () => {
   const [imagesIndex, setImagesIndex] = useState(null); // tıklanan seçili resmin büyütülebilmesi için index tutan state
 
   const [translateState, setTranslateState] = useState(false); // overlayEstate transition koşulunu tutan state
+
+  useEffect(() => {
+    setUnAuthNavbar(false);
+  }, []);
+
   return (
     <div className="max-w-6xl max-h-[100vh] mt-10 mb-10">
       {openOverlayEstate && (

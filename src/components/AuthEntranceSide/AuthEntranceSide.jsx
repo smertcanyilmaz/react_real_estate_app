@@ -37,7 +37,7 @@ const AuthEntranceSide = () => {
       >
         {/* <img src="public\images\authHouse.gif" alt="" /> */}
         <img
-          src="/images/house2.png"
+          src="public\images\house2.png"
           alt=""
           className="h-[36vh] w-full mx-auto object-cover"
         />

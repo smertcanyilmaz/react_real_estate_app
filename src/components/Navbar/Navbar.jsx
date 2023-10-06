@@ -70,9 +70,11 @@ const Navbar = ({ ref0 }) => {
                 Sign up
               </span>
             </Link>
-            <span className="cursor-pointer pl-2 pb-2 hover:text-gray-700">
-              Log in
-            </span>
+            <Link to="login">
+              <span className="cursor-pointer pl-2 pb-2 hover:text-gray-700">
+                Log in
+              </span>
+            </Link>
           </div>
         )}
         {showBox && (

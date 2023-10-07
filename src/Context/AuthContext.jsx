@@ -5,16 +5,16 @@ export const Context = createContext();
 
 export const AuthContext = ({ children }) => {
   const auth = getAuth();
-  const [userGuard, setUserGuard] = useState();
+  const [userActive, setUserActive] = useState();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     let unsubscribe;
     unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setLoading(false);
-      if (currentUser) setUserGuard(currentUser);
+      if (currentUser) setUserActive(currentUser);
       else {
-        setUserGuard(null);
+        setUserActive(null);
       }
     });
     return () => {
@@ -23,8 +23,8 @@ export const AuthContext = ({ children }) => {
   }, [auth]);
 
   const values = {
-    userGuard: userGuard,
-    setUserGuard: setUserGuard,
+    userActive: userActive,
+    setUserActive: setUserActive,
   };
   return (
     <Context.Provider value={values}>{!loading && children}</Context.Provider>

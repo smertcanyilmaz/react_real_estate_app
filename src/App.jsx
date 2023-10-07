@@ -9,6 +9,7 @@ import Register from "./pages/Auth/Register/Register";
 import Login from "./pages/Auth/Login/Login";
 import { AuthContext } from "./Context/AuthContext";
 import Protected from "./pages/Protected/Protected";
+import Profile from "./pages/Profile/Profile";
 
 function App() {
   const ref0 = useReducer(null);
@@ -29,11 +30,7 @@ function App() {
               />
               <Route
                 path="estates"
-                element={
-                  <Protected>
-                    <Estates setUnAuthNavbar={setUnAuthNavbar} />
-                  </Protected>
-                }
+                element={<Estates setUnAuthNavbar={setUnAuthNavbar} />}
               />
               <Route
                 path="estates/:id"
@@ -46,6 +43,14 @@ function App() {
               <Route
                 path="login"
                 element={<Login setUnAuthNavbar={setUnAuthNavbar} />}
+              />
+              <Route
+                path="profile"
+                element={
+                  <Protected>
+                    <Profile setUnAuthNavbar={setUnAuthNavbar} />
+                  </Protected>
+                }
               />
             </Route>
           </Routes>

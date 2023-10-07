@@ -3,9 +3,9 @@ import { useContext } from "react";
 import { Context } from "../../Context/AuthContext";
 
 const Protected = ({ children }) => {
-  const { userGuard } = useContext(Context);
-  if (!userGuard) {
-    return <Navigate to="/register" replace />;
+  const { userActive } = useContext(Context);
+  if (!userActive) {
+    return <Navigate to="/login" replace />;
   } else {
     return children;
   }

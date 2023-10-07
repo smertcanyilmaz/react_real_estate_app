@@ -6,11 +6,12 @@ import PersonIcon from "@mui/icons-material/Person";
 import MenuIcon from "@mui/icons-material/Menu";
 import Logout from "./Logout/Logout";
 import { Context } from "../../Context/AuthContext";
+import Profile from "../../pages/Profile/Profile";
 
 const Navbar = ({ ref0 }) => {
   const [showBox, setShowBox] = useState(false);
   const [showUser, setShowUser] = useState(false);
-  const { userGuard } = useContext(Context);
+  const { userActive } = useContext(Context);
 
   const showUserHandler = () => {
     setShowUser((prev) => !prev); //TODO: boşluğa tıklandığında üyelik girişi kısmı kapanabilir. fırsat olursa bir bak
@@ -71,9 +72,12 @@ const Navbar = ({ ref0 }) => {
             className={`absolute  right-24 border border-gray-300 shadow-md flex flex-col  gap-2 rounded-md z-50 bg-gray-100 text-gray-800 p-2 text-sm -bottom-[6rem] w-48`}
             // ${userGuard ? "-bottom-14 w-24" : " -bottom-[6rem] w-48" }
           >
-            {userGuard ? (
+            {userActive ? (
               <>
-                <p>Profile</p> <Logout />
+                <Link to="profile">
+                  <Profile />
+                </Link>
+                <Logout />
               </>
             ) : (
               <>
@@ -84,7 +88,7 @@ const Navbar = ({ ref0 }) => {
                 </Link>
                 <Link to="login">
                   <span className="cursor-pointer pl-2 pb-2 hover:text-gray-700">
-                    Log in
+                    Login
                   </span>
                 </Link>
               </>

@@ -15,7 +15,7 @@ const Logout = () => {
       onClick={handleSignOut}
       className="logout cursor-pointer flex items-center gap-2 "
     >
-      Log out <LogoutIcon fontSize="small" />
+      Logout <LogoutIcon fontSize="small" />
     </div>
   );
 };

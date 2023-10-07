@@ -10,9 +10,9 @@ const AuthEntranceSide = () => {
   return (
     <div className="bg-gray-900 text-gray-200 flex-1 h-screen flex flex-col items-center overflow-hidden ">
       <div
-        className={`flex-1 w-full flex items-end justify-center tranform-translate   ${
+        className={`flex-1 w-full flex items-end justify-center tranform-translate  ${
           transition ? "opacity-100 " : "opacity-0"
-        } duration-[1800ms]`}
+        } duration-[800ms]`}
       >
         <Link to="/">
           <svg

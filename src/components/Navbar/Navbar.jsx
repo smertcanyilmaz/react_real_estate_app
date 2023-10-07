@@ -1,14 +1,16 @@
 import { Link } from "react-router-dom";
 import Button from "../Button/Button";
 import "./Navbar.css";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import PersonIcon from "@mui/icons-material/Person";
 import MenuIcon from "@mui/icons-material/Menu";
 import Logout from "./Logout/Logout";
+import { Context } from "../../Context/AuthContext";
 
 const Navbar = ({ ref0 }) => {
   const [showBox, setShowBox] = useState(false);
   const [showUser, setShowUser] = useState(false);
+  const { userGuard } = useContext(Context);
 
   const showUserHandler = () => {
     setShowUser((prev) => !prev); //TODO: boşluğa tıklandığında üyelik girişi kısmı kapanabilir. fırsat olursa bir bak
@@ -65,18 +67,28 @@ const Navbar = ({ ref0 }) => {
           <Button post="true">Post Ad</Button>
         </div>
         {showUser && (
-          <div className="absolute -bottom-[6rem] right-24 border border-gray-300 shadow-md flex flex-col w-48 gap-2 rounded-md z-50 bg-gray-100 text-gray-800 p-2 text-sm">
-            <Link to="register">
-              <span className="cursor-pointer pl-2 pt-2 font-semibold hover:text-gray-700">
-                Sign up
-              </span>
-            </Link>
-            <Link to="login">
-              <span className="cursor-pointer pl-2 pb-2 hover:text-gray-700">
-                Log in
-              </span>
-            </Link>
-            <Logout />
+          <div
+            className={`absolute  right-24 border border-gray-300 shadow-md flex flex-col  gap-2 rounded-md z-50 bg-gray-100 text-gray-800 p-2 text-sm -bottom-[6rem] w-48`}
+            // ${userGuard ? "-bottom-14 w-24" : " -bottom-[6rem] w-48" }
+          >
+            {userGuard ? (
+              <>
+                <p>Profile</p> <Logout />
+              </>
+            ) : (
+              <>
+                <Link to="register">
+                  <span className="cursor-pointer pl-2 pt-2 font-semibold hover:text-gray-700">
+                    Sign up
+                  </span>
+                </Link>
+                <Link to="login">
+                  <span className="cursor-pointer pl-2 pb-2 hover:text-gray-700">
+                    Log in
+                  </span>
+                </Link>
+              </>
+            )}
           </div>
         )}
         {showBox && (

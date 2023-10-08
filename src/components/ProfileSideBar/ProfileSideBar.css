@@ -3,5 +3,5 @@
 }
 
 .icon {
-  @apply w-9 h-9 bg-[#ffffff] rounded-full flex items-center justify-center border border-gray-500;
+  @apply w-9 h-9 bg-[#ffffff] rounded-full flex items-center justify-center border-2 border-gray-200;
 }

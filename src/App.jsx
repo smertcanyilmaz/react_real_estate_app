@@ -13,6 +13,8 @@ import Protected from "./pages/Protected/Protected";
 import MyProfile from "./pages/Profile/MyProfile/MyProfile";
 import MyPosts from "./pages/Profile/My Posts/MyPosts";
 import Favorites from "./pages/Profile/Favorites/Favorites";
+import ActivePosts from "./pages/Profile/ActivePosts/ActivePosts";
+import IncompletePosts from "./pages/Profile/IncompletePosts/IncompletePosts";
 
 function App() {
   const ref0 = useReducer(null);
@@ -61,6 +63,24 @@ function App() {
                 element={
                   <Protected>
                     <MyPosts setUnAuthNavbar={setUnAuthNavbar} />
+                  </Protected>
+                }
+              />
+
+              <Route
+                path="posts/actives"
+                element={
+                  <Protected>
+                    <ActivePosts />
+                  </Protected>
+                }
+              />
+
+              <Route
+                path="posts/incomplete"
+                element={
+                  <Protected>
+                    <IncompletePosts />
                   </Protected>
                 }
               />

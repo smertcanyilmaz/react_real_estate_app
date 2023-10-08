@@ -13,22 +13,38 @@ const ProfileSideBar = () => {
   };
 
   return (
-    <div className="flex flex-col gap-8 cursor-pointer w-[25%] p-3 bg-gray-50 text-sm text-gray-800 ">
+    <div className="flex flex-col gap-6 cursor-pointer w-[25%] p-6 bg-gray-50 text-sm text-gray-500 ">
       <div
         onClick={() => navigateClick("myprofile")}
         className="icon_container"
       >
         <div className="icon">
-          <PersonIcon />
+          <PersonIcon style={{ color: "gray" }} />
         </div>
         My Profile
       </div>
 
-      <div onClick={() => navigateClick("posts")} className="icon_container">
-        <div className="icon">
-          <ListIcon />
+      <div onClick={() => navigateClick("posts")} className="flex flex-col">
+        <div className="icon_container">
+          <div className="icon">
+            <ListIcon style={{ color: "gray" }} />
+          </div>
+          My Posts
         </div>
-        My Posts
+      </div>
+
+      <div
+        onClick={() => navigateClick("posts/actives")}
+        className="flex flex-col"
+      >
+        <div className="icon_container px-11">Actives Posts</div>
+      </div>
+
+      <div
+        onClick={() => navigateClick("posts/incomplete")}
+        className="flex flex-col"
+      >
+        <div className="icon_container px-11">Incomplete Posts</div>
       </div>
 
       <div
@@ -36,7 +52,7 @@ const ProfileSideBar = () => {
         className="icon_container"
       >
         <div className="icon">
-          <FavoriteIcon fontSize="small" />
+          <FavoriteIcon fontSize="small" style={{ color: "gray" }} />
         </div>
         Favorites
       </div>

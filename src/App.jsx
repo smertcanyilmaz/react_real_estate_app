@@ -9,7 +9,10 @@ import Register from "./pages/Auth/Register/Register";
 import Login from "./pages/Auth/Login/Login";
 import { AuthContext } from "./Context/AuthContext";
 import Protected from "./pages/Protected/Protected";
-import Profile from "./pages/Profile/Profile";
+
+import MyProfile from "./pages/Profile/MyProfile/MyProfile";
+import MyPosts from "./pages/Profile/My Posts/MyPosts";
+import Favorites from "./pages/Profile/Favorites/Favorites";
 
 function App() {
   const ref0 = useReducer(null);
@@ -45,10 +48,27 @@ function App() {
                 element={<Login setUnAuthNavbar={setUnAuthNavbar} />}
               />
               <Route
-                path="profile"
+                path="myprofile"
                 element={
                   <Protected>
-                    <Profile setUnAuthNavbar={setUnAuthNavbar} />
+                    <MyProfile setUnAuthNavbar={setUnAuthNavbar} />
+                  </Protected>
+                }
+              />
+
+              <Route
+                path="posts"
+                element={
+                  <Protected>
+                    <MyPosts setUnAuthNavbar={setUnAuthNavbar} />
+                  </Protected>
+                }
+              />
+              <Route
+                path="favorites"
+                element={
+                  <Protected>
+                    <Favorites setUnAuthNavbar={setUnAuthNavbar} />
                   </Protected>
                 }
               />

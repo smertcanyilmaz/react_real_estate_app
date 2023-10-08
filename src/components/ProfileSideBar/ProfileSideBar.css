@@ -1,0 +1,7 @@
+.icon_container {
+  @apply flex items-center gap-2;
+}
+
+.icon {
+  @apply w-9 h-9 bg-[#ffffff] rounded-full flex items-center justify-center border border-gray-500;
+}

@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import { Outlet } from "react-router-dom";
-import AuthEntranceSide from "../../components/AuthEntranceSide/AuthEntranceSide";
 
 //TODO: NAVBAR SİTE İCONU TIKLANDIĞINDA VE ANASAYFAYA GİTTİĞİNDE KAYIYOR. ÇÖZÜM: SCROLLBAR AÇIK KAPALI OLDUĞUNDA OLUYOR.
 

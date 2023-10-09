@@ -1,13 +1,8 @@
 import React from "react";
-import ProfileSideBar from "../../../components/ProfileSideBar/ProfileSideBar";
+import ProfileTemplate from "../../../components/ProfileTemplate/ProfileTemplate";
 
 const Favorites = () => {
-  return (
-    <div className="max-w-6xl mt-10 bg-red-500 flex gap-10">
-      <ProfileSideBar />
-      Favorites
-    </div>
-  );
+  return <ProfileTemplate>favorites</ProfileTemplate>;
 };
 
 export default Favorites;

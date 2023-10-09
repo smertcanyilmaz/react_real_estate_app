@@ -1,13 +1,8 @@
 import React from "react";
-import ProfileSideBar from "../../../components/ProfileSideBar/ProfileSideBar";
+import ProfileTemplate from "../../../components/ProfileTemplate/ProfileTemplate";
 
 const IncompletePosts = () => {
-  return (
-    <div className="max-w-6xl mt-10 bg-red-500 flex gap-10">
-      <ProfileSideBar />
-      IncompletePosts
-    </div>
-  );
+  return <ProfileTemplate>incomplete posts</ProfileTemplate>;
 };
 
 export default IncompletePosts;

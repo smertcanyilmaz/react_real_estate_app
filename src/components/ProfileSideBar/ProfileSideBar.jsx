@@ -23,10 +23,8 @@ const ProfileSideBar = () => {
     }
   }, [location]);
 
-  console.log(location);
-
   return (
-    <div className="flex flex-col gap-6 cursor-pointer w-[25%] p-6 bg-gray-50 text-sm">
+    <div className="flex flex-col gap-6 cursor-pointer w-[25%] h-[25%] p-6 bg-gray-50 text-sm border border-gray-400/50 rounded-sm ">
       <div
         onClick={() => navigateClick("myprofile")}
         className={`icon_container ${

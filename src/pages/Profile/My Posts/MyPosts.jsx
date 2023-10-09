@@ -1,13 +1,8 @@
-import React, { useEffect } from "react";
-import ProfileSideBar from "../../../components/ProfileSideBar/ProfileSideBar";
+import React from "react";
+import ProfileTemplate from "../../../components/ProfileTemplate/ProfileTemplate";
 
 const MyPosts = () => {
-  return (
-    <div className="max-w-6xl mt-10 bg-red-500 flex gap-10">
-      <ProfileSideBar />
-      MyPosts
-    </div>
-  );
+  return <ProfileTemplate>my posts</ProfileTemplate>;
 };
 
 export default MyPosts;

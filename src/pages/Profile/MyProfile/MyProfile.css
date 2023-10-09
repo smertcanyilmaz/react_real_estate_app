@@ -1,0 +1,15 @@
+.infoo {
+  @apply p-4 flex flex-col gap-5;
+}
+
+.input_box {
+  @apply flex flex-col gap-1 text-sm text-gray-700 font-medium;
+}
+
+input {
+  @apply w-60 h-8 bg-[--bg_color] rounded-sm pl-2;
+}
+
+.iconss {
+  @apply w-9 h-9 border border-gray-400/50 flex items-center justify-center rounded-md cursor-pointer hover:border-gray-500;
+}

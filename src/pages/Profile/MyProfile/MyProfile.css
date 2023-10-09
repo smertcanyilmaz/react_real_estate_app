@@ -6,7 +6,7 @@
   @apply flex flex-col gap-1 text-sm text-gray-700 font-medium;
 }
 
-input {
+.input_box input {
   @apply w-60 h-8 bg-[--bg_color] rounded-sm pl-2;
 }
 

@@ -17,7 +17,9 @@ const MyProfile = () => {
     <>
       <ProfileTemplate>
         <div className="infoo">
-          <h1 className="text-lg mb-5">My Profile Informations</h1>
+          <h1 className="text-xl font-semibold text-gray-700 mb-5">
+            My Profile Informations
+          </h1>
           <div className="name input_box">
             <label htmlFor="name">Name Surname</label>
             <div className="flex items-center gap-3">

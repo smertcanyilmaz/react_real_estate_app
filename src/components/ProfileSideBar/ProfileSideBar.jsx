@@ -18,7 +18,11 @@ const ProfileSideBar = () => {
   useEffect(() => {
     const path = location.pathname.substring(1); // "/" çıkartmam gerekti
     setSelected(path);
-    if (path === "posts/actives" || path === "posts/incomplete") {
+    if (
+      path === "posts/actives" ||
+      path === "posts/pasives" ||
+      path === "posts/incomplete"
+    ) {
       setSelectedPosts("posts");
     }
   }, [location]);
@@ -84,6 +88,21 @@ const ProfileSideBar = () => {
           } `}
         >
           Actives Posts
+        </div>
+      </div>
+
+      <div
+        onClick={() => navigateClick("posts/pasives")}
+        className="flex flex-col"
+      >
+        <div
+          className={`icon_container px-11 ${
+            selected === "posts/pasives"
+              ? "font-semibold text-gray-800"
+              : "text-gray-500 font-normal"
+          } `}
+        >
+          Pasive Posts
         </div>
       </div>
 

@@ -15,6 +15,7 @@ import MyPosts from "./pages/Profile/My Posts/MyPosts";
 import Favorites from "./pages/Profile/Favorites/Favorites";
 import ActivePosts from "./pages/Profile/ActivePosts/ActivePosts";
 import IncompletePosts from "./pages/Profile/IncompletePosts/IncompletePosts";
+import PasivePosts from "./pages/Profile/PasivePosts/PasivePosts";
 
 function App() {
   const ref0 = useReducer(null);
@@ -72,6 +73,15 @@ function App() {
                 element={
                   <Protected>
                     <ActivePosts />
+                  </Protected>
+                }
+              />
+
+              <Route
+                path="posts/pasives"
+                element={
+                  <Protected>
+                    <PasivePosts />
                   </Protected>
                 }
               />

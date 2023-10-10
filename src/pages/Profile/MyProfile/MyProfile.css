@@ -1,5 +1,5 @@
 .infoo {
-  @apply p-4 flex flex-col gap-5;
+  @apply h-full p-4 flex flex-col gap-5 border border-gray-400/50;
 }
 
 .input_box {

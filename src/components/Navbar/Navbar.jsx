@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Button from "../Button/Button";
 import "./Navbar.css";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import PersonIcon from "@mui/icons-material/Person";
 import MenuIcon from "@mui/icons-material/Menu";
 import Logout from "./Logout/Logout";
@@ -12,17 +12,20 @@ const Navbar = ({ ref0 }) => {
   const [showUser, setShowUser] = useState(false);
   const { userActive } = useContext(Context);
 
-  const showUserHandler = () => {
-    setShowUser((prev) => !prev); //TODO: boşluğa tıklandığında üyelik girişi kısmı kapanabilir. fırsat olursa bir bak
+  // const showUserHandler = () => {
+  //   setShowUser((prev) => !prev);
+  // };
+
+  const mouseOn = () => {
+    setShowUser(true);
   };
 
-  const handleMouseEnter = () => {
-    setShowBox(true);
+  const mouseLeave = () => {
     setShowUser(false);
   };
 
-  const handleMouseLeave = () => {
-    setShowBox(false);
+  const showBoxHandler = () => {
+    setShowBox((prev) => !prev);
   };
 
   return (
@@ -44,29 +47,59 @@ const Navbar = ({ ref0 }) => {
           />
         </svg>
       </Link>
-      {/* <ul className="flex gap-10">
-        <li>Top offers</li>
-        <li>Search in offers</li>
-        <li>References</li>
-        <li>About us</li>
-        <li>Our team</li>
-      </ul> */}
-      <div className="related_user flex gap-5 items-center ">
+
+      <div className="related_user flex gap-5 items-center justify-between relative w-60">
+        <div>{/*empty div*/}</div>
         <div
-          onClick={showUserHandler}
-          className={`user cursor-pointer flex items-center gap-2 border border-gray-400/80 rounded-3xl py-1 px-2 ${
-            showUser ? "shadow-md shadow-gray-500/50" : " hover:shadow-md"
-          } hover:shadow-gray-500/50 duration-300`}
+          // onMouseEnter={showUserHandler}
+          onMouseLeave={mouseLeave}
+          className="user absolute left-0 top-1 w-20 h-[15vh]  flex flex-col items-center justify-between  hover:shadow-gray-500/50"
         >
-          <MenuIcon />
-          <div className="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center">
-            <PersonIcon style={{ color: "rgb(229 231 235)" }} />
+          <div
+            onMouseEnter={mouseOn}
+            className={`flex items-center gap-3 border border-gray-400/80 rounded-3xl py-1 px-2 duration-300 cursor-pointer ${
+              showUser ? "shadow-md shadow-gray-500/50" : "hover:shadow-md"
+            }`}
+          >
+            <MenuIcon />
+            <div className="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center">
+              <PersonIcon style={{ color: "rgb(229 231 235)" }} />
+            </div>
+          </div>
+
+          <div
+            className={`w-48 border border-gray-300 shadow-md flex flex-col  gap-2 rounded-md  bg-gray-100 text-gray-800 p-2 text-sm duration-500 ${
+              showUser
+                ? "-translate-y-0 opacity-100"
+                : "translate-y-[30%] opacity-0 -z-50"
+            }`}
+            // ${userGuard ? "-bottom-14 w-24" : " -bottom-[6rem] w-48" }
+          >
+            {userActive ? (
+              <>
+                <Link to="myprofile">Profile</Link>
+                <Logout />
+              </>
+            ) : (
+              <>
+                <Link to="register">
+                  <span className="cursor-pointer pl-2 pt-2 font-semibold hover:text-gray-700">
+                    Sign up
+                  </span>
+                </Link>
+                <Link to="login">
+                  <span className="cursor-pointer pl-2 pb-2 hover:text-gray-700">
+                    Login
+                  </span>
+                </Link>
+              </>
+            )}
           </div>
         </div>
-        <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+        <div onMouseEnter={showBoxHandler} onMouseLeave={showBoxHandler}>
           <Button post="true">Post Ad</Button>
         </div>
-        {showUser && (
+        {/* {showUser && (
           <div
             className={`absolute  right-24 border border-gray-300 shadow-md flex flex-col  gap-2 rounded-md z-50 bg-gray-100 text-gray-800 p-2 text-sm -bottom-[6rem] w-48`}
             // ${userGuard ? "-bottom-14 w-24" : " -bottom-[6rem] w-48" }
@@ -91,7 +124,7 @@ const Navbar = ({ ref0 }) => {
               </>
             )}
           </div>
-        )}
+        )} */}
         {showBox && (
           <div className="box absolute -bottom-[3.7rem] -right-10 border border-gray-300 shadow-lg flex items-center justify-center p-3 gap-1 rounded-md z-50 bg-gray-100">
             Post first three ads for

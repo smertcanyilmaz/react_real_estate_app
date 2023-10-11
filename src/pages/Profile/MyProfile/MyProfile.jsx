@@ -16,7 +16,7 @@ const MyProfile = () => {
   return (
     <>
       <ProfileTemplate>
-        <div className="infoo">
+        <div className="info_container">
           <h1 className="text-xl font-semibold text-gray-700 mb-5">
             My Profile Informations
           </h1>

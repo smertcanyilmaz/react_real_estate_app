@@ -29,6 +29,12 @@ const ProfileSideBar = () => {
 
   return (
     <div className="flex flex-col gap-6 cursor-pointer w-[25%] h-[25%] p-6 bg-gray-50 text-sm border border-gray-400/50 rounded-sm ">
+      <div className="flex items-center gap-5 pb-6 border-b-2 border-gray-200/50">
+        <div className="p-4 border border-gray-300 rounded-full bg-gray-200/50">
+          <PersonIcon fontSize="large" style={{ color: "gray" }} />
+        </div>
+        <p className="font-semibold text-lg text-gray-800">Mertcan Yılmaz</p>
+      </div>
       <div
         onClick={() => navigateClick("myprofile")}
         className={`icon_container ${
@@ -87,7 +93,7 @@ const ProfileSideBar = () => {
               : "text-gray-500 font-normal"
           } `}
         >
-          Actives Posts
+          Active Posts
         </div>
       </div>
 

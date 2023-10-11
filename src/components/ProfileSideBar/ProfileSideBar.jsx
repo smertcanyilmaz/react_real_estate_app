@@ -28,7 +28,7 @@ const ProfileSideBar = () => {
   }, [location]);
 
   return (
-    <div className="flex flex-col gap-6 cursor-pointer w-[25%] h-[25%] p-6 bg-gray-50 text-sm border border-gray-400/50 rounded-sm ">
+    <div className="flex flex-col gap-6  w-[25%] h-[25%] p-6 bg-gray-50 text-sm border border-gray-400/50 rounded-sm ">
       <div className="flex items-center gap-5 pb-6 border-b-2 border-gray-200/50">
         <div className="p-4 border border-gray-300 rounded-full bg-gray-200/50">
           <PersonIcon fontSize="large" style={{ color: "gray" }} />
@@ -37,7 +37,7 @@ const ProfileSideBar = () => {
       </div>
       <div
         onClick={() => navigateClick("myprofile")}
-        className={`icon_container ${
+        className={`icon_container cursor-pointer ${
           selected === "myprofile"
             ? "font-semibold text-gray-800"
             : "text-gray-500 font-normal"
@@ -55,7 +55,10 @@ const ProfileSideBar = () => {
         My Profile
       </div>
 
-      <div onClick={() => navigateClick("posts")} className="flex flex-col">
+      <div
+        onClick={() => navigateClick("posts")}
+        className="flex flex-col cursor-pointer"
+      >
         <div
           className={`icon_container ${
             selected === "posts" || selectedPosts === "posts"
@@ -84,7 +87,7 @@ const ProfileSideBar = () => {
 
       <div
         onClick={() => navigateClick("posts/actives")}
-        className="flex flex-col"
+        className="flex flex-col cursor-pointer"
       >
         <div
           className={`icon_container px-11 ${
@@ -99,7 +102,7 @@ const ProfileSideBar = () => {
 
       <div
         onClick={() => navigateClick("posts/pasives")}
-        className="flex flex-col"
+        className="flex flex-col cursor-pointer"
       >
         <div
           className={`icon_container px-11 ${
@@ -114,7 +117,7 @@ const ProfileSideBar = () => {
 
       <div
         onClick={() => navigateClick("posts/incomplete")}
-        className="flex flex-col"
+        className="flex flex-col cursor-pointer"
       >
         <div
           className={`icon_container px-11 ${
@@ -129,7 +132,7 @@ const ProfileSideBar = () => {
 
       <div
         onClick={() => navigateClick("favorites")}
-        className={`icon_container ${
+        className={`icon_container cursor-pointer ${
           selected === "favorites"
             ? "font-semibold text-gray-800"
             : "text-gray-500 font-normal"

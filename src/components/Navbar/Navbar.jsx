@@ -48,7 +48,7 @@ const Navbar = ({ ref0 }) => {
         <div>{/*empty div*/}</div>
         <div
           onMouseLeave={mouseLeave}
-          className="user absolute left-0 top-1 w-20 h-[15vh]  flex flex-col items-center justify-between  hover:shadow-gray-500/50"
+          className="user absolute left-0 top-1 w-20 h-[15vh] flex flex-col items-center justify-between  hover:shadow-gray-500/50"
         >
           <div
             onMouseEnter={mouseOn}
@@ -71,7 +71,9 @@ const Navbar = ({ ref0 }) => {
           >
             {userActive ? (
               <>
-                <Link to="myprofile">Profile</Link>
+                <Link to="myprofile" onClick={() => setShowUser(false)}>
+                  Profile
+                </Link>
                 <Logout />
               </>
             ) : (

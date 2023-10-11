@@ -91,27 +91,40 @@ const Estates = ({ setUnAuthNavbar }) => {
     setUnAuthNavbar(false);
   }, [openFiltersOverlay]);
 
+  const [startEstatesTop, setStartEstatesTop] = useState(false);
+
+  useEffect(() => {
+    //eğer estates sayfasına böyle bir useEffect yazmazsak, estates render olduğu an overlayFilters da render oluyor ve scroll en aşağıdan sayfayı başlatıyor. hem bunu engellemek hem de sayfanın hızlı yüklenmesini sağlamak için bu kodu yazmam gerekti
+    if (!openFiltersOverlay) {
+      setStartEstatesTop(true);
+    } else {
+      setStartEstatesTop(false);
+    }
+  }, []);
+
   return (
     <div className="max-w-6xl mt-10 flex flex-col gap-10">
-      <OverlayFilters
-        openFilters={openFilters}
-        selectedButtonHandler={selectedButtonHandler}
-        selectedButtonsStatus={selectedButtonsStatus}
-        setSelectedButtonsStatus={setSelectedButtonsStatus}
-        showHandler={showHandler}
-        setSelectedRoomNumbers={setSelectedRoomNumbers}
-        setSelectedRoomNumbers2={setSelectedRoomNumbers2}
-        selectedNumbers={selectedNumbers}
-        setSelectedNumbers={setSelectedNumbers}
-        selectedNumbers2={selectedNumbers2}
-        setSelectedNumbers2={setSelectedNumbers2}
-        setFilterTypeValue={setFilterTypeValue}
-        setFilterTypes={setFilterTypes}
-        filterPriceValues={filterPriceValues}
-        setFilterPriceValues={setFilterPriceValues}
-        clearHandler={clearHandler}
-        openFiltersOverlay={openFiltersOverlay}
-      />
+      {startEstatesTop && (
+        <OverlayFilters
+          openFilters={openFilters}
+          selectedButtonHandler={selectedButtonHandler}
+          selectedButtonsStatus={selectedButtonsStatus}
+          setSelectedButtonsStatus={setSelectedButtonsStatus}
+          showHandler={showHandler}
+          setSelectedRoomNumbers={setSelectedRoomNumbers}
+          setSelectedRoomNumbers2={setSelectedRoomNumbers2}
+          selectedNumbers={selectedNumbers}
+          setSelectedNumbers={setSelectedNumbers}
+          selectedNumbers2={selectedNumbers2}
+          setSelectedNumbers2={setSelectedNumbers2}
+          setFilterTypeValue={setFilterTypeValue}
+          setFilterTypes={setFilterTypes}
+          filterPriceValues={filterPriceValues}
+          setFilterPriceValues={setFilterPriceValues}
+          clearHandler={clearHandler}
+          openFiltersOverlay={openFiltersOverlay}
+        />
+      )}
 
       <EstatesFilters
         openFilters={openFilters}

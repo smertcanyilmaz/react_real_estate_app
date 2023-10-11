@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./OverlayFilters.css";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
@@ -79,7 +79,7 @@ const OverlayFilters = ({
 
   return (
     <div
-      className={`absolute w-[55vw] h-[90vh] top-1/2 left-1/2 -translate-x-1/2 rounded-2xl bg-white z-50 flex flex-col justify-between transform-translate duration-500 ${
+      className={`absolute w-[55vw] h-[90vh] top-1/2 left-1/2 -translate-x-[50%] -translate-y-[50%] rounded-2xl bg-white  flex flex-col justify-between transform-translate duration-500 ${
         openFiltersOverlay
           ? "-translate-y-[50%] z-30 opacity-100"
           : "translate-y-[30%] z-30 opacity-0"

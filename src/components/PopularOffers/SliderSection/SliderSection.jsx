@@ -2,10 +2,15 @@ import React from "react";
 import Button from "../../Button/Button";
 import Slider from "./Slider/Slider";
 import useFetch from "../../hooks/useFetch";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const SliderSection = ({ sale }) => {
   const { estates } = useFetch();
+  const navigate = useNavigate();
+
+  const buttonHandler = () => {
+    navigate("/estates");
+  };
 
   return (
     <div className="flex flex-col w-full  items-center justify-center ">
@@ -19,9 +24,12 @@ const SliderSection = ({ sale }) => {
               Fulfill your career dreams, enjoy all the achievements of the city
               center and luxury housing to the fullest.
             </p>
-            <Link to="/estates">
+            {/* <Link to="/estates">
               <Button showAllOffers={true}>Show all offers</Button>
-            </Link>
+            </Link> */}
+            <div onClick={() => buttonHandler()}>
+              <Button showAllOffers={true}>Show all offers</Button>
+            </div>
           </div>
           <Slider sale={sale} />
         </div>

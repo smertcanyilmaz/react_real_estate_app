@@ -24,12 +24,12 @@ const SliderSection = ({ sale }) => {
               Fulfill your career dreams, enjoy all the achievements of the city
               center and luxury housing to the fullest.
             </p>
-            {/* <Link to="/estates">
+            <Link to="/estates">
               <Button showAllOffers={true}>Show all offers</Button>
-            </Link> */}
-            <div onClick={() => buttonHandler()}>
+            </Link>
+            {/* <div onClick={() => buttonHandler()}>
               <Button showAllOffers={true}>Show all offers</Button>
-            </div>
+            </div> */}
           </div>
           <Slider sale={sale} />
         </div>

@@ -9,8 +9,6 @@ const OverlayEstate = ({
   imagesIndex,
   item,
   openOverlayEstate,
-  translateState,
-  setTranslateState,
 }) => {
   const imagesDatas = item.images;
   console.log(imagesDatas);
@@ -47,10 +45,6 @@ const OverlayEstate = ({
     setOpenOverlayEstate(false);
   };
 
-  //   useEffect(() => {
-  //     setTranslateState(false);
-  //   }, [!openOverlayEstate]);
-
   useEffect(() => {
     if (count === 0) {
       setShowLeftArrow(false);
@@ -64,8 +58,10 @@ const OverlayEstate = ({
 
   return (
     <div
-      className={`overlayEstate fixed left-0 top-0 bottom-0 right-0 w-full   p-12 bg-black z-30 text-gray-200 duration-500 transition-transform  ${
-        translateState ? "-translate-y-0" : "translate-y-full" //TODO: açılırken duration ile açılıyor kapanırken bir anda kapanıyor
+      className={`fixed left-0 top-0 bottom-0 w-full p-12 bg-black z-30 text-gray-200 duration-500 transition-transform  ${
+        openOverlayEstate
+          ? "-translate-y-0 z-30 opacity-100"
+          : "translate-y-[30%] z-30 opacity-0"
       }   `}
     >
       <div className=" flex items-center justify-between ">

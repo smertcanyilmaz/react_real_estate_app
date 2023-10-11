@@ -18,8 +18,6 @@ const Estate = ({ setUnAuthNavbar }) => {
   const [openOverlayEstate, setOpenOverlayEstate] = useState(false);
   const [imagesIndex, setImagesIndex] = useState(null); // tıklanan seçili resmin büyütülebilmesi için index tutan state
 
-  const [translateState, setTranslateState] = useState(false); // overlayEstate transition koşulunu tutan state
-
   useEffect(() => {
     setUnAuthNavbar(false);
   }, []);
@@ -32,8 +30,6 @@ const Estate = ({ setUnAuthNavbar }) => {
           imagesIndex={imagesIndex}
           item={item}
           openOverlayEstate={openOverlayEstate}
-          translateState={translateState}
-          setTranslateState={setTranslateState}
         />
       )}
 
@@ -48,7 +44,6 @@ const Estate = ({ setUnAuthNavbar }) => {
           item={item}
           setOpenOverlayEstate={setOpenOverlayEstate}
           setImagesIndex={setImagesIndex}
-          setTranslateState={setTranslateState}
           openOverlayEstate={openOverlayEstate}
         />
         <div className="info flex justify-between mt-5">

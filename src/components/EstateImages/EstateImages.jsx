@@ -3,18 +3,15 @@ import React, { useEffect } from "react";
 const EstateImages = ({
   item,
   setOpenOverlayEstate,
-  setImagesIndex,
-  setTranslateState,
   openOverlayEstate,
+  setImagesIndex,
 }) => {
   const clickHandler = (index) => {
     setOpenOverlayEstate(true);
     setImagesIndex(index);
-
-    //setTranslateState((prev) => !prev);
   };
+
   useEffect(() => {
-    setTranslateState((prev) => !prev);
     document.body.style.overflow = openOverlayEstate ? "hidden" : "auto"; // TODO:scrollbar hidden yerine transparent olması için alternatif ara
   }, [openOverlayEstate]);
 

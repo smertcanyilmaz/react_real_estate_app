@@ -10,8 +10,6 @@ const Rooms = ({
   setSelectedNumbers2,
   type,
   setFilterTypeValue,
-  checker,
-  setChecker,
   setFilterTypes,
 }) => {
   const numbers = ["Any", 1, 2, 3, 4, 5, 6, 7, "8+"];

@@ -56,8 +56,12 @@ const MyProfile = () => {
       />
 
       <div //overlay
-        onClick={clickHandler}
-        className={`fixed left-0 top-0 w-full h-full bg-black duration-300  ${
+        onClick={() =>
+          clickHandler(
+            (edit === 1 && 1) || (edit === 2 && 2) || (edit === 3 && 3)
+          )
+        }
+        className={`fixed left-0 top-0 w-full h-full bg-black duration-500  ${
           showOverlay ? "visible opacity-60" : "invisible opacity-0"
         }`}
       ></div>

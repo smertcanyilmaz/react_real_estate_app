@@ -8,7 +8,6 @@ const Estates = ({ setUnAuthNavbar }) => {
   const [openFiltersOverlay, setOpenFilterOverlay] = useState(false);
   const [selectedButton, setSelectedButtons] = useState(null);
   const [filter, setFilter] = useState("");
-  const [checker, setChecker] = useState(false);
 
   const openFilters = () => {
     // overlayFilters componentini açar ve kapatır
@@ -74,7 +73,6 @@ const Estates = ({ setUnAuthNavbar }) => {
     // overlayFilter'da show places butonuna yazılan click fonksiyonu
     openFilters();
     setFiltersApplied(true);
-    setChecker(true);
     setSelectedButtons(null);
     setFilter("");
     //handleAddItem();
@@ -95,42 +93,33 @@ const Estates = ({ setUnAuthNavbar }) => {
 
   return (
     <div className="max-w-6xl mt-10 flex flex-col gap-10">
-      {openFiltersOverlay && (
-        <>
-          <div
-            onClick={openFilters}
-            className="overlay absolute top-0 left-0 w-full h-full  bg-black opacity-50 z-30"
-          ></div>
-          <OverlayFilters
-            openFilters={openFilters}
-            selectedButtonHandler={selectedButtonHandler}
-            selectedButtonsStatus={selectedButtonsStatus}
-            setSelectedButtonsStatus={setSelectedButtonsStatus}
-            showHandler={showHandler}
-            setSelectedRoomNumbers={setSelectedRoomNumbers}
-            setSelectedRoomNumbers2={setSelectedRoomNumbers2}
-            selectedNumbers={selectedNumbers}
-            setSelectedNumbers={setSelectedNumbers}
-            selectedNumbers2={selectedNumbers2}
-            setSelectedNumbers2={setSelectedNumbers2}
-            setFilterTypeValue={setFilterTypeValue}
-            checker={checker}
-            setChecker={setChecker}
-            setFilterTypes={setFilterTypes}
-            filterPriceValues={filterPriceValues}
-            setFilterPriceValues={setFilterPriceValues}
-            clearHandler={clearHandler}
-          />
-        </>
-      )}
+      <OverlayFilters
+        openFilters={openFilters}
+        selectedButtonHandler={selectedButtonHandler}
+        selectedButtonsStatus={selectedButtonsStatus}
+        setSelectedButtonsStatus={setSelectedButtonsStatus}
+        showHandler={showHandler}
+        setSelectedRoomNumbers={setSelectedRoomNumbers}
+        setSelectedRoomNumbers2={setSelectedRoomNumbers2}
+        selectedNumbers={selectedNumbers}
+        setSelectedNumbers={setSelectedNumbers}
+        selectedNumbers2={selectedNumbers2}
+        setSelectedNumbers2={setSelectedNumbers2}
+        setFilterTypeValue={setFilterTypeValue}
+        setFilterTypes={setFilterTypes}
+        filterPriceValues={filterPriceValues}
+        setFilterPriceValues={setFilterPriceValues}
+        clearHandler={clearHandler}
+        openFiltersOverlay={openFiltersOverlay}
+      />
+
       <EstatesFilters
         openFilters={openFilters}
         selectedButton={selectedButton}
         selectedButtonHandler={selectedButtonHandler}
         filterTypes={filterTypes}
         handleAddItem={handleAddItem}
-        setChecker={setChecker}
-        checker={checker}
+        openFiltersOverlay={openFiltersOverlay}
       />
       <EstatesList
         filter={filter}
@@ -142,6 +131,12 @@ const Estates = ({ setUnAuthNavbar }) => {
         selectedRoomNumbers2={selectedRoomNumbers2}
         filterPriceValues={filterPriceValues}
       />
+      <div //overlay
+        onClick={() => openFilters()}
+        className={`fixed left-0 top-0 w-full h-full bg-black duration-300  ${
+          openFiltersOverlay ? "visible opacity-60" : "invisible opacity-0"
+        }`}
+      ></div>
     </div>
   );
 };

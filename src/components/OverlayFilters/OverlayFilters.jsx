@@ -19,12 +19,11 @@ const OverlayFilters = ({
   selectedNumbers2,
   setSelectedNumbers2,
   setFilterTypeValue,
-  checker,
-  setChecker,
   setFilterTypes,
   filterPriceValues,
   setFilterPriceValues,
   clearHandler,
+  openFiltersOverlay,
 }) => {
   const buttonsStatusHandler = (id) => {
     if (selectedButtonsStatus === id) {
@@ -79,9 +78,18 @@ const OverlayFilters = ({
   ];
 
   return (
-    <div className="overlayFilters absolute w-[55vw] h-[90vh] top-1/2 left-1/2 rounded-2xl bg-white z-50 flex flex-col justify-between ">
+    <div
+      className={`absolute w-[55vw] h-[90vh] top-1/2 left-1/2 -translate-x-1/2 rounded-2xl bg-white z-50 flex flex-col justify-between transform-translate duration-500 ${
+        openFiltersOverlay
+          ? "-translate-y-[50%] z-30 opacity-100"
+          : "translate-y-[30%] z-30 opacity-0"
+      } `}
+    >
       <div className="section1 w-full flex justify-between py-6 px-10">
-        <CloseOutlinedIcon className="cursor-pointer" onClick={openFilters} />
+        <CloseOutlinedIcon
+          className="cursor-pointer"
+          onClick={() => openFilters()}
+        />
         <h3 className=" font-semibold mr-5">Filters</h3>
         <div>{/* empty div */}</div>
       </div>
@@ -118,8 +126,6 @@ const OverlayFilters = ({
                 setSelectedNumbers={setSelectedNumbers}
                 type="bedrooms"
                 setFilterTypeValue={setFilterTypeValue}
-                checker={checker}
-                setChecker={setChecker}
                 setFilterTypes={setFilterTypes}
               />
             </div>
@@ -131,8 +137,6 @@ const OverlayFilters = ({
                 setSelectedNumbers2={setSelectedNumbers2}
                 type="bathrooms"
                 setFilterTypeValue={setFilterTypeValue}
-                checker={checker}
-                setChecker={setChecker}
                 setFilterTypes={setFilterTypes}
               />
             </div>

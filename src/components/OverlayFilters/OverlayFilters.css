@@ -1,6 +1,3 @@
-.overlayFilters {
-  transform: translate(-50%, -50%);
-}
 .inputbox {
   @apply flex flex-col w-[40vw]  gap-1 border-2 border-gray-400 rounded-md  py-1 px-2;
 }

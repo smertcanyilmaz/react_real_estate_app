@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Button from "../Button/Button";
 import "./Navbar.css";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import PersonIcon from "@mui/icons-material/Person";
 import MenuIcon from "@mui/icons-material/Menu";
 import Logout from "./Logout/Logout";
@@ -11,10 +11,6 @@ const Navbar = ({ ref0 }) => {
   const [showBox, setShowBox] = useState(false);
   const [showUser, setShowUser] = useState(false);
   const { userActive } = useContext(Context);
-
-  // const showUserHandler = () => {
-  //   setShowUser((prev) => !prev);
-  // };
 
   const mouseOn = () => {
     setShowUser(true);
@@ -51,7 +47,6 @@ const Navbar = ({ ref0 }) => {
       <div className="related_user flex gap-5 items-center justify-between relative w-60">
         <div>{/*empty div*/}</div>
         <div
-          // onMouseEnter={showUserHandler}
           onMouseLeave={mouseLeave}
           className="user absolute left-0 top-1 w-20 h-[15vh]  flex flex-col items-center justify-between  hover:shadow-gray-500/50"
         >
@@ -73,7 +68,6 @@ const Navbar = ({ ref0 }) => {
                 ? "-translate-y-0 opacity-100"
                 : "translate-y-[30%] opacity-0 -z-50"
             }`}
-            // ${userGuard ? "-bottom-14 w-24" : " -bottom-[6rem] w-48" }
           >
             {userActive ? (
               <>
@@ -99,32 +93,6 @@ const Navbar = ({ ref0 }) => {
         <div onMouseEnter={showBoxHandler} onMouseLeave={showBoxHandler}>
           <Button post="true">Post Ad</Button>
         </div>
-        {/* {showUser && (
-          <div
-            className={`absolute  right-24 border border-gray-300 shadow-md flex flex-col  gap-2 rounded-md z-50 bg-gray-100 text-gray-800 p-2 text-sm -bottom-[6rem] w-48`}
-            // ${userGuard ? "-bottom-14 w-24" : " -bottom-[6rem] w-48" }
-          >
-            {userActive ? (
-              <>
-                <Link to="myprofile">Profile</Link>
-                <Logout />
-              </>
-            ) : (
-              <>
-                <Link to="register">
-                  <span className="cursor-pointer pl-2 pt-2 font-semibold hover:text-gray-700">
-                    Sign up
-                  </span>
-                </Link>
-                <Link to="login">
-                  <span className="cursor-pointer pl-2 pb-2 hover:text-gray-700">
-                    Login
-                  </span>
-                </Link>
-              </>
-            )}
-          </div>
-        )} */}
         {showBox && (
           <div className="box absolute -bottom-[3.7rem] -right-10 border border-gray-300 shadow-lg flex items-center justify-center p-3 gap-1 rounded-md z-50 bg-gray-100">
             Post first three ads for

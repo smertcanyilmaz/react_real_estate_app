@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "../Button/Button";
+import { Link } from "react-router-dom";
 
 const PostAd = () => {
   return (
@@ -8,7 +9,9 @@ const PostAd = () => {
         Post
         <span className="ml-1"> Free</span> Ad
       </h1>
-      <Button postAd="postAd">Post Ad Now</Button>
+      <Link to="/create-post">
+        <Button postAd="postAd">Post Ad Now</Button>
+      </Link>
     </div>
   );
 };

@@ -79,10 +79,10 @@ const OverlayFilters = ({
 
   return (
     <div
-      className={`absolute w-[55vw] h-[90vh] top-1/2 left-1/2 -translate-x-[50%] -translate-y-[50%] rounded-2xl bg-white  flex flex-col justify-between transform-translate duration-500 ${
+      className={`fixed w-[55vw] h-[90vh] top-1/2 left-1/2 bottom-0 -translate-x-[50%] -translate-y-[50%] rounded-2xl bg-white  flex flex-col justify-between transform-translate duration-500 ${
         openFiltersOverlay
           ? "-translate-y-[50%] z-30 opacity-100"
-          : "translate-y-[30%] z-30 opacity-0"
+          : "translate-y-[30%] -z-30 opacity-0"
       } `}
     >
       <div className="section1 w-full flex justify-between py-6 px-10">

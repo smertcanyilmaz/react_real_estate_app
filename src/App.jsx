@@ -16,6 +16,7 @@ import Favorites from "./pages/Profile/Favorites/Favorites";
 import ActivePosts from "./pages/Profile/ActivePosts/ActivePosts";
 import IncompletePosts from "./pages/Profile/IncompletePosts/IncompletePosts";
 import PasivePosts from "./pages/Profile/PasivePosts/PasivePosts";
+import CreatePost from "./pages/CreatePost/CreatePost";
 
 function App() {
   const ref0 = useReducer(null);
@@ -49,6 +50,14 @@ function App() {
               <Route
                 path="login"
                 element={<Login setUnAuthNavbar={setUnAuthNavbar} />}
+              />
+              <Route
+                path="create-post"
+                element={
+                  <Protected>
+                    <CreatePost setUnAuthNavbar={setUnAuthNavbar} />
+                  </Protected>
+                }
               />
               <Route
                 path="myprofile"

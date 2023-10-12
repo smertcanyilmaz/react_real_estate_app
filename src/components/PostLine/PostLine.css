@@ -1,0 +1,15 @@
+.icon_containers {
+  @apply flex items-center gap-2;
+}
+
+.post_icon_borders {
+  @apply border border-gray-800 bg-gray-300/30 w-10 h-10 flex items-center justify-center rounded-full;
+}
+
+.icon_containers p {
+  @apply font-semibold;
+}
+
+.lines {
+  @apply w-28 h-[1px] bg-gray-800;
+}

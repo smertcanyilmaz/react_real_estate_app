@@ -3,12 +3,10 @@ import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import DropDown from "./DropDown/DropDown";
 
-const PostType = () => {
+const PostType = ({ selectedCategory, setSelectedCategory }) => {
   const [showDropDown, setShowDropDown] = useState(false);
   const [showDropDown2, setShowDropDown2] = useState(false);
   const [selectedProperty, setSelectedProperty] = useState(null);
-  const [selectedCategory, setSelectedCategory] = useState(null);
-
   const clickDown1 = () => {
     setShowDropDown((prev) => !prev);
     setShowDropDown2(false);
@@ -24,11 +22,11 @@ const PostType = () => {
   };
 
   return (
-    <div className="bg-gray-50 p-5 flex flex-col gap-5">
+    <div className="bg-gray-50 p-5 flex flex-col gap-5 rounded-[4px] border border-gray-400/50">
       <h1 className="text-lg font-semibold text-gray-800">Ad Category</h1>
       <div className="flex gap-10">
-        <div className="flex flex-col gap-3 relative">
-          <h2 className="">
+        <div className="flex flex-col gap-2 relative">
+          <h2 className="text-sm font-semibold">
             Property Type <span className="text-red-500">*</span>
           </h2>
           <div
@@ -45,7 +43,7 @@ const PostType = () => {
           </div>
         </div>
         <div
-          className={`h-[4.5rem] flex items-end justify-center duration-300 ${
+          className={`h-[4rem] flex items-end justify-center duration-500 ${
             selectedProperty ? "opacity-100" : "opacity-0"
           }`}
         >
@@ -54,11 +52,11 @@ const PostType = () => {
           </div>
         </div>
         <div
-          className={`flex flex-col gap-3 relative duration-300 ${
+          className={`flex flex-col gap-2 relative duration-500 ${
             selectedProperty ? "opacity-100" : "opacity-0"
           }`}
         >
-          <h2>
+          <h2 className="text-sm font-semibold">
             Category <span className="text-red-500">*</span>
           </h2>
           <div className="w-60 h-10 flex items-center px-2 border border-gray-500/50 rounded-[4px] cursor-pointer relative">

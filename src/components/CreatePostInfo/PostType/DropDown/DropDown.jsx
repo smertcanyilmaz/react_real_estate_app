@@ -35,7 +35,7 @@ const DropDown = ({
         showDropDown || showDropDown2
           ? "translate-y-[8%] opacity-100 z-10"
           : "translate-y-0 opacity-0 -z-10"
-      } ${property ? "-bottom-[4.6rem]" : "-bottom-[12rem]"}`}
+      } ${property ? "-bottom-[4.5rem]" : "-bottom-[11.8rem]"}`}
     >
       {property &&
         properties.map((property, index) => (

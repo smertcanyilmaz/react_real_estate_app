@@ -1,16 +1,17 @@
 import React from "react";
 import "./PostInfo.css";
+import AdressInfo from "../PostType/AdressInfo/AdressInfo";
 
 const PostInfo = ({ selectedCategory, setSelectedCategory }) => {
   return (
     <div
-      className={`max-w-6xl duration-500 ${
+      className={`max-w-6xl duration-500 flex flex-col gap-10  ${
         selectedCategory
           ? "translate-y-0 opacity-100"
           : "translate-y-[10%] opacity-0 -z-10"
-      }`}
+      } `}
     >
-      <form className="one w-full bg-gray-50 rounded-[4px] border border-gray-400/50 flex flex-col p-5">
+      <form className="one form_box">
         <h1 className="text-lg font-semibold text-gray-800 mb-5">
           Ad Information
         </h1>
@@ -39,7 +40,7 @@ const PostInfo = ({ selectedCategory, setSelectedCategory }) => {
           <input type="text" name="bathrooms" id="bathrooms" />
         </div>
       </form>
-      <div className="two"></div>
+      <AdressInfo />
       <div className="three"></div>
       <div className="for"></div>
     </div>

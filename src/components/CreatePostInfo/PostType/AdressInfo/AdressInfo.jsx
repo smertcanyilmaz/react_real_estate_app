@@ -51,11 +51,6 @@ const AdressInfo = () => {
 
   console.log(cities);
 
-  //const [arrow, setArrow] = useState(false);
-
-  // const arrowClickHandler = (show) => {
-  //   setArrow(show);
-  // };
   const [arrowState, setArrowState] = useState({
     country: false,
     city: false,
@@ -109,7 +104,7 @@ const AdressInfo = () => {
                 </div>
                 {arrowFunc("country")}
               </div>
-              <SearchDropDown />
+              {arrowState.country && <SearchDropDown />}
             </div>
           </div>
         </div>
@@ -131,10 +126,9 @@ const AdressInfo = () => {
                 <div className="w-full h-full bg-gray-50 flex items-center">
                   deneme
                 </div>
-                {/* {arrowFunc(arrowState.city)} */}
                 {arrowFunc("city")}
               </div>
-              <SearchDropDown />
+              {arrowState.city && <SearchDropDown />}
             </div>
           </div>
         </div>
@@ -157,7 +151,7 @@ const AdressInfo = () => {
                 </div>
                 {arrowFunc("district")}
               </div>
-              <SearchDropDown />
+              {arrowState.district && <SearchDropDown />}
             </div>
           </div>
         </div>

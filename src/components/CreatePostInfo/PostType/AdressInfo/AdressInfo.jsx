@@ -3,6 +3,8 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import SearchDropDown from "../SearchDropDown/SearchDropDown";
 import axios from "axios";
 import { City, Country, State } from "country-state-city";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 
 const AdressInfo = () => {
   //   const [europeanCountries, setEuropeanCountries] = useState([]);
@@ -49,17 +51,67 @@ const AdressInfo = () => {
 
   console.log(cities);
 
+  //const [arrow, setArrow] = useState(false);
+
+  // const arrowClickHandler = (show) => {
+  //   setArrow(show);
+  // };
+  const [arrowState, setArrowState] = useState({
+    country: false,
+    city: false,
+    district: false,
+  });
+
+  const arrowFunc = (arrow) => {
+    if (arrowState[arrow] === false) {
+      return (
+        <KeyboardArrowDownIcon
+          style={{ color: "gray" }}
+          onClick={() => arrowClickHandler(arrow)}
+        />
+      );
+    } else {
+      return (
+        <KeyboardArrowUpIcon
+          style={{ color: "gray" }}
+          onClick={() => arrowClickHandler(arrow)}
+        />
+      );
+    }
+  };
+
+  const arrowClickHandler = (arrow) => {
+    setArrowState({ ...arrowState, [arrow]: !arrowState[arrow] });
+  };
+
   return (
     <form className="two form_box">
       <h1 className="text-lg font-semibold text-gray-800 mb-5">
         Ad Adress Information
       </h1>
       <div className="info_boxes info_boxes_even flex-row gap-5">
-        <div className="flex flex-col gap-3">
-          <label htmlFor="country">
-            Country <span className="text-red-500">*</span>
-          </label>
-          <div className="w-60 h-10 flex items-center px-2 border border-gray-500/50 rounded-[4px] cursor-pointer bg-gray-50"></div>
+        <div className="flex items-end gap-5">
+          <div
+            className={`h-[4rem] flex items-end justify-center duration-500 `}
+          >
+            <div className="w-8 h-8 bg-gray-50 border-2 border-gray-400/30 flex items-center justify-center rounded-full ">
+              <ArrowForwardIcon style={{ color: "var(--bg_color)" }} />
+            </div>
+          </div>
+          <div className="flex flex-col gap-3">
+            <label htmlFor="city">
+              Country <span className="text-red-500">*</span>
+            </label>
+            <div className="flex flex-col">
+              <div className="w-60 h-10 flex items-center px-2 border border-gray-500/50 rounded-[4px] cursor-pointer bg-gray-50 ">
+                <div className="w-full h-full bg-gray-50 flex items-center">
+                  deneme
+                </div>
+                {arrowFunc("country")}
+              </div>
+              <SearchDropDown />
+            </div>
+          </div>
         </div>
 
         <div className="flex items-end gap-5">
@@ -75,7 +127,13 @@ const AdressInfo = () => {
               City <span className="text-red-500">*</span>
             </label>
             <div className="flex flex-col">
-              <div className="w-60 h-10 flex items-center px-2 border border-gray-500/50 rounded-[4px] cursor-pointer bg-gray-50"></div>
+              <div className="w-60 h-10 flex items-center px-2 border border-gray-500/50 rounded-[4px] cursor-pointer bg-gray-50 ">
+                <div className="w-full h-full bg-gray-50 flex items-center">
+                  deneme
+                </div>
+                {/* {arrowFunc(arrowState.city)} */}
+                {arrowFunc("city")}
+              </div>
               <SearchDropDown />
             </div>
           </div>
@@ -89,10 +147,18 @@ const AdressInfo = () => {
             </div>
           </div>
           <div className="flex flex-col gap-3">
-            <label htmlFor="district">
+            <label htmlFor="city">
               District <span className="text-red-500">*</span>
             </label>
-            <div className="w-60 h-10 flex items-center px-2 border border-gray-500/50 rounded-[4px] cursor-pointer bg-gray-50"></div>
+            <div className="flex flex-col">
+              <div className="w-60 h-10 flex items-center px-2 border border-gray-500/50 rounded-[4px] cursor-pointer bg-gray-50 ">
+                <div className="w-full h-full bg-gray-50 flex items-center">
+                  deneme
+                </div>
+                {arrowFunc("district")}
+              </div>
+              <SearchDropDown />
+            </div>
           </div>
         </div>
       </div>

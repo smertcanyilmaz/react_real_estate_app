@@ -49,15 +49,15 @@ const AdressInfo = () => {
     datas();
   }, []);
 
-  console.log(cities);
-
   const [arrowState, setArrowState] = useState({
+    // searchDropDown componentini tutan stateler
     country: false,
     city: false,
     district: false,
   });
 
   const arrowFunc = (arrow) => {
+    // searchDropDown componentini açan ve kapatan okları üç div arasından seçme
     if (arrowState[arrow] === false) {
       return (
         <KeyboardArrowDownIcon
@@ -76,8 +76,17 @@ const AdressInfo = () => {
   };
 
   const arrowClickHandler = (arrow) => {
-    setArrowState({ ...arrowState, [arrow]: !arrowState[arrow] });
+    setArrowState({ ...arrowState, [arrow]: !arrowState[arrow] }); // arrow statelerini güncelledim. çünkü üç tane div için seçiyoruz. her biri için click sonrası için güncellemek gerekiyor
   };
+  // const [filterState, setFilterState] = useState([]);
+  // const cityFiltering = (value) => {
+  //   const filtering = cities.filter((city) => city.name === value);
+  //   setFilterState(...filtering);
+
+  //   console.log(filterState);
+  // };
+
+  // cityFiltering();
 
   return (
     <form className="two form_box">
@@ -99,12 +108,12 @@ const AdressInfo = () => {
             </label>
             <div className="flex flex-col">
               <div className="w-60 h-10 flex items-center px-2 border border-gray-500/50 rounded-[4px] cursor-pointer bg-gray-50 ">
-                <div className="w-full h-full bg-gray-50 flex items-center">
-                  deneme
-                </div>
+                <div className="w-full h-full bg-gray-50 flex items-center"></div>
                 {arrowFunc("country")}
               </div>
-              {arrowState.country && <SearchDropDown />}
+              {arrowState.country && (
+                <SearchDropDown id="countryId" country={country} />
+              )}
             </div>
           </div>
         </div>
@@ -123,12 +132,12 @@ const AdressInfo = () => {
             </label>
             <div className="flex flex-col">
               <div className="w-60 h-10 flex items-center px-2 border border-gray-500/50 rounded-[4px] cursor-pointer bg-gray-50 ">
-                <div className="w-full h-full bg-gray-50 flex items-center">
-                  deneme
-                </div>
+                <div className="w-full h-full bg-gray-50 flex items-center"></div>
                 {arrowFunc("city")}
               </div>
-              {arrowState.city && <SearchDropDown />}
+              {arrowState.city && (
+                <SearchDropDown id="cityId" cities={cities} />
+              )}
             </div>
           </div>
         </div>

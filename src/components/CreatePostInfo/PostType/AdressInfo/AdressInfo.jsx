@@ -78,15 +78,6 @@ const AdressInfo = () => {
   const arrowClickHandler = (arrow) => {
     setArrowState({ ...arrowState, [arrow]: !arrowState[arrow] }); // arrow statelerini güncelledim. çünkü üç tane div için seçiyoruz. her biri için click sonrası için güncellemek gerekiyor
   };
-  // const [filterState, setFilterState] = useState([]);
-  // const cityFiltering = (value) => {
-  //   const filtering = cities.filter((city) => city.name === value);
-  //   setFilterState(...filtering);
-
-  //   console.log(filterState);
-  // };
-
-  // cityFiltering();
 
   return (
     <form className="two form_box">
@@ -126,7 +117,7 @@ const AdressInfo = () => {
               <ArrowForwardIcon style={{ color: "var(--bg_color)" }} />
             </div>
           </div>
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-3 relative">
             <label htmlFor="city">
               City <span className="text-red-500">*</span>
             </label>

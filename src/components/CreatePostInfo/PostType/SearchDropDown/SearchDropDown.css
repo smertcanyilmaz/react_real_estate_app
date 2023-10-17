@@ -1,0 +1,14 @@
+.scroll_custom::-webkit-scrollbar {
+  width: 5px;
+  background-color: transparent;
+}
+
+.scroll_custom_none::-webkit-scrollbar {
+  display: none;
+}
+
+.scroll_custom::-webkit-scrollbar-thumb {
+  background-color: rgb(209 213 219);
+  border-radius: 10px;
+  height: 38px;
+}

@@ -1,60 +1,56 @@
 import React, { useEffect, useState } from "react";
+import "./SearchDropDown.css";
 
 const SearchDropDown = ({ id, country, cities }) => {
   const [datas, setDatas] = useState([]);
-  const [InputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState("");
+  const [filteredData, setFilteredData] = useState([]);
 
-  const [filterState, setFilterState] = useState([]);
-  const cityFiltering = (value) => {
-    const filtering = cities.filter((city) => city.name === value);
-    setFilterState([filtering]);
-
-    console.log(filterState);
-  };
-
-  useEffect((value) => {
+  useEffect(() => {
     if (id === "countryId") {
       setDatas(country);
-      setInputValue(value);
     } else if (id === "cityId") {
       setDatas(cities);
-      setInputValue(value);
-      cityFiltering(value);
     } else {
       setDatas([{ name: "mertcan" }]);
-      setInputValue(value);
     }
-  }, []);
+  }, [id, country, cities]);
 
-  console.log(InputValue);
+  useEffect(() => {
+    const lowerInputValue = inputValue.toLowerCase();
+    const filtered = datas.filter((data) =>
+      data.name.toLowerCase().includes(lowerInputValue)
+    );
+    setFilteredData(filtered);
+  }, [inputValue, datas]);
+
+  const [scrollShow, setScrollShow] = useState(false);
 
   return (
-    <div className="w-60 h-20 flex flex-col gap-5 p-[6px] border border-gray-500/50 rounded-[4px] cursor-pointer bg-gray-50">
-      <div className="flex items-center justify-between cursor-pointer bg-gray-50 rounded-sm border border-gray-500/50 pr-2">
-        <input
-          type="text"
-          className="w-[90%] border-2 border-none outline-none"
-          onChange={(e) => setInputValue(e.target.value)}
-        />
-      </div>
-      <div className="items_container w-full flex flex-col bg-red-500">
+    <div className="w-60 flex flex-col items-center gap-2 p-[6px] border border-gray-500/50 rounded-[4px] cursor-pointer bg-gray-50 absolute left-0 top-[5rem]">
+      <input
+        type="text"
+        className="w-full mx-auto border border-gray-500/50 rounded-[4px] outline-none"
+        onChange={(e) => setInputValue(e.target.value)}
+      />
+
+      <div
+        className={`items_container w-full max-h-48 flex flex-col overflow-y-auto ${
+          scrollShow ? "scroll_custom" : "scroll_custom_none"
+        }`}
+      >
         {/* maplenecek yer burası. aşağıdaki div maplenecek */}
-        {/* {datas.map((country, index) => (
+
+        {filteredData.map((data, index) => (
           <div
             key={index}
-            className="item w-full h-[35px] flex items-center justify-between cursor-pointer bg-gray-50 rounded-sm border border-gray-500/50  bg-green-500"
+            className="item w-full px-1 py-2 mx-auto cursor-pointer bg-gray-50 border-none hover:bg-gray-100"
+            onMouseEnter={() => setScrollShow(true)}
+            onMouseLeave={() => setScrollShow(false)}
           >
-            {country.name}
+            {data.name}
           </div>
-        ))} */}
-        {/* {filterState.map((city, index) => (
-          <div
-            key={index}
-            className="item w-full h-[35px] flex items-center justify-between cursor-pointer bg-gray-50 rounded-sm border border-gray-500/50  bg-green-500"
-          >
-            {city.name}
-          </div>
-        ))} */}
+        ))}
       </div>
     </div>
   );

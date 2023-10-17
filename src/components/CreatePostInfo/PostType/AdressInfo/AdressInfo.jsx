@@ -56,9 +56,7 @@ const AdressInfo = () => {
     district: false,
   });
 
-  const arrowClickHandler = (arrow) => {
-    setArrowState({ ...arrowState, [arrow]: !arrowState[arrow] }); // arrow statelerini güncelledim. çünkü üç tane div için seçiyoruz. her biri için click sonrası için güncellemek gerekiyor
-  };
+  console.log(arrowState.country, arrowState.city);
 
   const arrowFunc = (arrow) => {
     // searchDropDown componentini açan ve kapatan okları üç div arasından seçme
@@ -78,23 +76,24 @@ const AdressInfo = () => {
       );
     }
   };
+
+  const arrowClickHandler = (arrow) => {
+    setArrowState({ ...arrowState, [arrow]: !arrowState[arrow] }); // arrow statelerini güncelledim. çünkü üç tane div için seçiyoruz. her biri için click sonrası için güncellemek gerekiyor
+  };
+
   const [inputBox, setInputBox] = useState(""); // seçilen ülke, şehir ve ülkeye tıklandığında seçilen veriyi tutan state
   return (
     <form className="two form_box">
       <h1 className="text-lg font-semibold text-gray-800 mb-5">
         Ad Adress Information
       </h1>
-      <div className="info_boxes info_boxes_even flex-row gap-5">
+      <div className="w-full flex info_boxes_even flex-row gap-5 py-5">
         <div className="flex items-end gap-5">
           <div
             className={`h-[4rem] flex items-end justify-center duration-500 `}
-          >
-            <div className="w-8 h-8 bg-gray-50 border-2 border-gray-400/30 flex items-center justify-center rounded-full ">
-              <ArrowForwardIcon style={{ color: "var(--bg_color)" }} />
-            </div>
-          </div>
-          <div className="flex flex-col gap-3">
-            <label htmlFor="city">
+          ></div>
+          <div className="flex flex-col gap-3 relative">
+            <label htmlFor="country">
               Country <span className="text-red-500">*</span>
             </label>
             <div className="flex flex-col">
@@ -105,16 +104,22 @@ const AdressInfo = () => {
                 ></div>
                 {arrowFunc("country")}
               </div>
-              {arrowState.country && (
-                <SearchDropDown id="countryId" country={country} />
-              )}
+
+              <SearchDropDown
+                id="countryId"
+                country={country}
+                arrowState={arrowState}
+                setArrowState={setArrowState}
+                setInputBox={setInputBox}
+                arrowClickHandler={arrowClickHandler}
+              />
             </div>
           </div>
         </div>
 
         <div className="flex items-end gap-5">
           <div
-            className={`h-[4rem] flex items-end justify-center duration-500 `}
+            className={`h-[4rem] flex items-end justify-center duration-500`}
           >
             <div className="w-8 h-8 bg-gray-50 border-2 border-gray-400/30 flex items-center justify-center rounded-full ">
               <ArrowForwardIcon style={{ color: "var(--bg_color)" }} />
@@ -139,6 +144,7 @@ const AdressInfo = () => {
                 id="cityId"
                 cities={cities}
                 arrowState={arrowState}
+                setArrowState={setArrowState}
                 setInputBox={setInputBox}
                 arrowClickHandler={arrowClickHandler}
               />
@@ -153,8 +159,8 @@ const AdressInfo = () => {
               <ArrowForwardIcon style={{ color: "var(--bg_color)" }} />
             </div>
           </div>
-          <div className="flex flex-col gap-3">
-            <label htmlFor="city">
+          <div className="flex flex-col gap-3 relative">
+            <label htmlFor="district">
               District <span className="text-red-500">*</span>
             </label>
             <div className="flex flex-col">

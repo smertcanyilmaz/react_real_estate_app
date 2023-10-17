@@ -8,21 +8,26 @@ const SearchDropDown = ({
   arrowState,
   setInputBox,
   arrowClickHandler,
+  setArrowState,
 }) => {
   const [datas, setDatas] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const [filteredData, setFilteredData] = useState([]);
   const [scrollShow, setScrollShow] = useState(false);
+  const [countryBox, setCountryBox] = useState(false); // bu componentin sadece country için olan kısmını açar
+  const [cityBox, setCityBox] = useState(false);
 
   useEffect(() => {
     if (id === "countryId") {
       setDatas(country);
+      setCountryBox(arrowState.country);
     } else if (id === "cityId") {
       setDatas(cities);
+      setCityBox(arrowState.city);
     } else {
       setDatas([{ name: "mertcan" }]);
     }
-  }, [id, country, cities]);
+  }, [id, country, cities, arrowState, setCountryBox, setCityBox]);
 
   useEffect(() => {
     const lowerInputValue = inputValue.toLowerCase();
@@ -41,8 +46,10 @@ const SearchDropDown = ({
 
   return (
     <div
-      className={`w-60 flex flex-col items-center gap-2 p-[6px] border border-gray-500/50 rounded-[4px] cursor-pointer bg-gray-50 absolute left-0 top-[5rem] duration-500 ${
-        arrowState.city ? "opacity-100 z-10 " : "opacity-0 -z-10  "
+      className={`w-60 flex flex-col items-center gap-2 p-[6px] border border-gray-500/50 rounded-[4px] cursor-pointer bg-gray-50 absolute left-0  duration-500 ${
+        countryBox || cityBox
+          ? `opacity-100 z-10 top-[4.5rem]`
+          : "opacity-0 -z-10 top-[4rem]"
       } `}
     >
       <input

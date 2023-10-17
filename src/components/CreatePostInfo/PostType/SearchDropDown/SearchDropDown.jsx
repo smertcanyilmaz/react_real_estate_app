@@ -1,10 +1,18 @@
 import React, { useEffect, useState } from "react";
 import "./SearchDropDown.css";
 
-const SearchDropDown = ({ id, country, cities, arrowState }) => {
+const SearchDropDown = ({
+  id,
+  country,
+  cities,
+  arrowState,
+  setInputBox,
+  arrowClickHandler,
+}) => {
   const [datas, setDatas] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const [filteredData, setFilteredData] = useState([]);
+  const [scrollShow, setScrollShow] = useState(false);
 
   useEffect(() => {
     if (id === "countryId") {
@@ -18,20 +26,23 @@ const SearchDropDown = ({ id, country, cities, arrowState }) => {
 
   useEffect(() => {
     const lowerInputValue = inputValue.toLowerCase();
-    const filtered = datas.filter((data) =>
-      data.name.toLowerCase().includes(lowerInputValue)
-    );
-    setFilteredData(filtered);
+    if (datas) {
+      const filtered = datas.filter((data) =>
+        data.name.toLowerCase().includes(lowerInputValue)
+      );
+      setFilteredData(filtered);
+    }
   }, [inputValue, datas]);
 
-  const [scrollShow, setScrollShow] = useState(false);
+  const inputBoxHandler = (data) => {
+    setInputBox(data);
+    arrowClickHandler("city");
+  };
 
   return (
     <div
-      className={`w-60 flex flex-col items-center gap-2 p-[6px] border border-gray-500/50 rounded-[4px] cursor-pointer bg-gray-50 absolute left-0 top-[3.6rem] duration-300 ${
-        arrowState.city
-          ? "translate-y-[8%] opacity-100 z-10"
-          : "translate-y-0 opacity-0 -z-10"
+      className={`w-60 flex flex-col items-center gap-2 p-[6px] border border-gray-500/50 rounded-[4px] cursor-pointer bg-gray-50 absolute left-0 top-[5rem] duration-500 ${
+        arrowState.city ? "opacity-100 z-10 " : "opacity-0 -z-10  "
       } `}
     >
       <input
@@ -41,7 +52,7 @@ const SearchDropDown = ({ id, country, cities, arrowState }) => {
       />
 
       <div
-        className={`items_container w-full max-h-48 flex flex-col overflow-y-auto  ${
+        className={`items_container w-full max-h-40 flex flex-col overflow-y-auto  ${
           scrollShow ? "scroll_custom" : "scroll_custom_none"
         }`}
       >
@@ -50,9 +61,10 @@ const SearchDropDown = ({ id, country, cities, arrowState }) => {
         {filteredData.map((data, index) => (
           <div
             key={index}
-            className="item w-full px-1 py-2 mx-auto cursor-pointer bg-gray-50 border-none hover:bg-gray-100 "
+            className="item w-full px-1 py-2 mx-auto cursor-pointer bg-gray-50 border-none hover:bg-gray-100"
             onMouseEnter={() => setScrollShow(true)}
             onMouseLeave={() => setScrollShow(false)}
+            onClick={() => inputBoxHandler(data.name)}
           >
             {data.name}
           </div>

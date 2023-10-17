@@ -56,6 +56,10 @@ const AdressInfo = () => {
     district: false,
   });
 
+  const arrowClickHandler = (arrow) => {
+    setArrowState({ ...arrowState, [arrow]: !arrowState[arrow] }); // arrow statelerini güncelledim. çünkü üç tane div için seçiyoruz. her biri için click sonrası için güncellemek gerekiyor
+  };
+
   const arrowFunc = (arrow) => {
     // searchDropDown componentini açan ve kapatan okları üç div arasından seçme
     if (arrowState[arrow] === false) {
@@ -74,11 +78,7 @@ const AdressInfo = () => {
       );
     }
   };
-
-  const arrowClickHandler = (arrow) => {
-    setArrowState({ ...arrowState, [arrow]: !arrowState[arrow] }); // arrow statelerini güncelledim. çünkü üç tane div için seçiyoruz. her biri için click sonrası için güncellemek gerekiyor
-  };
-
+  const [inputBox, setInputBox] = useState(""); // seçilen ülke, şehir ve ülkeye tıklandığında seçilen veriyi tutan state
   return (
     <form className="two form_box">
       <h1 className="text-lg font-semibold text-gray-800 mb-5">
@@ -99,7 +99,10 @@ const AdressInfo = () => {
             </label>
             <div className="flex flex-col">
               <div className="w-60 h-10 flex items-center px-2 border border-gray-500/50 rounded-[4px] cursor-pointer bg-gray-50 ">
-                <div className="w-full h-full bg-gray-50 flex items-center"></div>
+                <div
+                  onClick={() => arrowClickHandler("country")}
+                  className="w-full h-full bg-gray-50 flex items-center"
+                ></div>
                 {arrowFunc("country")}
               </div>
               {arrowState.country && (
@@ -122,8 +125,13 @@ const AdressInfo = () => {
               City <span className="text-red-500">*</span>
             </label>
             <div className="flex flex-col">
-              <div className="w-60 h-10 flex items-center px-2 border border-gray-500/50 rounded-[4px] cursor-pointer bg-gray-50 ">
-                <div className="w-full h-full bg-gray-50 flex items-center"></div>
+              <div className="w-60 h-10 flex items-center px-2 border border-gray-500/50 rounded-[4px] cursor-pointer bg-gray-50">
+                <div
+                  onClick={() => arrowClickHandler("city")}
+                  className="w-full h-full bg-gray-50 flex items-center"
+                >
+                  {inputBox}
+                </div>
                 {arrowFunc("city")}
               </div>
 
@@ -131,6 +139,8 @@ const AdressInfo = () => {
                 id="cityId"
                 cities={cities}
                 arrowState={arrowState}
+                setInputBox={setInputBox}
+                arrowClickHandler={arrowClickHandler}
               />
             </div>
           </div>
@@ -149,7 +159,10 @@ const AdressInfo = () => {
             </label>
             <div className="flex flex-col">
               <div className="w-60 h-10 flex items-center px-2 border border-gray-500/50 rounded-[4px] cursor-pointer bg-gray-50 ">
-                <div className="w-full h-full bg-gray-50 flex items-center">
+                <div
+                  onClick={() => arrowClickHandler("district")}
+                  className="w-full h-full bg-gray-50 flex items-center"
+                >
                   deneme
                 </div>
                 {arrowFunc("district")}

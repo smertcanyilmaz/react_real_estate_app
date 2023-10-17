@@ -126,9 +126,12 @@ const AdressInfo = () => {
                 <div className="w-full h-full bg-gray-50 flex items-center"></div>
                 {arrowFunc("city")}
               </div>
-              {arrowState.city && (
-                <SearchDropDown id="cityId" cities={cities} />
-              )}
+
+              <SearchDropDown
+                id="cityId"
+                cities={cities}
+                arrowState={arrowState}
+              />
             </div>
           </div>
         </div>

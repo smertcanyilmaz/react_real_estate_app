@@ -6,9 +6,10 @@ const SearchDropDown = ({
   country,
   cities,
   arrowState,
-  setInputBox,
+  setInputBoxCity,
   arrowClickHandler,
   setArrowState,
+  setInputBoxCountry,
 }) => {
   const [datas, setDatas] = useState([]);
   const [inputValue, setInputValue] = useState("");
@@ -40,16 +41,21 @@ const SearchDropDown = ({
   }, [inputValue, datas]);
 
   const inputBoxHandler = (data) => {
-    setInputBox(data);
-    arrowClickHandler("city");
+    if (id === "countryId") {
+      setInputBoxCountry(data);
+      arrowClickHandler("country");
+    } else if (id === "cityId") {
+      setInputBoxCity(data);
+      arrowClickHandler("city");
+    }
   };
 
   return (
     <div
-      className={`w-60 flex flex-col items-center gap-2 p-[6px] border border-gray-500/50 rounded-[4px] cursor-pointer bg-gray-50 absolute left-0  duration-500 ${
+      className={`w-60 flex flex-col items-center gap-2 p-[6px] border border-gray-500/50 rounded-[4px] cursor-pointer bg-gray-50 absolute left-0  duration-300 ${
         countryBox || cityBox
-          ? `opacity-100 z-10 top-[4.5rem]`
-          : "opacity-0 -z-10 top-[4rem]"
+          ? `top-[4.5rem] z-10 opacity-100 pointer-events-auto `
+          : "top-[4rem] -z-10 opacity-0 pointer-events-none"
       } `}
     >
       <input

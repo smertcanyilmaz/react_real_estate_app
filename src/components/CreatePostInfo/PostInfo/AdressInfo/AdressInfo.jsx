@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import SearchDropDown from "../SearchDropDown/SearchDropDown";
+
 import axios from "axios";
 import { City, Country, State } from "country-state-city";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import SearchDropDown from "../SearchDropDown/SearchDropDown";
 
 const AdressInfo = () => {
   //   const [europeanCountries, setEuropeanCountries] = useState([]);
@@ -25,12 +26,16 @@ const AdressInfo = () => {
   //   console.log(europeanCountries);
 
   const [country, setCountry] = useState([]);
-  const [cities, setCities] = useState([]);
+  const [cities, setCities] = useState(null);
   const [districts, setDistricts] = useState([]);
 
   const datas = () => {
     const countryData = Country.getAllCountries().filter(
       (country) => country.name === "Turkey"
+    );
+
+    const euCountriesData = Country.getAllCountries().filter(
+      (country) => country.currency === "EUR"
     );
 
     const citiesData = State.getAllStates().filter(
@@ -41,13 +46,32 @@ const AdressInfo = () => {
       (district) => district.countryCode === "TR"
     );
 
-    setCountry(countryData);
+    const countries = country.map((c) => c.isoCode);
+    const citiesByCountry = [];
+
+    // Tüm ülkelerin şehirlerini bulma
+    countries.forEach((countryCode) => {
+      const countryCities = State.getAllStates().filter(
+        (city) => city.countryCode === countryCode
+      );
+
+      citiesByCountry[countryCode] = countryCities;
+    });
+
+    console.log(citiesByCountry);
+    //setCities(citiesByCountry["TR"]);
+
+    setCountry([...countryData, ...euCountriesData]);
     setCities(citiesData);
     setDistricts(districtsData);
   };
+
   useEffect(() => {
     datas();
   }, []);
+
+  console.log(country);
+  console.log(cities);
 
   const [arrowState, setArrowState] = useState({
     // searchDropDown componentini tutan stateler
@@ -55,8 +79,6 @@ const AdressInfo = () => {
     city: false,
     district: false,
   });
-
-  console.log(arrowState.country, arrowState.city);
 
   const arrowFunc = (arrow) => {
     // searchDropDown componentini açan ve kapatan okları üç div arasından seçme
@@ -81,7 +103,8 @@ const AdressInfo = () => {
     setArrowState({ ...arrowState, [arrow]: !arrowState[arrow] }); // arrow statelerini güncelledim. çünkü üç tane div için seçiyoruz. her biri için click sonrası için güncellemek gerekiyor
   };
 
-  const [inputBox, setInputBox] = useState(""); // seçilen ülke, şehir ve ülkeye tıklandığında seçilen veriyi tutan state
+  const [inputBoxCity, setInputBoxCity] = useState(""); // seçilen ülke, şehir ve ülkeye tıklandığında seçilen veriyi tutan state
+  const [inputBoxCountry, setInputBoxCountry] = useState(""); // seçilen ülke, şehir ve ülkeye tıklandığında seçilen veriyi tutan state
   return (
     <form className="two form_box">
       <h1 className="text-lg font-semibold text-gray-800 mb-5">
@@ -101,7 +124,9 @@ const AdressInfo = () => {
                 <div
                   onClick={() => arrowClickHandler("country")}
                   className="w-full h-full bg-gray-50 flex items-center"
-                ></div>
+                >
+                  {inputBoxCountry}
+                </div>
                 {arrowFunc("country")}
               </div>
 
@@ -110,7 +135,7 @@ const AdressInfo = () => {
                 country={country}
                 arrowState={arrowState}
                 setArrowState={setArrowState}
-                setInputBox={setInputBox}
+                setInputBoxCountry={setInputBoxCountry}
                 arrowClickHandler={arrowClickHandler}
               />
             </div>
@@ -135,7 +160,7 @@ const AdressInfo = () => {
                   onClick={() => arrowClickHandler("city")}
                   className="w-full h-full bg-gray-50 flex items-center"
                 >
-                  {inputBox}
+                  {inputBoxCity}
                 </div>
                 {arrowFunc("city")}
               </div>
@@ -145,7 +170,7 @@ const AdressInfo = () => {
                 cities={cities}
                 arrowState={arrowState}
                 setArrowState={setArrowState}
-                setInputBox={setInputBox}
+                setInputBoxCity={setInputBoxCity}
                 arrowClickHandler={arrowClickHandler}
               />
             </div>

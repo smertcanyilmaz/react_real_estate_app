@@ -1,6 +1,7 @@
 import React from "react";
 import "./PostInfo.css";
-import AdressInfo from "../PostType/AdressInfo/AdressInfo";
+import AdressInfo from "./AdressInfo/AdressInfo";
+import UploadPhoto from "./UploadPhoto/UploadPhoto";
 
 const PostInfo = ({ selectedCategory, setSelectedCategory }) => {
   return (
@@ -41,7 +42,7 @@ const PostInfo = ({ selectedCategory, setSelectedCategory }) => {
         </div>
       </form>
       <AdressInfo />
-      <div className="three"></div>
+      <UploadPhoto />
       <div className="for"></div>
     </div>
   );

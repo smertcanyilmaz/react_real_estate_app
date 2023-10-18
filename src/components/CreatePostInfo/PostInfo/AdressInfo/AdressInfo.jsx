@@ -69,8 +69,9 @@ const AdressInfo = () => {
     datas();
   }, []);
 
-  console.log(country);
-  console.log(cities);
+  // console.log(country);
+  // console.log(cities);
+  console.log(districts.filter((district) => district.stateCode === "34"));
 
   const [arrowState, setArrowState] = useState({
     // searchDropDown componentini tutan stateler
@@ -104,6 +105,8 @@ const AdressInfo = () => {
 
   const [inputBoxCity, setInputBoxCity] = useState(""); // seçilen ülke, şehir ve ülkeye tıklandığında seçilen veriyi tutan state
   const [inputBoxCountry, setInputBoxCountry] = useState(""); // seçilen ülke, şehir ve ülkeye tıklandığında seçilen veriyi tutan state
+
+  const [inputBoxDistricts, setInputBoxDistricts] = useState("");
   return (
     <form className="two form_box">
       <h1 className="text-lg font-semibold text-gray-800 mb-5">
@@ -193,11 +196,18 @@ const AdressInfo = () => {
                   onClick={() => arrowClickHandler("district")}
                   className="w-full h-full bg-gray-50 flex items-center"
                 >
-                  deneme
+                  {inputBoxDistricts}
                 </div>
                 {arrowFunc("district")}
               </div>
-              {arrowState.district && <SearchDropDown />}
+              <SearchDropDown
+                id="districtId"
+                districts={districts}
+                arrowState={arrowState}
+                setArrowState={setArrowState}
+                setInputBoxDistricts={setInputBoxDistricts}
+                arrowClickHandler={arrowClickHandler}
+              />
             </div>
           </div>
         </div>

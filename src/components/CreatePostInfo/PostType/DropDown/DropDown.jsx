@@ -33,8 +33,8 @@ const DropDown = ({
     <div
       className={`absolute left-0 w-60 flex flex-col items-center gap-2 border border-gray-500/50 bg-gray-50 rounded-[4px] duration-300 px-1 py-2 overflow-y-auto ${
         showDropDown || showDropDown2
-          ? "translate-y-[8%] opacity-100 z-10"
-          : "translate-y-0 opacity-0 -z-10"
+          ? "translate-y-[8%] opacity-100 z-10 pointer-events-auto"
+          : "translate-y-0 opacity-0 pointer-events-none"
       } ${property ? "-bottom-[4.5rem]" : "-bottom-[11.8rem]"}`}
     >
       {property &&

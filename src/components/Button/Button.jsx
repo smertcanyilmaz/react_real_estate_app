@@ -11,7 +11,7 @@ const Button = (props) => {
             : " text-gray-100 "
         } ${
           props.post &&
-          "border-2 bg-bg-gray-800 border-gray-800  hover:bg-gray-800 duration-200 hover:text-white "
+          "border-2 bg-gray-800 border-gray-800  hover:bg-gray-800 duration-200 hover:text-white "
         } 
         
         ${

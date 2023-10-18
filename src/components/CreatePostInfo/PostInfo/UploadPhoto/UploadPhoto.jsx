@@ -12,7 +12,7 @@ const UploadPhoto = () => {
             fontSize="large"
             style={{ color: "rgb(55 65 81)" }}
           />
-          <h3 className="text-sm text-gray-700 font-semibold ">Upload Photo</h3>
+          <h3 className="text-sm text-gray-700 font-semibold">Upload Photo</h3>
         </div>
         {/* başlangıç ekleme divi */}
         <div className="w-36 h-24 rounded-[4px] border border-gray-400/50 flex flex-col items-center justify-center gap-2 shadow-sm ">
@@ -22,7 +22,7 @@ const UploadPhoto = () => {
         </div>
       </div>
       <p className="text-sm text-gray-600/90 mt-5">
-        You need to upload at least 5 photos
+        You need to upload at least 5 photos.
       </p>
     </div>
   );

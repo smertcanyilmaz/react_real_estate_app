@@ -2,11 +2,14 @@ import React from "react";
 import "./PostInfo.css";
 import AdressInfo from "./AdressInfo/AdressInfo";
 import UploadPhoto from "./UploadPhoto/UploadPhoto";
+import AdFeatures from "./AdFeatures/AdFeatures";
+import Button from "../../Button/Button";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 const PostInfo = ({ selectedCategory, setSelectedCategory }) => {
   return (
     <div
-      className={`max-w-6xl duration-500 flex flex-col gap-10  ${
+      className={`max-w-6xl duration-500 flex flex-col gap-10 items-center  ${
         selectedCategory
           ? "translate-y-0 opacity-100"
           : "translate-y-[10%] opacity-0 -z-10"
@@ -43,7 +46,12 @@ const PostInfo = ({ selectedCategory, setSelectedCategory }) => {
       </form>
       <AdressInfo />
       <UploadPhoto />
-      <div className="for"></div>
+      <AdFeatures />
+
+      <button className="w-32 h-12 rounded-md duration-200 flex gap-2 justify-center items-center bg-gray-800 text-gray-50">
+        Continue
+        <ArrowForwardIcon style={{ color: "rgb(249 250 251)" }} />
+      </button>
     </div>
   );
 };

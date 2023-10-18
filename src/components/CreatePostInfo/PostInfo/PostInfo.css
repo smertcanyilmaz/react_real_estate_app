@@ -21,3 +21,9 @@
 .form_box {
   @apply w-full bg-gray-50 rounded-[4px] border border-gray-400/50 flex flex-col p-5;
 }
+
+input.checked {
+  background-color: red;
+  height: 100px;
+  transition-duration: 500ms;
+}

@@ -12,6 +12,9 @@ const SearchDropDown = ({
   setInputBoxCountry,
   setInputBoxCity,
   setInputBoxDistricts,
+  selectedFilterHandler,
+  cityFilterHandler,
+  newDistricts,
 }) => {
   const [datas, setDatas] = useState([]);
   const [inputValue, setInputValue] = useState("");
@@ -29,14 +32,14 @@ const SearchDropDown = ({
       setDatas(cities);
       setCityBox(arrowState.city);
     } else if (id === "districtId") {
-      setDatas(districts);
+      setDatas(newDistricts);
       setDistrictBox(arrowState.district);
     }
   }, [
     id,
     country,
     cities,
-    districts,
+    newDistricts,
     arrowState,
     setCountryBox,
     setCityBox,
@@ -57,9 +60,11 @@ const SearchDropDown = ({
     if (id === "countryId") {
       setInputBoxCountry(data);
       arrowClickHandler("country");
+      selectedFilterHandler(data);
     } else if (id === "cityId") {
       setInputBoxCity(data);
       arrowClickHandler("city");
+      cityFilterHandler(data);
     } else if (id === "districtId") {
       setInputBoxDistricts(data);
       arrowClickHandler("district");

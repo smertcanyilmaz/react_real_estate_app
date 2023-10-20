@@ -15,6 +15,7 @@ const SearchDropDown = ({
   selectedFilterHandler,
   cityFilterHandler,
   newDistricts,
+  inputBoxCountry,
 }) => {
   const [datas, setDatas] = useState([]);
   const [inputValue, setInputValue] = useState("");
@@ -77,7 +78,7 @@ const SearchDropDown = ({
         countryBox || cityBox || districtBox
           ? `top-[4.5rem] z-10 opacity-100 pointer-events-auto `
           : "top-[4rem]  opacity-0 pointer-events-none"
-      } `}
+      }`}
     >
       <input
         type="text"

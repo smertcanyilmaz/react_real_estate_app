@@ -20,11 +20,9 @@ const AdressInfo = () => {
     );
     const sumCountries = countryData.concat(euCountriesData); // arrayleri birleştirdim
 
-    const sortingCountries = sumCountries.sort(
-      (
-        a,
-        b //alfabetik olarak sıralama yaptım
-      ) => a.name.localeCompare(b.name)
+    //alfabetik olarak sıralama yaptım
+    const sortingCountries = sumCountries.sort((a, b) =>
+      a.name.localeCompare(b.name)
     );
 
     setCountry(sortingCountries);
@@ -35,6 +33,7 @@ const AdressInfo = () => {
   }, []);
 
   const selectedFilterHandler = (countrySelected) => {
+    //hangi ülkeyi seçtiysek onunla ilgili filtrelemeleri yapan fonksiyon
     const countryInfo = country?.find(
       (country) => country?.name === countrySelected
     );
@@ -58,7 +57,8 @@ const AdressInfo = () => {
   const [newDistricts, setNewDistricts] = useState(); // seçili ilçeleri tutan state
 
   const cityFilterHandler = (citySelected) => {
-    // şehirlere göre ilçe seçer
+    //hangi ili seçtiysek onunla ilgili ilçe filtrelemelerini yapan fonksiyon
+
     const cityInfo = cities?.find((country) => country?.name === citySelected);
     console.log(cityInfo);
     const isoCode = cityInfo?.isoCode;
@@ -97,7 +97,16 @@ const AdressInfo = () => {
   };
 
   const arrowClickHandler = (arrow) => {
-    setArrowState({ ...arrowState, [arrow]: !arrowState[arrow] }); // arrow statelerini güncelledim. çünkü üç tane div için seçiyoruz. her biri için click sonrası için güncellemek gerekiyor
+    // arrow statelerini güncelledim. çünkü üç tane div için seçiyoruz. her biri için click sonrası için güncellemek gerekiyor
+    if (arrowState[arrow]) {
+      // Eğer zaten açıksa, kapat
+      setArrowState({ ...arrowState, [arrow]: false });
+    } else {
+      // Değilse, açık olanları kapat, sadece tıklananı aç
+      const updatedState = { country: false, city: false, district: false };
+      updatedState[arrow] = true;
+      setArrowState(updatedState);
+    }
   };
 
   const [inputBoxCountry, setInputBoxCountry] = useState("choose"); // seçilen ülke, şehir ve ülkeye tıklandığında seçilen veriyi tutan state
@@ -141,6 +150,7 @@ const AdressInfo = () => {
                 setInputBoxCountry={setInputBoxCountry}
                 arrowClickHandler={arrowClickHandler}
                 selectedFilterHandler={selectedFilterHandler}
+                inputBoxCountry={inputBoxCountry}
               />
             </div>
           </div>
@@ -154,7 +164,13 @@ const AdressInfo = () => {
               <ArrowForwardIcon style={{ color: "var(--bg_color)" }} />
             </div>
           </div>
-          <div className="flex flex-col gap-3 relative">
+          <div
+            className={`flex flex-col gap-3 relative ${
+              inputBoxCountry === "choose"
+                ? "opacity-50 cursor-default pointer-events-none"
+                : "opacity-100 cursor-pointer pointer-events-auto"
+            }`}
+          >
             <label htmlFor="city">
               City <span className="text-red-500">*</span>
             </label>
@@ -191,7 +207,13 @@ const AdressInfo = () => {
               <ArrowForwardIcon style={{ color: "var(--bg_color)" }} />
             </div>
           </div>
-          <div className="flex flex-col gap-3 relative">
+          <div
+            className={`flex flex-col gap-3 relative  ${
+              inputBoxCity === "choose"
+                ? "opacity-50 cursor-default pointer-events-none"
+                : "opacity-100 cursor-pointer pointer-events-auto"
+            }`}
+          >
             <label htmlFor="district">
               District <span className="text-red-500">*</span>
             </label>
@@ -221,9 +243,6 @@ const AdressInfo = () => {
           </div>
         </div>
       </div>
-      {/* {cities.map((city, index) => (
-        <div key={index}>{city.name}</div>
-      ))} */}
     </form>
   );
 };

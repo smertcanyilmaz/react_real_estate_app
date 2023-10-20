@@ -52,6 +52,8 @@ const AdressInfo = () => {
     );
 
     setDistricts(districtsData);
+    setInputBoxCity("choose");
+    setInputBoxDistricts("choose");
   };
 
   const [newDistricts, setNewDistricts] = useState(); // seçili ilçeleri tutan state
@@ -68,6 +70,7 @@ const AdressInfo = () => {
     );
     console.log(districtSelected);
     setNewDistricts(districtSelected);
+    setInputBoxDistricts("choose");
   };
 
   const [arrowState, setArrowState] = useState({
@@ -150,7 +153,6 @@ const AdressInfo = () => {
                 setInputBoxCountry={setInputBoxCountry}
                 arrowClickHandler={arrowClickHandler}
                 selectedFilterHandler={selectedFilterHandler}
-                inputBoxCountry={inputBoxCountry}
               />
             </div>
           </div>

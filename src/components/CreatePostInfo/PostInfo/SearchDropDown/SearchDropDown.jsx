@@ -5,7 +5,6 @@ const SearchDropDown = ({
   id,
   country,
   cities,
-  districts,
   arrowState,
   arrowClickHandler,
   setArrowState,
@@ -15,7 +14,6 @@ const SearchDropDown = ({
   selectedFilterHandler,
   cityFilterHandler,
   newDistricts,
-  inputBoxCountry,
 }) => {
   const [datas, setDatas] = useState([]);
   const [inputValue, setInputValue] = useState("");

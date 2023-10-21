@@ -22,6 +22,7 @@ const SearchDropDown = ({
   const [countryBox, setCountryBox] = useState(false); // bu componentin sadece country için olan kısmını açar
   const [cityBox, setCityBox] = useState(false);
   const [districtBox, setDistrictBox] = useState(false);
+  const [notFound, setNotFound] = useState(false);
 
   useEffect(() => {
     if (id === "countryId") {
@@ -55,6 +56,14 @@ const SearchDropDown = ({
     }
   }, [inputValue, datas]);
 
+  useEffect(() => {
+    if (filteredData.length === 0) {
+      setNotFound(true);
+    } else {
+      setNotFound(false);
+    }
+  }, [filteredData]);
+
   const inputBoxHandler = (data) => {
     if (id === "countryId") {
       setInputBoxCountry(data);
@@ -78,31 +87,37 @@ const SearchDropDown = ({
           : "top-[4rem]  opacity-0 pointer-events-none"
       }`}
     >
-      <input
-        type="text"
-        className="w-full mx-auto border border-gray-500/50 rounded-[4px] outline-none"
-        onChange={(e) => setInputValue(e.target.value)}
-      />
+      {notFound ? (
+        <p className="text-sm p-2">not found</p>
+      ) : (
+        <>
+          <input
+            type="text"
+            className="w-full mx-auto border border-gray-500/50 rounded-[4px] outline-none"
+            onChange={(e) => setInputValue(e.target.value)}
+          />
 
-      <div
-        className={`items_container w-full max-h-40 flex flex-col overflow-y-auto  ${
-          scrollShow ? "scroll_custom" : "scroll_custom_none"
-        }`}
-      >
-        {/* maplenecek yer burası. aşağıdaki div maplenecek */}
-
-        {filteredData.map((data, index) => (
           <div
-            key={index}
-            className="item w-full px-1 py-2 mx-auto cursor-pointer bg-gray-50 border-none hover:bg-gray-100"
-            onMouseEnter={() => setScrollShow(true)}
-            onMouseLeave={() => setScrollShow(false)}
-            onClick={() => inputBoxHandler(data.name)}
+            className={`items_container w-full max-h-40 flex flex-col overflow-y-auto  ${
+              scrollShow ? "scroll_custom" : "scroll_custom_none"
+            }`}
           >
-            {data.name}
+            {/* maplenecek yer burası. aşağıdaki div maplenecek */}
+
+            {filteredData.map((data, index) => (
+              <div
+                key={index}
+                className="item w-full px-1 py-2 mx-auto cursor-pointer bg-gray-50 border-none hover:bg-gray-100"
+                onMouseEnter={() => setScrollShow(true)}
+                onMouseLeave={() => setScrollShow(false)}
+                onClick={() => inputBoxHandler(data.name)}
+              >
+                {data.name}
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
+        </>
+      )}
     </div>
   );
 };

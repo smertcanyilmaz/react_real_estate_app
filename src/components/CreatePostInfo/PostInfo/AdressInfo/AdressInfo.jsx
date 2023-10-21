@@ -70,8 +70,11 @@ const AdressInfo = () => {
     );
     console.log(districtSelected);
     setNewDistricts(districtSelected);
+
     setInputBoxDistricts("choose");
   };
+
+  console.log(newDistricts);
 
   const [arrowState, setArrowState] = useState({
     // searchDropDown componentini tutan stateler

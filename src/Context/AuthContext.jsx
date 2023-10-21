@@ -1,5 +1,7 @@
 import React, { createContext, useEffect, useState } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { doc, setDoc } from "@firebase/firestore";
+import { db } from "../firebase-config";
 
 export const Context = createContext();
 
@@ -10,10 +12,20 @@ export const AuthContext = ({ children }) => {
 
   useEffect(() => {
     let unsubscribe;
-    unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+    unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       setLoading(false);
-      if (currentUser) setUserActive(currentUser);
-      else {
+      if (currentUser) {
+        // Firestore'da kullanıcı bilgilerini kaydetme
+        const userRef = doc(db, "users", currentUser.uid);
+        const nameParts = (currentUser.displayName || "").split(" "); // TODO:burada eğer isim ve soyisim boş bıraklırsa database'e boş olarak kaydediyor
+        await setDoc(userRef, {
+          firstName: nameParts[0] || "",
+          lastName: nameParts[1] || "",
+          email: currentUser.email,
+          // Diğer kullanıcı bilgileri
+        });
+        setUserActive(currentUser);
+      } else {
         setUserActive(null);
       }
     });

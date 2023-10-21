@@ -2,9 +2,13 @@ import React, { useEffect, useState } from "react";
 import AuthEntranceSide from "../../../components/AuthEntranceSide/AuthEntranceSide";
 import { Link } from "react-router-dom";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { db } from "../../../firebase-config";
+import { doc, setDoc } from "@firebase/firestore";
 
 const Register = ({ setUnAuthNavbar }) => {
   const [user, setUser] = useState({
+    firstName: "",
+    lastName: "",
     email: "",
     password: "",
   });
@@ -13,15 +17,29 @@ const Register = ({ setUnAuthNavbar }) => {
     setUnAuthNavbar(true);
   }, []);
 
-  const { email, password } = user;
+  const { firstName, lastName, email, password } = user;
 
   const handleSignUp = async (e) => {
     e.preventDefault();
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((user) => {
-        console.log(user);
-      })
-      .catch((error) => console.log(error));
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredential.user;
+      const userRef = doc(db, "users", user.uid);
+      await setDoc(userRef, {
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        // Diğer kullanıcı bilgileri
+      });
+
+      console.log(user);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -34,6 +52,26 @@ const Register = ({ setUnAuthNavbar }) => {
             Sell, Rent or Explore Your New Home..
           </p>
           <form action="" className="flex flex-col gap-5">
+            <input
+              type="text"
+              name="firstName"
+              id="firstName"
+              className="bg-transparent border border-gray-400/60 w-full h-12 pl-3 rounded-md"
+              placeholder="First Name"
+              onChange={(e) => {
+                setUser({ ...user, firstName: e.target.value });
+              }}
+            />
+            <input
+              type="text"
+              name="lastName"
+              id="lastName"
+              className="bg-transparent border border-gray-400/60 w-full h-12 pl-3 rounded-md"
+              placeholder="Surname"
+              onChange={(e) => {
+                setUser({ ...user, lastName: e.target.value });
+              }}
+            />
             <input
               type="email"
               name="email"

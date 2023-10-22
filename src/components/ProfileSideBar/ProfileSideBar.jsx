@@ -10,13 +10,12 @@ const ProfileSideBar = () => {
   const location = useLocation();
   const [selected, setSelected] = useState(null);
   const [selectedPosts, setSelectedPosts] = useState(null);
-
   const navigateClick = (name) => {
     navigate(`/${name}`);
   };
 
   useEffect(() => {
-    const path = location.pathname.substring(1); // "/" çıkartmam gerekti
+    const path = location.pathname.substring(1);
     setSelected(path);
     if (
       path === "posts/actives" ||
@@ -28,7 +27,7 @@ const ProfileSideBar = () => {
   }, [location]);
 
   return (
-    <div className="flex flex-col gap-6  w-[25%] h-[25%] p-6 bg-gray-50 text-sm border border-gray-400/50 rounded-sm ">
+    <div className="flex flex-col gap-6 w-[25%] h-[25%] p-6 bg-gray-50 text-sm border border-gray-400/50 rounded-sm">
       <div className="flex items-center gap-5 pb-6 border-b-2 border-gray-200/50">
         <div className="p-4 border border-gray-300 rounded-full bg-gray-200/50">
           <PersonIcon fontSize="large" style={{ color: "gray" }} />

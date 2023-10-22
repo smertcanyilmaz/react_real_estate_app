@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Button from "../Button/Button";
 import "./Navbar.css";
 import { useContext, useState } from "react";
@@ -6,6 +6,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import MenuIcon from "@mui/icons-material/Menu";
 import Logout from "./Logout/Logout";
 import { Context } from "../../Context/AuthContext";
+import useFetch from "../hooks/useFetch";
 
 const Navbar = ({ ref0 }) => {
   const [showBox, setShowBox] = useState(false);

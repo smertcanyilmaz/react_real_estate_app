@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import AuthEntranceSide from "../../../components/AuthEntranceSide/AuthEntranceSide";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { db } from "../../../firebase-config";
 import { doc, setDoc } from "@firebase/firestore";
 
 const Register = ({ setUnAuthNavbar }) => {
+  const navigate = useNavigate();
   const [user, setUser] = useState({
     firstName: "",
     lastName: "",
@@ -35,7 +36,7 @@ const Register = ({ setUnAuthNavbar }) => {
         email: email,
         // Diğer kullanıcı bilgileri
       });
-
+      navigate("/login");
       console.log(user);
     } catch (error) {
       console.log(error);

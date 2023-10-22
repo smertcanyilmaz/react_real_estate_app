@@ -15,6 +15,7 @@ export const AuthContext = ({ children }) => {
     unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       setLoading(false);
       if (currentUser) {
+        console.log("CURRENTUSER", currentUser);
         // Firestore'da kullanıcı bilgilerini kaydetme
         const userRef = doc(db, "users", currentUser.uid);
         const nameParts = (currentUser.displayName || "").split(" "); // TODO:burada eğer isim ve soyisim boş bıraklırsa database'e boş olarak kaydediyor

@@ -77,7 +77,7 @@ const EstatesFilters = ({
 
   return (
     <div className="categories w-full flex justify-between items-center gap-5">
-      <div className="quickSelection flex gap-5">
+      <div className="quickSelection flex gap-5 z-20">
         {buttons.map((button) => (
           <div
             key={button.id}

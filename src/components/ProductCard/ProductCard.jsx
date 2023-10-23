@@ -152,6 +152,7 @@ const ProductCard = ({
           (estate) => estate.category === filter
         );
       }
+      setFilteredList(filteredEstates);
     }
 
     if (filtersApplied) {
@@ -190,10 +191,11 @@ const ProductCard = ({
       } else {
         setNotFound(false);
       }
+      setFilteredList(filteredEstates);
       setFiltersApplied(false); //overlayda filtreleme seçeneklerine tıkladığımızda estatelerin gelmemesini sağlayan state
     }
 
-    setFilteredList(filteredEstates);
+    //setFilteredList(filteredEstates);
   }, [
     estates,
     sale,
@@ -201,7 +203,7 @@ const ProductCard = ({
     filter,
     selectedButtonsStatus,
     filtersApplied,
-    setFiltersApplied,
+    //setFiltersApplied,
     selectedRoomNumbers,
     selectedRoomNumbers2,
     filterPriceValues,

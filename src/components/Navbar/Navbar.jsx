@@ -66,8 +66,8 @@ const Navbar = ({ ref0 }) => {
           <div
             className={`w-48 border border-gray-300 shadow-md flex flex-col  gap-2 rounded-md  bg-gray-100 text-gray-800 p-2 text-sm duration-500 ${
               showUser
-                ? "-translate-y-0 opacity-100"
-                : "translate-y-[30%] opacity-0 -z-50"
+                ? "-translate-y-0 opacity-100 z-50 pointer-events-auto"
+                : "translate-y-[30%] opacity-0 -z-50 pointer-events-none"
             }`}
           >
             {userActive ? (

@@ -14,58 +14,133 @@ const ProductCard = ({
   selectedRoomNumbers2,
   filterPriceValues,
 }) => {
+  //ANASAYFADA DÜZENLİ OLARAK ESTATES RENDER EDİLİYORDU BU KODLARLA TODO: FİLTERS OVERLAY İKEN COUNT ETMEYE DEVAM EDİYOR. BUNU ÇÖZMEK LAZIM. BUNDAN DOLAYI BU KODLARI SİLMEDİM
+
+  // const { estates } = useFetch();
+
+  // const estateTopRent = estates.filter((estate) => estate.topOffers === "rent");
+  // const estateTopSell = estates.filter((estate) => estate.topOffers === "sale");
+  // // const priceFilter = estates.filter((estate) => estate.price === 450);
+  // // console.log(priceFilter);
+
+  // const products = EstatesList
+  //   ? estates
+  //   : sale === true
+  //   ? estateTopSell
+  //   : estateTopRent;
+
+  // const [filteredList, setFilteredList] = useState(products);
+  // const [notFound, setNotFound] = useState(false);
+
+  // useEffect(() => {
+  //   setFilteredList(products);
+  // }, [products]);
+
+  // useEffect(() => {
+  //   //quick section
+  //   const temp = products;
+
+  //   if (filter !== "") {
+  //     const tempCat = temp.filter((estate) => estate.category === filter);
+  //     setFilteredList(tempCat);
+  //   }
+  //   if (filter === "sale") {
+  //     const tempSale = temp.filter((estate) => estate.status === filter);
+  //     setFilteredList(tempSale);
+  //   } else if (filter === "rent") {
+  //     const tempRent = temp.filter((estate) => estate.status === filter);
+  //     setFilteredList(tempRent);
+  //   } else if (filter === "trending") {
+  //     setFilteredList(temp);
+  //   } else if (filter === "all") {
+  //     setFilteredList(temp);
+  //   }
+
+  //   setNotFound(false);
+  // }, [filter]);
+
+  // useEffect(() => {
+  //   //overlayFilter section
+  //   const temp2 = products;
+
+  //   if (filtersApplied) {
+  //     let filteredNumbers = temp2;
+
+  //     if (filterPriceValues.min !== "" && filterPriceValues.max !== "") {
+  //       filteredNumbers = filteredNumbers.filter(
+  //         (estate) =>
+  //           estate.price >= parseInt(filterPriceValues.min) &&
+  //           estate.price <= parseInt(filterPriceValues.max)
+  //       );
+  //     }
+
+  //     if (selectedButtonsStatus === 1) {
+  //       filteredNumbers = filteredNumbers.filter(
+  //         (estate) => estate.status === "sale"
+  //       );
+  //     } else if (selectedButtonsStatus === 2) {
+  //       filteredNumbers = filteredNumbers.filter(
+  //         (estate) => estate.status === "rent"
+  //       );
+  //     }
+
+  //     if (selectedRoomNumbers) {
+  //       filteredNumbers = filteredNumbers.filter(
+  //         (estate) => estate.rooms.bedrooms === selectedRoomNumbers //+ 1
+  //       );
+  //     }
+
+  //     if (selectedRoomNumbers2) {
+  //       filteredNumbers = filteredNumbers.filter(
+  //         (estate) => estate.rooms.bathrooms === selectedRoomNumbers2 //+ 1
+  //       );
+  //     }
+
+  //     if (filteredNumbers.length === 0) {
+  //       setNotFound(true);
+  //     } else {
+  //       setNotFound(false);
+  //     }
+
+  //     setFilteredList(filteredNumbers);
+  //     setFiltersApplied(false);
+  //   }
+  // }, [
+  //   filtersApplied,
+  //   selectedButtonsStatus,
+  //   selectedRoomNumbers,
+  //   selectedRoomNumbers2,
+  //   filterPriceValues,
+  // ]);
+
   const { estates } = useFetch();
-
-  const estateTopRent = estates.filter((estate) => estate.topOffers === "rent");
-  const estateTopSell = estates.filter((estate) => estate.topOffers === "sale");
-  const priceFilter = estates.filter((estate) => estate.price === 450);
-  console.log(priceFilter);
-
-  const products = EstatesList
-    ? estates
-    : sale === true
-    ? estateTopSell
-    : estateTopRent;
-
-  const [filteredList, setFilteredList] = useState(products);
+  const [filteredList, setFilteredList] = useState([]);
   const [notFound, setNotFound] = useState(false);
 
   useEffect(() => {
-    setFilteredList(products);
-  }, [products]);
+    let filteredEstates = estates;
 
-  useEffect(() => {
-    //quick section
-    const temp = products;
-
-    if (filter !== "") {
-      const tempCat = temp.filter((estate) => estate.category === filter);
-      setFilteredList(tempCat);
-    }
-    if (filter === "sale") {
-      const tempSale = temp.filter((estate) => estate.status === filter);
-      setFilteredList(tempSale);
-    } else if (filter === "rent") {
-      const tempRent = temp.filter((estate) => estate.status === filter);
-      setFilteredList(tempRent);
-    } else if (filter === "trending") {
-      setFilteredList(temp);
-    } else if (filter === "all") {
-      setFilteredList(temp);
+    if (!EstatesList) {
+      if (sale) {
+        filteredEstates = estates.filter(
+          (estate) => estate.topOffers === "sale"
+        );
+      } else {
+        filteredEstates = estates.filter(
+          (estate) => estate.topOffers === "rent"
+        );
+      }
     }
 
-    setNotFound(false);
-  }, [filter]);
-
-  useEffect(() => {
-    //overlayFilter section
-    const temp2 = products;
+    if (filter) {
+      filteredEstates = filteredEstates.filter(
+        (estate) => estate.category === filter
+      );
+    }
 
     if (filtersApplied) {
-      let filteredNumbers = temp2;
-
       if (filterPriceValues.min !== "" && filterPriceValues.max !== "") {
-        filteredNumbers = filteredNumbers.filter(
+        filteredEstates = filteredEstates.filter(
           (estate) =>
             estate.price >= parseInt(filterPriceValues.min) &&
             estate.price <= parseInt(filterPriceValues.max)
@@ -73,39 +148,42 @@ const ProductCard = ({
       }
 
       if (selectedButtonsStatus === 1) {
-        filteredNumbers = filteredNumbers.filter(
+        filteredEstates = filteredEstates.filter(
           (estate) => estate.status === "sale"
         );
       } else if (selectedButtonsStatus === 2) {
-        filteredNumbers = filteredNumbers.filter(
+        filteredEstates = filteredEstates.filter(
           (estate) => estate.status === "rent"
         );
       }
 
       if (selectedRoomNumbers) {
-        filteredNumbers = filteredNumbers.filter(
-          (estate) => estate.rooms.bedrooms === selectedRoomNumbers //+ 1
+        filteredEstates = filteredEstates.filter(
+          (estate) => estate.rooms.bedrooms === selectedRoomNumbers
         );
       }
 
       if (selectedRoomNumbers2) {
-        filteredNumbers = filteredNumbers.filter(
-          (estate) => estate.rooms.bathrooms === selectedRoomNumbers2 //+ 1
+        filteredEstates = filteredEstates.filter(
+          (estate) => estate.rooms.bathrooms === selectedRoomNumbers2
         );
       }
 
-      if (filteredNumbers.length === 0) {
+      if (filteredEstates.length === 0) {
         setNotFound(true);
       } else {
         setNotFound(false);
       }
-
-      setFilteredList(filteredNumbers);
-      setFiltersApplied(false);
     }
+
+    setFilteredList(filteredEstates);
   }, [
-    filtersApplied,
+    estates,
+    sale,
+    EstatesList,
+    filter,
     selectedButtonsStatus,
+    filtersApplied,
     selectedRoomNumbers,
     selectedRoomNumbers2,
     filterPriceValues,
@@ -119,32 +197,26 @@ const ProductCard = ({
           : "max-w-6xl flex gap-6 overflow-hidden"
       }
     >
-      {filteredList?.map((estate) => (
-        <>
-          <Link to={`/estates/${estate.id}`}>
-            <div
-              key={estate.id}
-              className={`flex flex-col min-w-[14.60rem] h-64 bg-white rounded-2xl transform transition-transform duration-300 cursor-pointer
-        }`}
-              style={{
-                transform: `translateX(-${currentSlide * 15.9}rem)`,
-              }}
-            >
-              <img
-                src={estate?.image}
-                alt=""
-                className="h-40 object-cover rounded-t-lg"
-              />
-              <div className="px-4 py-2 w-full space-y-1">
-                <h3 className="text-md font-bold">{estate?.title}</h3>
-                <p className="text-[--blue] font-bold text-sm">
-                  {estate?.price} €
-                </p>
-                <p className="text-xs">{estate?.place?.city}</p>
-              </div>
+      {filteredList.map((estate) => (
+        <Link to={`/estates/${estate.id}`} key={estate.id}>
+          <div
+            className={`flex flex-col min-w-[14.60rem] h-64 bg-white rounded-2xl transform transition-transform duration-300 cursor-pointer`}
+            style={{ transform: `translateX(-${currentSlide * 15.9}rem)` }}
+          >
+            <img
+              src={estate?.image}
+              alt=""
+              className="h-40 object-cover rounded-t-lg"
+            />
+            <div className="px-4 py-2 w-full space-y-1">
+              <h3 className="text-md font-bold">{estate?.title}</h3>
+              <p className="text-[--blue] font-bold text-sm">
+                {estate?.price} €
+              </p>
+              <p className="text-xs">{estate?.place?.city}</p>
             </div>
-          </Link>
-        </>
+          </div>
+        </Link>
       ))}
       {notFound && <p>Not Found</p>}
     </div>

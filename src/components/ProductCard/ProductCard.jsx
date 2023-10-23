@@ -117,10 +117,13 @@ const ProductCard = ({
   const [filteredList, setFilteredList] = useState([]);
   const [notFound, setNotFound] = useState(false);
 
+  console.log(filteredList);
+
   useEffect(() => {
     let filteredEstates = estates;
 
     if (!EstatesList) {
+      // top offers'da gelecek olan cardların sell mi rent mi olduğunu belirleyen koşul
       if (sale) {
         filteredEstates = estates.filter(
           (estate) => estate.topOffers === "sale"
@@ -133,9 +136,22 @@ const ProductCard = ({
     }
 
     if (filter) {
-      filteredEstates = filteredEstates.filter(
-        (estate) => estate.category === filter
-      );
+      //quick section'da seçim yapma
+      if (filter === "sale") {
+        filteredEstates = filteredEstates.filter(
+          (estate) => estate.status === "sale"
+        );
+      } else if (filter === "rent") {
+        filteredEstates = filteredEstates.filter(
+          (estate) => estate.status === "rent"
+        );
+      } else if (filter === "trending" || filter === "all") {
+        filteredEstates = filteredEstates.filter((estate) => estate);
+      } else {
+        filteredEstates = filteredEstates.filter(
+          (estate) => estate.category === filter
+        );
+      }
     }
 
     if (filtersApplied) {
@@ -174,6 +190,7 @@ const ProductCard = ({
       } else {
         setNotFound(false);
       }
+      setFiltersApplied(false); //overlayda filtreleme seçeneklerine tıkladığımızda estatelerin gelmemesini sağlayan state
     }
 
     setFilteredList(filteredEstates);
@@ -184,6 +201,7 @@ const ProductCard = ({
     filter,
     selectedButtonsStatus,
     filtersApplied,
+    setFiltersApplied,
     selectedRoomNumbers,
     selectedRoomNumbers2,
     filterPriceValues,

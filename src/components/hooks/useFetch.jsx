@@ -23,7 +23,7 @@ const useFetch = () => {
     };
     getUsers();
   }, []);
-
+  console.log(users);
   return { estates, users };
 };
 

@@ -1,5 +1,4 @@
 import React from "react";
-
 import ProductCard from "../ProductCard/ProductCard";
 
 const EstatesList = ({

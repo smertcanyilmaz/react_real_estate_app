@@ -24,6 +24,7 @@ const OverlayFilters = ({
   setFilterPriceValues,
   clearHandler,
   openFiltersOverlay,
+  setFiltersApplied,
 }) => {
   const buttonsStatusHandler = (id) => {
     if (selectedButtonsStatus === id) {

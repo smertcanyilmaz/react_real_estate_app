@@ -12,7 +12,6 @@ const Estates = ({ setUnAuthNavbar }) => {
   const openFilters = () => {
     // overlayFilters componentini açar ve kapatır
     setOpenFilterOverlay((prev) => !prev);
-    //setChecker(false);
   };
 
   const clearHandler = (e) => {
@@ -123,6 +122,7 @@ const Estates = ({ setUnAuthNavbar }) => {
           setFilterPriceValues={setFilterPriceValues}
           clearHandler={clearHandler}
           openFiltersOverlay={openFiltersOverlay}
+          setFiltersApplied={setFiltersApplied}
         />
       )}
 

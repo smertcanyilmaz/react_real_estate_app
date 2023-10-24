@@ -16,7 +16,6 @@ const EstatesFilters = ({
   selectedButtonHandler,
   selectedButton,
   filterTypes,
-  openFiltersOverlay,
 }) => {
   const buttons = [
     {

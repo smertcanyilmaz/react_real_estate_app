@@ -11,6 +11,7 @@ const EstatesList = ({
   selectedRoomNumbers2,
   filterPriceValues,
   products,
+  handleAddItem,
 }) => {
   return (
     <div className="w-full">
@@ -24,6 +25,7 @@ const EstatesList = ({
         selectedRoomNumbers={selectedRoomNumbers}
         selectedRoomNumbers2={selectedRoomNumbers2}
         filterPriceValues={filterPriceValues}
+        handleAddItem={handleAddItem}
       />
     </div>
   );

@@ -13,111 +13,12 @@ const ProductCard = ({
   selectedRoomNumbers,
   selectedRoomNumbers2,
   filterPriceValues,
+  handleAddItem,
 }) => {
-  //ANASAYFADA DÜZENLİ OLARAK ESTATES RENDER EDİLİYORDU BU KODLARLA TODO: FİLTERS OVERLAY İKEN COUNT ETMEYE DEVAM EDİYOR. BUNU ÇÖZMEK LAZIM. BUNDAN DOLAYI BU KODLARI SİLMEDİM
-
-  // const { estates } = useFetch();
-
-  // const estateTopRent = estates.filter((estate) => estate.topOffers === "rent");
-  // const estateTopSell = estates.filter((estate) => estate.topOffers === "sale");
-  // // const priceFilter = estates.filter((estate) => estate.price === 450);
-  // // console.log(priceFilter);
-
-  // const products = EstatesList
-  //   ? estates
-  //   : sale === true
-  //   ? estateTopSell
-  //   : estateTopRent;
-
-  // const [filteredList, setFilteredList] = useState(products);
-  // const [notFound, setNotFound] = useState(false);
-
-  // useEffect(() => {
-  //   setFilteredList(products);
-  // }, [products]);
-
-  // useEffect(() => {
-  //   //quick section
-  //   const temp = products;
-
-  //   if (filter !== "") {
-  //     const tempCat = temp.filter((estate) => estate.category === filter);
-  //     setFilteredList(tempCat);
-  //   }
-  //   if (filter === "sale") {
-  //     const tempSale = temp.filter((estate) => estate.status === filter);
-  //     setFilteredList(tempSale);
-  //   } else if (filter === "rent") {
-  //     const tempRent = temp.filter((estate) => estate.status === filter);
-  //     setFilteredList(tempRent);
-  //   } else if (filter === "trending") {
-  //     setFilteredList(temp);
-  //   } else if (filter === "all") {
-  //     setFilteredList(temp);
-  //   }
-
-  //   setNotFound(false);
-  // }, [filter]);
-
-  // useEffect(() => {
-  //   //overlayFilter section
-  //   const temp2 = products;
-
-  //   if (filtersApplied) {
-  //     let filteredNumbers = temp2;
-
-  //     if (filterPriceValues.min !== "" && filterPriceValues.max !== "") {
-  //       filteredNumbers = filteredNumbers.filter(
-  //         (estate) =>
-  //           estate.price >= parseInt(filterPriceValues.min) &&
-  //           estate.price <= parseInt(filterPriceValues.max)
-  //       );
-  //     }
-
-  //     if (selectedButtonsStatus === 1) {
-  //       filteredNumbers = filteredNumbers.filter(
-  //         (estate) => estate.status === "sale"
-  //       );
-  //     } else if (selectedButtonsStatus === 2) {
-  //       filteredNumbers = filteredNumbers.filter(
-  //         (estate) => estate.status === "rent"
-  //       );
-  //     }
-
-  //     if (selectedRoomNumbers) {
-  //       filteredNumbers = filteredNumbers.filter(
-  //         (estate) => estate.rooms.bedrooms === selectedRoomNumbers //+ 1
-  //       );
-  //     }
-
-  //     if (selectedRoomNumbers2) {
-  //       filteredNumbers = filteredNumbers.filter(
-  //         (estate) => estate.rooms.bathrooms === selectedRoomNumbers2 //+ 1
-  //       );
-  //     }
-
-  //     if (filteredNumbers.length === 0) {
-  //       setNotFound(true);
-  //     } else {
-  //       setNotFound(false);
-  //     }
-
-  //     setFilteredList(filteredNumbers);
-  //     setFiltersApplied(false);
-  //   }
-  // }, [
-  //   filtersApplied,
-  //   selectedButtonsStatus,
-  //   selectedRoomNumbers,
-  //   selectedRoomNumbers2,
-  //   filterPriceValues,
-  // ]);
-
   const { estates } = useFetch();
   const [filteredList, setFilteredList] = useState([]);
   const [notFound, setNotFound] = useState(false);
 
-  console.log(filteredList);
   let filteredEstates = estates;
 
   useEffect(() => {
@@ -192,16 +93,14 @@ const ProductCard = ({
       } else {
         setNotFound(false);
       }
+      handleAddItem();
       setFilteredList(filteredEstates);
       setFiltersApplied(false); //overlayda filtreleme seçeneklerine tıkladığımızda estatelerin gelmemesini sağlayan state
     }
-
-    //setFilteredList(filteredEstates);
   }, [
     estates,
     sale,
     EstatesList,
-    //filter,
     selectedButtonsStatus,
     filtersApplied,
     selectedRoomNumbers,

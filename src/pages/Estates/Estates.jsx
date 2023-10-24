@@ -60,11 +60,6 @@ const Estates = ({ setUnAuthNavbar }) => {
   };
 
   useEffect(() => {
-    console.log(filterTypes);
-    handleAddItem();
-  }, [openFilters]);
-
-  useEffect(() => {
     setUnAuthNavbar(false);
   }, []);
 
@@ -74,7 +69,6 @@ const Estates = ({ setUnAuthNavbar }) => {
     setFiltersApplied(true);
     setSelectedButtons(null);
     setFilter("");
-    //handleAddItem();
   };
 
   const [selectedRoomNumbers, setSelectedRoomNumbers] = useState(null); // overlayFilters bedroom numbers state
@@ -132,7 +126,6 @@ const Estates = ({ setUnAuthNavbar }) => {
         selectedButtonHandler={selectedButtonHandler}
         filterTypes={filterTypes}
         handleAddItem={handleAddItem}
-        openFiltersOverlay={openFiltersOverlay}
       />
       <EstatesList
         filter={filter}
@@ -143,6 +136,7 @@ const Estates = ({ setUnAuthNavbar }) => {
         selectedRoomNumbers={selectedRoomNumbers}
         selectedRoomNumbers2={selectedRoomNumbers2}
         filterPriceValues={filterPriceValues}
+        handleAddItem={handleAddItem}
       />
       <div //overlay
         onClick={() => openFilters()}

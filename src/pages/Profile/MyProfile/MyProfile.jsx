@@ -4,15 +4,11 @@ import "./MyProfile.css";
 import EditIcon from "@mui/icons-material/Edit";
 import ProfilePopup from "../../../components/ProfilePopup/ProfilePopup";
 import { Context } from "../../../Context/AuthContext";
-import useFetch from "../../../components/hooks/useFetch";
 
 const MyProfile = () => {
   const [showOverlay, setShowOverlay] = useState(false);
   const [edit, setEdit] = useState(null);
   const { userActive } = useContext(Context);
-  const { users } = useFetch();
-
-  const userData = users.find((user) => user.id === userActive.uid); // user database ile auth içindeki kullanıcı bilgilerini alabilmek için eşitledim
 
   const clickHandler = (index) => {
     setShowOverlay((prev) => !prev);
@@ -22,7 +18,7 @@ const MyProfile = () => {
   return (
     <>
       <ProfileTemplate>
-        {userData && (
+        {userActive && (
           <div className="info_container">
             <h1 className="text-xl font-semibold text-gray-700 mb-5">
               My Profile Informations
@@ -35,7 +31,7 @@ const MyProfile = () => {
                   name="name"
                   id="name"
                   disabled
-                  value={userData.firstName + " " + userData.lastName}
+                  value={userActive?.firstName + " " + userActive?.lastName}
                 />
                 <div onClick={() => clickHandler(1)} className="iconss">
                   <EditIcon />
@@ -50,7 +46,7 @@ const MyProfile = () => {
                   name="email"
                   id="email"
                   disabled
-                  value={userData.email}
+                  value={userActive?.email}
                 />
                 <div onClick={() => clickHandler(2)} className="iconss">
                   <EditIcon />
@@ -65,7 +61,7 @@ const MyProfile = () => {
                   name="password"
                   id="password"
                   disabled
-                  value={userData.password}
+                  value={userActive?.password}
                 />
                 <div onClick={() => clickHandler(3)} className="iconss">
                   <EditIcon />

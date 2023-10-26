@@ -4,9 +4,9 @@ import { collection, getDocs } from "firebase/firestore";
 
 const useFetch = () => {
   const [estates, setEstates] = useState([]);
-  const [users, setUsers] = useState([]);
+  //const [users, setUsers] = useState([]);
   const estatesCollectionRef = collection(db, "estates");
-  const usersCollectionRef = collection(db, "users");
+  //const usersCollectionRef = collection(db, "users");
 
   useEffect(() => {
     const getUsers = async () => {
@@ -16,15 +16,15 @@ const useFetch = () => {
     getUsers();
   }, []);
 
-  useEffect(() => {
-    const getUsers = async () => {
-      const data = await getDocs(usersCollectionRef);
-      setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    };
-    getUsers();
-  }, []);
-  console.log(users);
-  return { estates, users };
+  // useEffect(() => {
+  //   const getUsers = async () => {
+  //     const data = await getDocs(usersCollectionRef);
+  //     setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+  //   };
+  //   getUsers();
+  // }, []);
+  // console.log(users);
+  return { estates };
 };
 
 export default useFetch;

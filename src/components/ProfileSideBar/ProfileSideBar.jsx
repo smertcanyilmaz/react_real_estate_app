@@ -6,10 +6,12 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import "./ProfileSideBar.css";
 import { Context } from "../../Context/AuthContext";
 import useFetch from "../hooks/useFetch";
+import { db } from "../../firebase-config";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { collection, getDoc, where, query, doc } from "firebase/firestore";
 
 const ProfileSideBar = () => {
   const { userActive } = useContext(Context);
-  const { users } = useFetch();
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -20,7 +22,6 @@ const ProfileSideBar = () => {
     navigate(`/${name}`);
   };
 
-  const userData = users.find((user) => user.id === userActive.uid); // user database ile auth içindeki kullanıcı bilgilerini alabilmek için eşitledim
   useEffect(() => {
     const path = location.pathname.substring(1);
     setSelected(path);
@@ -39,9 +40,9 @@ const ProfileSideBar = () => {
         <div className="p-4 border border-gray-300 rounded-full bg-gray-200/50">
           <PersonIcon fontSize="large" style={{ color: "gray" }} />
         </div>
-        {userData && (
+        {userActive && (
           <p className="font-semibold text-lg text-gray-800">
-            {userData.firstName} {userData.lastName}
+            {userActive.firstName} {userActive.lastName}
           </p>
         )}
       </div>

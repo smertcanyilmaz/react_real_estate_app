@@ -5,7 +5,7 @@ import { City, Country, State } from "country-state-city";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 
-const AdressInfo = () => {
+const AdressInfo = ({ sum, setSum }) => {
   const [country, setCountry] = useState([]);
   const [cities, setCities] = useState(null);
   const [districts, setDistricts] = useState([]);
@@ -120,6 +120,15 @@ const AdressInfo = () => {
   const [inputBoxCity, setInputBoxCity] = useState("choose"); // seçilen ülke, şehir ve ülkeye tıklandığında seçilen veriyi tutan state
 
   const [inputBoxDistricts, setInputBoxDistricts] = useState("choose");
+
+  useEffect(() => {
+    setSum((prevSum) => ({
+      ...prevSum,
+      country: inputBoxCountry,
+      cities: inputBoxCity,
+      districts: inputBoxDistricts,
+    }));
+  }, [inputBoxCountry, inputBoxCity, inputBoxDistricts]);
 
   return (
     <form className="two form_box">

@@ -1,12 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import "./PostInfo.css";
 import AdressInfo from "./AdressInfo/AdressInfo";
 import UploadPhoto from "./UploadPhoto/UploadPhoto";
 import AdFeatures from "./AdFeatures/AdFeatures";
-import Button from "../../Button/Button";
+
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 const PostInfo = ({ selectedCategory, setSelectedCategory }) => {
+  const [sum, setSum] = useState({
+    country: "",
+    cities: "",
+    districts: "",
+  });
+
+  console.log("SUM", sum);
+
+  const continueClickHandler = () => {};
+
+  const adInfoChangeHandler = (e, field) => {
+    setSum((prevSum) => ({
+      ...prevSum,
+      [field]: e.target.value,
+    }));
+  };
+
   return (
     <div
       className={`max-w-6xl duration-500 flex flex-col gap-10 items-center  ${
@@ -23,32 +40,55 @@ const PostInfo = ({ selectedCategory, setSelectedCategory }) => {
           <label htmlFor="title">
             Ad Title <span className="text-red-500">*</span>
           </label>
-          <input type="text" name="title" id="title" />
+          <input
+            type="text"
+            name="title"
+            id="title"
+            onChange={(e) => adInfoChangeHandler(e, "title")}
+          />
         </div>
         <div className="info_boxes">
           <label htmlFor="price">
             Price <span className="text-red-500">*</span>
           </label>
-          <input type="text" name="price" id="price" />
+          <input
+            type="text"
+            name="price"
+            id="price"
+            onChange={(e) => adInfoChangeHandler(e, "price")}
+          />
         </div>
         <div className="info_boxes info_boxes_even">
           <label htmlFor="bedrooms">
             Bedrooms <span className="text-red-500">*</span>
           </label>
-          <input type="text" name="bedrooms" id="bedrooms" />
+          <input
+            type="text"
+            name="bedrooms"
+            id="bedrooms"
+            onChange={(e) => adInfoChangeHandler(e, "bedrooms")}
+          />
         </div>
         <div className="info_boxes">
           <label htmlFor="bathrooms">
             Bathrooms <span className="text-red-500">*</span>
           </label>
-          <input type="text" name="bathrooms" id="bathrooms" />
+          <input
+            type="text"
+            name="bathrooms"
+            id="bathrooms"
+            onChange={(e) => adInfoChangeHandler(e, "bathrooms")}
+          />
         </div>
       </form>
-      <AdressInfo />
+      <AdressInfo sum={sum} setSum={setSum} />
       <UploadPhoto />
       <AdFeatures />
 
-      <button className="w-32 h-12 rounded-md duration-200 flex gap-2 justify-center items-center bg-gray-800 text-gray-50">
+      <button
+        className="w-32 h-12 rounded-md duration-200 flex gap-2 justify-center items-center bg-gray-800 text-gray-50"
+        onClick={continueClickHandler}
+      >
         Continue
         <ArrowForwardIcon style={{ color: "rgb(249 250 251)" }} />
       </button>

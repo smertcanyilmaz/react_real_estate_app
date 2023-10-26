@@ -16,7 +16,7 @@ export const AuthContext = ({ children }) => {
       setLoading(false);
       if (currentUser) {
         //console.log("CURRENTUSER", currentUser);
-        const uid = currentUser.uid;
+        const uid = currentUser.uid; // auth ile usersdatabase bağlıyoruz. yoksa users database döngüsü oluşturmadan veri alamazdım bu da ciddi bir performans sorunu oluştururdu
         const userRef = doc(db, "users", uid);
         getDoc(userRef)
           .then((docSnapshot) => {

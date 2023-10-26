@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import AuthEntranceSide from "../../../components/AuthEntranceSide/AuthEntranceSide";
 import { Link, useNavigate } from "react-router-dom";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signOut,
+} from "firebase/auth";
 import { db } from "../../../firebase-config";
 import { doc, setDoc } from "@firebase/firestore";
 
@@ -29,6 +33,7 @@ const Register = ({ setUnAuthNavbar }) => {
         password
       );
       const user = userCredential.user;
+
       const userRef = doc(db, "users", user.uid);
       await setDoc(userRef, {
         firstName: firstName,
@@ -36,8 +41,9 @@ const Register = ({ setUnAuthNavbar }) => {
         email: email,
         // Diğer kullanıcı bilgileri
       });
+      await signOut(auth); // kayıt olduğu an çıkış yaptırılması gerekiyor çünkü firebase çalışma mantığında register olunduğu an login de oluyor
       navigate("/login");
-      console.log(user);
+      console.log("USER", user);
     } catch (error) {
       console.log(error);
     }

@@ -9,7 +9,6 @@ import Register from "./pages/Auth/Register/Register";
 import Login from "./pages/Auth/Login/Login";
 import { AuthContext } from "./Context/AuthContext";
 import Protected from "./pages/Protected/Protected";
-
 import MyProfile from "./pages/Profile/MyProfile/MyProfile";
 import MyPosts from "./pages/Profile/My Posts/MyPosts";
 import Favorites from "./pages/Profile/Favorites/Favorites";

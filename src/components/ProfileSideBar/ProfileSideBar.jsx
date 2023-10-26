@@ -1,19 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import PersonIcon from "@mui/icons-material/Person";
 import ListIcon from "@mui/icons-material/List";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import "./ProfileSideBar.css";
+import { Context } from "../../Context/AuthContext";
+import useFetch from "../hooks/useFetch";
 
 const ProfileSideBar = () => {
+  const { userActive } = useContext(Context);
+  const { users } = useFetch();
+
   const navigate = useNavigate();
   const location = useLocation();
+
   const [selected, setSelected] = useState(null);
   const [selectedPosts, setSelectedPosts] = useState(null);
   const navigateClick = (name) => {
     navigate(`/${name}`);
   };
 
+  const usersDatabase = users.filter((user) => user.id === userActive.uid); // user database ile auth içindeki kullanıcı bilgilerini alabilmek için eşitledim
   useEffect(() => {
     const path = location.pathname.substring(1);
     setSelected(path);
@@ -32,7 +39,11 @@ const ProfileSideBar = () => {
         <div className="p-4 border border-gray-300 rounded-full bg-gray-200/50">
           <PersonIcon fontSize="large" style={{ color: "gray" }} />
         </div>
-        <p className="font-semibold text-lg text-gray-800">Mertcan Yılmaz</p>
+        {usersDatabase.map((user) => (
+          <p key={user.id} className="font-semibold text-lg text-gray-800">
+            {user.firstName} {user.lastName}
+          </p>
+        ))}
       </div>
       <div
         onClick={() => navigateClick("myprofile")}

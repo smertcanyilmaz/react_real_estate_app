@@ -20,7 +20,7 @@ const ProfileSideBar = () => {
     navigate(`/${name}`);
   };
 
-  const usersDatabase = users.filter((user) => user.id === userActive.uid); // user database ile auth içindeki kullanıcı bilgilerini alabilmek için eşitledim
+  const userData = users.find((user) => user.id === userActive.uid); // user database ile auth içindeki kullanıcı bilgilerini alabilmek için eşitledim
   useEffect(() => {
     const path = location.pathname.substring(1);
     setSelected(path);
@@ -39,11 +39,11 @@ const ProfileSideBar = () => {
         <div className="p-4 border border-gray-300 rounded-full bg-gray-200/50">
           <PersonIcon fontSize="large" style={{ color: "gray" }} />
         </div>
-        {usersDatabase.map((user) => (
-          <p key={user.id} className="font-semibold text-lg text-gray-800">
-            {user.firstName} {user.lastName}
+        {userData && (
+          <p className="font-semibold text-lg text-gray-800">
+            {userData.firstName} {userData.lastName}
           </p>
-        ))}
+        )}
       </div>
       <div
         onClick={() => navigateClick("myprofile")}

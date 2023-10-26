@@ -1,12 +1,18 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import ProfileTemplate from "../../../components/ProfileTemplate/ProfileTemplate";
 import "./MyProfile.css";
 import EditIcon from "@mui/icons-material/Edit";
 import ProfilePopup from "../../../components/ProfilePopup/ProfilePopup";
+import { Context } from "../../../Context/AuthContext";
+import useFetch from "../../../components/hooks/useFetch";
 
 const MyProfile = () => {
   const [showOverlay, setShowOverlay] = useState(false);
   const [edit, setEdit] = useState(null);
+  const { userActive } = useContext(Context);
+  const { users } = useFetch();
+
+  const userData = users.find((user) => user.id === userActive.uid); // user database ile auth içindeki kullanıcı bilgilerini alabilmek için eşitledim
 
   const clickHandler = (index) => {
     setShowOverlay((prev) => !prev);
@@ -16,38 +22,58 @@ const MyProfile = () => {
   return (
     <>
       <ProfileTemplate>
-        <div className="info_container">
-          <h1 className="text-xl font-semibold text-gray-700 mb-5">
-            My Profile Informations
-          </h1>
-          <div className="name input_box">
-            <label htmlFor="name">Name Surname</label>
-            <div className="flex items-center gap-3">
-              <input type="text" name="name" id="name" disabled />
-              <div onClick={() => clickHandler(1)} className="iconss">
-                <EditIcon />
+        {userData && (
+          <div className="info_container">
+            <h1 className="text-xl font-semibold text-gray-700 mb-5">
+              My Profile Informations
+            </h1>
+            <div className="name input_box">
+              <label htmlFor="name">Name Surname</label>
+              <div className="flex items-center gap-3">
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  disabled
+                  value={userData.firstName + " " + userData.lastName}
+                />
+                <div onClick={() => clickHandler(1)} className="iconss">
+                  <EditIcon />
+                </div>
+              </div>
+            </div>
+            <div className="email input_box">
+              <label htmlFor="email">Email</label>
+              <div className="flex items-center gap-3">
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  disabled
+                  value={userData.email}
+                />
+                <div onClick={() => clickHandler(2)} className="iconss">
+                  <EditIcon />
+                </div>
+              </div>
+            </div>
+            <div className="passowrd input_box">
+              <label htmlFor="password">Password</label>
+              <div className="flex items-center gap-3">
+                <input
+                  type="password"
+                  name="password"
+                  id="password"
+                  disabled
+                  value={userData.password}
+                />
+                <div onClick={() => clickHandler(3)} className="iconss">
+                  <EditIcon />
+                </div>
               </div>
             </div>
           </div>
-          <div className="email input_box">
-            <label htmlFor="email">Email</label>
-            <div className="flex items-center gap-3">
-              <input type="email" name="email" id="email" disabled />
-              <div onClick={() => clickHandler(2)} className="iconss">
-                <EditIcon />
-              </div>
-            </div>
-          </div>
-          <div className="passowrd input_box">
-            <label htmlFor="password">Password</label>
-            <div className="flex items-center gap-3">
-              <input type="password" name="password" id="password" disabled />
-              <div onClick={() => clickHandler(3)} className="iconss">
-                <EditIcon />
-              </div>
-            </div>
-          </div>
-        </div>
+        )}
       </ProfileTemplate>
       <ProfilePopup
         clickHandler={clickHandler}

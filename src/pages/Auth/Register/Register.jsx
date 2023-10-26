@@ -39,6 +39,7 @@ const Register = ({ setUnAuthNavbar }) => {
         firstName: firstName,
         lastName: lastName,
         email: email,
+        password: password,
         // Diğer kullanıcı bilgileri
       });
       await signOut(auth); // kayıt olduğu an çıkış yaptırılması gerekiyor çünkü firebase çalışma mantığında register olunduğu an login de oluyor

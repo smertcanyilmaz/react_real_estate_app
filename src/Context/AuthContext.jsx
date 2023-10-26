@@ -30,6 +30,7 @@ export const AuthContext = ({ children }) => {
     userActive: userActive,
     setUserActive: setUserActive,
   };
+
   return (
     <Context.Provider value={values}>{!loading && children}</Context.Provider>
   );

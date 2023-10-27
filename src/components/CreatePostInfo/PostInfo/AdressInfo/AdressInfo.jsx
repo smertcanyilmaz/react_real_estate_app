@@ -124,9 +124,11 @@ const AdressInfo = ({ sum, setSum }) => {
   useEffect(() => {
     setSum((prevSum) => ({
       ...prevSum,
-      country: inputBoxCountry,
-      cities: inputBoxCity,
-      districts: inputBoxDistricts,
+      place: {
+        country: inputBoxCountry,
+        cities: inputBoxCity,
+        districts: inputBoxDistricts,
+      },
     }));
   }, [inputBoxCountry, inputBoxCity, inputBoxDistricts]);
 

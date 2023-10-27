@@ -6,22 +6,30 @@ import AdFeatures from "./AdFeatures/AdFeatures";
 
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
-const PostInfo = ({ selectedCategory, setSelectedCategory }) => {
-  const [sum, setSum] = useState({
-    country: "",
-    cities: "",
-    districts: "",
-  });
-
+const PostInfo = ({
+  selectedCategory,
+  setSelectedCategory,
+  sum,
+  setSum,
+  continueClickHandler,
+}) => {
   console.log("SUM", sum);
 
-  const continueClickHandler = () => {};
-
   const adInfoChangeHandler = (e, field) => {
-    setSum((prevSum) => ({
-      ...prevSum,
-      [field]: e.target.value,
-    }));
+    if (field === "bedrooms" || field === "bathrooms") {
+      setSum((prevSum) => ({
+        ...prevSum,
+        rooms: {
+          ...prevSum.rooms,
+          [field]: parseInt(e.target.value),
+        },
+      }));
+    } else {
+      setSum((prevSum) => ({
+        ...prevSum,
+        [field]: e.target.value,
+      }));
+    }
   };
 
   return (

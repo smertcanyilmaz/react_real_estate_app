@@ -3,7 +3,7 @@ import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import DropDown from "./DropDown/DropDown";
 
-const PostType = ({ selectedCategory, setSelectedCategory }) => {
+const PostType = ({ selectedCategory, setSelectedCategory, sum, setSum }) => {
   const [showDropDown, setShowDropDown] = useState(false);
   const [showDropDown2, setShowDropDown2] = useState(false);
   const [selectedProperty, setSelectedProperty] = useState(null);
@@ -29,6 +29,14 @@ const PostType = ({ selectedCategory, setSelectedCategory }) => {
       document.body.style.overflow = "hidden";
     }
   }, [selectedCategory]);
+
+  useEffect(() => {
+    setSum((prevSum) => ({
+      ...prevSum,
+      status: selectedProperty,
+      category: selectedCategory,
+    }));
+  }, [selectedProperty, selectedCategory]);
 
   return (
     <div className="bg-gray-50 p-5 flex flex-col gap-5 rounded-[4px] border border-gray-400/50">

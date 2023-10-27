@@ -126,8 +126,8 @@ const AdressInfo = ({ sum, setSum }) => {
       ...prevSum,
       place: {
         country: inputBoxCountry,
-        cities: inputBoxCity,
-        districts: inputBoxDistricts,
+        city: inputBoxCity,
+        district: inputBoxDistricts,
       },
     }));
   }, [inputBoxCountry, inputBoxCity, inputBoxDistricts]);

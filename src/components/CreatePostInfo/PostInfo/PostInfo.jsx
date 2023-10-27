@@ -12,6 +12,10 @@ const PostInfo = ({
   sum,
   setSum,
   continueClickHandler,
+  selectedFiles,
+  setSelectedFiles,
+  uploadImage,
+  setUploadImage,
 }) => {
   console.log("SUM", sum);
 
@@ -90,7 +94,12 @@ const PostInfo = ({
         </div>
       </form>
       <AdressInfo sum={sum} setSum={setSum} />
-      <UploadPhoto />
+      <UploadPhoto
+        selectedFiles={selectedFiles}
+        setSelectedFiles={setSelectedFiles}
+        uploadImage={uploadImage}
+        setUploadImage={setUploadImage}
+      />
       <AdFeatures />
 
       <button

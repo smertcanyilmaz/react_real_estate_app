@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./PostInfo.css";
 import AdressInfo from "./AdressInfo/AdressInfo";
 import UploadPhoto from "./UploadPhoto/UploadPhoto";
@@ -16,9 +16,8 @@ const PostInfo = ({
   setSelectedFiles,
   uploadImage,
   setUploadImage,
+  uploadImages,
 }) => {
-  console.log("SUM", sum);
-
   const adInfoChangeHandler = (e, field) => {
     if (field === "bedrooms" || field === "bathrooms") {
       setSum((prevSum) => ({
@@ -99,6 +98,7 @@ const PostInfo = ({
         setSelectedFiles={setSelectedFiles}
         uploadImage={uploadImage}
         setUploadImage={setUploadImage}
+        uploadImages={uploadImages}
       />
       <AdFeatures />
 

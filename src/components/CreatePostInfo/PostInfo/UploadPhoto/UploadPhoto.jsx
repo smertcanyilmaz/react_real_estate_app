@@ -8,13 +8,19 @@ const UploadPhoto = ({
   setSelectedFiles,
   uploadImage,
   setUploadImage,
+  uploadImages,
 }) => {
   //const fileInputRef = useRef(null);
+
+  //const uploadImages = [];
 
   const handleFileChange = (e) => {
     const files = e.target.files;
     const selectedImages = [...selectedFiles]; // Mevcut resimleri kopyala
-    setUploadImage(e.target.files[0]);
+    uploadImage.length === 0
+      ? setUploadImage([e.target.files])
+      : setUploadImage((prev) => [...prev, e.target.files]);
+    uploadImages.push(e.target.files[0]);
 
     for (let i = 0; i < files.length; i++) {
       selectedImages.push(URL.createObjectURL(files[i])); // Yeni resimleri ekle

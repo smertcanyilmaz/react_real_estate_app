@@ -25,7 +25,7 @@ const CreatePostInfo = () => {
   const uploadImages = [];
 
   console.log("UPLOADIMAGE", uploadImage);
-  // console.log("UPLOADIMAGES", uploadImages);
+  //console.log("UPLOADIMAGES", uploadImages);
 
   const continueClickHandler = useCallback(
     async (e) => {
@@ -33,34 +33,33 @@ const CreatePostInfo = () => {
 
       const imageRefs = [];
 
-      for (const image of uploadImage) {
-        // Seçilen her dosyayı Firebase Storage'a yükledim ve URL'lerini aldım çünkü storage'daki resim linklerinin estates databasedeki estate objesine gitmesi lazımdı
-        for (const file of image) {
-          const imageRef = ref(storage, `userImages/${v4()}`);
+      // Seçilen her dosyayı Firebase Storage'a yükledim ve URL'lerini aldım çünkü storage'daki resim linklerinin estates databasedeki estate objesine gitmesi lazımdı
+      for (const file of uploadImage) {
+        const imageRef = ref(storage, `userImages/${v4()}`);
 
-          await uploadBytes(imageRef, file).then((snapshot) => {
-            // Yükleme işlemi başarılı oldu, dosya türünü ayarlayın
-            const contentType = "image/jpeg"; // Örnek: jpeg, png, vb.
+        await uploadBytes(imageRef, file).then((snapshot) => {
+          // Yükleme işlemi başarılı oldu, dosya türünü ayarlayın
+          const contentType = "image/jpeg"; // Örnek: jpeg, png, vb.
 
-            // Dosyanın metadata'sını güncelle
-            getMetadata(imageRef)
-              .then((metadata) => {
-                metadata.contentType = contentType;
-                return updateMetadata(imageRef, metadata);
-              })
-              .then((updatedMetadata) => {
-                console.log(
-                  "Dosya türü güncellendi:",
-                  updatedMetadata.contentType
-                );
-              });
-          });
+          // Dosyanın metadata'sını güncelle
+          getMetadata(imageRef)
+            .then((metadata) => {
+              metadata.contentType = contentType;
+              return updateMetadata(imageRef, metadata);
+            })
+            .then((updatedMetadata) => {
+              console.log(
+                "Dosya türü güncellendi:",
+                updatedMetadata.contentType
+              );
+            });
+        });
 
-          const downloadURL = await getDownloadURL(imageRef);
-          imageRefs.push(downloadURL);
-          console.log("DOWNLOAD URL", downloadURL);
-        }
+        const downloadURL = await getDownloadURL(imageRef);
+        imageRefs.push(downloadURL);
+        console.log("DOWNLOAD URL", downloadURL);
       }
+
       console.log("İMAGEREFS", imageRefs);
 
       const user = auth.currentUser;

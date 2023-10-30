@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 import PhotoCameraIcon from "@mui/icons-material/PhotoCamera";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
@@ -10,29 +10,33 @@ const UploadPhoto = ({
   setUploadImage,
   uploadImages,
 }) => {
-  //const fileInputRef = useRef(null);
-
-  //const uploadImages = [];
-
   const handleFileChange = (e) => {
+    //client tarafında gözükecek resimlerin kodları
     const files = e.target.files;
-    const selectedImages = [...selectedFiles]; // Mevcut resimleri kopyala
-    uploadImage.length === 0
-      ? setUploadImage([e.target.files])
-      : setUploadImage((prev) => [...prev, e.target.files]);
-    uploadImages.push(e.target.files[0]);
+    const selectedImages = [...selectedFiles];
 
     for (let i = 0; i < files.length; i++) {
-      selectedImages.push(URL.createObjectURL(files[i])); // Yeni resimleri ekle
+      selectedImages.push(URL.createObjectURL(files[i]));
     }
+    setSelectedFiles(selectedImages);
 
-    setSelectedFiles(selectedImages); // Yeni resimleri ayarla
+    //firebase'e gidecek arrayin kodları
+    uploadImage.length === 0
+      ? setUploadImage(e.target.files)
+      : setUploadImage((prev) => [...prev, ...e.target.files]);
+
+    //uploadImages.push(...e.target.files);
   };
 
   const removeImage = (index) => {
-    const updatedImages = [...selectedFiles];
-    updatedImages.splice(index, 1);
-    setSelectedFiles(updatedImages);
+    //client tarafında gözüken resimlerden seçilen resmin silinmesi
+    const removePrev = [...selectedFiles];
+    removePrev.splice(index, 1);
+    setSelectedFiles(removePrev);
+
+    //client tarafına gidecek olan arrayin içinden seçilen resmin silinmesi
+    const removeImage = uploadImage.filter((_, i) => i !== index);
+    setUploadImage(removeImage);
   };
 
   console.log("SELECTEDPHOTO", selectedFiles);

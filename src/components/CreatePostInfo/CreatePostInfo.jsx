@@ -24,6 +24,10 @@ const CreatePostInfo = () => {
   const [uploadImage, setUploadImage] = useState([]);
   const uploadImages = [];
 
+  const [features, setFeatures] = useState([]);
+
+  console.log(features);
+
   console.log("UPLOADIMAGE", uploadImage);
   //console.log("UPLOADIMAGES", uploadImages);
 
@@ -102,6 +106,8 @@ const CreatePostInfo = () => {
         uploadImage={uploadImage}
         setUploadImage={setUploadImage}
         uploadImages={uploadImages}
+        features={features}
+        setFeatures={setFeatures}
       />
     </div>
   );

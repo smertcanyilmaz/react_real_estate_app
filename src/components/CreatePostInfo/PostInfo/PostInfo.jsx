@@ -17,6 +17,8 @@ const PostInfo = ({
   uploadImage,
   setUploadImage,
   uploadImages,
+  features,
+  setFeatures,
 }) => {
   const adInfoChangeHandler = (e, field) => {
     if (field === "bedrooms" || field === "bathrooms") {
@@ -100,7 +102,11 @@ const PostInfo = ({
         setUploadImage={setUploadImage}
         uploadImages={uploadImages}
       />
-      <AdFeatures />
+      <AdFeatures
+        features={features}
+        setFeatures={setFeatures}
+        setSum={setSum}
+      />
 
       <button
         className="w-32 h-12 rounded-md duration-200 flex gap-2 justify-center items-center bg-gray-800 text-gray-50"

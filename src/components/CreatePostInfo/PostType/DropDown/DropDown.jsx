@@ -9,23 +9,37 @@ const DropDown = ({
   setSelectedCategory,
   setShowDropDown,
   setShowDropDown2,
+  setSelectedCategoryFirebase,
+  setSelectedPropertyFirebase,
 }) => {
   const properties = ["Sell", "Rent"];
   const categories = [
-    "Amazing View",
+    "Amazing Views",
     "Apartment",
-    "Tiny House",
-    "Amazing Pool",
+    "Tiny Houses",
+    "Amazing Pools",
     "In Nature",
     "Luxe",
   ];
 
   const selectedHandler = (name) => {
     setSelectedProperty(name);
+    setSelectedPropertyFirebase(name.toLowerCase());
   };
 
   const selectedHandler2 = (name) => {
     setSelectedCategory(name);
+
+    const result = name.split(" "); // bu kodları yazmam gerekti çünkü firebase'de categoriyi en başından örneğin şu formatta tutmuştum: amazingPools filtrelemenin düzgün çalışması için ilan oluştururken buna uygun bir hale getirmem gerekti
+    const firstName = result[0].toLowerCase();
+    result.push(firstName);
+    let temp = result[0];
+    result[0] = result[2];
+    result[2] = temp;
+    result.pop();
+
+    setSelectedCategoryFirebase(result.join("")); //firebase categoriye giden değeri tutan state
+
     setShowDropDown2(false);
   };
 

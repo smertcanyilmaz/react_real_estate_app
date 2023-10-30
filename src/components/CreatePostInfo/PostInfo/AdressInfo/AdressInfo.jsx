@@ -77,7 +77,7 @@ const AdressInfo = ({ sum, setSum }) => {
   console.log(newDistricts);
 
   const [arrowState, setArrowState] = useState({
-    // searchDropDown componentini tutan stateler
+    // searchDropDown componentini tutan state
     country: false,
     city: false,
     district: false,

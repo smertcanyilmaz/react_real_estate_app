@@ -34,10 +34,10 @@ const CreatePostInfo = () => {
       const imageRefs = [];
 
       for (const image of uploadImage) {
-        // Seçilen her dosyayı Firebase Storage'a yükleyin ve URL'lerini alın
+        // Seçilen her dosyayı Firebase Storage'a yükledim ve URL'lerini aldım çünkü storage'daki resim linklerinin estates databasedeki estate objesine gitmesi lazımdı
         for (const file of image) {
           const imageRef = ref(storage, `userImages/${v4()}`);
-          //await uploadBytes(imageRef, file);
+
           await uploadBytes(imageRef, file).then((snapshot) => {
             // Yükleme işlemi başarılı oldu, dosya türünü ayarlayın
             const contentType = "image/jpeg"; // Örnek: jpeg, png, vb.

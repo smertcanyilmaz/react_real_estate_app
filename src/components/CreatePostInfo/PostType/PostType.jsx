@@ -7,6 +7,8 @@ const PostType = ({ selectedCategory, setSelectedCategory, sum, setSum }) => {
   const [showDropDown, setShowDropDown] = useState(false);
   const [showDropDown2, setShowDropDown2] = useState(false);
   const [selectedProperty, setSelectedProperty] = useState(null);
+  const [selectedPropertyFirebase, setSelectedPropertyFirebase] = useState("");
+  const [selectedCategoryFirebase, setSelectedCategoryFirebase] = useState(""); // firebase database'e category seçeneğine uygun olarak düzenlenmiş değeri tutan state
 
   const clickDown1 = () => {
     setShowDropDown((prev) => !prev);
@@ -33,10 +35,12 @@ const PostType = ({ selectedCategory, setSelectedCategory, sum, setSum }) => {
   useEffect(() => {
     setSum((prevSum) => ({
       ...prevSum,
-      status: selectedProperty,
-      category: selectedCategory,
+      status: selectedPropertyFirebase,
+      category: selectedCategoryFirebase,
     }));
-  }, [selectedProperty, selectedCategory]);
+  }, [selectedPropertyFirebase, selectedCategoryFirebase]);
+
+  console.log(selectedCategoryFirebase);
 
   return (
     <div className="bg-gray-50 p-5 flex flex-col gap-5 rounded-[4px] border border-gray-400/50">
@@ -56,6 +60,7 @@ const PostType = ({ selectedCategory, setSelectedCategory, sum, setSum }) => {
               showDropDown={showDropDown}
               setSelectedProperty={setSelectedProperty}
               setShowDropDown={setShowDropDown}
+              setSelectedPropertyFirebase={setSelectedPropertyFirebase}
             />
           </div>
         </div>
@@ -101,6 +106,7 @@ const PostType = ({ selectedCategory, setSelectedCategory, sum, setSum }) => {
             showDropDown2={showDropDown2}
             setSelectedCategory={setSelectedCategory}
             setShowDropDown2={setShowDropDown2}
+            setSelectedCategoryFirebase={setSelectedCategoryFirebase}
           />
         </div>
       </div>

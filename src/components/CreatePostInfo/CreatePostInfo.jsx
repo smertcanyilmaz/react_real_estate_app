@@ -19,6 +19,8 @@ const CreatePostInfo = () => {
   //const ref = collection(db, "estates");
   const auth = getAuth();
   const [selectedCategory, setSelectedCategory] = useState(null);
+
+  const [passivePost, setPassivePost] = useState();
   const [sum, setSum] = useState({});
   const [selectedFiles, setSelectedFiles] = useState([]); // seçilen fotoğrafların ekranda gösterilmesi için tutan state
   const [uploadImage, setUploadImage] = useState([]);

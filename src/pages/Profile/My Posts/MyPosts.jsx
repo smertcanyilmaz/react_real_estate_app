@@ -55,7 +55,7 @@ const MyPosts = () => {
           </div>
           <div className="flex-1 h-28 border border-gray-400/50 shadow-md px-3 py-5 flex flex-col items-start justify-between rounded-md bg-gray-50">
             <h1 className="text-lg font-semibold text-gray-700">
-              Pasive Posts
+              Passive Posts
             </h1>
             <p className="text-gray-600 text-sm">No post yet</p>
           </div>

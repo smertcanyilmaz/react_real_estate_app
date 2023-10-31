@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import AuthEntranceSide from "../../../components/AuthEntranceSide/AuthEntranceSide";
 import { Link, useNavigate } from "react-router-dom";
 import {
@@ -8,9 +8,13 @@ import {
 } from "firebase/auth";
 import { db } from "../../../firebase-config";
 import { doc, setDoc } from "@firebase/firestore";
+import { Context } from "../../../Context/AuthContext";
 
 const Register = ({ setUnAuthNavbar }) => {
   const navigate = useNavigate();
+  const { userActive } = useContext(Context);
+
+  const auth = getAuth();
 
   const [user, setUser] = useState({
     firstName: "",
@@ -19,7 +23,6 @@ const Register = ({ setUnAuthNavbar }) => {
     password: "",
   });
 
-  const auth = getAuth();
   useEffect(() => {
     setUnAuthNavbar(true);
   }, []);
@@ -47,16 +50,23 @@ const Register = ({ setUnAuthNavbar }) => {
       });
       console.log("kayıt başarılı");
 
-      //await signOut(auth);
+      //signOut(auth);
+      //await auth.signOut();
       // kayıt olduğu an çıkış yaptırılması gerekiyor çünkü firebase çalışma mantığında register olunduğu an login de oluyor
 
       //navigate("/login");
-      navigate("/");
+      //navigate("/");
       console.log("USER", user);
     } catch (error) {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    if (userActive) {
+      navigate("/");
+    }
+  }, [userActive]);
 
   return (
     <div className="flex max-w-full">

@@ -11,12 +11,14 @@ import { doc, setDoc } from "@firebase/firestore";
 
 const Register = ({ setUnAuthNavbar }) => {
   const navigate = useNavigate();
+
   const [user, setUser] = useState({
     firstName: "",
     lastName: "",
     email: "",
     password: "",
   });
+
   const auth = getAuth();
   useEffect(() => {
     setUnAuthNavbar(true);
@@ -26,6 +28,7 @@ const Register = ({ setUnAuthNavbar }) => {
 
   const handleSignUp = async (e) => {
     e.preventDefault();
+
     try {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
@@ -42,7 +45,11 @@ const Register = ({ setUnAuthNavbar }) => {
         password: password,
         // Diğer kullanıcı bilgileri
       });
-      await signOut(auth); // kayıt olduğu an çıkış yaptırılması gerekiyor çünkü firebase çalışma mantığında register olunduğu an login de oluyor
+      console.log("kayıt başarılı");
+
+      await signOut(auth);
+      // kayıt olduğu an çıkış yaptırılması gerekiyor çünkü firebase çalışma mantığında register olunduğu an login de oluyor
+
       navigate("/login");
       console.log("USER", user);
     } catch (error) {

@@ -15,7 +15,7 @@ export const AuthContext = ({ children }) => {
   useEffect(() => {
     let unsubscribe;
     unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
-      setIsLoading(true); // İşlem başlamadan önce isLoading durumu true olarak ayarlanır
+      setIsLoading(true);
       if (currentUser) {
         try {
           const uid = currentUser.uid;
@@ -26,10 +26,10 @@ export const AuthContext = ({ children }) => {
                 const userData = docSnapshot.data();
                 console.log("Kullanıcı bilgileri:", userData);
                 setUserActive(userData);
-                setIsLoading(false); // İşlem başarılı bir şekilde tamamlandığında false olarak güncellenir
+                setIsLoading(false);
               } else {
                 console.log("Kullanıcı bulunamadı");
-                setIsLoading(false); // Hata durumunda da false olarak güncellenir
+                setIsLoading(false);
               }
             })
             .catch((error) => {
@@ -37,15 +37,15 @@ export const AuthContext = ({ children }) => {
                 "Kullanıcı bilgilerini alma sırasında hata oluştu:",
                 error
               );
-              setIsLoading(false); // Hata durumunda false olarak güncellenir
+              setIsLoading(false);
             });
         } catch (error) {
           console.error("Hata oluştu:", error);
-          setIsLoading(false); // Hata durumunda false olarak güncellenir
+          setIsLoading(false);
         }
       } else {
         setUserActive(null);
-        setIsLoading(false); // Kullanıcı yoksa false olarak güncellenir
+        setIsLoading(false);
       }
     });
 

@@ -8,38 +8,44 @@ export const Context = createContext();
 export const AuthContext = ({ children }) => {
   const auth = getAuth();
   const [userActive, setUserActive] = useState();
-  const [loading, setLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   console.log(userActive);
 
   useEffect(() => {
     let unsubscribe;
     unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
-      setLoading(false);
+      setIsLoading(true); // İşlem başlamadan önce isLoading durumu true olarak ayarlanır
       if (currentUser) {
-        //console.log("CURRENTUSER", currentUser);
-        const uid = currentUser.uid; // auth ile usersdatabase bağlıyoruz. yoksa users database döngüsü oluşturmadan veri alamazdım bu da ciddi bir performans sorunu oluştururdu
-        const userRef = doc(db, "users", uid);
-        getDoc(userRef)
-          .then((docSnapshot) => {
-            if (docSnapshot.exists()) {
-              const userData = docSnapshot.data();
-              console.log("Kullanıcı bilgileri:", userData);
-              // Kullanıcı bilgilerini profil sayfasında kullanın
-              setUserActive(userData);
-            } else {
-              console.log("Kullanıcı bulunamadı");
-            }
-          })
-          .catch((error) => {
-            console.error(
-              "Kullanıcı bilgilerini alma sırasında hata oluştu:",
-              error
-            );
-          });
-        //setUserActive(currentUser);
+        try {
+          const uid = currentUser.uid;
+          const userRef = doc(db, "users", uid);
+          getDoc(userRef)
+            .then((docSnapshot) => {
+              if (docSnapshot.exists()) {
+                const userData = docSnapshot.data();
+                console.log("Kullanıcı bilgileri:", userData);
+                setUserActive(userData);
+                setIsLoading(false); // İşlem başarılı bir şekilde tamamlandığında false olarak güncellenir
+              } else {
+                console.log("Kullanıcı bulunamadı");
+                setIsLoading(false); // Hata durumunda da false olarak güncellenir
+              }
+            })
+            .catch((error) => {
+              console.error(
+                "Kullanıcı bilgilerini alma sırasında hata oluştu:",
+                error
+              );
+              setIsLoading(false); // Hata durumunda false olarak güncellenir
+            });
+        } catch (error) {
+          console.error("Hata oluştu:", error);
+          setIsLoading(false); // Hata durumunda false olarak güncellenir
+        }
       } else {
         setUserActive(null);
+        setIsLoading(false); // Kullanıcı yoksa false olarak güncellenir
       }
     });
 
@@ -54,6 +60,6 @@ export const AuthContext = ({ children }) => {
   };
 
   return (
-    <Context.Provider value={values}>{!loading && children}</Context.Provider>
+    <Context.Provider value={values}>{!isLoading && children}</Context.Provider> // children render edilmeden önce isLoading durumu kontrol edilir
   );
 };

@@ -54,7 +54,7 @@ function App() {
                 path="create-post"
                 element={
                   <Protected>
-                    <CreatePost setUnAuthNavbar={setUnAuthNavbar} />
+                    <CreatePost />
                   </Protected>
                 }
               />
@@ -62,7 +62,7 @@ function App() {
                 path="myprofile"
                 element={
                   <Protected>
-                    <MyProfile setUnAuthNavbar={setUnAuthNavbar} />
+                    <MyProfile />
                   </Protected>
                 }
               />
@@ -71,7 +71,7 @@ function App() {
                 path="posts"
                 element={
                   <Protected>
-                    <MyPosts setUnAuthNavbar={setUnAuthNavbar} />
+                    <MyPosts />
                   </Protected>
                 }
               />

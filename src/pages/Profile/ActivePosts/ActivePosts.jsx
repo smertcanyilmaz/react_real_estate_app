@@ -38,9 +38,9 @@ const ActivePosts = () => {
             <HomeRoundedIcon fontSize="large" style={{ color: "gray" }} />
           </div>
           <p className="text-gray-600">You have no active post yet</p> */}
-          {estateData.map((estate) => (
+          {estateData.map((estate, index) => (
             <div className="flex w-full max-h-[13rem] p-3 shadow-md shadow-gray-200/50">
-              <div key={estate.id} className="w-full h-full flex gap-3">
+              <div key={index} className="w-full h-full flex gap-3">
                 <div className="max-w-[14rem] h-full">
                   <img
                     src={estate.image}

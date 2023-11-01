@@ -4,6 +4,7 @@ import { db } from "../../firebase-config";
 import { getAuth } from "firebase/auth";
 
 const useUserPosts = () => {
+  // aktif kullanıcının estates collectionda bulunan ilan bilgilerini getirir
   const auth = getAuth();
   const [estateData, setEstateData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -14,7 +15,7 @@ const useUserPosts = () => {
       const currentUserId = user.uid;
 
       const estatesRef = collection(db, "estates");
-      const q = query(estatesRef, where("id", "==", currentUserId));
+      const q = query(estatesRef, where("userData", "==", currentUserId));
 
       try {
         const querySnapshot = await getDocs(q);

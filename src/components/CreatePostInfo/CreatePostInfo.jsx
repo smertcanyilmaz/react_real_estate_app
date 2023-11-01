@@ -82,7 +82,7 @@ const CreatePostInfo = () => {
       if (user) {
         const userData = {
           ...sum,
-          id: user.uid,
+          userData: user.uid,
           image: imageRefs[0],
           images: imageRefs,
         };

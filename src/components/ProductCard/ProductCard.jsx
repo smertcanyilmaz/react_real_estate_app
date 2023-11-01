@@ -131,12 +131,17 @@ const ProductCard = ({
               alt=""
               className="h-40 object-cover rounded-t-lg"
             />
-            <div className="px-4 py-2 w-full space-y-1">
+            <div className="px-4 py-2 w-full space-y-1 relative">
               <h3 className="text-md font-bold">{estate?.title}</h3>
               <p className="text-[--blue] font-bold text-sm">
                 {estate?.price} €
               </p>
               <p className="text-xs">{estate?.place?.city}</p>
+              {estate?.topOffers && (
+                <div className="absolute p-2 right-5 bottom-2 text-sm text-gray-800 font-semibold bg-yellow-300 shadow-lg shadow-gray-200 rounded-md border border-red-100 flex justify-center items-center">
+                  Top Offer
+                </div>
+              )}
             </div>
           </div>
         </Link>

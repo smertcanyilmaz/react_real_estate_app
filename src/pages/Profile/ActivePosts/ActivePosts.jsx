@@ -41,7 +41,10 @@ const ActivePosts = () => {
           {estateData.map((estate, index) => (
             <div className="flex w-full max-h-[13rem] p-3 shadow-md shadow-gray-200/50">
               <div key={index} className="w-full h-full flex gap-3">
-                <div className="max-w-[14rem] h-full">
+                <div
+                  className="max-w-[14rem] h-full cursor-pointer"
+                  onClick={() => navigate(`/estates/${estate.id}`)}
+                >
                   <img
                     src={estate.image}
                     className="w-[14rem] h-full object-cover"

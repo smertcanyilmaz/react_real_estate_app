@@ -1,39 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import ProfileTemplate from "../../../components/ProfileTemplate/ProfileTemplate";
 import PostAd from "../../../components/PostAd/PostAd";
-import { collection, query, where, getDocs } from "firebase/firestore";
-import { db } from "../../../firebase-config";
-import { getAuth } from "firebase/auth";
+import useUserPosts from "../../../components/hooks/useUserPosts";
+import { useNavigate } from "react-router-dom";
 
 const MyPosts = () => {
-  const auth = getAuth();
-  const [estateData, setEstateData] = useState([]);
-  useEffect(() => {
-    const fetchData = async () => {
-      const user = auth.currentUser;
-      const currentUserId = user.uid;
+  const navigate = useNavigate();
+  const { estateData, loading } = useUserPosts();
 
-      const estatesRef = collection(db, "estates");
-      const q = query(estatesRef, where("id", "==", currentUserId));
-
-      try {
-        const querySnapshot = await getDocs(q);
-        const data = [];
-        querySnapshot.forEach((doc) => {
-          data.push({ id: doc.id, ...doc.data() });
-        });
-        setEstateData(data);
-      } catch (error) {
-        console.error("Error getting documents: ", error);
-      }
-    };
-
-    fetchData();
-  }, []);
   console.log(estateData);
+
   return (
     <ProfileTemplate>
-      <div className="h-full flex flex-col justify-between gap-5 bg-[--bg_color]">
+      <div
+        className="h-full flex flex-col justify-between gap-5 bg-[--bg_color] cursor-pointer"
+        onClick={() => navigate("/posts/actives")}
+      >
         <div className="flex justify-between gap-5">
           <div className="flex-1 h-28 border border-gray-400/50 shadow-md px-3 py-5 flex flex-col items-start justify-between rounded-md bg-gray-50">
             <h1 className="text-lg font-semibold text-gray-700">
@@ -41,16 +23,21 @@ const MyPosts = () => {
             </h1>
             <p
               className={`text-sm ${
+                loading
+                  ? "h-[10px] w-3/4 rounded-full bg-gray-200/80  animate-pulse"
+                  : ""
+              } ${
                 estateData.length > 0
                   ? "text-[#36cf94] font-semibold"
                   : "text-gray-600 font-normal"
               }`}
             >
-              {estateData.length === 0
-                ? "No post yet"
-                : estateData.length === 1
-                ? `You have ${estateData.length} active post`
-                : `You have ${estateData.length} active posts`}
+              {!loading &&
+                (estateData.length === 0
+                  ? "No post yet"
+                  : estateData.length === 1
+                  ? `You have ${estateData.length} active post`
+                  : `You have ${estateData.length} active posts`)}
             </p>
           </div>
           <div className="flex-1 h-28 border border-gray-400/50 shadow-md px-3 py-5 flex flex-col items-start justify-between rounded-md bg-gray-50">

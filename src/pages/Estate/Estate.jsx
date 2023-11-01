@@ -38,6 +38,7 @@ const Estate = ({ setUnAuthNavbar }) => {
           <h1 className="text-3xl font-bold">{item?.title}</h1>
           <div className="text-sm">
             {item?.place?.district}, {item?.place?.city}, {item?.place?.country}
+            | {item?.date}
           </div>
         </div>
         <EstateImages

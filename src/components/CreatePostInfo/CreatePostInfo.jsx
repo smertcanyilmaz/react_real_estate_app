@@ -20,8 +20,17 @@ const CreatePostInfo = () => {
   const auth = getAuth();
   const [selectedCategory, setSelectedCategory] = useState(null);
 
-  const [passivePost, setPassivePost] = useState();
-  const [sum, setSum] = useState({});
+  const [passivePosts, setPassivePosts] = useState(false);
+  const [incompletePosts, setIncompletePosts] = useState(false);
+
+  const today = new Date();
+  const formattedDate = today.toLocaleDateString("tr-TR");
+
+  const [sum, setSum] = useState({
+    passivePosts: passivePosts,
+    incompletePosts: incompletePosts,
+    date: formattedDate,
+  });
   const [selectedFiles, setSelectedFiles] = useState([]); // seçilen fotoğrafların ekranda gösterilmesi için tutan state
   const [uploadImage, setUploadImage] = useState([]);
   const uploadImages = [];

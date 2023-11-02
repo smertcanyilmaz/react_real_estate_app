@@ -3,7 +3,7 @@
 }
 
 .active_posts .btn {
-  @apply w-[80%] h-16 rounded-lg text-gray-100 flex items-center justify-center gap-2 text-sm;
+  @apply w-[80%] h-16 rounded-lg text-gray-100 flex items-center justify-center gap-2 text-sm font-semibold;
 }
 
 .not_post {

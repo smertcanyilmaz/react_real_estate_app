@@ -29,6 +29,8 @@ const PasivePosts = () => {
     console.log(filteredData);
   }, [estateData]);
 
+  console.log(estateDataFilter2);
+
   const activeClickHandler = async (estateId) => {
     const estateRef = doc(db, "estates", estateId);
     try {

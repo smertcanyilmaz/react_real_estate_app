@@ -5,6 +5,8 @@ import { db } from "../../firebase-config";
 import DeleteIcon from "@mui/icons-material/Delete";
 import CallMadeRoundedIcon from "@mui/icons-material/CallMadeRounded";
 import RemoveCircleOutlineRoundedIcon from "@mui/icons-material/RemoveCircleOutlineRounded";
+import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
+import LaunchRoundedIcon from "@mui/icons-material/LaunchRounded";
 
 const ProfileProductCard = ({
   estateDataFilter,
@@ -32,7 +34,13 @@ const ProfileProductCard = ({
   };
 
   const deleteValidHandler = (estateId) => {
-    setDeleteValid((prev) => !prev);
+    const findId = postChecker.find((post) => post.id === estateId);
+    console.log(findId);
+    if (findId) {
+      setDeleteValid(true);
+    } else {
+      setDeleteValid(false);
+    }
   };
 
   const replacements = [
@@ -55,10 +63,10 @@ const ProfileProductCard = ({
   }
   return (
     <>
-      {postChecker.map((estate, index) => (
+      {postChecker.map((estate) => (
         <div
-          key={index}
-          className="flex w-full max-h-[13rem] p-3 shadow-md shadow-gray-200/50"
+          key={estate.id}
+          className="flex w-full max-h-[12rem] p-3 shadow-md shadow-gray-200/50"
         >
           {
             <div className="w-full h-full flex gap-3">
@@ -68,7 +76,7 @@ const ProfileProductCard = ({
               >
                 <img
                   src={estate.image}
-                  className="w-[14rem] h-full object-cover"
+                  className="w-full h-full object-cover"
                 />
               </div>
               <div className="flex-1 h-full flex">
@@ -117,23 +125,31 @@ const ProfileProductCard = ({
                   </p> */}
                 </div>
                 <div className="w-1/4 h-full flex flex-col items-end justify-between gap-3 relative rounded-md">
-                  <button
-                    onClick={() => navigate(`/estates/${estate.id}`)}
-                    className="btn bg-gray-800"
-                  >
-                    Go
-                    <CallMadeRoundedIcon fontSize="small" />
-                  </button>
+                  {post === "active" && (
+                    <button
+                      onClick={() => navigate(`/estates/${estate.id}`)}
+                      className="btn bg-gray-800"
+                    >
+                      Go
+                      <LaunchRoundedIcon fontSize="small" />
+                    </button>
+                  )}
 
                   <button
                     onClick={() => clickChecker(estate.id)}
-                    className="btn bg-[#7D7C7C]"
+                    className={`btn ${
+                      post === "active" ? "bg-[#7D7C7C]" : "bg-[#36cf94]"
+                    } `}
                   >
                     {post === "active" ? "Passive" : "Active"}
-                    <RemoveCircleOutlineRoundedIcon fontSize="small" />
+                    {post === "active" ? (
+                      <RemoveCircleOutlineRoundedIcon fontSize="small" />
+                    ) : (
+                      <CheckRoundedIcon />
+                    )}
                   </button>
                   <button
-                    onClick={() => setDeleteValid((prev) => !prev)}
+                    onClick={() => deleteValidHandler(estate.id)}
                     className="btn bg-[#ef4a4a] duration-300"
                   >
                     Delete

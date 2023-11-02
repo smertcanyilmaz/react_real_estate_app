@@ -26,6 +26,7 @@ const ProfileProductCard = ({
     post === "active" ? passiveClickHandler : activeClickHandler;
 
   const deleteClickHandler = async (estateId) => {
+    // ilan siler güncelleme işlemi zaten activepost ve passivepost sayfalarında yapılıyor
     const estateRef = doc(db, "estates", estateId);
     try {
       await deleteDoc(estateRef);

@@ -1,5 +1,16 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { getAuth } from "firebase/auth";
+import {
+  doc,
+  updateDoc,
+  collection,
+  onSnapshot,
+  query,
+  where,
+  deleteDoc,
+} from "firebase/firestore";
+import { db } from "../../firebase-config";
 
 const ProfileProductCard = ({
   estateDataFilter,
@@ -13,6 +24,16 @@ const ProfileProductCard = ({
   const postChecker = post === "active" ? estateDataFilter : estateDataFilter2;
   const clickChecker =
     post === "active" ? passiveClickHandler : activeClickHandler;
+
+  const deleteClickHandler = async (estateId) => {
+    const estateRef = doc(db, "estates", estateId);
+    try {
+      await deleteDoc(estateRef);
+      console.log("İlan silindi.");
+    } catch (error) {
+      console.error("İlan silinirken bir hata oluştu: ", error);
+    }
+  };
 
   const replacements = [
     //database'e filtreleme için giden kategorileri birleşik olarak yazmıştım. burada onları ayırdım
@@ -106,7 +127,12 @@ const ProfileProductCard = ({
                   >
                     {post === "active" ? "Passive Ad" : "Active Ad"}
                   </button>
-                  <button className="btn bg-red-600">Delete Ad</button>
+                  <button
+                    onClick={() => deleteClickHandler(estate.id)}
+                    className="btn bg-red-600"
+                  >
+                    Delete Ad
+                  </button>
                 </div>
               </div>
             </div>

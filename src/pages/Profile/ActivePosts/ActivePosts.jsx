@@ -71,7 +71,7 @@ const ActivePosts = () => {
             estateDataFilter.length === 0 && "not_post"
           }`}
         >
-          {estateDataFilter.length === 0 ? (
+          {estateDataFilter.length === 0 && !loading ? (
             <>
               <div className="border-2 border-gray-300 p-2 rounded-full flex items-center justify-center">
                 <HomeRoundedIcon fontSize="large" style={{ color: "gray" }} />

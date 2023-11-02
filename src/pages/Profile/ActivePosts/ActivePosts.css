@@ -3,7 +3,7 @@
 }
 
 .active_posts .btn {
-  @apply w-28 h-16 rounded-md text-gray-100 shadow-md shadow-gray-300;
+  @apply w-full h-16 rounded-md text-gray-100;
 }
 
 .not_post {

@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { doc, deleteDoc } from "firebase/firestore";
 import { db } from "../../firebase-config";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const ProfileProductCard = ({
   estateDataFilter,
@@ -11,6 +12,7 @@ const ProfileProductCard = ({
   post,
 }) => {
   const navigate = useNavigate();
+  const [deleteValid, setDeleteValid] = useState(false);
 
   const postChecker = post === "active" ? estateDataFilter : estateDataFilter2;
   const clickChecker =
@@ -25,6 +27,10 @@ const ProfileProductCard = ({
     } catch (error) {
       console.error("İlan silinirken bir hata oluştu: ", error);
     }
+  };
+
+  const deleteValidHandler = (estateId) => {
+    setDeleteValid((prev) => !prev);
   };
 
   const replacements = [
@@ -66,7 +72,10 @@ const ProfileProductCard = ({
               <div className="flex-1 h-full flex">
                 <div className="flex-1 h-full flex flex-col justify-between text-sm">
                   <p>
-                    <span>Ad Date</span>:{estate?.date}
+                    <span>Ad Date</span>: {estate?.date}
+                  </p>
+                  <p className="capitalize">
+                    <span>Ad Title</span>: {estate?.title}
                   </p>
                   <p className="capitalize">
                     <span>Property Type</span>: {estate?.status}
@@ -100,15 +109,15 @@ const ProfileProductCard = ({
                   <p>
                     <span>Price</span>: €{estate?.price}
                   </p>
-                  <p>
+                  {/* <p>
                     <span>Location</span>: {estate?.place?.district},{" "}
                     {estate?.place?.city},{estate?.place?.country}
-                  </p>
+                  </p> */}
                 </div>
-                <div className="flex-2 h-full flex flex-col justify-between gap-3 ">
+                <div className="w-1/4 h-full flex flex-col justify-between gap-3 relative rounded-md">
                   <button
                     onClick={() => navigate(`/estates/${estate.id}`)}
-                    className="btn bg-gray-800 "
+                    className="btn bg-gray-800"
                   >
                     Go Ad
                   </button>
@@ -120,11 +129,48 @@ const ProfileProductCard = ({
                     {post === "active" ? "Passive Ad" : "Active Ad"}
                   </button>
                   <button
-                    onClick={() => deleteClickHandler(estate.id)}
-                    className="btn bg-red-600"
+                    onClick={() => setDeleteValid((prev) => !prev)}
+                    className="btn bg-[#ef4a4a] duration-300"
                   >
                     Delete Ad
                   </button>
+
+                  <>
+                    <div
+                      className={`absolute top-0 left-0 w-full h-full bg-gray-50 after:rounded-md ${
+                        deleteValid
+                          ? "opacity-100 pointer-events-auto"
+                          : "opacity-0 pointer-events-none"
+                      }`}
+                    >
+                      {/*overlay*/}
+                    </div>
+                    <div
+                      className={`bg-gray-50 w-full h-full flex items-center justify-center absolute duration-300 p-1 rounded-xl border border-[#ef4a4a] ${
+                        deleteValid
+                          ? "opacity-100 pointer-events-auto z-10"
+                          : "opacity-0 pointer-events-none"
+                      }`}
+                    >
+                      <div className="w-full flex flex-col items-center justify-center gap-3 rounded-md">
+                        <DeleteIcon style={{ color: "#ef4a4a" }} />
+                        <p className="text-xs font-semibold">Are you sure?</p>
+
+                        <button
+                          onClick={() => deleteClickHandler(estate.id)}
+                          className="w-3/4 p-1 text-sm text-gray-50 bg-[#ef4a4a] rounded-md"
+                        >
+                          Yes, delete
+                        </button>
+                        <button
+                          onClick={() => setDeleteValid((prev) => !prev)}
+                          className=" w-full text-xs text-[#ef4a4a] font-semibold"
+                        >
+                          Keep it
+                        </button>
+                      </div>
+                    </div>
+                  </>
                 </div>
               </div>
             </div>

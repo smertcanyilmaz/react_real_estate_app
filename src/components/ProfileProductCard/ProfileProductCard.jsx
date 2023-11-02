@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { doc, deleteDoc } from "firebase/firestore";
 import { db } from "../../firebase-config";
 import DeleteIcon from "@mui/icons-material/Delete";
+import CallMadeRoundedIcon from "@mui/icons-material/CallMadeRounded";
+import RemoveCircleOutlineRoundedIcon from "@mui/icons-material/RemoveCircleOutlineRounded";
 
 const ProfileProductCard = ({
   estateDataFilter,
@@ -80,7 +82,7 @@ const ProfileProductCard = ({
                   <p className="capitalize">
                     <span>Property Type</span>: {estate?.status}
                   </p>
-                  <p>
+                  <p className="capitalize">
                     <span>Category</span>: {formatCategory(estate?.category)}
                   </p>
                   <div className="flex gap-1">
@@ -98,10 +100,10 @@ const ProfileProductCard = ({
                         ? estate?.specials
                             .slice(0, 3)
                             .map((special, index) => (
-                              <p key={index}>{special}</p>
+                              <p key={index}>{special},</p>
                             ))
                         : estate?.specials?.map((special, index) => (
-                            <p key={index}>{special}</p>
+                            <p key={index}>{special},</p>
                           ))}
                       {estate?.specials?.length > 3 ? "(...)" : ""}
                     </div>
@@ -114,42 +116,45 @@ const ProfileProductCard = ({
                     {estate?.place?.city},{estate?.place?.country}
                   </p> */}
                 </div>
-                <div className="w-1/4 h-full flex flex-col justify-between gap-3 relative rounded-md">
+                <div className="w-1/4 h-full flex flex-col items-end justify-between gap-3 relative rounded-md">
                   <button
                     onClick={() => navigate(`/estates/${estate.id}`)}
                     className="btn bg-gray-800"
                   >
-                    Go Ad
+                    Go
+                    <CallMadeRoundedIcon fontSize="small" />
                   </button>
-                  <button className="btn bg-[#f0957e]">Edit Ad</button>
+
                   <button
                     onClick={() => clickChecker(estate.id)}
-                    className="btn bg-gray-500/60"
+                    className="btn bg-[#7D7C7C]"
                   >
-                    {post === "active" ? "Passive Ad" : "Active Ad"}
+                    {post === "active" ? "Passive" : "Active"}
+                    <RemoveCircleOutlineRoundedIcon fontSize="small" />
                   </button>
                   <button
                     onClick={() => setDeleteValid((prev) => !prev)}
                     className="btn bg-[#ef4a4a] duration-300"
                   >
-                    Delete Ad
+                    Delete
+                    <DeleteIcon fontSize="small" />
                   </button>
 
                   <>
                     <div
                       className={`absolute top-0 left-0 w-full h-full bg-gray-50 after:rounded-md ${
                         deleteValid
-                          ? "opacity-100 pointer-events-auto"
-                          : "opacity-0 pointer-events-none"
+                          ? "opacity-100 pointer-events-auto duration-500"
+                          : "opacity-0 pointer-events-none duration-500"
                       }`}
                     >
                       {/*overlay*/}
                     </div>
                     <div
-                      className={`bg-gray-50 w-full h-full flex items-center justify-center absolute duration-300 p-1 rounded-xl border border-[#ef4a4a] ${
+                      className={`bg-gray-50 w-full h-full flex items-center justify-center absolute  p-1 rounded-xl border border-[#ef4a4a] ${
                         deleteValid
-                          ? "opacity-100 pointer-events-auto z-10"
-                          : "opacity-0 pointer-events-none"
+                          ? "opacity-100 pointer-events-auto duration-500"
+                          : "opacity-0 pointer-events-none duration-500"
                       }`}
                     >
                       <div className="w-full flex flex-col items-center justify-center gap-3 rounded-md">
@@ -158,13 +163,13 @@ const ProfileProductCard = ({
 
                         <button
                           onClick={() => deleteClickHandler(estate.id)}
-                          className="w-3/4 p-1 text-sm text-gray-50 bg-[#ef4a4a] rounded-md"
+                          className="w-3/4 p-[6px] text-sm text-gray-50 bg-[#ef4a4a] rounded-md hover:brightness-105 duration-300"
                         >
                           Yes, delete
                         </button>
                         <button
                           onClick={() => setDeleteValid((prev) => !prev)}
-                          className=" w-full text-xs text-[#ef4a4a] font-semibold"
+                          className=" w-full text-xs text-[#ef4a4a] font-semibold hover:brightness-120"
                         >
                           Keep it
                         </button>

@@ -1,74 +1,17 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import ProfileTemplate from "../../../components/ProfileTemplate/ProfileTemplate";
 import PostAd from "../../../components/PostAd/PostAd";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import useUserPosts from "../../../components/hooks/useUserPosts";
 import "./ActivePosts.css";
-import {
-  doc,
-  updateDoc,
-  collection,
-  onSnapshot,
-  query,
-  where,
-} from "firebase/firestore";
-import { db } from "../../../firebase-config";
-import { getAuth } from "firebase/auth";
+
 import ProfileProductCard from "../../../components/ProfileProductCard/ProfileProductCard";
 
 import { Context } from "../../../Context/ProfileContext";
 
 const ActivePosts = () => {
   const { estateData, loading } = useUserPosts();
-  //const { estateDataFilter, setEstateDataFilter } = useProfile();
-  //const [estateDataFilter, setEstateDataFilter] = useState([]);
-  const { estateDataFilter, passiveClickHandler } = useContext(Context);
-  const auth = getAuth();
-
-  // useEffect(() => {
-  //   const filteredData = estateData.filter(
-  //     (estateFilter) => estateFilter.passivePosts === false
-  //   );
-  //   setEstateDataFilter(filteredData);
-
-  //   console.log(filteredData);
-  // }, [estateData]);
-
-  // const passiveClickHandler = async (estateId) => {
-  //   const estateRef = doc(db, "estates", estateId);
-  //   try {
-  //     await updateDoc(estateRef, {
-  //       passivePosts: true,
-  //     });
-  //     console.log("İlanın durumu güncellendi.");
-  //   } catch (error) {
-  //     console.error("İlan durumu güncellenirken bir hata oluştu: ", error);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   // anlık olarak database güncelleme
-  //   const user = auth.currentUser;
-  //   const currentUserId = user.uid;
-  //   const q = query(
-  //     collection(db, "estates"),
-  //     where("userData", "==", currentUserId),
-  //     where("passivePosts", "==", false)
-  //   );
-  //   const unsubscribe = onSnapshot(q, (querySnapshot) => {
-  //     const updatedEstateData = [];
-  //     querySnapshot.forEach((doc) => {
-  //       updatedEstateData.push({ id: doc.id, ...doc.data() });
-  //     });
-  //     setEstateDataFilter(updatedEstateData);
-  //   });
-
-  //   return () => {
-  //     unsubscribe();
-  //   };
-  // }, []);
-
-  console.log(estateDataFilter);
+  const { estateDataFilter } = useContext(Context);
 
   return (
     <ProfileTemplate>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import ProfileTemplate from "../../../components/ProfileTemplate/ProfileTemplate";
 import PostAd from "../../../components/PostAd/PostAd";
 import NoMeetingRoomRoundedIcon from "@mui/icons-material/NoMeetingRoomRounded";
@@ -14,58 +14,59 @@ import {
 } from "firebase/firestore";
 import { db } from "../../../firebase-config";
 import ProfileProductCard from "../../../components/ProfileProductCard/ProfileProductCard";
-import useFetch from "../../../components/hooks/useFetch";
+import { Context } from "../../../Context/ProfileContext";
 
 const PasivePosts = () => {
   const { estateData, loading } = useUserPosts();
-  const { estateDataFilter2, setEstateDataFilter2 } = useFetch();
+  const { estateDataFilter2, activeClickHandler } = useContext(Context);
+
   //const [estateDataFilter2, setEstateDataFilter2] = useState([]);
   const auth = getAuth();
 
-  useEffect(() => {
-    const filteredData = estateData.filter(
-      (estateFilter) => estateFilter.passivePosts === true
-    );
-    setEstateDataFilter2(filteredData);
+  // useEffect(() => {
+  //   const filteredData = estateData.filter(
+  //     (estateFilter) => estateFilter.passivePosts === true
+  //   );
+  //   setEstateDataFilter2(filteredData);
 
-    console.log(filteredData);
-  }, [estateData]);
+  //   console.log(filteredData);
+  // }, [estateData]);
 
   console.log(estateDataFilter2);
 
-  const activeClickHandler = async (estateId) => {
-    const estateRef = doc(db, "estates", estateId);
-    try {
-      await updateDoc(estateRef, {
-        passivePosts: false,
-      });
-      console.log("İlanın durumu güncellendi.");
-    } catch (error) {
-      console.error("İlan durumu güncellenirken bir hata oluştu: ", error);
-    }
-  };
+  // const activeClickHandler = async (estateId) => {
+  //   const estateRef = doc(db, "estates", estateId);
+  //   try {
+  //     await updateDoc(estateRef, {
+  //       passivePosts: false,
+  //     });
+  //     console.log("İlanın durumu güncellendi.");
+  //   } catch (error) {
+  //     console.error("İlan durumu güncellenirken bir hata oluştu: ", error);
+  //   }
+  // };
 
-  useEffect(() => {
-    // anlık olarak database güncelleme
-    const user = auth.currentUser;
-    const currentUserId = user.uid;
-    const q = query(
-      collection(db, "estates"),
-      where("userData", "==", currentUserId),
-      where("passivePosts", "==", true)
-    );
-    const unsubscribe = onSnapshot(q, (querySnapshot) => {
-      const updatedEstateData = [];
-      querySnapshot.forEach((doc) => {
-        updatedEstateData.push({ id: doc.id, ...doc.data() });
-      });
-      setEstateDataFilter2(updatedEstateData);
-    });
+  // useEffect(() => {
+  //   // anlık olarak database güncelleme
+  //   const user = auth.currentUser;
+  //   const currentUserId = user.uid;
+  //   const q = query(
+  //     collection(db, "estates"),
+  //     where("userData", "==", currentUserId),
+  //     where("passivePosts", "==", true)
+  //   );
+  //   const unsubscribe = onSnapshot(q, (querySnapshot) => {
+  //     const updatedEstateData = [];
+  //     querySnapshot.forEach((doc) => {
+  //       updatedEstateData.push({ id: doc.id, ...doc.data() });
+  //     });
+  //     setEstateDataFilter2(updatedEstateData);
+  //   });
 
-    return () => {
-      unsubscribe();
-    };
-  }, []);
+  //   return () => {
+  //     unsubscribe();
+  //   };
+  // }, []);
 
   return (
     <ProfileTemplate>
@@ -86,11 +87,7 @@ const PasivePosts = () => {
               <p className="text-gray-600">You have no pasive post yet</p>
             </>
           ) : (
-            <ProfileProductCard
-              estateDataFilter2={estateDataFilter2}
-              activeClickHandler={activeClickHandler}
-              post="passive"
-            />
+            <ProfileProductCard post="passive" />
           )}
         </div>
         <PostAd />

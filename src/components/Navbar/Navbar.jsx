@@ -6,7 +6,6 @@ import PersonIcon from "@mui/icons-material/Person";
 import MenuIcon from "@mui/icons-material/Menu";
 import Logout from "./Logout/Logout";
 import { Context } from "../../Context/AuthContext";
-import useFetch from "../hooks/useFetch";
 
 const Navbar = ({ ref0 }) => {
   const [showBox, setShowBox] = useState(false);

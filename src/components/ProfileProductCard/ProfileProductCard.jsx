@@ -1,21 +1,21 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { doc, deleteDoc } from "firebase/firestore";
 import { db } from "../../firebase-config";
 import DeleteIcon from "@mui/icons-material/Delete";
-import CallMadeRoundedIcon from "@mui/icons-material/CallMadeRounded";
 import RemoveCircleOutlineRoundedIcon from "@mui/icons-material/RemoveCircleOutlineRounded";
 import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
 import LaunchRoundedIcon from "@mui/icons-material/LaunchRounded";
+import { Context } from "../../Context/ProfileContext";
 
-const ProfileProductCard = ({
-  estateDataFilter,
-  passiveClickHandler,
-  estateDataFilter2,
-  activeClickHandler,
-  post,
-}) => {
+const ProfileProductCard = ({ post }) => {
   const navigate = useNavigate();
+  const {
+    estateDataFilter,
+    estateDataFilter2,
+    passiveClickHandler,
+    activeClickHandler,
+  } = useContext(Context);
   const [deleteValid, setDeleteValid] = useState(false);
 
   const postChecker = post === "active" ? estateDataFilter : estateDataFilter2;

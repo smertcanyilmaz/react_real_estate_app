@@ -3,6 +3,7 @@ import { db } from "../../firebase-config";
 import { collection, getDocs } from "firebase/firestore";
 
 const useFetch = () => {
+  const [estateDataFilter2, setEstateDataFilter2] = useState([]);
   const [estates, setEstates] = useState([]);
 
   const estatesCollectionRef = collection(db, "estates");
@@ -15,7 +16,7 @@ const useFetch = () => {
     getUsers();
   }, []);
 
-  return { estates };
+  return { estates, setEstates, estateDataFilter2, setEstateDataFilter2 };
 };
 
 export default useFetch;

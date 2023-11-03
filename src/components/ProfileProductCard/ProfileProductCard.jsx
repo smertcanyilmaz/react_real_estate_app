@@ -82,10 +82,10 @@ const ProfileProductCard = ({
               <div className="flex-1 h-full flex">
                 <div className="flex-1 h-full flex flex-col justify-between text-sm">
                   <p>
-                    <span>Ad Date</span>: {estate?.date}
+                    <span>Date</span>: {estate?.date}
                   </p>
                   <p className="capitalize">
-                    <span>Ad Title</span>: {estate?.title}
+                    <span>Title</span>: {estate?.title}
                   </p>
                   <p className="capitalize">
                     <span>Property Type</span>: {estate?.status}

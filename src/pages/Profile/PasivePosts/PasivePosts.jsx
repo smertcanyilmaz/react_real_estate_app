@@ -14,10 +14,12 @@ import {
 } from "firebase/firestore";
 import { db } from "../../../firebase-config";
 import ProfileProductCard from "../../../components/ProfileProductCard/ProfileProductCard";
+import useFetch from "../../../components/hooks/useFetch";
 
 const PasivePosts = () => {
   const { estateData, loading } = useUserPosts();
-  const [estateDataFilter2, setEstateDataFilter2] = useState([]);
+  const { estateDataFilter2, setEstateDataFilter2 } = useFetch();
+  //const [estateDataFilter2, setEstateDataFilter2] = useState([]);
   const auth = getAuth();
 
   useEffect(() => {

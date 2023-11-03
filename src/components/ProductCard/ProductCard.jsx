@@ -21,22 +21,36 @@ const ProductCard = ({
 
   let filteredEstates = estates;
 
+  // useEffect(() => {
+  //   const passivePostsFilter = estates.filter(
+  //     (estate) => estate.passivePosts === false
+  //   );
+  //   setFilteredList(passivePostsFilter);
+  // }, [filteredList, estates]);
+
   useEffect(() => {
     if (filter) {
       //quick section'da seçim yapma
       if (filter === "sale") {
         filteredEstates = filteredEstates.filter(
-          (estate) => estate.status === "sale"
+          (estate) => estate.status === "sale" && estate.passivePosts === false
         );
       } else if (filter === "rent") {
         filteredEstates = filteredEstates.filter(
-          (estate) => estate.status === "rent"
+          (estate) => estate.status === "rent" && estate.passivePosts === false
         );
-      } else if (filter === "trending" || filter === "all") {
-        filteredEstates = filteredEstates.filter((estate) => estate);
+      } else if (filter === "trending") {
+        filteredEstates = filteredEstates.filter(
+          (estate) => estate.topOffers && estate.passivePosts === false
+        );
+      } else if (filter === "all") {
+        filteredEstates = filteredEstates.filter(
+          (estate) => estate.passivePosts === false
+        );
       } else {
         filteredEstates = filteredEstates.filter(
-          (estate) => estate.category === filter
+          (estate) =>
+            estate.category === filter && estate.passivePosts === false
         );
       }
       setFilteredList(filteredEstates);
@@ -48,14 +62,20 @@ const ProductCard = ({
       // top offers'da gelecek olan cardların sell mi rent mi olduğunu belirleyen koşul
       if (sale) {
         filteredEstates = estates.filter(
-          (estate) => estate.topOffers === "sale"
+          (estate) =>
+            estate.topOffers === "sale" && estate.passivePosts === false
         );
       } else {
         filteredEstates = estates.filter(
-          (estate) => estate.topOffers === "rent"
+          (estate) =>
+            estate.topOffers === "rent" && estate.passivePosts === false
         );
       }
     }
+
+    // const estatePassiveFilter = estates.filter(
+    //   (estate) => estate.passivePosts === false
+    // );
 
     if (filtersApplied) {
       if (filterPriceValues.min !== "" && filterPriceValues.max !== "") {
@@ -68,23 +88,27 @@ const ProductCard = ({
 
       if (selectedButtonsStatus === 1) {
         filteredEstates = filteredEstates.filter(
-          (estate) => estate.status === "sale"
+          (estate) => estate.status === "sale" && estate.passivePosts === false
         );
       } else if (selectedButtonsStatus === 2) {
         filteredEstates = filteredEstates.filter(
-          (estate) => estate.status === "rent"
+          (estate) => estate.status === "rent" && estate.passivePosts === false
         );
       }
 
       if (selectedRoomNumbers) {
         filteredEstates = filteredEstates.filter(
-          (estate) => estate.rooms.bedrooms === selectedRoomNumbers
+          (estate) =>
+            estate.rooms.bedrooms === selectedRoomNumbers &&
+            estate.passivePosts === false
         );
       }
 
       if (selectedRoomNumbers2) {
         filteredEstates = filteredEstates.filter(
-          (estate) => estate.rooms.bathrooms === selectedRoomNumbers2
+          (estate) =>
+            estate.rooms.bathrooms === selectedRoomNumbers2 &&
+            estate.passivePosts === false
         );
       }
 
@@ -109,7 +133,10 @@ const ProductCard = ({
   ]);
 
   useEffect(() => {
-    setFilteredList(filteredEstates);
+    const passivePosts = filteredEstates.filter(
+      (estate) => estate.passivePosts === false
+    );
+    setFilteredList(passivePosts);
   }, [filteredEstates]);
 
   return (

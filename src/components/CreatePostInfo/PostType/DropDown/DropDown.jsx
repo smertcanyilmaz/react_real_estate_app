@@ -12,7 +12,7 @@ const DropDown = ({
   setSelectedCategoryFirebase,
   setSelectedPropertyFirebase,
 }) => {
-  const properties = ["Sell", "Rent"];
+  const properties = ["Sale", "Rent"];
   const categories = [
     "Amazing Views",
     "Apartment",

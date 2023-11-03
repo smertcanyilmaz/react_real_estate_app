@@ -16,14 +16,14 @@ const ProfileProductCard = ({ post }) => {
     passiveClickHandler,
     activeClickHandler,
   } = useContext(Context);
-  const [deleteValid, setDeleteValid] = useState(false);
+  const [deleteValid, setDeleteValid] = useState({});
 
   const postChecker = post === "active" ? estateDataFilter : estateDataFilter2;
   const clickChecker =
     post === "active" ? passiveClickHandler : activeClickHandler;
 
   const deleteClickHandler = async (estateId) => {
-    // ilan siler güncelleme işlemi zaten activepost ve passivepost sayfalarında yapılıyor
+    // ilan silen güncelleme işlemi zaten activepost ve passivepost sayfalarında yapılıyor
     const estateRef = doc(db, "estates", estateId);
     try {
       await deleteDoc(estateRef);
@@ -34,13 +34,11 @@ const ProfileProductCard = ({ post }) => {
   };
 
   const deleteValidHandler = (estateId) => {
-    const findId = postChecker.find((post) => post.id === estateId);
-    console.log(findId);
-    if (findId) {
-      setDeleteValid(true);
-    } else {
-      setDeleteValid(false);
-    }
+    // delete butonuna basıldığında tüm ilanlarda are you sure yazısının çıkmasını önler ve sadece tıklanan ilanda bu sorunun çıkmasını sağlar
+    setDeleteValid((prev) => ({
+      ...prev,
+      [estateId]: !prev[estateId],
+    }));
   };
 
   const replacements = [
@@ -159,7 +157,7 @@ const ProfileProductCard = ({ post }) => {
                   <>
                     <div
                       className={`absolute top-0 left-0 w-full h-full bg-gray-50 after:rounded-md ${
-                        deleteValid
+                        deleteValid[estate.id]
                           ? "opacity-100 pointer-events-auto duration-500"
                           : "opacity-0 pointer-events-none duration-500"
                       }`}
@@ -168,7 +166,7 @@ const ProfileProductCard = ({ post }) => {
                     </div>
                     <div
                       className={`bg-gray-50 w-full h-full flex items-center justify-center absolute  p-1 rounded-xl border border-[#ef4a4a] ${
-                        deleteValid
+                        deleteValid[estate.id]
                           ? "opacity-100 pointer-events-auto duration-500"
                           : "opacity-0 pointer-events-none duration-500"
                       }`}
@@ -184,7 +182,7 @@ const ProfileProductCard = ({ post }) => {
                           Yes, delete
                         </button>
                         <button
-                          onClick={() => setDeleteValid((prev) => !prev)}
+                          onClick={() => deleteValidHandler(estate.id)}
                           className=" w-full text-xs text-[#ef4a4a] font-semibold hover:brightness-120"
                         >
                           Keep it

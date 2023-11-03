@@ -21,13 +21,6 @@ const ProductCard = ({
 
   let filteredEstates = estates;
 
-  // useEffect(() => {
-  //   const passivePostsFilter = estates.filter(
-  //     (estate) => estate.passivePosts === false
-  //   );
-  //   setFilteredList(passivePostsFilter);
-  // }, [filteredList, estates]);
-
   useEffect(() => {
     if (filter) {
       //quick section'da seçim yapma
@@ -72,10 +65,6 @@ const ProductCard = ({
         );
       }
     }
-
-    // const estatePassiveFilter = estates.filter(
-    //   (estate) => estate.passivePosts === false
-    // );
 
     if (filtersApplied) {
       if (filterPriceValues.min !== "" && filterPriceValues.max !== "") {

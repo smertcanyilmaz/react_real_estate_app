@@ -23,14 +23,14 @@ const ProfileContext = ({ children }) => {
   const auth = getAuth();
 
   //ActivePosts page
-  useEffect(() => {
-    const filteredData = estateData.filter(
-      (estateFilter) => estateFilter.passivePosts === false
-    );
-    setEstateDataFilter(filteredData);
+  // useEffect(() => {
+  //   const filteredData = estateData.filter(
+  //     (estateFilter) => estateFilter.passivePosts === false
+  //   );
+  //   setEstateDataFilter(filteredData);
 
-    console.log(filteredData);
-  }, [estateData]);
+  //   console.log(filteredData);
+  // }, [estateData]);
 
   const passiveClickHandler = async (estateId) => {
     const estateRef = doc(db, "estates", estateId);
@@ -45,7 +45,7 @@ const ProfileContext = ({ children }) => {
   };
 
   useEffect(() => {
-    // anlık olarak database güncelleme
+    // ActivePosts page anlık olarak database güncelleme
     const user = auth.currentUser;
     const currentUserId = user.uid;
     const q = query(
@@ -67,14 +67,14 @@ const ProfileContext = ({ children }) => {
   }, []);
 
   //PasivePosts Page
-  useEffect(() => {
-    const filteredData = estateData.filter(
-      (estateFilter) => estateFilter.passivePosts === true
-    );
-    setEstateDataFilter2(filteredData);
+  // useEffect(() => {
+  //   const filteredData = estateData.filter(
+  //     (estateFilter) => estateFilter.passivePosts === true
+  //   );
+  //   setEstateDataFilter2(filteredData);
 
-    console.log(filteredData);
-  }, [estateData]);
+  //   console.log(filteredData);
+  // }, [estateData]);
 
   const activeClickHandler = async (estateId) => {
     const estateRef = doc(db, "estates", estateId);
@@ -89,7 +89,7 @@ const ProfileContext = ({ children }) => {
   };
 
   useEffect(() => {
-    // anlık olarak database güncelleme
+    //PasivePosts Page anlık olarak database güncelleme
     const user = auth.currentUser;
     const currentUserId = user.uid;
     const q = query(
@@ -152,11 +152,8 @@ const ProfileContext = ({ children }) => {
 
   useEffect(() => {
     fetchFavoriteEstates();
-  }, []);
+  }, [favoriteEstates, loadingFav]);
 
-  // useEffect(() => {
-  //   fetchFavoriteEstates();
-  // }, []);
   const values = {
     estateDataFilter: estateDataFilter,
     setEstateDataFilter: setEstateDataFilter,

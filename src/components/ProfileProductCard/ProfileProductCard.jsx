@@ -1,15 +1,17 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { doc, deleteDoc } from "firebase/firestore";
+import { doc, deleteDoc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase-config";
 import DeleteIcon from "@mui/icons-material/Delete";
 import RemoveCircleOutlineRoundedIcon from "@mui/icons-material/RemoveCircleOutlineRounded";
 import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
 import LaunchRoundedIcon from "@mui/icons-material/LaunchRounded";
 import { Context } from "../../Context/ProfileContext";
+import { getAuth } from "firebase/auth";
 
 const ProfileProductCard = ({ post }) => {
   const navigate = useNavigate();
+  const auth = getAuth();
   const {
     estateDataFilter,
     estateDataFilter2,
@@ -33,6 +35,28 @@ const ProfileProductCard = ({ post }) => {
       console.log("İlan silindi.");
     } catch (error) {
       console.error("İlan silinirken bir hata oluştu: ", error);
+    }
+  };
+
+  const removeFavoriteHandler = async (estateId) => {
+    const user = auth.currentUser;
+    const userId = user.uid;
+    try {
+      const userRef = doc(db, "users", userId);
+      const userSnap = await getDoc(userRef);
+
+      if (userSnap.exists()) {
+        const userData = userSnap.data();
+        const favorites = userData.favorites.filter((fav) => fav !== estateId);
+
+        // Kullanıcı belgesini güncelle
+        await updateDoc(userRef, { favorites: favorites });
+        console.log("Favori başarıyla kaldırıldı.");
+      } else {
+        console.error("Kullanıcı bulunamadı.");
+      }
+    } catch (error) {
+      console.error("Hata oluştu: ", error);
     }
   };
 
@@ -62,6 +86,7 @@ const ProfileProductCard = ({ post }) => {
     });
     return formattedCategory;
   }
+
   return (
     <>
       {postCheckerResult.map((estate) => (
@@ -155,7 +180,7 @@ const ProfileProductCard = ({ post }) => {
                     onClick={() => deleteValidHandler(estate.id)}
                     className="btn bg-[#ef4a4a] duration-300"
                   >
-                    Delete
+                    {post === "favorites" ? "Remove " : "Delete"}
                     <DeleteIcon fontSize="small" />
                   </button>
 
@@ -180,12 +205,21 @@ const ProfileProductCard = ({ post }) => {
                         <DeleteIcon style={{ color: "#ef4a4a" }} />
                         <p className="text-xs font-semibold">Are you sure?</p>
 
-                        <button
-                          onClick={() => deleteClickHandler(estate.id)}
-                          className="w-3/4 p-[6px] text-sm text-gray-50 bg-[#ef4a4a] rounded-md hover:brightness-105 duration-300"
-                        >
-                          Yes, delete
-                        </button>
+                        {post === "favorites" ? (
+                          <button
+                            onClick={() => removeFavoriteHandler(estate.id)}
+                            className="w-3/4 p-[6px] text-sm text-gray-50 bg-[#ef4a4a] rounded-md hover:brightness-105 duration-300"
+                          >
+                            Yes, remove
+                          </button>
+                        ) : (
+                          <button
+                            onClick={() => deleteClickHandler(estate.id)}
+                            className="w-3/4 p-[6px] text-sm text-gray-50 bg-[#ef4a4a] rounded-md hover:brightness-105 duration-300"
+                          >
+                            Yes, delete
+                          </button>
+                        )}
                         <button
                           onClick={() => deleteValidHandler(estate.id)}
                           className=" w-full text-xs text-[#ef4a4a] font-semibold hover:brightness-120"

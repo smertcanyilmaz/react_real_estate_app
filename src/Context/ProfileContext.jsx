@@ -1,5 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
-import useUserPosts from "../components/hooks/useUserPosts";
+import React, { createContext, useEffect, useState } from "react";
 import {
   doc,
   updateDoc,
@@ -15,7 +14,6 @@ import { db } from "../firebase-config";
 export const Context = createContext();
 
 const ProfileContext = ({ children }) => {
-  const { estateData, loading } = useUserPosts();
   // my post sayfasında aktif ve pasif ilan sayısını gösterebilmek için stateleri lift etmem gerekti
   const [estateDataFilter, setEstateDataFilter] = useState([]);
   const [estateDataFilter2, setEstateDataFilter2] = useState([]);

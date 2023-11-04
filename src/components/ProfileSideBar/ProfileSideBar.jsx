@@ -5,10 +5,6 @@ import ListIcon from "@mui/icons-material/List";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import "./ProfileSideBar.css";
 import { Context } from "../../Context/AuthContext";
-import useFetch from "../hooks/useFetch";
-import { db } from "../../firebase-config";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { collection, getDoc, where, query, doc } from "firebase/firestore";
 
 const ProfileSideBar = () => {
   const { userActive } = useContext(Context);

@@ -10,6 +10,7 @@ import {
 } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { db } from "../firebase-config";
+import useUserPosts from "../components/hooks/useUserPosts";
 
 export const Context = createContext();
 
@@ -18,17 +19,18 @@ const ProfileContext = ({ children }) => {
   const [estateDataFilter, setEstateDataFilter] = useState([]);
   const [estateDataFilter2, setEstateDataFilter2] = useState([]);
   const [favoriteEstates, setFavoriteEstates] = useState([]);
+  const { estateData } = useUserPosts();
   const auth = getAuth();
 
   //ActivePosts page
-  // useEffect(() => {
-  //   const filteredData = estateData.filter(
-  //     (estateFilter) => estateFilter.passivePosts === false
-  //   );
-  //   setEstateDataFilter(filteredData);
+  useEffect(() => {
+    const filteredData = estateData.filter(
+      (estateFilter) => estateFilter.passivePosts === false
+    );
+    setEstateDataFilter(filteredData);
 
-  //   console.log(filteredData);
-  // }, [estateData]);
+    console.log(filteredData);
+  }, [estateData]);
 
   const passiveClickHandler = async (estateId) => {
     const estateRef = doc(db, "estates", estateId);
@@ -65,14 +67,14 @@ const ProfileContext = ({ children }) => {
   }, []);
 
   //PasivePosts Page
-  // useEffect(() => {
-  //   const filteredData = estateData.filter(
-  //     (estateFilter) => estateFilter.passivePosts === true
-  //   );
-  //   setEstateDataFilter2(filteredData);
+  useEffect(() => {
+    const filteredData = estateData.filter(
+      (estateFilter) => estateFilter.passivePosts === true
+    );
+    setEstateDataFilter2(filteredData);
 
-  //   console.log(filteredData);
-  // }, [estateData]);
+    console.log(filteredData);
+  }, [estateData]);
 
   const activeClickHandler = async (estateId) => {
     const estateRef = doc(db, "estates", estateId);
@@ -110,9 +112,9 @@ const ProfileContext = ({ children }) => {
 
   const [loadingFav, setLoadingFav] = useState(true);
   // Favorites page
+
   const fetchFavoriteEstates = async () => {
     try {
-      // Kullanıcı verilerini al
       const user = auth.currentUser;
       const currentUserId = user.uid;
       const userRef = doc(db, "users", currentUserId);
@@ -126,7 +128,6 @@ const ProfileContext = ({ children }) => {
 
       const favorites = userData.favorites;
 
-      // Favori ilanların gerçek verilerini alma
       const favoriteEstatesPromises = favorites.map(async (estateId) => {
         const estateRef = doc(db, "estates", estateId);
         const estateSnapshot = await getDoc(estateRef);
@@ -138,9 +139,11 @@ const ProfileContext = ({ children }) => {
       });
 
       const favoriteEstatesData = await Promise.all(favoriteEstatesPromises);
-      setFavoriteEstates(
-        favoriteEstatesData.filter((estate) => estate !== null)
+      const filteredFavoriteEstates = favoriteEstatesData.filter(
+        (estate) => estate !== null
       );
+
+      setFavoriteEstates(filteredFavoriteEstates);
       setLoadingFav(false);
     } catch (error) {
       console.error("Favori ilanları getirme hatası: ", error);
@@ -149,8 +152,70 @@ const ProfileContext = ({ children }) => {
   };
 
   useEffect(() => {
-    fetchFavoriteEstates();
-  }, [favoriteEstates, loadingFav]);
+    const user = auth.currentUser;
+    const currentUserId = user.uid;
+    const userRef = doc(db, "users", currentUserId);
+    const unsubscribe = onSnapshot(userRef, async (userSnapshot) => {
+      try {
+        const userData = userSnapshot.data();
+        if (userData && userData.favorites) {
+          await fetchFavoriteEstates();
+        } else {
+          setFavoriteEstates([]); // Kullanıcı favori ilanı yoksa boş bir diziye ayarlayın
+          setLoadingFav(false);
+        }
+      } catch (error) {
+        console.error("Kullanıcı verilerini getirme hatası: ", error);
+        setLoadingFav(false);
+      }
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+  // const fetchFavoriteEstates = async () => {
+  //   try {
+  //     // Kullanıcı verilerini al
+  //     const user = auth.currentUser;
+  //     const currentUserId = user.uid;
+  //     const userRef = doc(db, "users", currentUserId);
+  //     const userSnapshot = await getDoc(userRef);
+  //     const userData = userSnapshot.data();
+
+  //     if (!userData || !userData.favorites) {
+  //       setLoadingFav(false);
+  //       return;
+  //     }
+
+  //     const favorites = userData.favorites;
+
+  //     // Favori ilanların gerçek verilerini alma
+  //     const favoriteEstatesPromises = favorites.map(async (estateId) => {
+  //       const estateRef = doc(db, "estates", estateId);
+  //       const estateSnapshot = await getDoc(estateRef);
+
+  //       if (estateSnapshot.exists()) {
+  //         return { id: estateSnapshot.id, ...estateSnapshot.data() };
+  //       }
+  //       return null;
+  //     });
+
+  //     const favoriteEstatesData = await Promise.all(favoriteEstatesPromises);
+  //     setFavoriteEstates(
+  //       favoriteEstatesData.filter((estate) => estate !== null)
+  //     );
+  //     setLoadingFav(false);
+  //   } catch (error) {
+  //     console.error("Favori ilanları getirme hatası: ", error);
+  //     setLoadingFav(false);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   fetchFavoriteEstates();
+  //   console.log("favoriteEstates", favoriteEstates);
+  // }, []);
 
   const values = {
     estateDataFilter: estateDataFilter,

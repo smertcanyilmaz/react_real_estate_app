@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { doc, deleteDoc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase-config";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -9,7 +9,7 @@ import LaunchRoundedIcon from "@mui/icons-material/LaunchRounded";
 import { Context } from "../../Context/ProfileContext";
 import { getAuth } from "firebase/auth";
 
-const ProfileProductCard = ({ post }) => {
+const ProfileProductCard = ({ post, myPost }) => {
   const navigate = useNavigate();
   const auth = getAuth();
   const {
@@ -92,42 +92,70 @@ const ProfileProductCard = ({ post }) => {
       {postCheckerResult.map((estate) => (
         <div
           key={estate.id}
-          className="flex w-full max-h-[12rem] p-3 shadow-md shadow-gray-200/50"
+          className={`flex flex-col w-full shadow-md shadow-gray-200/50 ${
+            myPost ? " h-[20.1rem] relative p-10" : "p-3 h-[12rem]"
+          }`}
         >
+          {myPost && (
+            <p className="absolute top-3 left-3 text-sm font-semibold text-gray-800">
+              Glimpse at favorite,{" "}
+              <Link to="/favorites">
+                <span className="underline">click for more</span>
+              </Link>
+            </p>
+          )}
           {
-            <div className="w-full h-full flex gap-3">
+            <div
+              className={`w-full h-full flex gap-5 ${myPost ? "mt-3" : "mt-0"}`}
+            >
               <div
-                className="max-w-[14rem] h-full cursor-pointer"
+                className={`cursor-pointer ${
+                  myPost ? "h-full" : "max-w-[14rem]"
+                }`}
                 onClick={() => navigate(`/estates/${estate.id}`)}
               >
                 <img
                   src={estate.image}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover rounded-lg"
                 />
               </div>
-              <div className="flex-1 h-full flex">
-                <div className="flex-1 h-full flex flex-col justify-between text-sm">
-                  <p>
-                    <span>Date</span>: {estate?.date}
-                  </p>
+              <div
+                className={`flex-1 h-full flex ${
+                  myPost ? "flex-col" : "flex-row"
+                }`}
+              >
+                <div
+                  className={`flex-1 h-full flex flex-col ${
+                    myPost ? "text-base gap-2" : "text-sm justify-between "
+                  }`}
+                >
+                  {!myPost && (
+                    <p>
+                      <span>Date</span>: {estate?.date}
+                    </p>
+                  )}
                   <p className="capitalize">
                     <span>Title</span>: {estate?.title}
                   </p>
                   <p className="capitalize">
                     <span>Property Type</span>: {estate?.status}
                   </p>
-                  <p className="capitalize">
-                    <span>Category</span>: {formatCategory(estate?.category)}
-                  </p>
-                  <div className="flex gap-1">
-                    <p>
-                      <span>Bedrooms</span>: {estate?.rooms?.bedrooms},
+                  {!myPost && (
+                    <p className="capitalize">
+                      <span>Category</span>: {formatCategory(estate?.category)}
                     </p>
-                    <p>
-                      <span>Bathrooms</span>: {estate?.rooms?.bathrooms}
-                    </p>
-                  </div>
-                  {
+                  )}
+                  {!myPost && (
+                    <div className="flex gap-1">
+                      <p>
+                        <span>Bedrooms</span>: {estate?.rooms?.bedrooms},
+                      </p>
+                      <p>
+                        <span>Bathrooms</span>: {estate?.rooms?.bathrooms}
+                      </p>
+                    </div>
+                  )}
+                  {!myPost && (
                     <div className="flex gap-1">
                       <span>Features</span>:
                       {estate?.specials?.length > 3
@@ -141,20 +169,26 @@ const ProfileProductCard = ({ post }) => {
                           ))}
                       {estate?.specials?.length > 3 ? "(...)" : ""}
                     </div>
-                  }
+                  )}
                   <p>
                     <span>Price</span>: €{estate?.price}
                   </p>
-                  {/* <p>
-                    <span>Location</span>: {estate?.place?.district},{" "}
-                    {estate?.place?.city},{estate?.place?.country}
-                  </p> */}
+                  {myPost && (
+                    <p>
+                      <span>Location</span>: {estate?.place?.district},{" "}
+                      {estate?.place?.city},{estate?.place?.country}
+                    </p>
+                  )}
                 </div>
-                <div className="w-1/4 h-full flex flex-col items-end justify-between gap-3 relative rounded-md">
+                <div
+                  className={`flex flex-col items-end justify-between gap-3 relative rounded-md ${
+                    myPost ? "w-full" : "w-1/4 h-full "
+                  }`}
+                >
                   {(post === "active" || post === "favorites") && (
                     <button
                       onClick={() => navigate(`/estates/${estate.id}`)}
-                      className="btn bg-gray-800"
+                      className={`bg-gray-800 ${myPost ? "btnMyPost" : "btn"}`}
                     >
                       Go
                       <LaunchRoundedIcon fontSize="small" />
@@ -176,13 +210,15 @@ const ProfileProductCard = ({ post }) => {
                       )}
                     </button>
                   )}
-                  <button
-                    onClick={() => deleteValidHandler(estate.id)}
-                    className="btn bg-[#ef4a4a] duration-300"
-                  >
-                    {post === "favorites" ? "Remove " : "Delete"}
-                    <DeleteIcon fontSize="small" />
-                  </button>
+                  {!myPost && (
+                    <button
+                      onClick={() => deleteValidHandler(estate.id)}
+                      className="btn bg-[#ef4a4a] duration-300"
+                    >
+                      {post === "favorites" ? "Remove " : "Delete"}
+                      <DeleteIcon fontSize="small" />
+                    </button>
+                  )}
 
                   <>
                     <div

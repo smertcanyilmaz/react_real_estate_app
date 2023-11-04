@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import useUserPosts from "../components/hooks/useUserPosts";
 import {
   doc,
@@ -7,6 +7,7 @@ import {
   onSnapshot,
   query,
   where,
+  getDoc,
 } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { db } from "../firebase-config";
@@ -18,6 +19,7 @@ const ProfileContext = ({ children }) => {
   // my post sayfasında aktif ve pasif ilan sayısını gösterebilmek için stateleri lift etmem gerekti
   const [estateDataFilter, setEstateDataFilter] = useState([]);
   const [estateDataFilter2, setEstateDataFilter2] = useState([]);
+  const [favoriteEstates, setFavoriteEstates] = useState([]);
   const auth = getAuth();
 
   //ActivePosts page
@@ -108,6 +110,53 @@ const ProfileContext = ({ children }) => {
     };
   }, []);
 
+  const [loadingFav, setLoadingFav] = useState(true);
+  // Favorites page
+  const fetchFavoriteEstates = async () => {
+    try {
+      // Kullanıcı verilerini al
+      const user = auth.currentUser;
+      const currentUserId = user.uid;
+      const userRef = doc(db, "users", currentUserId);
+      const userSnapshot = await getDoc(userRef);
+      const userData = userSnapshot.data();
+
+      if (!userData || !userData.favorites) {
+        setLoadingFav(false);
+        return;
+      }
+
+      const favorites = userData.favorites;
+
+      // Favori ilanların gerçek verilerini alma
+      const favoriteEstatesPromises = favorites.map(async (estateId) => {
+        const estateRef = doc(db, "estates", estateId);
+        const estateSnapshot = await getDoc(estateRef);
+
+        if (estateSnapshot.exists()) {
+          return { id: estateSnapshot.id, ...estateSnapshot.data() };
+        }
+        return null;
+      });
+
+      const favoriteEstatesData = await Promise.all(favoriteEstatesPromises);
+      setFavoriteEstates(
+        favoriteEstatesData.filter((estate) => estate !== null)
+      );
+      setLoadingFav(false);
+    } catch (error) {
+      console.error("Favori ilanları getirme hatası: ", error);
+      setLoadingFav(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchFavoriteEstates();
+  }, []);
+
+  // useEffect(() => {
+  //   fetchFavoriteEstates();
+  // }, []);
   const values = {
     estateDataFilter: estateDataFilter,
     setEstateDataFilter: setEstateDataFilter,
@@ -115,6 +164,8 @@ const ProfileContext = ({ children }) => {
     estateDataFilter2: estateDataFilter2,
     setEstateDataFilter2: setEstateDataFilter2,
     activeClickHandler: activeClickHandler,
+    favoriteEstates: favoriteEstates,
+    loadingFav: loadingFav,
   };
   return <Context.Provider value={values}>{children}</Context.Provider>;
 };

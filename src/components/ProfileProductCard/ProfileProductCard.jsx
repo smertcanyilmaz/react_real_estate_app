@@ -15,10 +15,13 @@ const ProfileProductCard = ({ post }) => {
     estateDataFilter2,
     passiveClickHandler,
     activeClickHandler,
+    favoriteEstates,
   } = useContext(Context);
   const [deleteValid, setDeleteValid] = useState({});
 
-  const postChecker = post === "active" ? estateDataFilter : estateDataFilter2;
+  let postChecker = post === "active" ? estateDataFilter : estateDataFilter2;
+  const postCheckerResult =
+    post === "favorites" ? favoriteEstates : postChecker;
   const clickChecker =
     post === "active" ? passiveClickHandler : activeClickHandler;
 
@@ -61,7 +64,7 @@ const ProfileProductCard = ({ post }) => {
   }
   return (
     <>
-      {postChecker.map((estate) => (
+      {postCheckerResult.map((estate) => (
         <div
           key={estate.id}
           className="flex w-full max-h-[12rem] p-3 shadow-md shadow-gray-200/50"
@@ -123,7 +126,7 @@ const ProfileProductCard = ({ post }) => {
                   </p> */}
                 </div>
                 <div className="w-1/4 h-full flex flex-col items-end justify-between gap-3 relative rounded-md">
-                  {post === "active" && (
+                  {(post === "active" || post === "favorites") && (
                     <button
                       onClick={() => navigate(`/estates/${estate.id}`)}
                       className="btn bg-gray-800"
@@ -133,19 +136,21 @@ const ProfileProductCard = ({ post }) => {
                     </button>
                   )}
 
-                  <button
-                    onClick={() => clickChecker(estate.id)}
-                    className={`btn ${
-                      post === "active" ? "bg-[#7D7C7C]" : "bg-[#36cf94]"
-                    } `}
-                  >
-                    {post === "active" ? "Passive" : "Active"}
-                    {post === "active" ? (
-                      <RemoveCircleOutlineRoundedIcon fontSize="small" />
-                    ) : (
-                      <CheckRoundedIcon />
-                    )}
-                  </button>
+                  {!(post === "favorites") && (
+                    <button
+                      onClick={() => clickChecker(estate.id)}
+                      className={`btn ${
+                        post === "active" ? "bg-[#7D7C7C]" : "bg-[#36cf94]"
+                      } `}
+                    >
+                      {post === "active" ? "Passive" : "Active"}
+                      {post === "active" ? (
+                        <RemoveCircleOutlineRoundedIcon fontSize="small" />
+                      ) : (
+                        <CheckRoundedIcon />
+                      )}
+                    </button>
+                  )}
                   <button
                     onClick={() => deleteValidHandler(estate.id)}
                     className="btn bg-[#ef4a4a] duration-300"

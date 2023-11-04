@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import EstateImages from "../../components/EstateImages/EstateImages";
 import useFetch from "../../components/hooks/useFetch";
 import { Link, useParams } from "react-router-dom";
@@ -7,10 +7,24 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import OverlayEstate from "../../components/OverlayEstate/OverlayEstate";
+import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
+import { Context } from "../../Context/AuthContext";
+import {
+  doc,
+  updateDoc,
+  collection,
+  onSnapshot,
+  query,
+  where,
+  getDocs,
+} from "firebase/firestore";
+import { getAuth } from "firebase/auth";
+import { db } from "../../firebase-config";
 
 const Estate = ({ setUnAuthNavbar }) => {
   const { id } = useParams();
   const { estates } = useFetch();
+  const { userActive } = useContext(Context);
 
   const item = estates.find((estate) => estate.id === id);
   console.log(item);
@@ -21,6 +35,40 @@ const Estate = ({ setUnAuthNavbar }) => {
   useEffect(() => {
     setUnAuthNavbar(false);
   }, []);
+
+  const favoriteClickHandler = async (estateId, email) => {
+    const usersCollectionRef = collection(db, "users");
+    const estatesCollectionRef = collection(db, "estates");
+
+    // Kullanıcının belgesini al
+    const userQuery = query(usersCollectionRef, where("email", "==", email));
+    const userSnapshot = await getDocs(userQuery);
+    let userDocRef;
+
+    userSnapshot.forEach((doc) => {
+      userDocRef = doc.ref;
+    });
+
+    // Kullanıcının varlığını kontrol et
+    if (!userDocRef) {
+      console.error("Kullanıcı bulunamadı!");
+      return;
+    }
+
+    const userData = userSnapshot.docs[0].data();
+
+    if (!userData.favorites) {
+      // Kullanıcı için 'favorites' alanı yoksa, oluştur
+      await updateDoc(userDocRef, { favorites: [estateId] });
+    } else {
+      // Kullanıcı için 'favorites' alanı varsa, ilan ID'sini ekleyin
+      await updateDoc(userDocRef, {
+        favorites: [...userData.favorites, estateId],
+      });
+    }
+
+    console.log("İlan favorilere eklendi!");
+  };
 
   return (
     <div className="max-w-6xl max-h-[100vh] mt-10 mb-10">
@@ -33,12 +81,21 @@ const Estate = ({ setUnAuthNavbar }) => {
         />
       )}
 
-      <div key={item?.id} className="flex flex-col gap-8 ">
+      <div key={item?.id} className="flex flex-col gap-5">
         <div className="content flex flex-col gap-2">
           <h1 className="text-3xl font-bold">{item?.title}</h1>
-          <div className="text-sm">
-            {item?.place?.district}, {item?.place?.city}, {item?.place?.country}
-            | {item?.date}
+          <div className="w-full flex justify-between items-center">
+            <div className="text-sm">
+              {item?.place?.district}, {item?.place?.city},
+              {item?.place?.country} | {item?.date}
+            </div>
+            <div
+              className="text-gray-800/80 rounded-lg px-3 py-2 hover:bg-gray-300/50 cursor-pointer duration-300 active:scale-90"
+              onClick={() => favoriteClickHandler(item.id, userActive.email)}
+            >
+              <FavoriteBorderRoundedIcon fontSize="small" />
+              <span className="text-sm font-semibold underline ml-2">Save</span>
+            </div>
           </div>
         </div>
         <EstateImages

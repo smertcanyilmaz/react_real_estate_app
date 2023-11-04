@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import useFetch from "../hooks/useFetch";
 import { Link } from "react-router-dom";
+import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
 
 const ProductCard = ({
   currentSlide,
@@ -139,7 +140,7 @@ const ProductCard = ({
       {filteredList.map((estate) => (
         <Link to={`/estates/${estate.id}`} key={estate.id}>
           <div
-            className={`flex flex-col min-w-[14.60rem] h-64 bg-white rounded-2xl transform transition-transform duration-300 cursor-pointer`}
+            className={`flex flex-col min-w-[14.60rem] h-64 bg-white rounded-2xl transform transition-transform duration-300 cursor-pointer relative`}
             style={{ transform: `translateX(-${currentSlide * 15.9}rem)` }}
           >
             <img
@@ -158,6 +159,9 @@ const ProductCard = ({
                   Top Offer
                 </div>
               )}
+            </div>
+            <div className="absolute top-2 right-3 text-gray-50 opacity-90  ">
+              <FavoriteRoundedIcon />
             </div>
           </div>
         </Link>

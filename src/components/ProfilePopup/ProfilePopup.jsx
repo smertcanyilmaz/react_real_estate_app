@@ -1,12 +1,61 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
 import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
 import KeyRoundedIcon from "@mui/icons-material/KeyRounded";
 import "./ProfilePopup.css";
 import Button from "../Button/Button";
+import { getAuth, updateEmail } from "firebase/auth";
+import { Context } from "../../Context/AuthContext";
+import { doc, updateDoc } from "firebase/firestore";
+import { db } from "../../firebase-config";
 
 const ProfilePopup = ({ clickHandler, showOverlay, edit }) => {
+  const [newName, setNewName] = useState("");
+  const [newLastname, setNewLastname] = useState("");
+  const [newEmail, setNewEmail] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const auth = getAuth();
+  const { userActive, userActiveUid } = useContext(Context);
+
+  const handleEmailUpdate = async (e) => {
+    e.preventDefault();
+
+    const user = auth.currentUser;
+    updateEmail(user, newEmail)
+      .then(() => {
+        // E-posta adresi başarıyla güncellendi
+        // Yeni e-posta adresi: newEmail
+        console.log("e güncellendi.");
+      })
+      .catch((error) => {
+        // E-posta adresi güncellenirken bir hata oluştu
+        // Hata detayları: error
+        console.error("e hata oluştu: ", error);
+      });
+
+    const userRef = doc(db, "users", userActiveUid);
+    try {
+      let updateFields = {};
+
+      if (edit === 1) {
+        updateFields = { firstName: newName, lastName: newLastname };
+      } else if (edit === 2) {
+        updateFields = { email: newEmail };
+      } else if (edit === 3) {
+        updateFields = { password: newPassword };
+      }
+
+      await updateDoc(userRef, updateFields);
+      console.log("Kullanıcı bilgileri güncellendi.");
+    } catch (error) {
+      console.error(
+        "Kullanıcı bilgileri güncellenirken bir hata oluştu: ",
+        error
+      );
+    }
+  };
+
   return (
     <div
       className={`absolute top-1/2 left-1/2 transform-translate -translate-x-1/2 w-[30%]  bg-gray-50 border border-gray-400 duration-300 shadow-md shadow-gray-500 rounded-md px-3 py-5 ${
@@ -58,10 +107,22 @@ const ProfilePopup = ({ clickHandler, showOverlay, edit }) => {
               <span className="text-red-500">*</span>
             </label>
             {edit === 1 && (
-              <input type="text" name="popupName" id="popupName" />
+              <input
+                type="text"
+                name="popupName"
+                id="popupName"
+                value={newName}
+                onChange={(e) => setNewName(e.target.value)}
+              />
             )}
             {edit === 2 && (
-              <input type="email" name="popupEmail" id="popupEmail" />
+              <input
+                type="email"
+                name="popupEmail"
+                id="popupEmail"
+                value={newEmail}
+                onChange={(e) => setNewEmail(e.target.value)}
+              />
             )}
             {edit === 3 && (
               <input type="password" name="popupPassword" id="popupPassword" />
@@ -80,13 +141,21 @@ const ProfilePopup = ({ clickHandler, showOverlay, edit }) => {
                 <span className="text-red-500">*</span>
               </label>
               {edit === 1 && (
-                <input type="text" name="popupSurname" id="popupSurname" />
+                <input
+                  type="text"
+                  name="popupSurname"
+                  id="popupSurname"
+                  value={newLastname}
+                  onChange={(e) => setNewLastname(e.target.value)}
+                />
               )}
               {edit === 3 && (
                 <input
                   type="password"
                   name="popupPassword2"
                   id="popupPassword2"
+                  value={newPassword}
+                  onChange={(e) => setNewPassword(e.target.value)}
                 />
               )}
             </div>
@@ -104,7 +173,8 @@ const ProfilePopup = ({ clickHandler, showOverlay, edit }) => {
               />
             </div>
           )}
-          <Button>Save</Button>
+          {/* <Button onClick={handleEmailUpdate}>Save</Button> */}
+          <button onClick={handleEmailUpdate}>kaydet</button>
         </form>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import ProfileTemplate from "../../../components/ProfileTemplate/ProfileTemplate";
 import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
 import { getAuth } from "firebase/auth";
@@ -7,7 +7,11 @@ import { ContextProfile } from "../../../Context/ProfileContext";
 import "./Favorites.css";
 
 const Favorites = () => {
-  const { favoriteEstates, loadingFav } = useContext(ContextProfile);
+  const { favoriteEstates, getFavorites } = useContext(ContextProfile);
+
+  useEffect(() => {
+    getFavorites();
+  }, []);
 
   return (
     <ProfileTemplate>
@@ -17,7 +21,7 @@ const Favorites = () => {
             favoriteEstates.length === 0 && "not_post"
           }`}
         >
-          {favoriteEstates.length === 0 && !loadingFav ? (
+          {favoriteEstates.length === 0 ? (
             <>
               <div className="border-2 border-gray-300 p-2 rounded-full flex items-center justify-center">
                 <FavoriteRoundedIcon style={{ color: "gray" }} />

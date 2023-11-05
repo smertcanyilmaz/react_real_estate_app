@@ -9,6 +9,7 @@ import LaunchRoundedIcon from "@mui/icons-material/LaunchRounded";
 
 import { getAuth } from "firebase/auth";
 import { ContextProfile } from "../../Context/ProfileContext";
+import { Context } from "../../Context/AuthContext";
 
 const ProfileProductCard = ({ post, myPost }) => {
   const navigate = useNavigate();
@@ -19,7 +20,9 @@ const ProfileProductCard = ({ post, myPost }) => {
     passiveClickHandler,
     activeClickHandler,
     favoriteEstates,
+    getFavorites,
   } = useContext(ContextProfile);
+  const { userActive, userActiveUid } = useContext(Context);
   const [deleteValid, setDeleteValid] = useState({});
 
   let postChecker = post === "active" ? estateDataFilter : estateDataFilter2;
@@ -40,8 +43,10 @@ const ProfileProductCard = ({ post, myPost }) => {
   };
 
   const removeFavoriteHandler = async (estateId) => {
-    const user = auth.currentUser;
-    const userId = user.uid;
+    // const user = auth.currentUser;
+    // const userId = user.uid;
+    const userId = userActiveUid;
+    console.log("MERTCAN", userActive, userId);
     try {
       const userRef = doc(db, "users", userId);
       const userSnap = await getDoc(userRef);
@@ -49,12 +54,13 @@ const ProfileProductCard = ({ post, myPost }) => {
       if (userSnap.exists()) {
         const userData = userSnap.data();
         const favorites = userData.favorites.filter((fav) => fav !== estateId);
-
+        console.log(favorites);
         // Kullanıcı belgesini güncelle
         await updateDoc(userRef, { favorites: favorites });
         console.log("Favori başarıyla kaldırıldı.");
+        getFavorites();
       } else {
-        console.error("Kullanıcı bulunamadı.");
+        console.error("Kullanıcı bulunamadı.a");
       }
     } catch (error) {
       console.error("Hata oluştu: ", error);
@@ -87,7 +93,7 @@ const ProfileProductCard = ({ post, myPost }) => {
     });
     return formattedCategory;
   }
-
+  console.log("postCheckerResult", postCheckerResult);
   return (
     //slice kullanmamın nedeni my posts sayfasındaki vitrinde sadece bir tane favorilere atılmış ilan göstermek istemem yoksa tüm favorilenenleri my posts sayfasında render ederdi
     <>

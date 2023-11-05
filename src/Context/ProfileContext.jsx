@@ -123,74 +123,103 @@ const ProfileContext = ({ children }) => {
     } else return;
   }, []);
 
-  const [loadingFav, setLoadingFav] = useState(true);
-  // Favorites page
+  // const [loadingFav, setLoadingFav] = useState(true);
+  // // Favorites page
 
-  const fetchFavoriteEstates = async () => {
-    try {
-      // const user = auth.currentUser;
-      // const currentUserId = user.uid;
-      const currentUserId = userActiveUid;
-      const userRef = doc(db, "users", currentUserId);
-      const userSnapshot = await getDoc(userRef);
-      const userData = userSnapshot.data();
+  // const fetchFavoriteEstates = async () => {
+  //   try {
+  //     // const user = auth.currentUser;
+  //     // const currentUserId = user.uid;
+  //     const currentUserId = userActiveUid;
+  //     const userRef = doc(db, "users", currentUserId);
+  //     const userSnapshot = await getDoc(userRef);
+  //     const userData = userSnapshot.data();
 
-      if (!userData || !userData.favorites) {
-        setLoadingFav(false);
-        return;
-      }
+  //     if (!userData || !userData.favorites) {
+  //       setLoadingFav(false);
+  //       return;
+  //     }
 
-      const favorites = userData.favorites;
+  //     const favorites = userData.favorites;
 
-      const favoriteEstatesPromises = favorites.map(async (estateId) => {
-        const estateRef = doc(db, "estates", estateId);
-        const estateSnapshot = await getDoc(estateRef);
+  //     const favoriteEstatesPromises = favorites.map(async (estateId) => {
+  //       const estateRef = doc(db, "estates", estateId);
+  //       const estateSnapshot = await getDoc(estateRef);
 
-        if (estateSnapshot.exists()) {
-          return { id: estateSnapshot.id, ...estateSnapshot.data() };
+  //       if (estateSnapshot.exists()) {
+  //         return { id: estateSnapshot.id, ...estateSnapshot.data() };
+  //       }
+  //       return null;
+  //     });
+
+  //     const favoriteEstatesData = await Promise.all(favoriteEstatesPromises);
+  //     const filteredFavoriteEstates = favoriteEstatesData.filter(
+  //       (estate) => estate !== null
+  //     );
+
+  //     setFavoriteEstates(filteredFavoriteEstates);
+  //     setLoadingFav(false);
+  //   } catch (error) {
+  //     console.error("Favori ilanları getirme hatası: ", error);
+  //     setLoadingFav(false);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   // const user = auth.currentUser;
+  //   // const currentUserId = user.uid;
+  //   if (userActive) {
+  //     const currentUserId = userActiveUid;
+  //     const userRef = doc(db, "users", currentUserId);
+  //     const unsubscribe = onSnapshot(userRef, async (userSnapshot) => {
+  //       try {
+  //         const userData = userSnapshot.data();
+  //         if (userData && userData.favorites) {
+  //           await fetchFavoriteEstates();
+  //         } else {
+  //           setFavoriteEstates([]); // Kullanıcı favori ilanı yoksa boş bir diziye ayarlayın
+  //           setLoadingFav(false);
+  //         }
+  //       } catch (error) {
+  //         console.error("Kullanıcı verilerini getirme hatası: ", error);
+  //         setLoadingFav(false);
+  //       }
+  //     });
+
+  //     return () => {
+  //       unsubscribe();
+  //     };
+  //   } else return;
+  // }, []);
+
+  const [userFavorite, setUserFavorite] = useState();
+
+  const getFavorites = async () => {
+    const temp = [];
+    await userActive.favorites.forEach((favorite) => {
+      const uid = favorite;
+      const estateRef = doc(db, "estates", uid);
+
+      getDoc(estateRef).then((docSnapshot) => {
+        if (docSnapshot.exists()) {
+          const estateData = docSnapshot.data();
+          //console.log("estate bilgileri:", estateData);
+          //estateData.push({ id: uid });
+          estateData["id"] = uid;
+          temp.push(estateData);
+          console.log("MERT", estateData, temp);
+          //setIsLoading(false);
+        } else {
+          console.log("Kullanıcı bulunamadı");
+          //setIsLoading(false);
         }
-        return null;
       });
-
-      const favoriteEstatesData = await Promise.all(favoriteEstatesPromises);
-      const filteredFavoriteEstates = favoriteEstatesData.filter(
-        (estate) => estate !== null
-      );
-
-      setFavoriteEstates(filteredFavoriteEstates);
-      setLoadingFav(false);
-    } catch (error) {
-      console.error("Favori ilanları getirme hatası: ", error);
-      setLoadingFav(false);
-    }
+    });
+    //setUserFavorite(temp);
+    console.log("girdi", userActive.favorites);
+    //console.log("temp", temp);
+    setFavoriteEstates(temp);
   };
-
-  useEffect(() => {
-    // const user = auth.currentUser;
-    // const currentUserId = user.uid;
-    if (userActive) {
-      const currentUserId = userActiveUid;
-      const userRef = doc(db, "users", currentUserId);
-      const unsubscribe = onSnapshot(userRef, async (userSnapshot) => {
-        try {
-          const userData = userSnapshot.data();
-          if (userData && userData.favorites) {
-            await fetchFavoriteEstates();
-          } else {
-            setFavoriteEstates([]); // Kullanıcı favori ilanı yoksa boş bir diziye ayarlayın
-            setLoadingFav(false);
-          }
-        } catch (error) {
-          console.error("Kullanıcı verilerini getirme hatası: ", error);
-          setLoadingFav(false);
-        }
-      });
-
-      return () => {
-        unsubscribe();
-      };
-    } else return;
-  }, []);
 
   const values = {
     estateDataFilter: estateDataFilter,
@@ -200,7 +229,9 @@ const ProfileContext = ({ children }) => {
     setEstateDataFilter2: setEstateDataFilter2,
     activeClickHandler: activeClickHandler,
     favoriteEstates: favoriteEstates,
-    loadingFav: loadingFav,
+    //loadingFav: loadingFav,
+    userFavorite: userFavorite,
+    getFavorites: getFavorites,
   };
   return (
     <ContextProfile.Provider value={values}>{children}</ContextProfile.Provider>

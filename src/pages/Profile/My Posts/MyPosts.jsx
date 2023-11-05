@@ -3,22 +3,19 @@ import ProfileTemplate from "../../../components/ProfileTemplate/ProfileTemplate
 import PostAd from "../../../components/PostAd/PostAd";
 import useUserPosts from "../../../components/hooks/useUserPosts";
 import { useNavigate } from "react-router-dom";
-import { Context } from "../../../Context/ProfileContext";
+import { ContextProfile } from "../../../Context/ProfileContext";
 import ProfileProductCard from "../../../components/ProfileProductCard/ProfileProductCard";
 import "../Favorites/Favorites.css";
 
 const MyPosts = () => {
   const navigate = useNavigate();
-  const { estateData, loading } = useUserPosts();
-  const { estateDataFilter, estateDataFilter2 } = useContext(Context);
+  const { loading } = useUserPosts();
+  const { estateDataFilter, estateDataFilter2 } = useContext(ContextProfile);
 
   useEffect(() => {
-    console.log(estateData);
-  }, []);
-
-  useEffect(() => {
-    console.log(estateDataFilter);
-  }, [estateDataFilter]);
+    console.log("estateDataFilter in myPost", estateDataFilter);
+    console.log("estateDataFilter2 in myPost", estateDataFilter2);
+  }, [estateDataFilter, estateDataFilter2]);
 
   return (
     <ProfileTemplate>

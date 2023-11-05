@@ -3,11 +3,11 @@ import ProfileTemplate from "../../../components/ProfileTemplate/ProfileTemplate
 import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
 import { getAuth } from "firebase/auth";
 import ProfileProductCard from "../../../components/ProfileProductCard/ProfileProductCard";
-import { Context } from "../../../Context/ProfileContext";
+import { ContextProfile } from "../../../Context/ProfileContext";
 import "./Favorites.css";
 
 const Favorites = () => {
-  const { favoriteEstates, loadingFav } = useContext(Context);
+  const { favoriteEstates, loadingFav } = useContext(ContextProfile);
 
   return (
     <ProfileTemplate>

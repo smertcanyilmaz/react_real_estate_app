@@ -4,11 +4,11 @@ import PostAd from "../../../components/PostAd/PostAd";
 import NoMeetingRoomRoundedIcon from "@mui/icons-material/NoMeetingRoomRounded";
 import useUserPosts from "../../../components/hooks/useUserPosts";
 import ProfileProductCard from "../../../components/ProfileProductCard/ProfileProductCard";
-import { Context } from "../../../Context/ProfileContext";
+import { ContextProfile } from "../../../Context/ProfileContext";
 
 const PasivePosts = () => {
   const { estateData, loading } = useUserPosts();
-  const { estateDataFilter2 } = useContext(Context);
+  const { estateDataFilter2 } = useContext(ContextProfile);
 
   return (
     <ProfileTemplate>

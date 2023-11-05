@@ -8,6 +8,7 @@ export const Context = createContext();
 export const AuthContext = ({ children }) => {
   const auth = getAuth();
   const [userActive, setUserActive] = useState();
+  const [userActiveUid, setUserActiveUid] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
   console.log(userActive);
@@ -20,6 +21,7 @@ export const AuthContext = ({ children }) => {
         try {
           const uid = currentUser.uid;
           const userRef = doc(db, "users", uid);
+          setUserActiveUid(uid);
           getDoc(userRef)
             .then((docSnapshot) => {
               if (docSnapshot.exists()) {
@@ -57,6 +59,7 @@ export const AuthContext = ({ children }) => {
   const values = {
     userActive: userActive,
     setUserActive: setUserActive,
+    userActiveUid: userActiveUid,
   };
 
   return (

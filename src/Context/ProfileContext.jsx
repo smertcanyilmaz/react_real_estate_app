@@ -88,7 +88,7 @@ const ProfileContext = ({ children }) => {
   useEffect(() => {
     //PasivePosts Page anlık olarak database güncelleme
 
-    if (path === "posts/actives" || path === "posts/myposts") {
+    if (path === "posts/pasives" || path === "posts/myposts") {
       const currentUserId = userActiveUid;
       const q = query(
         collection(db, "estates"),

@@ -89,7 +89,7 @@ const ProductCard = ({
       if (selectedRoomNumbers) {
         filteredEstates = filteredEstates.filter(
           (estate) =>
-            estate.rooms.bedrooms === selectedRoomNumbers &&
+            estate?.rooms?.bedrooms === selectedRoomNumbers &&
             estate.passivePosts === false
         );
       }
@@ -97,7 +97,7 @@ const ProductCard = ({
       if (selectedRoomNumbers2) {
         filteredEstates = filteredEstates.filter(
           (estate) =>
-            estate.rooms.bathrooms === selectedRoomNumbers2 &&
+            estate?.rooms?.bathrooms === selectedRoomNumbers2 &&
             estate.passivePosts === false
         );
       }

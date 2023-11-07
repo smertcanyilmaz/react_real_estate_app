@@ -1,17 +1,14 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import ProfileTemplate from "../../../components/ProfileTemplate/ProfileTemplate";
 import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
-import { getAuth } from "firebase/auth";
 import ProfileProductCard from "../../../components/ProfileProductCard/ProfileProductCard";
 import { ContextProfile } from "../../../Context/ProfileContext";
 import "./Favorites.css";
+import useUserPosts from "../../../components/hooks/useUserPosts";
 
 const Favorites = () => {
-  const { favoriteEstates, getFavorites } = useContext(ContextProfile);
-
-  useEffect(() => {
-    getFavorites();
-  }, []);
+  const { favoriteEstates, loadingFav } = useContext(ContextProfile);
+  const { loading } = useUserPosts();
 
   return (
     <ProfileTemplate>
@@ -21,7 +18,7 @@ const Favorites = () => {
             favoriteEstates.length === 0 && "not_post"
           }`}
         >
-          {favoriteEstates.length === 0 ? (
+          {favoriteEstates.length === 0 && !loadingFav ? (
             <>
               <div className="border-2 border-gray-300 p-2 rounded-full flex items-center justify-center">
                 <FavoriteRoundedIcon style={{ color: "gray" }} />

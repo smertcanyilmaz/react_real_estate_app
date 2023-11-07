@@ -53,7 +53,6 @@ const CreatePostInfo = () => {
         const imageRef = ref(storage, `userImages/${v4()}`);
 
         await uploadBytes(imageRef, file).then((snapshot) => {
-          // Yükleme işlemi başarılı oldu, dosya türünü ayarlayın
           const contentType = "image/jpeg"; // Örnek: jpeg, png, vb.
 
           // Dosyanın metadata'sını güncelle

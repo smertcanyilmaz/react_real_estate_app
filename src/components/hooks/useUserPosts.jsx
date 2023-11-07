@@ -1,20 +1,17 @@
 import React, { useContext, useEffect, useState } from "react";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "../../firebase-config";
-import { getAuth } from "firebase/auth";
 import { Context } from "../../Context/AuthContext";
 
 const useUserPosts = () => {
   // aktif kullanıcının estates collectionda bulunan ilan bilgilerini getirir
-  const auth = getAuth();
+
   const [estateData, setEstateData] = useState([]);
   const [loading, setLoading] = useState(true);
   const { userActiveUid } = useContext(Context);
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
-      // const user = auth.currentUser;
-      // const currentUserId = user.uid;
 
       const currentUserId = userActiveUid;
 

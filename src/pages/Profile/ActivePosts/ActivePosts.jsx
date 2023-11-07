@@ -1,47 +1,15 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import ProfileTemplate from "../../../components/ProfileTemplate/ProfileTemplate";
 import PostAd from "../../../components/PostAd/PostAd";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import useUserPosts from "../../../components/hooks/useUserPosts";
 import "./ActivePosts.css";
-
 import ProfileProductCard from "../../../components/ProfileProductCard/ProfileProductCard";
 import { ContextProfile } from "../../../Context/ProfileContext";
-import { Context } from "../../../Context/AuthContext";
-import { collection, onSnapshot, query, where } from "firebase/firestore";
-import { db } from "../../../firebase-config";
 
 const ActivePosts = () => {
-  const { estateData, loading } = useUserPosts();
-  const { estateDataFilter, setEstateDataFilter } = useContext(ContextProfile);
-  const { userActive, userActiveUid } = useContext(Context);
-
-  //console.log("userActiveUid - Active Posts", userActiveUid);
-
-  // useEffect(() => {
-  //   // ActivePosts page anlık olarak database güncelleme
-  //   // const user = auth.currentUser;
-  //   // const currentUserId = user.uid;
-  //   if (userActive) {
-  //     const currentUserId = userActiveUid;
-  //     const q = query(
-  //       collection(db, "estates"),
-  //       where("userData", "==", currentUserId),
-  //       where("passivePosts", "==", false)
-  //     );
-  //     const unsubscribe = onSnapshot(q, (querySnapshot) => {
-  //       const updatedEstateData = [];
-  //       querySnapshot.forEach((doc) => {
-  //         updatedEstateData.push({ id: doc.id, ...doc.data() });
-  //       });
-  //       setEstateDataFilter(updatedEstateData);
-  //     });
-
-  //     return () => {
-  //       unsubscribe();
-  //     };
-  //   } else return;
-  // }, []);
+  const { loading } = useUserPosts();
+  const { estateDataFilter } = useContext(ContextProfile);
 
   return (
     <ProfileTemplate>

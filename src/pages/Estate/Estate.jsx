@@ -17,6 +17,7 @@ import {
   query,
   where,
   getDocs,
+  getDoc,
 } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { db } from "../../firebase-config";
@@ -36,38 +37,51 @@ const Estate = ({ setUnAuthNavbar }) => {
     setUnAuthNavbar(false);
   }, []);
 
+  const { userActiveUid } = useContext(Context);
+
   const favoriteClickHandler = async (estateId, email) => {
-    const usersCollectionRef = collection(db, "users");
-    const estatesCollectionRef = collection(db, "estates");
+    // const usersCollectionRef = collection(db, "users");
+    // const estatesCollectionRef = collection(db, "estates");
+    const userId = userActiveUid;
+    console.log(userId, "userid");
+    const userRef = doc(db, "users", userId);
+    console.log("userref", userRef);
 
     // Kullanıcının belgesini al
-    const userQuery = query(usersCollectionRef, where("email", "==", email));
-    const userSnapshot = await getDocs(userQuery);
-    let userDocRef;
+    // const userQuery = query(usersCollectionRef, where("email", "==", email));
+    try {
+      const userSnapshot = await getDoc(userRef);
 
-    userSnapshot.forEach((doc) => {
-      userDocRef = doc.ref;
-    });
+      console.log("userSnapshot", userSnapshot);
+      if (userSnapshot.exists()) {
+        const userData = userSnapshot.data();
+        if (!userData.favorites) {
+          // Kullanıcı için 'favorites' alanı yoksa, oluştur
+          await updateDoc(userRef, { favorites: [estateId] });
+        } else {
+          // Kullanıcı için 'favorites' alanı varsa, ilan ID'sini ekleyin
+          await updateDoc(userRef, {
+            favorites: [...userData.favorites, estateId],
+          });
+        }
+
+        console.log("İlan favorilere eklendi!");
+      }
+    } catch (error) {
+      console.log("hata", error);
+    }
+
+    //let userDocRef;
+
+    // userSnapshot.forEach((doc) => {
+    //   userDocRef = doc.ref;
+    // });
 
     // Kullanıcının varlığını kontrol et
-    if (!userDocRef) {
-      console.error("Kullanıcı bulunamadı!");
-      return;
-    }
-
-    const userData = userSnapshot.docs[0].data();
-
-    if (!userData.favorites) {
-      // Kullanıcı için 'favorites' alanı yoksa, oluştur
-      await updateDoc(userDocRef, { favorites: [estateId] });
-    } else {
-      // Kullanıcı için 'favorites' alanı varsa, ilan ID'sini ekleyin
-      await updateDoc(userDocRef, {
-        favorites: [...userData.favorites, estateId],
-      });
-    }
-
-    console.log("İlan favorilere eklendi!");
+    // if (!userDocRef) {
+    //   console.error("Kullanıcı bulunamadı!");
+    //   return;
+    // }
   };
 
   return (

@@ -14,6 +14,7 @@ const ProfileSideBar = () => {
 
   const [selected, setSelected] = useState(null);
   const [selectedPosts, setSelectedPosts] = useState(null);
+
   const navigateClick = (name) => {
     navigate(`/${name}`);
   };

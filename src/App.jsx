@@ -24,9 +24,9 @@ function App() {
 
   return (
     <AuthContext>
-      <ProfileContext>
-        <>
-          <BrowserRouter>
+      <>
+        <BrowserRouter>
+          <ProfileContext>
             <Routes>
               <Route
                 path="/"
@@ -116,9 +116,9 @@ function App() {
                 />
               </Route>
             </Routes>
-          </BrowserRouter>
-        </>
-      </ProfileContext>
+          </ProfileContext>
+        </BrowserRouter>
+      </>
     </AuthContext>
   );
 }

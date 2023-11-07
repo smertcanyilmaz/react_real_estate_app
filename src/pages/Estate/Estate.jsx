@@ -31,37 +31,70 @@ const Estate = ({ setUnAuthNavbar }) => {
     setUnAuthNavbar(false);
   }, []);
 
-  const favoriteClickHandler = async (estateId) => {
-    const userId = userActiveUid;
-    console.log(userId, "userid");
-    const userRef = doc(db, "users", userId);
-    console.log("userref", userRef);
+  useEffect(() => {
+    // eğer kullanıcı ilanı favorileşmişse tekrar aynı ilana geldiğinde favorilediğini görebilmesi için veri çekmemiz gerekiyor
+    const fetchData = async () => {
+      const userId = userActiveUid;
+      const userRef = doc(db, "users", userId);
+      const estateRef = doc(db, "estates", id);
 
-    if (!isFavorite) {
       try {
         const userSnapshot = await getDoc(userRef);
+        const estateSnapshot = await getDoc(estateRef);
 
-        console.log("userSnapshot", userSnapshot);
+        if (userSnapshot.exists() && estateSnapshot.exists()) {
+          const userData = userSnapshot.data();
+          const estateData = estateSnapshot.data();
+
+          setIsFavorite(
+            userData.favorites.includes(id) && estateData.favorited
+          );
+        }
+      } catch (error) {
+        console.log("Hata oluştu:", error);
+      }
+    };
+
+    fetchData();
+  }, [id, userActiveUid]);
+
+  const favoriteClickHandler = async (estateId) => {
+    const userId = userActiveUid;
+    const userRef = doc(db, "users", userId);
+    const estateRef = doc(db, "estates", estateId);
+
+    try {
+      if (!isFavorite) {
+        const userSnapshot = await getDoc(userRef);
+        const estateSnapshot = await getDoc(estateRef);
+
         if (userSnapshot.exists()) {
           const userData = userSnapshot.data();
           if (!userData.favorites) {
-            // Kullanıcı için 'favorites' alanı yoksa, oluştur
             await updateDoc(userRef, { favorites: [estateId] });
           } else {
-            // Kullanıcı için 'favorites' alanı varsa, ilan ID'sini ekle
             await updateDoc(userRef, {
               favorites: [...userData.favorites, estateId],
             });
           }
-          setIsFavorite(true);
-          console.log("İlan favorilere eklendi!");
         }
-      } catch (error) {
-        console.log("hata", error);
+
+        if (estateSnapshot.exists()) {
+          await updateDoc(estateRef, { favorited: true }); // Favori olarak işaretle
+          setIsFavorite(true);
+        }
+      } else {
+        RemoveFavorite(estateId);
+
+        const estateSnapshot = await getDoc(estateRef);
+
+        if (estateSnapshot.exists()) {
+          await updateDoc(estateRef, { favorited: false }); // Favori işaretini kaldır
+          setIsFavorite(false);
+        }
       }
-    } else {
-      RemoveFavorite(estateId);
-      setIsFavorite(false);
+    } catch (error) {
+      console.log("Hata oluştu:", error);
     }
   };
 

@@ -9,23 +9,16 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import OverlayEstate from "../../components/OverlayEstate/OverlayEstate";
 import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
 import { Context } from "../../Context/AuthContext";
-import {
-  doc,
-  updateDoc,
-  collection,
-  onSnapshot,
-  query,
-  where,
-  getDocs,
-  getDoc,
-} from "firebase/firestore";
-import { getAuth } from "firebase/auth";
+import { doc, updateDoc, getDoc } from "firebase/firestore";
 import { db } from "../../firebase-config";
+import { ContextProfile } from "../../Context/ProfileContext";
 
 const Estate = ({ setUnAuthNavbar }) => {
   const { id } = useParams();
   const { estates } = useFetch();
-  const { userActive } = useContext(Context);
+  const { userActiveUid } = useContext(Context);
+  const { RemoveFavorite } = useContext(ContextProfile);
+  const [isFavorite, setIsFavorite] = useState(false);
 
   const item = estates.find((estate) => estate.id === id);
   console.log(item);
@@ -37,51 +30,42 @@ const Estate = ({ setUnAuthNavbar }) => {
     setUnAuthNavbar(false);
   }, []);
 
-  const { userActiveUid } = useContext(Context);
-
-  const favoriteClickHandler = async (estateId, email) => {
-    // const usersCollectionRef = collection(db, "users");
-    // const estatesCollectionRef = collection(db, "estates");
+  const favoriteClickHandler = async (estateId) => {
     const userId = userActiveUid;
     console.log(userId, "userid");
     const userRef = doc(db, "users", userId);
     console.log("userref", userRef);
 
-    // Kullanıcının belgesini al
-    // const userQuery = query(usersCollectionRef, where("email", "==", email));
-    try {
-      const userSnapshot = await getDoc(userRef);
+    if (!isFavorite) {
+      try {
+        const userSnapshot = await getDoc(userRef);
 
-      console.log("userSnapshot", userSnapshot);
-      if (userSnapshot.exists()) {
-        const userData = userSnapshot.data();
-        if (!userData.favorites) {
-          // Kullanıcı için 'favorites' alanı yoksa, oluştur
-          await updateDoc(userRef, { favorites: [estateId] });
-        } else {
-          // Kullanıcı için 'favorites' alanı varsa, ilan ID'sini ekleyin
-          await updateDoc(userRef, {
-            favorites: [...userData.favorites, estateId],
-          });
+        console.log("userSnapshot", userSnapshot);
+        if (userSnapshot.exists()) {
+          const userData = userSnapshot.data();
+          if (!userData.favorites) {
+            // Kullanıcı için 'favorites' alanı yoksa, oluştur
+            await updateDoc(userRef, { favorites: [estateId] });
+          } else {
+            // Kullanıcı için 'favorites' alanı varsa, ilan ID'sini ekle
+            await updateDoc(userRef, {
+              favorites: [...userData.favorites, estateId],
+            });
+          }
+          setIsFavorite(true);
+          console.log("İlan favorilere eklendi!");
         }
-
-        console.log("İlan favorilere eklendi!");
+      } catch (error) {
+        console.log("hata", error);
       }
-    } catch (error) {
-      console.log("hata", error);
+    } else {
+      RemoveFavorite(estateId);
+      setIsFavorite(false);
     }
+  };
 
-    //let userDocRef;
-
-    // userSnapshot.forEach((doc) => {
-    //   userDocRef = doc.ref;
-    // });
-
-    // Kullanıcının varlığını kontrol et
-    // if (!userDocRef) {
-    //   console.error("Kullanıcı bulunamadı!");
-    //   return;
-    // }
+  const componentStyle = {
+    color: isFavorite ? "red" : "rgba(31 41 55 / 0.8)",
   };
 
   return (
@@ -104,11 +88,18 @@ const Estate = ({ setUnAuthNavbar }) => {
               {item?.place?.country} | {item?.date}
             </div>
             <div
-              className="text-gray-800/80 rounded-lg px-3 py-2 hover:bg-gray-300/50 cursor-pointer duration-300 active:scale-90"
-              onClick={() => favoriteClickHandler(item.id, userActive.email)}
+              className={`text-gray-800/80 rounded-lg px-3 py-2 hover:bg-gray-300/50 cursor-pointer duration-300 active:scale-90 ${
+                isFavorite && "bg-gray-300/50"
+              }`}
+              onClick={() => favoriteClickHandler(item.id)}
             >
-              <FavoriteBorderRoundedIcon fontSize="small" />
-              <span className="text-sm font-semibold underline ml-2">Save</span>
+              <FavoriteBorderRoundedIcon
+                fontSize="small"
+                style={componentStyle}
+              />
+              <span className="text-sm font-semibold underline ml-2">
+                {isFavorite ? "Saved" : "Save"}
+              </span>
             </div>
           </div>
         </div>

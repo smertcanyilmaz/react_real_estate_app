@@ -173,6 +173,32 @@ const ProfileContext = ({ children }) => {
     } else return;
   }, [path]);
 
+  const RemoveFavorite = async (estateId) => {
+    const userId = userActiveUid;
+
+    try {
+      const userRef = doc(db, "users", userId);
+      const userSnap = await getDoc(userRef);
+
+      if (userSnap.exists()) {
+        const userData = userSnap.data();
+
+        const userFavoritesFiltered = userData.favorites.filter(
+          (fav) => fav !== estateId
+        );
+
+        await updateDoc(userRef, { favorites: userFavoritesFiltered });
+        console.log("favori ilan başarı ile kaldırıldı");
+        const updatedFavoriteEstates = favoriteEstates.filter(
+          (fav) => fav.id !== estateId
+        );
+        setFavoriteEstates(updatedFavoriteEstates);
+      }
+    } catch (error) {
+      console.log("favori kaldırma işleminde bir hata oluştu", error);
+    }
+  };
+
   const values = {
     estateDataFilter: estateDataFilter,
     setEstateDataFilter: setEstateDataFilter,
@@ -183,6 +209,7 @@ const ProfileContext = ({ children }) => {
     favoriteEstates: favoriteEstates,
     setFavoriteEstates: setFavoriteEstates,
     loadingFav: loadingFav,
+    RemoveFavorite: RemoveFavorite,
   };
   return (
     <ContextProfile.Provider value={values}>{children}</ContextProfile.Provider>

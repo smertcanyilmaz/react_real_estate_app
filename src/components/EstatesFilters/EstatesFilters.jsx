@@ -20,22 +20,24 @@ const EstatesFilters = ({
   const buttons = [
     {
       id: 0,
+      icon: <LocalFireDepartmentOutlinedIcon className="icons" />,
+      title: "Trending",
+      name: "trending",
+    },
+
+    {
+      id: 1,
       icon: <HouseOutlinedIcon className="icons" />,
       title: "Sale",
       name: "sale",
     },
     {
-      id: 1,
+      id: 2,
       icon: <HomeOutlinedIcon className="icons" />,
       title: "Rent",
       name: "rent",
     },
-    {
-      id: 2,
-      icon: <LocalFireDepartmentOutlinedIcon className="icons" />,
-      title: "Trending",
-      name: "trending",
-    },
+
     {
       id: 3,
       icon: <TsunamiOutlinedIcon className="icons" />,
@@ -76,11 +78,15 @@ const EstatesFilters = ({
 
   return (
     <div className="categories w-full flex justify-between items-center gap-5">
-      <div className="quickSelection flex gap-5 z-20">
+      <div className="quickSelection flex gap-5 z-20 ">
         {buttons.map((button) => (
           <div
             key={button.id}
-            className={`quick ${selectedButton === button.id && "border-2 "} `}
+            className={`quick ${selectedButton === button.id && "border-2"} ${
+              selectedButton === button.id &&
+              button.name === "trending" &&
+              "shadow-xl shadow-yellow-200 "
+            } ${button.name === "trending" && "bg-yellow-300 border-none"} `}
             onClick={() => selectedButtonHandler(button.id, button.name)}
           >
             {button.icon}

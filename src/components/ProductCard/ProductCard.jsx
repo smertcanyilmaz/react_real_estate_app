@@ -161,7 +161,7 @@ const ProductCard = ({
               )}
             </div>
             <div className="absolute top-2 right-3 text-gray-50 opacity-90  ">
-              <FavoriteRoundedIcon />
+              <FavoriteRoundedIcon style={{ color: "#ef4a4a" }} />
             </div>
           </div>
         </Link>

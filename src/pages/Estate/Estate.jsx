@@ -12,6 +12,7 @@ import { Context } from "../../Context/AuthContext";
 import { doc, updateDoc, getDoc } from "firebase/firestore";
 import { db } from "../../firebase-config";
 import { ContextProfile } from "../../Context/ProfileContext";
+import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
 
 const Estate = ({ setUnAuthNavbar }) => {
   const { id } = useParams();
@@ -65,7 +66,7 @@ const Estate = ({ setUnAuthNavbar }) => {
   };
 
   const componentStyle = {
-    color: isFavorite ? "red" : "rgba(31 41 55 / 0.8)",
+    color: isFavorite ? "#ef4a4a" : "rgba(31 41 55 / 0.8)",
   };
 
   return (
@@ -93,10 +94,14 @@ const Estate = ({ setUnAuthNavbar }) => {
               }`}
               onClick={() => favoriteClickHandler(item.id)}
             >
-              <FavoriteBorderRoundedIcon
-                fontSize="small"
-                style={componentStyle}
-              />
+              {!isFavorite ? (
+                <FavoriteBorderRoundedIcon
+                  fontSize="small"
+                  style={componentStyle}
+                />
+              ) : (
+                <FavoriteRoundedIcon fontSize="small" style={componentStyle} />
+              )}
               <span className="text-sm font-semibold underline ml-2">
                 {isFavorite ? "Saved" : "Save"}
               </span>

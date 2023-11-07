@@ -25,7 +25,6 @@ const ProfileProductCard = ({ post, myPost }) => {
   const [postChecker, setPostChecker] = useState([]);
 
   useEffect(() => {
-    console.log("esra");
     setPostChecker(
       post === "favorites"
         ? favoriteEstates

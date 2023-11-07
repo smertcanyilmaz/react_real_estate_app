@@ -48,8 +48,7 @@ const ProfileContext = ({ children }) => {
   useEffect(() => {
     // ActivePosts page anlık olarak database güncelleme
 
-    console.log(path, "aaaaaaa");
-    if (path === "posts/actives" || path === "posts/myposts") {
+    if (path === "posts/actives" || path === "posts") {
       const currentUserId = userActiveUid;
       const q = query(
         collection(db, "estates"),
@@ -88,7 +87,7 @@ const ProfileContext = ({ children }) => {
   useEffect(() => {
     //PasivePosts Page anlık olarak database güncelleme
 
-    if (path === "posts/pasives" || path === "posts/myposts") {
+    if (path === "posts/pasives" || path === "posts") {
       const currentUserId = userActiveUid;
       const q = query(
         collection(db, "estates"),
@@ -150,7 +149,7 @@ const ProfileContext = ({ children }) => {
   };
 
   useEffect(() => {
-    if (path === "favorites") {
+    if (path === "favorites" || path === "posts") {
       const currentUserId = userActiveUid;
       const userRef = doc(db, "users", currentUserId);
       const unsubscribe = onSnapshot(userRef, async (userSnapshot) => {

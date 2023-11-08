@@ -103,9 +103,7 @@ const ProfileProductCard = ({ post, myPost }) => {
               className={`w-full h-full flex gap-5 ${myPost ? "mt-3" : "mt-0"}`}
             >
               <div
-                className={`cursor-pointer ${
-                  myPost ? "h-full" : "max-w-[14rem]"
-                }`}
+                className={`cursor-pointer ${myPost ? "h-full" : "w-[14rem]"}`}
                 onClick={() => navigate(`/estates/${estate.id}`)}
               >
                 <img

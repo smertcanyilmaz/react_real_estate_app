@@ -18,8 +18,8 @@ const Estate = ({ setUnAuthNavbar }) => {
   const { id } = useParams();
   const { estates } = useFetch();
   const { userActiveUid } = useContext(Context);
-  const { RemoveFavorite } = useContext(ContextProfile);
-  const [isFavorite, setIsFavorite] = useState(false);
+  const { favoriteClickHandler, isFavorite, setIsFavorite } =
+    useContext(ContextProfile);
 
   const item = estates.find((estate) => estate.id === id);
   console.log(item);
@@ -36,7 +36,7 @@ const Estate = ({ setUnAuthNavbar }) => {
     const fetchData = async () => {
       const userId = userActiveUid;
       const userRef = doc(db, "users", userId);
-      const estateRef = doc(db, "estates", id);
+      const estateRef = doc(db, "estates", id); //id useparams'dan geliyor
 
       try {
         const userSnapshot = await getDoc(userRef);
@@ -57,46 +57,6 @@ const Estate = ({ setUnAuthNavbar }) => {
 
     fetchData();
   }, [id, userActiveUid]);
-
-  const favoriteClickHandler = async (estateId) => {
-    const userId = userActiveUid;
-    const userRef = doc(db, "users", userId);
-    const estateRef = doc(db, "estates", estateId);
-
-    try {
-      if (!isFavorite) {
-        const userSnapshot = await getDoc(userRef);
-        const estateSnapshot = await getDoc(estateRef);
-
-        if (userSnapshot.exists()) {
-          const userData = userSnapshot.data();
-          if (!userData.favorites) {
-            await updateDoc(userRef, { favorites: [estateId] });
-          } else {
-            await updateDoc(userRef, {
-              favorites: [...userData.favorites, estateId],
-            });
-          }
-        }
-
-        if (estateSnapshot.exists()) {
-          await updateDoc(estateRef, { favorited: true }); // Favori olarak işaretle
-          setIsFavorite(true);
-        }
-      } else {
-        RemoveFavorite(estateId);
-
-        const estateSnapshot = await getDoc(estateRef);
-
-        if (estateSnapshot.exists()) {
-          await updateDoc(estateRef, { favorited: false }); // Favori işaretini kaldır
-          setIsFavorite(false);
-        }
-      }
-    } catch (error) {
-      console.log("Hata oluştu:", error);
-    }
-  };
 
   const componentStyle = {
     color: isFavorite ? "#ef4a4a" : "rgba(31 41 55 / 0.8)",

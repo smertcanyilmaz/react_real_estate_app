@@ -1,7 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import useFetch from "../hooks/useFetch";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
+import { ContextProfile } from "../../Context/ProfileContext";
+import {
+  collection,
+  doc,
+  getDoc,
+  onSnapshot,
+  query,
+  where,
+} from "firebase/firestore";
+import { Context } from "../../Context/AuthContext";
+import { db } from "../../firebase-config";
 
 const ProductCard = ({
   currentSlide,
@@ -19,6 +30,9 @@ const ProductCard = ({
   const { estates } = useFetch();
   const [filteredList, setFilteredList] = useState([]);
   const [notFound, setNotFound] = useState(false);
+  const { favoriteClickHandler, isFavorite, setIsFavorite } =
+    useContext(ContextProfile);
+  const { userActiveUid } = useContext(Context);
 
   let filteredEstates = estates;
 
@@ -148,7 +162,7 @@ const ProductCard = ({
               alt=""
               className="h-40 object-cover rounded-t-lg"
             />
-            <div className="px-4 py-2 w-full space-y-1 relative">
+            <div className={`px-4 py-2 w-full space-y-1 relative `}>
               <h3 className="text-md font-bold">{estate?.title}</h3>
               <p className="text-[--blue] font-bold text-sm">
                 {estate?.price} €
@@ -160,8 +174,13 @@ const ProductCard = ({
                 </div>
               )}
             </div>
-            <div className="absolute top-2 right-3 text-gray-50 opacity-90  ">
-              <FavoriteRoundedIcon style={{ color: "#ef4a4a" }} />
+            <div
+              onClick={favoriteClickHandler}
+              className="absolute top-2 right-3 text-gray-50 opacity-90 z-10 hover:opacity-100 hover:text-white"
+            >
+              <FavoriteRoundedIcon
+              // sx={{ color: isFavorite ? "#ef4a4a" : "" }}
+              />
             </div>
           </div>
         </Link>

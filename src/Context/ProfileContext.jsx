@@ -199,6 +199,49 @@ const ProfileContext = ({ children }) => {
     }
   };
 
+  const [isFavorite, setIsFavorite] = useState(false); // bu state, favorilenen ilanın veritabanındaki favorited boolean tutuyor ve css özelleştirmesi yapıyor
+
+  const favoriteClickHandler = async (estateId) => {
+    //estate ve product card'da favori click fonksiyonu
+    const userId = userActiveUid;
+    const userRef = doc(db, "users", userId);
+    const estateRef = doc(db, "estates", estateId);
+
+    try {
+      if (!isFavorite) {
+        const userSnapshot = await getDoc(userRef);
+        const estateSnapshot = await getDoc(estateRef);
+
+        if (userSnapshot.exists()) {
+          const userData = userSnapshot.data();
+          if (!userData.favorites) {
+            await updateDoc(userRef, { favorites: [estateId] });
+          } else {
+            await updateDoc(userRef, {
+              favorites: [...userData.favorites, estateId],
+            });
+          }
+        }
+
+        if (estateSnapshot.exists()) {
+          await updateDoc(estateRef, { favorited: true }); // Favori olarak işaretle
+          setIsFavorite(true);
+        }
+      } else {
+        RemoveFavorite(estateId);
+
+        const estateSnapshot = await getDoc(estateRef);
+
+        if (estateSnapshot.exists()) {
+          await updateDoc(estateRef, { favorited: false }); // Favori işaretini kaldır
+          setIsFavorite(false);
+        }
+      }
+    } catch (error) {
+      console.log("Hata oluştu:", error);
+    }
+  };
+
   const values = {
     estateDataFilter: estateDataFilter,
     setEstateDataFilter: setEstateDataFilter,
@@ -210,6 +253,9 @@ const ProfileContext = ({ children }) => {
     setFavoriteEstates: setFavoriteEstates,
     loadingFav: loadingFav,
     RemoveFavorite: RemoveFavorite,
+    favoriteClickHandler: favoriteClickHandler,
+    isFavorite: isFavorite,
+    setIsFavorite: setIsFavorite,
   };
   return (
     <ContextProfile.Provider value={values}>{children}</ContextProfile.Provider>

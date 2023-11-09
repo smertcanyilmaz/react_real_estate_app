@@ -87,7 +87,7 @@ const ProfileProductCard = ({ post, myPost }) => {
         <div
           key={estate.id}
           className={`flex flex-col w-full shadow-md shadow-gray-200/50 ${
-            myPost ? " h-[20.1rem] relative p-10" : "p-3 h-[12rem]"
+            myPost ? "h-[20.1rem] relative p-10" : "p-3 h-[12rem]"
           }`}
         >
           {myPost && (
@@ -100,7 +100,7 @@ const ProfileProductCard = ({ post, myPost }) => {
           )}
           {
             <div
-              className={`w-full h-full flex gap-5 ${myPost ? "mt-3" : "mt-0"}`}
+              className={`w-full h-full flex gap-5 ${myPost ? "mt-5" : "mt-0"}`}
             >
               <div
                 className={`cursor-pointer ${myPost ? "h-full" : "w-[14rem]"}`}

@@ -19,11 +19,11 @@ const MyPosts = () => {
 
   return (
     <ProfileTemplate>
-      <div className="favorites h-full flex flex-col justify-between gap-5 bg-[--bg_color] cursor-pointer favorites">
-        <div className="flex justify-between gap-5 ">
+      <div className="favorites h-full flex flex-col justify-between gap-3 bg-[--bg_color] cursor-pointer favorites">
+        <div className="flex gap-10 mb-1">
           <div
             onClick={() => navigate("/posts/actives")}
-            className="flex-1 h-28 border border-gray-400/50 shadow-md px-3 py-5 flex flex-col items-start justify-between rounded-md bg-gray-50"
+            className="flex-1 h-28 border border-gray-400/50 shadow-md px-3 py-5 flex flex-col items-center justify-between rounded-md bg-gray-50"
           >
             <h1 className="text-lg font-semibold text-gray-700">
               Active Posts
@@ -49,7 +49,7 @@ const MyPosts = () => {
           </div>
           <div
             onClick={() => navigate("/posts/pasives")}
-            className="flex-1 h-28 border border-gray-400/50 shadow-md px-3 py-5 flex flex-col items-start justify-between rounded-md bg-gray-50"
+            className="flex-1 h-28 border border-gray-400/50 shadow-md px-3 py-5 flex flex-col items-center  justify-between rounded-md bg-gray-50"
           >
             <h1 className="text-lg font-semibold text-gray-700">
               Passive Posts
@@ -73,7 +73,7 @@ const MyPosts = () => {
                   : `You have ${estateDataFilter2.length} passive posts`)}
             </p>
           </div>
-          <div
+          {/* <div
             onClick={() => navigate("/posts/incomplete")}
             className="flex-1 h-28 border border-gray-400/50 shadow-md px-3 py-5 flex flex-col items-start justify-between rounded-md bg-gray-50"
           >
@@ -81,10 +81,10 @@ const MyPosts = () => {
               Incomplete Posts
             </h1>
             <p className="text-gray-600 text-sm">No post yet</p>
-          </div>
+          </div> */}
         </div>
 
-        <div className="free h-[100%] bg-gray-50 flex flex-col items-center justify-center">
+        <div className="free flex-1 pb-3 bg-gray-50 flex flex-col items-center justify-center border border-gray-400/50">
           <ProfileProductCard post="favorites" myPost={true} />
         </div>
         <PostAd />

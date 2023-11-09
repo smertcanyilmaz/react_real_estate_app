@@ -5,7 +5,7 @@ import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
 import KeyRoundedIcon from "@mui/icons-material/KeyRounded";
 import "./ProfilePopup.css";
 import Button from "../Button/Button";
-import { getAuth, updateEmail } from "firebase/auth";
+import { getAuth, sendEmailVerification, updateEmail } from "firebase/auth";
 import { Context } from "../../Context/AuthContext";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase-config";
@@ -22,38 +22,17 @@ const ProfilePopup = ({ clickHandler, showOverlay, edit }) => {
     e.preventDefault();
 
     const user = auth.currentUser;
+    const userEmail = user.email;
+
     updateEmail(user, newEmail)
       .then(() => {
-        // E-posta adresi başarıyla güncellendi
-        // Yeni e-posta adresi: newEmail
-        console.log("e güncellendi.");
+        // E-posta adresi güncellendi
+        console.log("email güncelleme başarılı");
       })
       .catch((error) => {
-        // E-posta adresi güncellenirken bir hata oluştu
-        // Hata detayları: error
-        console.error("e hata oluştu: ", error);
+        // Hata durumunda işlemler burada ele alınabilir
+        console.log("email güncelleme başarılı", error);
       });
-
-    const userRef = doc(db, "users", userActiveUid);
-    try {
-      let updateFields = {};
-
-      if (edit === 1) {
-        updateFields = { firstName: newName, lastName: newLastname };
-      } else if (edit === 2) {
-        updateFields = { email: newEmail };
-      } else if (edit === 3) {
-        updateFields = { password: newPassword };
-      }
-
-      await updateDoc(userRef, updateFields);
-      console.log("Kullanıcı bilgileri güncellendi.");
-    } catch (error) {
-      console.error(
-        "Kullanıcı bilgileri güncellenirken bir hata oluştu: ",
-        error
-      );
-    }
   };
 
   return (

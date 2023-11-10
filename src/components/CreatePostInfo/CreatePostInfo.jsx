@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useState, useContext } from "react";
 import PostType from "./PostType/PostType";
 import PostInfo from "./PostInfo/PostInfo";
 import { addDoc, collection } from "firebase/firestore";
@@ -12,6 +12,7 @@ import {
   updateMetadata,
 } from "firebase/storage";
 import { v4 } from "uuid";
+import { PostContext } from "../../Context/CreatePostContext";
 
 const refDb = collection(db, "estates");
 
@@ -20,17 +21,20 @@ const CreatePostInfo = () => {
   const auth = getAuth();
   const [selectedCategory, setSelectedCategory] = useState(null);
 
-  const [passivePosts, setPassivePosts] = useState(false);
-  const [incompletePosts, setIncompletePosts] = useState(false);
+  // const [passivePosts, setPassivePosts] = useState(false);
+  // const [incompletePosts, setIncompletePosts] = useState(false);
 
-  const today = new Date();
-  const formattedDate = today.toLocaleDateString("tr-TR");
+  // const today = new Date();
+  // const formattedDate = today.toLocaleDateString("tr-TR");
 
-  const [sum, setSum] = useState({
-    passivePosts: passivePosts,
-    incompletePosts: incompletePosts,
-    date: formattedDate,
-  });
+  // const [sum, setSum] = useState({
+  //   passivePosts: false,
+  //   incompletePosts: false,
+  //   date: formattedDate,
+  // });
+
+  const { sum, setSum } = useContext(PostContext);
+
   const [selectedFiles, setSelectedFiles] = useState([]); // seçilen fotoğrafların ekranda gösterilmesi için tutan state
   const [uploadImage, setUploadImage] = useState([]);
   const uploadImages = [];

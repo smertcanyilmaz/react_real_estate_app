@@ -1,0 +1,7 @@
+.ad_infos {
+  @apply w-full flex justify-between p-2;
+}
+
+.ad_infos_res {
+  @apply w-32 text-start capitalize font-semibold;
+}

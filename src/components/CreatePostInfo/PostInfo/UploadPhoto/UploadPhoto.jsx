@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import PhotoCameraIcon from "@mui/icons-material/PhotoCamera";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
+import { PostContext } from "../../../../Context/CreatePostContext";
 
 const UploadPhoto = ({
   selectedFiles,
@@ -10,6 +11,8 @@ const UploadPhoto = ({
   setUploadImage,
   uploadImages,
 }) => {
+  const { setPreviewImages } = useContext(PostContext);
+
   const handleFileChange = (e) => {
     //client tarafında gözükecek resimlerin kodları
     const files = e.target.files;
@@ -19,6 +22,7 @@ const UploadPhoto = ({
       selectedImages.push(URL.createObjectURL(files[i]));
     }
     setSelectedFiles(selectedImages);
+    setPreviewImages(selectedImages);
 
     //firebase'e gidecek arrayin kodları
     uploadImage.length === 0

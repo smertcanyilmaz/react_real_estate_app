@@ -3,8 +3,8 @@ import "./PostInfo.css";
 import AdressInfo from "./AdressInfo/AdressInfo";
 import UploadPhoto from "./UploadPhoto/UploadPhoto";
 import AdFeatures from "./AdFeatures/AdFeatures";
-
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { useNavigate } from "react-router-dom";
 
 const PostInfo = ({
   selectedCategory,
@@ -20,6 +20,8 @@ const PostInfo = ({
   features,
   setFeatures,
 }) => {
+  const navigate = useNavigate();
+
   const adInfoChangeHandler = (e, field) => {
     if (field === "bedrooms" || field === "bathrooms") {
       setSum((prevSum) => ({
@@ -114,6 +116,12 @@ const PostInfo = ({
       >
         Continue
         <ArrowForwardIcon style={{ color: "rgb(249 250 251)" }} />
+      </button>
+      <button
+        onClick={() => navigate("/preview")}
+        className="border border-gray-700 p-2"
+      >
+        preview
       </button>
     </div>
   );

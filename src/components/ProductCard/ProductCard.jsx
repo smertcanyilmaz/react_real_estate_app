@@ -1,18 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import useFetch from "../hooks/useFetch";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
 import { ContextProfile } from "../../Context/ProfileContext";
-import {
-  collection,
-  doc,
-  getDoc,
-  onSnapshot,
-  query,
-  where,
-} from "firebase/firestore";
 import { Context } from "../../Context/AuthContext";
-import { db } from "../../firebase-config";
 
 const ProductCard = ({
   currentSlide,
@@ -154,13 +145,13 @@ const ProductCard = ({
       {filteredList.map((estate) => (
         <Link to={`/estates/${estate.id}`} key={estate.id}>
           <div
-            className={`flex flex-col min-w-[14.60rem] h-64 bg-white rounded-2xl transform transition-transform duration-300 cursor-pointer relative`}
+            className={`flex flex-col min-w-[14.60rem] h-64 bg-gray-50 rounded-2xl transform transition-transform duration-300 cursor-pointer relative`}
             style={{ transform: `translateX(-${currentSlide * 15.9}rem)` }}
           >
             <img
               src={estate?.image}
               alt=""
-              className="h-40 object-cover rounded-t-lg"
+              className="h-40 object-cover rounded-t-2xl"
             />
             <div className={`px-4 py-2 w-full space-y-1 relative `}>
               <h3 className="text-md font-bold">{estate?.title}</h3>

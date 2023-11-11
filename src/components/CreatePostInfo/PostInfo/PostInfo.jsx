@@ -1,23 +1,24 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import "./PostInfo.css";
 import AdressInfo from "./AdressInfo/AdressInfo";
 import UploadPhoto from "./UploadPhoto/UploadPhoto";
 import AdFeatures from "./AdFeatures/AdFeatures";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { useNavigate } from "react-router-dom";
+import { PostContext } from "../../../Context/CreatePostContext";
 
-const PostInfo = ({
-  selectedCategory,
-  setSelectedCategory,
-  sum,
-  setSum,
-  selectedFiles,
-  setSelectedFiles,
-  uploadImage,
-  setUploadImage,
-  features,
-  setFeatures,
-}) => {
+const PostInfo = ({ selectedCategory }) => {
+  const {
+    sum,
+    setSum,
+    selectedFiles,
+    setSelectedFiles,
+    uploadImage,
+    setUploadImage,
+  } = useContext(PostContext);
+
+  const [features, setFeatures] = useState([]);
+
   const navigate = useNavigate();
 
   const adInfoChangeHandler = (e, field) => {

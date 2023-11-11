@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import DropDown from "./DropDown/DropDown";
+import { PostContext } from "../../../Context/CreatePostContext";
 
-const PostType = ({ selectedCategory, setSelectedCategory, sum, setSum }) => {
+const PostType = ({ selectedCategory, setSelectedCategory }) => {
+  const { setSum } = useContext(PostContext);
   const [showDropDown, setShowDropDown] = useState(false);
   const [showDropDown2, setShowDropDown2] = useState(false);
   const [selectedProperty, setSelectedProperty] = useState(null);

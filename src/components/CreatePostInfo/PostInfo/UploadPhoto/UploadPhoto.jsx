@@ -9,7 +9,6 @@ const UploadPhoto = ({
   setSelectedFiles,
   uploadImage,
   setUploadImage,
-  uploadImages,
 }) => {
   const { setPreviewImages } = useContext(PostContext);
 

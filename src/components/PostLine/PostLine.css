@@ -11,5 +11,5 @@
 }
 
 .lines {
-  @apply w-28 h-[1px] bg-gray-800;
+  @apply w-36 h-[1px] bg-gray-700/50;
 }

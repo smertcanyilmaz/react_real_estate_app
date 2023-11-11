@@ -11,12 +11,10 @@ const PostInfo = ({
   setSelectedCategory,
   sum,
   setSum,
-  continueClickHandler,
   selectedFiles,
   setSelectedFiles,
   uploadImage,
   setUploadImage,
-  uploadImages,
   features,
   setFeatures,
 }) => {
@@ -102,7 +100,6 @@ const PostInfo = ({
         setSelectedFiles={setSelectedFiles}
         uploadImage={uploadImage}
         setUploadImage={setUploadImage}
-        uploadImages={uploadImages}
       />
       <AdFeatures
         features={features}
@@ -110,18 +107,19 @@ const PostInfo = ({
         setSum={setSum}
       />
 
-      <button
+      {/* <button
         className="w-32 h-12 rounded-md duration-200 flex gap-2 justify-center items-center bg-gray-800 text-gray-50"
         onClick={continueClickHandler}
       >
         Continue
         <ArrowForwardIcon style={{ color: "rgb(249 250 251)" }} />
-      </button>
+      </button> */}
       <button
         onClick={() => navigate("/preview")}
-        className="border border-gray-700 p-2"
+        className="w-32 h-12 rounded-md duration-200 flex gap-2 justify-center items-center bg-gray-800 text-gray-50"
       >
-        preview
+        Preview
+        <ArrowForwardIcon style={{ color: "rgb(249 250 251)" }} />
       </button>
     </div>
   );

@@ -14,12 +14,20 @@ import {
 import { v4 } from "uuid";
 import { PostContext } from "../../Context/CreatePostContext";
 
-const refDb = collection(db, "estates");
+//const refDb = collection(db, "estates");
 
 const CreatePostInfo = () => {
   //const ref = collection(db, "estates");
   const auth = getAuth();
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const {
+    sum,
+    setSum,
+    uploadImage,
+    setUploadImage,
+    selectedFiles,
+    setSelectedFiles,
+  } = useContext(PostContext);
 
   // const [passivePosts, setPassivePosts] = useState(false);
   // const [incompletePosts, setIncompletePosts] = useState(false);
@@ -33,73 +41,67 @@ const CreatePostInfo = () => {
   //   date: formattedDate,
   // });
 
-  const { sum, setSum } = useContext(PostContext);
-
-  const [selectedFiles, setSelectedFiles] = useState([]); // seçilen fotoğrafların ekranda gösterilmesi için tutan state
-  const [uploadImage, setUploadImage] = useState([]);
-  const uploadImages = [];
+  //const [selectedFiles, setSelectedFiles] = useState([]); // seçilen fotoğrafların ekranda gösterilmesi için tutan state
+  //const [uploadImage, setUploadImage] = useState([]);
 
   const [features, setFeatures] = useState([]);
 
-  console.log(features);
-
-  console.log("UPLOADIMAGE", uploadImage);
   //console.log("UPLOADIMAGES", uploadImages);
 
-  const continueClickHandler = useCallback(
-    async (e) => {
-      e.preventDefault();
+  // const continueClickHandler = useCallback(
+  //   async (e) => {
+  //     e.preventDefault();
 
-      const imageRefs = [];
+  //     const imageRefs = [];
 
-      // Seçilen her dosyayı Firebase Storage'a yükledim ve URL'lerini aldım çünkü storage'daki resim linklerinin estates databasedeki estate objesine gitmesi lazımdı
-      for (const file of uploadImage) {
-        const imageRef = ref(storage, `userImages/${v4()}`);
+  //     // Seçilen her dosyayı Firebase Storage'a yükledim ve URL'lerini aldım çünkü storage'daki resim linklerinin estates databasedeki estate objesine gitmesi lazımdı
+  //     for (const file of uploadImage) {
+  //       const imageRef = ref(storage, `userImages/${v4()}`);
 
-        await uploadBytes(imageRef, file).then((snapshot) => {
-          const contentType = "image/jpeg"; // Örnek: jpeg, png, vb.
+  //       await uploadBytes(imageRef, file).then((snapshot) => {
+  //         const contentType = "image/jpeg"; // Örnek: jpeg, png, vb.
 
-          // Dosyanın metadata'sını güncelle
-          getMetadata(imageRef)
-            .then((metadata) => {
-              metadata.contentType = contentType;
-              return updateMetadata(imageRef, metadata);
-            })
-            .then((updatedMetadata) => {
-              console.log(
-                "Dosya türü güncellendi:",
-                updatedMetadata.contentType
-              );
-            });
-        });
+  //         // Dosyanın metadata'sını güncelle
+  //         getMetadata(imageRef)
+  //           .then((metadata) => {
+  //             metadata.contentType = contentType;
+  //             return updateMetadata(imageRef, metadata);
+  //           })
+  //           .then((updatedMetadata) => {
+  //             console.log(
+  //               "Dosya türü güncellendi:",
+  //               updatedMetadata.contentType
+  //             );
+  //           });
+  //       });
 
-        const downloadURL = await getDownloadURL(imageRef);
-        imageRefs.push(downloadURL);
-        console.log("DOWNLOAD URL", downloadURL);
-      }
+  //       const downloadURL = await getDownloadURL(imageRef);
+  //       imageRefs.push(downloadURL);
+  //       console.log("DOWNLOAD URL", downloadURL);
+  //     }
 
-      console.log("İMAGEREFS", imageRefs);
+  //     console.log("İMAGEREFS", imageRefs);
 
-      const user = auth.currentUser;
+  //     const user = auth.currentUser;
 
-      if (user) {
-        const userData = {
-          ...sum,
-          userData: user.uid,
-          image: imageRefs[0],
-          images: imageRefs,
-        };
-        addDoc(refDb, userData)
-          .then(() => {
-            console.log("Belge eklendi");
-          })
-          .catch((error) => {
-            console.error("Hata oluştu: ", error);
-          });
-      }
-    },
-    [sum, selectedFiles]
-  );
+  //     if (user) {
+  //       const userData = {
+  //         ...sum,
+  //         userData: user.uid,
+  //         image: imageRefs[0],
+  //         images: imageRefs,
+  //       };
+  //       addDoc(refDb, userData)
+  //         .then(() => {
+  //           console.log("Belge eklendi");
+  //         })
+  //         .catch((error) => {
+  //           console.error("Hata oluştu: ", error);
+  //         });
+  //     }
+  //   },
+  //   [sum, selectedFiles]
+  // );
 
   return (
     <div className="flex flex-col gap-10 relative">
@@ -114,12 +116,10 @@ const CreatePostInfo = () => {
         setSelectedCategory={setSelectedCategory}
         sum={sum}
         setSum={setSum}
-        continueClickHandler={continueClickHandler}
         selectedFiles={selectedFiles}
         setSelectedFiles={setSelectedFiles}
         uploadImage={uploadImage}
         setUploadImage={setUploadImage}
-        uploadImages={uploadImages}
         features={features}
         setFeatures={setFeatures}
       />

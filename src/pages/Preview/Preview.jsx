@@ -8,34 +8,46 @@ import { ToastContainer, toast, Slide } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Preview = () => {
-  const navigate = useNavigate();
-  const { postClickHandler, postLoading } = useContext(PostContext);
+  const { postClickHandler, postLoading, postError, setPostError } =
+    useContext(PostContext);
 
-  const handlePostClick = async (e) => {
-    try {
-      // Perform post action
-      e.preventDefault();
-      await postClickHandler();
-      if (!postLoading) {
-        toast.success("Ad created successfully!", {
-          position: "top-right",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: false,
-          pauseOnHover: false,
-          draggable: false,
-          progress: undefined,
-          theme: "light",
-        });
-      }
-    } catch (error) {
-      toast.error("Something went wrong!");
-      console.log("HATA", error);
-    }
-    setTimeout(() => {
-      navigate("/");
-    }, 3300);
-  };
+  // const handlePostClick = async (e) => {
+  //   try {
+  //     // Perform post action
+  //     e.preventDefault();
+  //     await postClickHandler();
+  //     if (!postLoading) {
+  //       toast.success("Ad created successfully!", {
+  //         position: "top-right",
+  //         autoClose: 2000,
+  //         hideProgressBar: false,
+  //         closeOnClick: false,
+  //         pauseOnHover: false,
+  //         draggable: false,
+  //         progress: undefined,
+  //         theme: "light",
+  //       });
+  //     }
+  //   } catch (error) {
+  //     toast.error("Something went wrong!");
+  //     console.log("HATA", error);
+  //   }
+  //   setTimeout(() => {
+  //     navigate("/");
+  //   }, 3300);
+  // };
+
+  // useEffect(() => {
+  //   if (!postError) {
+  //     const timer = setTimeout(() => {
+  //       navigate("/");
+  //     }, 5000);
+
+  //     return () => clearTimeout(timer);
+  //   }
+  //   return () => setPostError(null);
+  // }, [postClickHandler]);
+
   return (
     <>
       <div className="max-w-6xl mt-10 mb-10 flex flex-col gap-10 items-center justify-center">
@@ -50,7 +62,7 @@ const Preview = () => {
               ? "opacity-70 cursor-not-allowed"
               : "opacity-100 cursor-pointer"
           }`}
-          onClick={handlePostClick}
+          onClick={postClickHandler}
         >
           {!postLoading ? (
             <>Post</>

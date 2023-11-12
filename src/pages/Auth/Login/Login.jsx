@@ -16,16 +16,25 @@ const Login = ({ setUnAuthNavbar }) => {
   const auth = getAuth();
 
   const { email, password } = user;
+  const [logingLoading, setLogingLoading] = useState(false);
 
   const handleSignIn = async (e) => {
     e.preventDefault();
+    setLogingLoading(true);
+    console.log("girdi", logingLoading);
     signInWithEmailAndPassword(auth, email, password)
       .then((user) => {
         console.log(user);
         navigate("/");
+        setLogingLoading(false);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        console.log(error);
+        setLogingLoading(false);
+      });
   };
+
+  console.log(logingLoading, "LOGİNLOADİNG");
   return (
     <div className="flex max-w-full ">
       <AuthEntranceSide />
@@ -56,9 +65,20 @@ const Login = ({ setUnAuthNavbar }) => {
             />
             <button
               onClick={handleSignIn}
-              className="w-24 h-12 text-white bg-[#36cf94] rounded-md mb-5"
+              className={`w-24 h-12 text-white bg-[#36cf94] rounded-md mb-5 ${
+                logingLoading
+                  ? "opacity-70 cursor-not-allowed"
+                  : "opacity-100 cursor-pointer"
+              }`}
             >
-              SIGN IN
+              {!logingLoading ? (
+                <> SIGN IN</>
+              ) : (
+                <div className="flex items-center justify-center gap-2">
+                  <div className="inline-block h-5 w-5 animate-spin rounded-full border-2 border-solid border-gray-50 border-r-transparent align-[-0.125em] "></div>
+                  <p className="text-sm text-gray-50">Loading</p>
+                </div>
+              )}
             </button>
           </form>
           <div className=" text-[0.9rem] text-gray-600">

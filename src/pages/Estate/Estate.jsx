@@ -17,9 +17,8 @@ import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
 const Estate = ({ setUnAuthNavbar }) => {
   const { id } = useParams();
   const { estates } = useFetch();
-  const { userActiveUid } = useContext(Context);
-  const { favoriteClickHandler, isFavorite, setIsFavorite } =
-    useContext(ContextProfile);
+  const { userActive } = useContext(Context);
+  const { favoriteClickHandler, setIsFavorite } = useContext(ContextProfile);
 
   const item = estates.find((estate) => estate.id === id);
   console.log(item);
@@ -31,35 +30,14 @@ const Estate = ({ setUnAuthNavbar }) => {
     setUnAuthNavbar(false);
   }, []);
 
+  const [userActiveFavorited, setUserActiveFavorited] = useState(null);
+
   useEffect(() => {
-    // eğer kullanıcı ilanı favorileşmişse tekrar aynı ilana geldiğinde favorilediğini görebilmesi için veri çekmemiz gerekiyor
-    const fetchData = async () => {
-      const userId = userActiveUid;
-      const userRef = doc(db, "users", userId);
-      const estateRef = doc(db, "estates", id); //id useparams'dan geliyor
-
-      try {
-        const userSnapshot = await getDoc(userRef);
-        const estateSnapshot = await getDoc(estateRef);
-
-        if (userSnapshot.exists() && estateSnapshot.exists()) {
-          const userData = userSnapshot.data();
-          const estateData = estateSnapshot.data();
-
-          setIsFavorite(
-            userData.favorites.includes(id) && estateData.favorited
-          );
-        }
-      } catch (error) {
-        console.log("Hata oluştu:", error);
-      }
-    };
-
-    fetchData();
-  }, [id, userActiveUid]);
+    setUserActiveFavorited(userActive?.favorites?.includes(id));
+  }, [userActive]);
 
   const componentStyle = {
-    color: isFavorite ? "#ef4a4a" : "rgba(31 41 55 / 0.8)",
+    color: userActiveFavorited ? "#ef4a4a" : "rgba(31 41 55 / 0.8)",
   };
 
   return (
@@ -83,11 +61,11 @@ const Estate = ({ setUnAuthNavbar }) => {
             </div>
             <div
               className={`text-gray-800/80 rounded-lg px-3 py-2 hover:bg-gray-300/50 cursor-pointer duration-300 active:scale-90 ${
-                isFavorite && "bg-gray-300/50"
+                userActiveFavorited && "bg-gray-300/50"
               }`}
               onClick={() => favoriteClickHandler(item.id)}
             >
-              {!isFavorite ? (
+              {!userActiveFavorited ? (
                 <FavoriteBorderRoundedIcon
                   fontSize="small"
                   style={componentStyle}
@@ -96,7 +74,7 @@ const Estate = ({ setUnAuthNavbar }) => {
                 <FavoriteRoundedIcon fontSize="small" style={componentStyle} />
               )}
               <span className="text-sm font-semibold underline ml-2">
-                {isFavorite ? "Saved" : "Save"}
+                {userActiveFavorited ? "Saved" : "Save"}
               </span>
             </div>
           </div>

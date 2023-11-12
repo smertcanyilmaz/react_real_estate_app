@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 import "./App.css";
 import Layout from "./pages/Layout/Layout";
 import Home from "./pages/Home/Home";
@@ -25,10 +25,10 @@ function App() {
   const [unAuthNavbar, setUnAuthNavbar] = useState(false);
 
   return (
-    <CreatePostContext>
-      <AuthContext>
-        <>
-          <BrowserRouter>
+    <AuthContext>
+      <>
+        <BrowserRouter>
+          <CreatePostContext>
             <ProfileContext>
               <Routes>
                 <Route
@@ -129,10 +129,10 @@ function App() {
                 </Route>
               </Routes>
             </ProfileContext>
-          </BrowserRouter>
-        </>
-      </AuthContext>
-    </CreatePostContext>
+          </CreatePostContext>
+        </BrowserRouter>
+      </>
+    </AuthContext>
   );
 }
 

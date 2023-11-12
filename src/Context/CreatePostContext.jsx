@@ -10,6 +10,8 @@ import { db, storage } from "../firebase-config";
 import { addDoc, collection } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { v4 } from "uuid";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 export const PostContext = createContext();
 const refDb = collection(db, "estates");
@@ -18,17 +20,19 @@ export const CreatePostContext = ({ children }) => {
   const auth = getAuth();
   const today = new Date();
   const formattedDate = today.toLocaleDateString("tr-TR");
-
   const [sum, setSum] = useState({
     passivePosts: false,
     incompletePosts: false,
     date: formattedDate,
   });
 
+  const navigate = useNavigate();
+
   const [previewImages, setPreviewImages] = useState([]);
   const [uploadImage, setUploadImage] = useState([]);
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [postLoading, setPostLoading] = useState(false);
+  const [postError, setPostError] = useState(null);
 
   const postClickHandler = useCallback(
     async (e) => {
@@ -70,17 +74,32 @@ export const CreatePostContext = ({ children }) => {
         const userData = {
           ...sum,
           userData: user.uid,
-          image: imageRefs[0],
+          image: imageRefs?.[0],
           images: imageRefs,
         };
         addDoc(refDb, userData)
           .then(() => {
             console.log("Belge eklendi");
             setPostLoading(false);
+            toast.success("Ad created successfully!", {
+              position: "top-right",
+              autoClose: 2000,
+              hideProgressBar: false,
+              closeOnClick: false,
+              pauseOnHover: false,
+              draggable: false,
+              progress: undefined,
+              theme: "light",
+            });
+            setTimeout(() => {
+              navigate("/");
+            }, 3300);
           })
           .catch((error) => {
             console.error("Hata oluştu: ", error);
-            setPostLoading(true);
+            setPostLoading(false);
+            toast.error("Something went wrong!");
+            setPostError(error);
           });
       }
     },
@@ -98,6 +117,8 @@ export const CreatePostContext = ({ children }) => {
     setSelectedFiles: setSelectedFiles,
     postClickHandler: postClickHandler,
     postLoading: postLoading,
+    postError: postError,
+    setPostError: setPostError,
   };
   return <PostContext.Provider value={values}>{children}</PostContext.Provider>;
 };

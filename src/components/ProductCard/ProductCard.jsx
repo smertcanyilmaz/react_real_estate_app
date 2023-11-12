@@ -23,7 +23,9 @@ const ProductCard = ({
   const [notFound, setNotFound] = useState(false);
   const { favoriteClickHandler, isFavorite, setIsFavorite } =
     useContext(ContextProfile);
-  const { userActiveUid } = useContext(Context);
+  const { userActiveUid, userActive } = useContext(Context);
+
+  console.log(userActive, "userActiveuserActiveuserActive");
 
   let filteredEstates = estates;
 
@@ -170,7 +172,11 @@ const ProductCard = ({
               className="absolute top-2 right-3 text-gray-50 opacity-90 z-10 hover:opacity-100 hover:text-white"
             >
               <FavoriteRoundedIcon
-              // sx={{ color: isFavorite ? "#ef4a4a" : "" }}
+                sx={{
+                  color: userActive?.favorites?.includes(estate.id)
+                    ? "#ef4a4a"
+                    : "",
+                }}
               />
             </div>
           </div>

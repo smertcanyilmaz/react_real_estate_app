@@ -26,13 +26,13 @@ const PostType = ({ selectedCategory, setSelectedCategory }) => {
     setSelectedCategory(false);
   };
 
-  useEffect(() => {
-    if (selectedCategory) {
-      document.body.style.overflow = "visible";
-    } else {
-      document.body.style.overflow = "hidden";
-    }
-  }, [selectedCategory]);
+  // useEffect(() => {
+  //   if (selectedCategory) {
+  //     document.body.style.overflow = "visible";
+  //   } else {
+  //     document.body.style.overflow = "hidden";
+  //   }
+  // }, [selectedCategory]);
 
   useEffect(() => {
     setSum((prevSum) => ({

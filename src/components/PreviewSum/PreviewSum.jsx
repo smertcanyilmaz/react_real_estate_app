@@ -68,8 +68,8 @@ const PreviewSum = () => {
         <div className="w-full space-y-3">
           <p className="font-semibold">Features</p>
           <div className="grid grid-cols-3 gap-2">
-            {sum?.specials?.map((special) => (
-              <div className="flex gap-1 text-sm">
+            {sum?.specials?.map((special, index) => (
+              <div key={index} className="flex gap-1 text-sm">
                 <CheckOutlinedIcon fontSize="small" />
                 <p>{special}</p>
               </div>

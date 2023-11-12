@@ -28,11 +28,12 @@ export const CreatePostContext = ({ children }) => {
   const [previewImages, setPreviewImages] = useState([]);
   const [uploadImage, setUploadImage] = useState([]);
   const [selectedFiles, setSelectedFiles] = useState([]);
+  const [postLoading, setPostLoading] = useState(false);
 
-  const continueClickHandler = useCallback(
+  const postClickHandler = useCallback(
     async (e) => {
-      e.preventDefault();
-
+      //e.preventDefault();
+      setPostLoading(true);
       const imageRefs = [];
 
       // Seçilen her dosyayı Firebase Storage'a yükledim ve URL'lerini aldım çünkü storage'daki resim linklerinin estates databasedeki estate objesine gitmesi lazımdı
@@ -75,9 +76,11 @@ export const CreatePostContext = ({ children }) => {
         addDoc(refDb, userData)
           .then(() => {
             console.log("Belge eklendi");
+            setPostLoading(false);
           })
           .catch((error) => {
             console.error("Hata oluştu: ", error);
+            setPostLoading(true);
           });
       }
     },
@@ -93,7 +96,8 @@ export const CreatePostContext = ({ children }) => {
     setUploadImage: setUploadImage,
     selectedFiles: selectedFiles,
     setSelectedFiles: setSelectedFiles,
-    continueClickHandler: continueClickHandler,
+    postClickHandler: postClickHandler,
+    postLoading: postLoading,
   };
   return <PostContext.Provider value={values}>{children}</PostContext.Provider>;
 };

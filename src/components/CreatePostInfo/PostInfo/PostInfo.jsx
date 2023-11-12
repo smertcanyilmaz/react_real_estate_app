@@ -108,13 +108,6 @@ const PostInfo = ({ selectedCategory }) => {
         setSum={setSum}
       />
 
-      {/* <button
-        className="w-32 h-12 rounded-md duration-200 flex gap-2 justify-center items-center bg-gray-800 text-gray-50"
-        onClick={continueClickHandler}
-      >
-        Continue
-        <ArrowForwardIcon style={{ color: "rgb(249 250 251)" }} />
-      </button> */}
       <button
         onClick={() => navigate("/preview")}
         className="w-32 h-12 rounded-md duration-200 flex gap-2 justify-center items-center bg-gray-800 text-gray-50"

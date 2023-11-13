@@ -8,6 +8,7 @@ import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
 import LaunchRoundedIcon from "@mui/icons-material/LaunchRounded";
 import { ContextProfile } from "../../Context/ProfileContext";
 import { Context } from "../../Context/AuthContext";
+import { Slide, ToastContainer } from "react-toastify";
 
 const ProfileProductCard = ({ post, myPost }) => {
   const navigate = useNavigate();
@@ -43,14 +44,41 @@ const ProfileProductCard = ({ post, myPost }) => {
     const estateRef = doc(db, "estates", estateId);
     try {
       await deleteDoc(estateRef);
+      toast.success("Ad has been deleted successfully!", {
+        position: "top-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: "light",
+      });
       console.log("İlan silindi.");
     } catch (error) {
+      toast.error("Something went wrong!");
       console.error("İlan silinirken bir hata oluştu: ", error);
     }
   };
 
   const removeFavoriteHandler = async (estateId) => {
-    RemoveFavorite(estateId);
+    try {
+      await RemoveFavorite(estateId);
+
+      toast.success("Ad removed from favorites successfully!", {
+        position: "top-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: "light",
+      });
+    } catch (error) {
+      toast.error("Something went wrong!");
+      console.log("removeFavoriteHandler", error);
+    }
   };
 
   const deleteValidHandler = (estateId) => {
@@ -263,6 +291,7 @@ const ProfileProductCard = ({ post, myPost }) => {
           }
         </div>
       ))}
+      <ToastContainer transition={Slide} />
     </>
   );
 };

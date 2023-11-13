@@ -9,7 +9,7 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import OverlayEstate from "../../components/OverlayEstate/OverlayEstate";
 import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
 import { Context } from "../../Context/AuthContext";
-import { doc, updateDoc, getDoc } from "firebase/firestore";
+import { doc, updateDoc, getDoc, onSnapshot } from "firebase/firestore";
 import { db } from "../../firebase-config";
 import { ContextProfile } from "../../Context/ProfileContext";
 import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
@@ -17,7 +17,7 @@ import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
 const Estate = ({ setUnAuthNavbar }) => {
   const { id } = useParams();
   const { estates } = useFetch();
-  const { userActive } = useContext(Context);
+  const { userActive, userActiveUid } = useContext(Context);
   const { favoriteClickHandler, setIsFavorite } = useContext(ContextProfile);
 
   const item = estates.find((estate) => estate.id === id);
@@ -39,6 +39,23 @@ const Estate = ({ setUnAuthNavbar }) => {
   const componentStyle = {
     color: userActiveFavorited ? "#ef4a4a" : "rgba(31 41 55 / 0.8)",
   };
+
+  useEffect(() => {
+    const currentUserId = userActiveUid;
+    const userRef = doc(db, "users", currentUserId);
+    const unsubscribe = onSnapshot(userRef, async (userSnapshot) => {
+      try {
+        const userData = userSnapshot.data();
+        setUserActiveFavorited(userData?.favorites?.includes(id));
+      } catch (error) {
+        console.error("Kullanıcı verilerini getirme hatası: ", error);
+      }
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, [userActiveFavorited]);
 
   return (
     <div className="max-w-6xl max-h-[100vh] mt-10 mb-10">

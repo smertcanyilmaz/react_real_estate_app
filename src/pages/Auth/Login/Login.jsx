@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import AuthEntranceSide from "../../../components/AuthEntranceSide/AuthEntranceSide";
 import { Link, useNavigate } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { Slide, ToastContainer, toast } from "react-toastify";
 
 const Login = ({ setUnAuthNavbar }) => {
   const navigate = useNavigate();
@@ -21,20 +22,41 @@ const Login = ({ setUnAuthNavbar }) => {
   const handleSignIn = async (e) => {
     e.preventDefault();
     setLogingLoading(true);
-    console.log("girdi", logingLoading);
     signInWithEmailAndPassword(auth, email, password)
       .then((user) => {
-        console.log(user);
-        navigate("/");
+        console.log(user, "userrrrrrrrrrr");
         setLogingLoading(false);
+
+        toast.success(
+          "Successfully signed in! You are directed to the home page",
+          {
+            position: "top-right",
+            autoClose: 2000,
+
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: false,
+            draggable: false,
+            progress: undefined,
+            theme: "light",
+            onClose: () => {
+              // Toast kapatıldığında yapılacak işlemler
+              navigate("/"); // Yeni sayfaya yönlendirme
+            },
+          }
+        );
+
+        // setTimeout(() => {
+        //   navigate("/");
+        // }, 5000);
       })
       .catch((error) => {
         console.log(error);
         setLogingLoading(false);
+        toast.error("Something went wrong!", { autoClose: "1000" });
       });
   };
 
-  console.log(logingLoading, "LOGİNLOADİNG");
   return (
     <div className="flex max-w-full ">
       <AuthEntranceSide />
@@ -91,6 +113,7 @@ const Login = ({ setUnAuthNavbar }) => {
           </div>
         </div>
       </div>
+      <ToastContainer transition={Slide} />
     </div>
   );
 };

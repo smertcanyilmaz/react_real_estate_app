@@ -52,12 +52,13 @@ const SearchDropDown = ({
       const filtered = datas.filter((data) =>
         data.name.toLowerCase().includes(lowerInputValue)
       );
+
       setFilteredData(filtered);
     }
   }, [inputValue, datas]);
 
   useEffect(() => {
-    if (filteredData.length === 0) {
+    if (filteredData.length === 0 && !inputValue) {
       setNotFound(true);
     } else {
       setNotFound(false);
@@ -102,8 +103,6 @@ const SearchDropDown = ({
               scrollShow ? "scroll_custom" : "scroll_custom_none"
             }`}
           >
-            {/* maplenecek yer burası. aşağıdaki div maplenecek */}
-
             {filteredData.map((data, index) => (
               <div
                 key={index}

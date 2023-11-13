@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
 import { ContextProfile } from "../../Context/ProfileContext";
 import { Context } from "../../Context/AuthContext";
-
+import { doc, onSnapshot } from "firebase/firestore";
+import { db } from "../../firebase-config";
 const ProductCard = ({
   currentSlide,
   sale,
@@ -136,6 +137,25 @@ const ProductCard = ({
     setFilteredList(passivePosts);
   }, [filteredEstates]);
 
+  const [controlFav, setControlFav] = useState([]);
+
+  useEffect(() => {
+    const currentUserId = userActiveUid;
+    const userRef = doc(db, "users", currentUserId);
+    const unsubscribe = onSnapshot(userRef, async (userSnapshot) => {
+      try {
+        const userData = userSnapshot.data();
+        setControlFav(userData?.favorites);
+      } catch (error) {
+        console.error("Kullanıcı verilerini getirme hatası: ", error);
+      }
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
   return (
     <div
       className={
@@ -173,9 +193,7 @@ const ProductCard = ({
             >
               <FavoriteRoundedIcon
                 sx={{
-                  color: userActive?.favorites?.includes(estate.id)
-                    ? "#ef4a4a"
-                    : "",
+                  color: controlFav?.includes(estate.id) ? "#ef4a4a" : "",
                 }}
               />
             </div>

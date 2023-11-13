@@ -36,7 +36,7 @@ export const CreatePostContext = ({ children }) => {
 
   const postClickHandler = useCallback(
     async (e) => {
-      //e.preventDefault();
+      e.preventDefault();
       setPostLoading(true);
       const imageRefs = [];
 

@@ -12,6 +12,7 @@ import { db } from "../firebase-config";
 import useUserPosts from "../components/hooks/useUserPosts";
 import { Context } from "./AuthContext";
 import { useLocation } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export const ContextProfile = createContext();
 
@@ -21,7 +22,7 @@ const ProfileContext = ({ children }) => {
   const [estateDataFilter2, setEstateDataFilter2] = useState([]);
   const [favoriteEstates, setFavoriteEstates] = useState([]);
   const { estateData } = useUserPosts();
-  const { userActiveUid } = useContext(Context);
+  const { userActive, userActiveUid } = useContext(Context);
 
   console.log("estateDataFilter", estateDataFilter);
   console.log("estateDataFilter2", estateDataFilter2);
@@ -37,8 +38,20 @@ const ProfileContext = ({ children }) => {
       await updateDoc(estateRef, {
         passivePosts: true,
       });
+
+      toast.success("Ad has been deactivated successfully!", {
+        position: "top-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: "light",
+      });
       console.log("İlanın durumu güncellendi.");
     } catch (error) {
+      toast.error("Something went wrong!");
       console.error("İlan durumu güncellenirken bir hata oluştu: ", error);
     }
   };
@@ -78,8 +91,19 @@ const ProfileContext = ({ children }) => {
       await updateDoc(estateRef, {
         passivePosts: false,
       });
+      toast.success("Ad has been activated successfully!", {
+        position: "top-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: "light",
+      });
       console.log("İlanın durumu güncellendi.");
     } catch (error) {
+      toast.error("Something went wrong!");
       console.error("İlan durumu güncellenirken bir hata oluştu: ", error);
     }
   };
@@ -208,7 +232,7 @@ const ProfileContext = ({ children }) => {
     const estateRef = doc(db, "estates", estateId);
 
     try {
-      if (!isFavorite) {
+      if (!userActive?.favorites?.includes(estateId)) {
         const userSnapshot = await getDoc(userRef);
         const estateSnapshot = await getDoc(estateRef);
 

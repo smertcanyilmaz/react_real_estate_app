@@ -3,8 +3,7 @@ import PostLine from "../../components/PostLine/PostLine";
 import PreviewSum from "../../components/PreviewSum/PreviewSum";
 import PreviewaProductCard from "../../components/PreviewaProductCard/PreviewaProductCard";
 import { PostContext } from "../../Context/CreatePostContext";
-import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast, Slide } from "react-toastify";
+import { ToastContainer, Slide } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Preview = () => {

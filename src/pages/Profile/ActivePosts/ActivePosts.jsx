@@ -6,6 +6,7 @@ import useUserPosts from "../../../components/hooks/useUserPosts";
 import "./ActivePosts.css";
 import ProfileProductCard from "../../../components/ProfileProductCard/ProfileProductCard";
 import { ContextProfile } from "../../../Context/ProfileContext";
+import { Slide, ToastContainer } from "react-toastify";
 
 const ActivePosts = () => {
   const { loading } = useUserPosts();
@@ -13,7 +14,7 @@ const ActivePosts = () => {
 
   return (
     <ProfileTemplate>
-      <div className="active_posts h-full flex flex-col justify-between gap-3 bg-[--bg_color]">
+      <div className="active_posts h-full flex flex-col justify-between gap-3 bg-[--bg_color] ">
         <div
           className={`note w-full h-full  bg-gray-50 flex flex-col gap-5 border border-gray-400/50 ${
             estateDataFilter.length === 0 && "not_post"
@@ -32,6 +33,7 @@ const ActivePosts = () => {
         </div>
         <PostAd />
       </div>
+      <ToastContainer transition={Slide} />
     </ProfileTemplate>
   );
 };

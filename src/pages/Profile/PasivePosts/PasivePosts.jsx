@@ -5,6 +5,7 @@ import NoMeetingRoomRoundedIcon from "@mui/icons-material/NoMeetingRoomRounded";
 import useUserPosts from "../../../components/hooks/useUserPosts";
 import ProfileProductCard from "../../../components/ProfileProductCard/ProfileProductCard";
 import { ContextProfile } from "../../../Context/ProfileContext";
+import { Slide, ToastContainer } from "react-toastify";
 
 const PasivePosts = () => {
   const { estateData, loading } = useUserPosts();
@@ -34,6 +35,7 @@ const PasivePosts = () => {
         </div>
         <PostAd />
       </div>
+      <ToastContainer transition={Slide} />
     </ProfileTemplate>
   );
 };

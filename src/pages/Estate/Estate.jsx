@@ -18,7 +18,8 @@ const Estate = ({ setUnAuthNavbar }) => {
   const { id } = useParams();
   const { estates } = useFetch();
   const { userActive, userActiveUid } = useContext(Context);
-  const { favoriteClickHandler, setIsFavorite } = useContext(ContextProfile);
+  const { favoriteClickHandler, setIsFavorite, favChecker } =
+    useContext(ContextProfile);
 
   const item = estates.find((estate) => estate.id === id);
   console.log(item);
@@ -55,7 +56,7 @@ const Estate = ({ setUnAuthNavbar }) => {
     return () => {
       unsubscribe();
     };
-  }, [userActiveFavorited]);
+  }, [favChecker]);
 
   return (
     <div className="max-w-6xl max-h-[100vh] mt-10 mb-10">

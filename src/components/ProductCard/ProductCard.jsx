@@ -22,7 +22,7 @@ const ProductCard = ({
   const { estates } = useFetch();
   const [filteredList, setFilteredList] = useState([]);
   const [notFound, setNotFound] = useState(false);
-  const { favoriteClickHandler, isFavorite, setIsFavorite } =
+  const { favoriteClickHandler, setIsFavorite, favChecker } =
     useContext(ContextProfile);
   const { userActiveUid, userActive } = useContext(Context);
 
@@ -154,7 +154,7 @@ const ProductCard = ({
     return () => {
       unsubscribe();
     };
-  }, []);
+  }, [favChecker]);
 
   return (
     <div

@@ -197,8 +197,11 @@ const ProfileContext = ({ children }) => {
     } else return;
   }, [path]);
 
+  const [favChecker, setFavChecker] = useState(false);
+
   const RemoveFavorite = async (estateId) => {
     const userId = userActiveUid;
+    setFavChecker(!favChecker);
 
     try {
       const userRef = doc(db, "users", userId);
@@ -230,6 +233,7 @@ const ProfileContext = ({ children }) => {
     const userId = userActiveUid;
     const userRef = doc(db, "users", userId);
     const estateRef = doc(db, "estates", estateId);
+    setFavChecker(!favChecker);
 
     try {
       if (!userActive?.favorites?.includes(estateId)) {
@@ -280,6 +284,7 @@ const ProfileContext = ({ children }) => {
     favoriteClickHandler: favoriteClickHandler,
     isFavorite: isFavorite,
     setIsFavorite: setIsFavorite,
+    favChecker: favChecker,
   };
   return (
     <ContextProfile.Provider value={values}>{children}</ContextProfile.Provider>

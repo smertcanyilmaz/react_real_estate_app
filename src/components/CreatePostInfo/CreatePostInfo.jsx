@@ -7,6 +7,8 @@ const CreatePostInfo = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const navigate = useNavigate();
 
+  console.log(selectedCategory, "BEŞİKTAŞ");
+
   return (
     <div className="flex flex-col gap-10 relative">
       <PostType
@@ -15,13 +17,6 @@ const CreatePostInfo = () => {
       />
 
       <PostInfo selectedCategory={selectedCategory} />
-      <p>TEST</p>
-      <button
-        className="w-20 h-10 border border-gray-800"
-        onClick={() => navigate("/preview")}
-      >
-        preview
-      </button>
     </div>
   );
 };

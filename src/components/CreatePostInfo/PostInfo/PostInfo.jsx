@@ -42,8 +42,8 @@ const PostInfo = ({ selectedCategory }) => {
     <div
       className={`max-w-6xl duration-500 flex flex-col gap-10 items-center  ${
         selectedCategory
-          ? "translate-y-0 opacity-100"
-          : "translate-y-[10%] opacity-0 -z-10"
+          ? "translate-y-0 opacity-100 h-full"
+          : "translate-y-[10%] opacity-0 -z-10 max-h-0 overflow-y-hidden"
       } `}
     >
       <form className="one form_box">

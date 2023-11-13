@@ -5,12 +5,10 @@ import DropDown from "./DropDown/DropDown";
 import { PostContext } from "../../../Context/CreatePostContext";
 
 const PostType = ({ selectedCategory, setSelectedCategory }) => {
-  const { setSum } = useContext(PostContext);
+  const { sum, setSum } = useContext(PostContext);
   const [showDropDown, setShowDropDown] = useState(false);
   const [showDropDown2, setShowDropDown2] = useState(false);
   const [selectedProperty, setSelectedProperty] = useState(null);
-  const [selectedPropertyFirebase, setSelectedPropertyFirebase] = useState("");
-  const [selectedCategoryFirebase, setSelectedCategoryFirebase] = useState(""); // firebase database'e category seçeneğine uygun olarak düzenlenmiş değeri tutan state
 
   const clickDown1 = () => {
     setShowDropDown((prev) => !prev);
@@ -26,23 +24,13 @@ const PostType = ({ selectedCategory, setSelectedCategory }) => {
     setSelectedCategory(false);
   };
 
-  // useEffect(() => {
-  //   if (selectedCategory) {
-  //     document.body.style.overflow = "visible";
-  //   } else {
-  //     document.body.style.overflow = "hidden";
-  //   }
-  // }, [selectedCategory]);
-
   useEffect(() => {
     setSum((prevSum) => ({
       ...prevSum,
-      status: selectedPropertyFirebase,
-      category: selectedCategoryFirebase,
+      status: selectedProperty?.value,
+      category: selectedCategory?.value,
     }));
-  }, [selectedPropertyFirebase, selectedCategoryFirebase]);
-
-  console.log(selectedCategoryFirebase);
+  }, [selectedProperty, selectedCategory]);
 
   return (
     <div className="bg-gray-50 p-5 flex flex-col gap-5 rounded-[4px] border border-gray-400/50">
@@ -56,13 +44,12 @@ const PostType = ({ selectedCategory, setSelectedCategory }) => {
             onClick={clickDown1}
             className="w-60 h-10 flex items-center px-2 border border-gray-500/50 rounded-[4px] cursor-pointer"
           >
-            <div className="flex-1 ">{selectedProperty}</div>
+            <div className="flex-1 ">{selectedProperty?.label}</div>
             <DropDown
               property="property"
               showDropDown={showDropDown}
               setSelectedProperty={setSelectedProperty}
               setShowDropDown={setShowDropDown}
-              setSelectedPropertyFirebase={setSelectedPropertyFirebase}
             />
           </div>
         </div>
@@ -88,7 +75,7 @@ const PostType = ({ selectedCategory, setSelectedCategory }) => {
               onClick={clickDown2}
               className="flex-1 h-full bg-gray-50 flex items-center"
             >
-              {selectedCategory}
+              {selectedCategory?.label}
             </div>
             <div
               onClick={() => closeSelectedHandler()}
@@ -108,7 +95,6 @@ const PostType = ({ selectedCategory, setSelectedCategory }) => {
             showDropDown2={showDropDown2}
             setSelectedCategory={setSelectedCategory}
             setShowDropDown2={setShowDropDown2}
-            setSelectedCategoryFirebase={setSelectedCategoryFirebase}
           />
         </div>
       </div>

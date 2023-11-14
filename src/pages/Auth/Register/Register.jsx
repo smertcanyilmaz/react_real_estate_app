@@ -35,6 +35,7 @@ const Register = ({ setUnAuthNavbar }) => {
 
   const [inputValidity, setInputValidity] = useState(false);
   const [passwordValidity, setPasswordValidity] = useState(false);
+  const [emailChecker, setEmailChecker] = useState(false); // aynı email ile kayıt olunamayacağı için bunu kullanıcıya gösteren state
 
   const isValidEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -94,6 +95,12 @@ const Register = ({ setUnAuthNavbar }) => {
       console.log("USER", user);
     } catch (error) {
       console.log(error);
+      console.error("Firebase Hata Kodu:", error.code);
+      if (error.code === "auth/email-already-in-use") {
+        setEmailChecker(true);
+      } else {
+        setEmailChecker(false);
+      }
     }
   };
 
@@ -139,16 +146,23 @@ const Register = ({ setUnAuthNavbar }) => {
                 setUser({ ...user, lastName: e.target.value });
               }}
             />
-            <input
-              type="email"
-              name="email"
-              id="email"
-              className="bg-transparent border border-gray-400/60 w-full h-12 pl-3 rounded-md"
-              placeholder="E-mail"
-              onChange={(e) => {
-                setUser({ ...user, email: e.target.value });
-              }}
-            />
+            <div className="w-full flex flex-col gap-2">
+              <input
+                type="email"
+                name="email"
+                id="email"
+                className="bg-transparent border border-gray-400/60 w-full h-12 pl-3 rounded-md"
+                placeholder="E-mail"
+                onChange={(e) => {
+                  setUser({ ...user, email: e.target.value });
+                }}
+              />
+              {emailChecker && (
+                <p className="text-[#ef4a4a] text-xs">
+                  This email address is already taken!
+                </p>
+              )}
+            </div>
             <div className="passwords w-1/2 flex flex-col gap-3">
               <div className="w-full flex items-center border border-gray-400/60 rounded-md">
                 <input

@@ -150,17 +150,21 @@ const Register = ({ setUnAuthNavbar }) => {
                 type="email"
                 name="email"
                 id="email"
-                className="bg-transparent border border-gray-400/60 w-full h-12 pl-3 rounded-md"
+                className={`w-full h-12 pl-3 bg-transparent rounded-md ${
+                  emailChecker
+                    ? "border border-[#ef4a4a]"
+                    : "border border-gray-400/60"
+                }`}
                 placeholder="E-mail"
                 onChange={(e) => {
                   setUser({ ...user, email: e.target.value });
                 }}
               />
-              {emailChecker && (
+              {/* {emailChecker && (
                 <p className="text-[#ef4a4a] text-xs">
                   This email address is already taken!
                 </p>
-              )}
+              )} */}
             </div>
             <div className="passwords w-1/2 flex flex-col gap-3">
               <div className="w-full flex items-center border border-gray-400/60 rounded-md">
@@ -198,6 +202,12 @@ const Register = ({ setUnAuthNavbar }) => {
                 )}
               </div>
             </div>
+
+            {emailChecker && (
+              <div className=" w-1/2 h-12 flex items-center justify-center  bg-red-200/80 font-semibold text-[#ef4a4a] text-xs rounded-md">
+                This email address is already taken!
+              </div>
+            )}
 
             <button
               onClick={handleSignUp}

@@ -9,6 +9,9 @@ import {
 import { db } from "../../../firebase-config";
 import { doc, setDoc } from "@firebase/firestore";
 import { Context } from "../../../Context/AuthContext";
+import CheckIcon from "@mui/icons-material/Check";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import VisibilityIcon from "@mui/icons-material/Visibility";
 
 const Register = ({ setUnAuthNavbar }) => {
   const navigate = useNavigate();
@@ -29,6 +32,35 @@ const Register = ({ setUnAuthNavbar }) => {
   }, []);
 
   const { firstName, lastName, email, password, favorites } = user;
+
+  const [inputValidity, setInputValidity] = useState(false);
+  const [passwordValidity, setPasswordValidity] = useState(false);
+
+  const isValidEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  useEffect(() => {
+    if (
+      firstName === "" ||
+      lastName === "" ||
+      email === "" ||
+      password === "" ||
+      !isValidEmail(email)
+    ) {
+      setInputValidity(true);
+    } else {
+      setInputValidity(false);
+    }
+
+    if (password.length >= 6) {
+      setPasswordValidity(true);
+    } else {
+      setPasswordValidity(false);
+      setInputValidity(true);
+    }
+  }, [firstName, lastName, email, password]);
 
   const handleSignUp = async (e) => {
     e.preventDefault();
@@ -71,6 +103,12 @@ const Register = ({ setUnAuthNavbar }) => {
     }
   }, [userActive]);
 
+  const [passwordVisible, setpasswordVisible] = useState(false);
+
+  const passwordVisibleHandler = () => {
+    setpasswordVisible(!passwordVisible);
+  };
+
   return (
     <div className="flex max-w-full">
       <AuthEntranceSide />
@@ -111,32 +149,51 @@ const Register = ({ setUnAuthNavbar }) => {
                 setUser({ ...user, email: e.target.value });
               }}
             />
-            <div className="passwords flex gap-5">
-              <input
-                type="password"
-                name="password"
-                id="password"
-                className="bg-transparent border border-gray-400/60 w-full h-12 pl-3 rounded-md"
-                placeholder="Password"
-                onChange={(e) => {
-                  setUser({ ...user, password: e.target.value });
-                }}
-              />
-              <input
-                type="password"
-                name="passwordc"
-                id="passwordc"
-                className="bg-transparent border border-gray-400/60 w-full h-12 pl-3 rounded-md"
-                placeholder="Password Confirm"
-                onChange={(e) => {
-                  setUser({ ...user, passwordc: e.target.value });
-                }}
-              />
+            <div className="passwords w-1/2 flex flex-col gap-3">
+              <div className="w-full flex items-center border border-gray-400/60 rounded-md">
+                <input
+                  type={passwordVisible ? "string" : "password"}
+                  name="password"
+                  id="password"
+                  className="bg-transparent border-none outline-none w-full h-12 pl-3"
+                  placeholder="Password"
+                  onChange={(e) => {
+                    setUser({ ...user, password: e.target.value });
+                  }}
+                />
+                <div
+                  onClick={passwordVisibleHandler}
+                  className="mr-2 cursor-pointer"
+                >
+                  {passwordVisible ? (
+                    <VisibilityIcon sx={{ color: "rgb(156 163 175 / 0.6)" }} />
+                  ) : (
+                    <VisibilityOffIcon
+                      sx={{ color: "rgb(156 163 175 / 0.6)" }}
+                    />
+                  )}
+                </div>
+              </div>
+              <div className="flex items-center gap-[2px] h-3">
+                <p className="text-xs text-gray-800/70">
+                  Password must be at least 6 characters
+                </p>
+                {passwordValidity ? (
+                  <CheckIcon fontSize="small" sx={{ color: "#36cf94" }} />
+                ) : (
+                  ""
+                )}
+              </div>
             </div>
 
             <button
               onClick={handleSignUp}
-              className="w-24 h-12 text-white bg-[#36cf94] rounded-md mb-5"
+              className={`w-24 h-12 text-white bg-[#36cf94] rounded-md mb-5 ${
+                inputValidity
+                  ? "opacity-60 cursor-not-allowed"
+                  : "opacity-100 cursor-pointer"
+              }`}
+              disabled={inputValidity}
             >
               SIGN UP
             </button>

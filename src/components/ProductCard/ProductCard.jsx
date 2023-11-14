@@ -26,8 +26,6 @@ const ProductCard = ({
     useContext(ContextProfile);
   const { userActiveUid, userActive } = useContext(Context);
 
-  console.log(userActive, "userActiveuserActiveuserActive");
-
   let filteredEstates = estates;
 
   useEffect(() => {
@@ -140,20 +138,23 @@ const ProductCard = ({
   const [controlFav, setControlFav] = useState([]);
 
   useEffect(() => {
-    const currentUserId = userActiveUid;
-    const userRef = doc(db, "users", currentUserId);
-    const unsubscribe = onSnapshot(userRef, async (userSnapshot) => {
-      try {
-        const userData = userSnapshot.data();
-        setControlFav(userData?.favorites);
-      } catch (error) {
-        console.error("Kullanıcı verilerini getirme hatası: ", error);
-      }
-    });
+    if (userActive) {
+      // 14.11.23 de ekledim çünkü userActiveUid giriş yapılmadan undefined dönüyor o zaman indexOf hatası alıyorum
+      const currentUserId = userActiveUid;
+      const userRef = doc(db, "users", currentUserId);
+      const unsubscribe = onSnapshot(userRef, async (userSnapshot) => {
+        try {
+          const userData = userSnapshot.data();
+          setControlFav(userData?.favorites);
+        } catch (error) {
+          console.error("Kullanıcı verilerini getirme hatası: ", error);
+        }
+      });
 
-    return () => {
-      unsubscribe();
-    };
+      return () => {
+        unsubscribe();
+      };
+    }
   }, [favChecker]);
 
   return (

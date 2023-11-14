@@ -119,7 +119,6 @@ const Register = ({ setUnAuthNavbar }) => {
   return (
     <div className="flex max-w-full">
       <AuthEntranceSide />
-
       <div className="flex-1 bg-[#ffffff]">
         <div className="flex flex-col gap-5 w-full px-16 py-32">
           <p className="text-gray-800 mb-2 font-semibold text-sm">

@@ -3,6 +3,8 @@ import AuthEntranceSide from "../../../components/AuthEntranceSide/AuthEntranceS
 import { Link, useNavigate } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { Slide, ToastContainer, toast } from "react-toastify";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import VisibilityIcon from "@mui/icons-material/Visibility";
 
 const Login = ({ setUnAuthNavbar }) => {
   const navigate = useNavigate();
@@ -18,6 +20,18 @@ const Login = ({ setUnAuthNavbar }) => {
 
   const { email, password } = user;
   const [logingLoading, setLogingLoading] = useState(false);
+
+  const [inputValidity, setInputValidity] = useState(false);
+  const [emailPasswordChecker, setEmailPasswordChecker] = useState(false);
+  const [emailInvalidChecker, setEmailInvalidChecker] = useState(false);
+
+  useEffect(() => {
+    if (email === "" || password === "") {
+      setInputValidity(true);
+    } else {
+      setInputValidity(false);
+    }
+  }, [email, password]);
 
   const handleSignIn = async (e) => {
     e.preventDefault();
@@ -51,10 +65,26 @@ const Login = ({ setUnAuthNavbar }) => {
         // }, 5000);
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error.code);
         setLogingLoading(false);
         toast.error("Something went wrong!", { autoClose: "1000" });
+        if (error.code === "auth/invalid-login-credentials") {
+          setEmailPasswordChecker(true);
+          setEmailInvalidChecker(false);
+        } else if (error.code === "auth/invalid-email") {
+          setEmailInvalidChecker(true);
+          setEmailPasswordChecker(false);
+        } else {
+          setEmailPasswordChecker(false);
+          setEmailInvalidChecker(false);
+        }
       });
+  };
+
+  const [passwordVisible, setpasswordVisible] = useState(false);
+
+  const passwordVisibleHandler = () => {
+    setpasswordVisible(!passwordVisible);
   };
 
   return (
@@ -69,29 +99,57 @@ const Login = ({ setUnAuthNavbar }) => {
               type="email"
               name="email"
               id="email"
-              className="bg-transparent border border-gray-400/60 w-full h-12 pl-3 rounded-md"
+              className={`bg-transparent w-full h-12 pl-3 rounded-md ${
+                emailPasswordChecker || emailInvalidChecker
+                  ? " border border-[#ef4a4a]"
+                  : "border border-gray-400/60"
+              }`}
               placeholder="E-mail"
               onChange={(e) => {
                 setUser({ ...user, email: e.target.value });
               }}
             />
-            <input
-              type="password"
-              name="password"
-              id="password"
-              className="bg-transparent border border-gray-400/60 w-full h-12 pl-3 rounded-md"
-              placeholder="Password"
-              onChange={(e) => {
-                setUser({ ...user, password: e.target.value });
-              }}
-            />
+            <div
+              className={`w-full flex items-center  rounded-md ${
+                emailPasswordChecker || emailInvalidChecker
+                  ? " border border-[#ef4a4a]"
+                  : "border border-gray-400/60"
+              }`}
+            >
+              <input
+                type={passwordVisible ? "string" : "password"}
+                name="password"
+                id="password"
+                className="bg-transparent border-none outline-none w-full h-12 pl-3"
+                placeholder="Password"
+                onChange={(e) => {
+                  setUser({ ...user, password: e.target.value });
+                }}
+              />
+              <div
+                onClick={passwordVisibleHandler}
+                className="mr-3 cursor-pointer"
+              >
+                {passwordVisible ? (
+                  <VisibilityIcon sx={{ color: "rgb(156 163 175 / 0.6)" }} />
+                ) : (
+                  <VisibilityOffIcon sx={{ color: "rgb(156 163 175 / 0.6)" }} />
+                )}
+              </div>
+            </div>
+            {(emailPasswordChecker || emailInvalidChecker) && (
+              <div className=" w-1/2 h-12 flex items-center justify-center  bg-red-200/80 font-semibold text-[#ef4a4a] text-xs rounded-md">
+                {emailPasswordChecker
+                  ? "Incorrect email address or password"
+                  : "This email address is invalid"}
+              </div>
+            )}
             <button
               onClick={handleSignIn}
-              className={`w-24 h-12 text-white bg-[#36cf94] rounded-md mb-5 ${
-                logingLoading
-                  ? "opacity-70 cursor-not-allowed"
-                  : "opacity-100 cursor-pointer"
-              }`}
+              disabled={inputValidity}
+              className={`w-24 h-12 text-white bg-[#36cf94] rounded-md mb-5 cursor-not-allowed ${
+                logingLoading ? "opacity-60" : "opacity-100"
+              } ${inputValidity ? "opacity-60" : "opacity-100 cursor-pointer"}`}
             >
               {!logingLoading ? (
                 <> SIGN IN</>

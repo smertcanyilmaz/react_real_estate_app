@@ -9,6 +9,7 @@ const UploadPhoto = ({
   setSelectedFiles,
   uploadImage,
   setUploadImage,
+  setSumChecker,
 }) => {
   const { setPreviewImages } = useContext(PostContext);
 
@@ -22,6 +23,7 @@ const UploadPhoto = ({
     }
     setSelectedFiles(selectedImages);
     setPreviewImages(selectedImages);
+    setSumChecker((prev) => ({ ...prev, images: selectedImages }));
 
     //firebase'e gidecek arrayin kodları
     uploadImage.length === 0
@@ -36,6 +38,7 @@ const UploadPhoto = ({
     const removePrev = [...selectedFiles];
     removePrev.splice(index, 1);
     setSelectedFiles(removePrev);
+    setSumChecker((prev) => ({ ...prev, images: removePrev }));
 
     //client tarafına gidecek olan arrayin içinden seçilen resmin silinmesi
     const removeImage = uploadImage.filter((_, i) => i !== index);
@@ -95,7 +98,8 @@ const UploadPhoto = ({
         )}
       </div>
       <p className="text-sm text-gray-600/90 mt-5">
-        You need to upload at least 5 photos.
+        You need to upload at least 5 photos
+        <span className="text-red-500">*</span>
       </p>
     </div>
   );

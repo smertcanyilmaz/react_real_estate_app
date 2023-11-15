@@ -5,7 +5,7 @@ import { City, Country, State } from "country-state-city";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 
-const AdressInfo = ({ sum, setSum }) => {
+const AdressInfo = ({ setSum, setSumChecker }) => {
   const [country, setCountry] = useState([]);
   const [cities, setCities] = useState(null);
   const [districts, setDistricts] = useState([]);
@@ -129,6 +129,12 @@ const AdressInfo = ({ sum, setSum }) => {
         city: inputBoxCity,
         district: inputBoxDistricts,
       },
+    }));
+    setSumChecker((prev) => ({
+      ...prev,
+      country: inputBoxCountry,
+      city: inputBoxCity,
+      district: inputBoxDistricts,
     }));
   }, [inputBoxCountry, inputBoxCity, inputBoxDistricts]);
 

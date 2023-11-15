@@ -160,11 +160,6 @@ const Register = ({ setUnAuthNavbar }) => {
                   setUser({ ...user, email: e.target.value });
                 }}
               />
-              {/* {emailChecker && (
-                <p className="text-[#ef4a4a] text-xs">
-                  This email address is already taken!
-                </p>
-              )} */}
             </div>
             <div className="passwords w-1/2 flex flex-col gap-3">
               <div className="w-full flex items-center border border-gray-400/60 rounded-md">

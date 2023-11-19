@@ -1,0 +1,20 @@
+.lineer_text {
+  background-image: linear-gradient(
+    to right top,
+    #4263be,
+    #4e70c6,
+    #5a7dce,
+    #678ad6,
+    #7497dd,
+    #6fa5e7,
+    #6bb2f0,
+    #69bff8,
+    #52cffe,
+    #41dfff,
+    #46eefa,
+    #5ffbf1
+  );
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+}

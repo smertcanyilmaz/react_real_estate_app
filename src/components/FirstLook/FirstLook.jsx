@@ -2,7 +2,7 @@ import Search from "./Search/Search";
 
 const FirstLook = () => {
   return (
-    <div className="max-w-6xl h-[100vh]  mx-auto mt-20  duration-500">
+    <div className="max-w-6xl h-[90vh]  mx-auto mt-20  duration-500">
       <div className="max-w-full max-h-[68vh] flex justify-between  ">
         <div className="flex-1 flex flex-col gap-12 justify-center items-center">
           <h1 className="text-5xl font-bold leading-snug">

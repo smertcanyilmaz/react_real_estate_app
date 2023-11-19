@@ -4,8 +4,9 @@ import SliderSection from "./SliderSection/SliderSection";
 const PopularOffers = ({ refStatus, sale }) => {
   return (
     <>
+      {/* max-w-[70vw] mx-auto*/}
       <main
-        className={`h-[100vh] max-w-[70vw] mx-auto duration-500 flex justify-center items-center 
+        className={`h-[90vh] w-full duration-500 flex justify-center items-center 
         }`}
         ref={refStatus}
       >

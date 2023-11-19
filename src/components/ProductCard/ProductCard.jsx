@@ -162,26 +162,45 @@ const ProductCard = ({
       className={
         EstatesList
           ? "grid grid-cols-4 gap-x-5 gap-y-7"
-          : "max-w-6xl flex gap-6 overflow-hidden"
+          : " flex gap-6 overflow-hidden"
       }
     >
       {filteredList.map((estate) => (
         <Link to={`/estates/${estate.id}`} key={estate.id}>
+          {/* min-w-[14.60rem] h-64 */}
           <div
-            className={`flex flex-col min-w-[14.60rem] h-64 bg-gray-50 rounded-2xl transform transition-transform duration-300 cursor-pointer relative`}
-            style={{ transform: `translateX(-${currentSlide * 15.9}rem)` }}
+            className={`flex flex-col  bg-gray-50 rounded-2xl transform transition-transform duration-300 cursor-pointer relative ${
+              EstatesList ? "min-w-[14.60rem] h-64" : "min-w-[23rem] h-[24rem]"
+            }`}
+            style={{ transform: `translateX(-${currentSlide * 24.5}rem)` }}
           >
             <img
               src={estate?.image}
               alt=""
-              className="h-40 object-cover rounded-t-2xl"
+              className={`object-cover rounded-t-2xl ${
+                EstatesList ? "h-40 " : "h-[15rem]"
+              }`}
             />
-            <div className={`px-4 py-2 w-full space-y-1 relative `}>
-              <h3 className="text-md font-bold">{estate?.title}</h3>
-              <p className="text-[--blue] font-bold text-sm">
+            <div
+              className={`px-4 py-2 w-full relative ${
+                EstatesList ? "space-y-1" : "space-y-2"
+              }`}
+            >
+              <h3
+                className={`font-bold ${EstatesList ? "text-base" : "text-lg"}`}
+              >
+                {estate?.title}
+              </h3>
+              <p
+                className={`text-[--blue] font-bold ${
+                  EstatesList ? "text-sm " : "text-base"
+                }`}
+              >
                 {estate?.price} €
               </p>
-              <p className="text-xs">{estate?.place?.city}</p>
+              <p className={`${EstatesList ? "text-xs " : "text-sm"}`}>
+                {estate?.place?.city}
+              </p>
               {estate?.topOffers && (
                 <div className="absolute p-2 right-5 bottom-2 text-sm text-gray-800 font-semibold bg-yellow-300 shadow-lg shadow-gray-200 rounded-md border border-red-100 flex justify-center items-center">
                   Top Offer

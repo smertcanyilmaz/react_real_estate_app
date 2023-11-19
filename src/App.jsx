@@ -19,6 +19,7 @@ import CreatePost from "./pages/CreatePost/CreatePost";
 import ProfileContext from "./Context/ProfileContext";
 import Preview from "./pages/Preview/Preview";
 import { CreatePostContext } from "./Context/CreatePostContext";
+import Membership from "./pages/Membership/Membership";
 
 function App() {
   const ref0 = useReducer(null);
@@ -56,6 +57,10 @@ function App() {
                   <Route
                     path="login"
                     element={<Login setUnAuthNavbar={setUnAuthNavbar} />}
+                  />
+                  <Route
+                    path="membership"
+                    element={<Membership setUnAuthNavbar={setUnAuthNavbar} />}
                   />
 
                   <Route

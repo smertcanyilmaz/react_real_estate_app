@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 const HomePremium = () => {
   const navigate = useNavigate();
   return (
-    <div className="w-full h-[41rem] flex flex-col items-center mt-[10rem] mb-[10rem] gap-36">
+    <div className="w-full h-[41rem] flex flex-col items-center mt-[10rem] mb-[10rem] gap-40">
       <div className="main_title text-4xl tracking-wider leading-snug lineer_text relative">
         Take a closer look at your membership options
         <button
@@ -67,8 +67,8 @@ const HomePremium = () => {
             <CheckCircleRoundedIcon />
             <CheckCircleRoundedIcon />
             <HighlightOffRoundedIcon />
-            <HighlightOffRoundedIcon style={{ marginBottom: "-4px" }} />
-            <div className="bg-red-200/80 text-red-500 text-sm font-semibold px-3 py-1 rounded-xl flex items-center justify-center">
+            <HighlightOffRoundedIcon style={{ marginBottom: "-6px" }} />
+            <div className="bg-red-200/80 text-red-500 text-sm font-semibold px-4 py-2 rounded-xl flex items-center justify-center">
               Only 1 post ad
             </div>
           </div>

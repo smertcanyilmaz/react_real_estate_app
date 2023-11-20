@@ -4,6 +4,7 @@ import PopularOffersButton from "../../components/FirstLook/PopularOffersButton/
 import { useEffect, useRef, useState } from "react";
 import Advantages from "../../components/Advantages/Advantages";
 import HomePremium from "../../components/HomePremium/HomePremium";
+import { useLocation } from "react-router-dom";
 
 const Home = ({ ref0, setUnAuthNavbar }) => {
   const ref1 = useRef(null);
@@ -33,6 +34,9 @@ const Home = ({ ref0, setUnAuthNavbar }) => {
     window.scrollTo({ top: 0, behavior: "smooth" });
     setUnAuthNavbar(false); // anasayfanın navbar'ı her zaman unAuth durumunu koruması için burada false olması lazım
   }, []);
+
+  const location = useLocation();
+  console.log(location, "LOCATİON");
 
   return (
     <>

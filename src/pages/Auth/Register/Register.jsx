@@ -25,13 +25,14 @@ const Register = ({ setUnAuthNavbar }) => {
     email: "",
     password: "",
     favorites: [],
+    subscribe: false,
   });
 
   useEffect(() => {
     setUnAuthNavbar(true);
   }, []);
 
-  const { firstName, lastName, email, password, favorites } = user;
+  const { firstName, lastName, email, password, favorites, subscribe } = user;
 
   const [inputValidity, setInputValidity] = useState(false);
   const [passwordValidity, setPasswordValidity] = useState(false);
@@ -71,7 +72,8 @@ const Register = ({ setUnAuthNavbar }) => {
         auth,
         email,
         password,
-        favorites
+        favorites,
+        subscribe
       );
       const user = userCredential.user;
 
@@ -82,6 +84,7 @@ const Register = ({ setUnAuthNavbar }) => {
         email: email,
         password: password,
         favorites: favorites,
+        subscribe: subscribe,
         // Diğer kullanıcı bilgileri
       });
       console.log("kayıt başarılı");

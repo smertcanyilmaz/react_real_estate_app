@@ -1,23 +1,37 @@
-import React from "react";
+import React, { useContext } from "react";
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import HighlightOffRoundedIcon from "@mui/icons-material/HighlightOffRounded";
 import { useNavigate } from "react-router-dom";
+import { Context } from "../../Context/AuthContext";
+import CheckIcon from "@mui/icons-material/Check";
+import { ContextProfile } from "../../Context/ProfileContext";
 
 const HomePremium = () => {
+  const { userActive } = useContext(Context);
+  const { userSubscribe } = useContext(ContextProfile);
   const navigate = useNavigate();
   return (
     <div className="w-full h-[41rem] flex flex-col items-center mt-[10rem] mb-[10rem] gap-40">
       <div className="main_title text-4xl tracking-wider leading-snug lineer_text relative">
         Take a closer look at your membership options
         <button
+          disabled={userSubscribe}
           onClick={() => navigate("/membership")}
-          className="text-base tracking-normal leading-none absolute top-20 -right-[10rem] h-14 px-3 rounded-lg text-gray-50 bg-gray-800 flex items-center"
+          className={`text-base tracking-normal leading-none absolute top-20 -right-[10rem] h-14 px-3 rounded-lg text-gray-50  flex items-center gap-1 ${
+            userSubscribe ? "bg-[#36cf94]" : "bg-gray-800"
+          }`}
         >
-          Become Member
-          <span className="font-bold">
-            <AddRoundedIcon sx={{ color: "rgb(59 130 246)" }} />
-          </span>
+          {userSubscribe ? "Subscribed" : "Become Member"}
+          {userSubscribe ? (
+            <span>
+              <CheckIcon />
+            </span>
+          ) : (
+            <span className="font-bold">
+              <AddRoundedIcon sx={{ color: "rgb(59 130 246)" }} />
+            </span>
+          )}
         </button>
       </div>
       <div className="w-full h-full flex border-2 border-gray-300 rounded-3xl p-10 -z-20">

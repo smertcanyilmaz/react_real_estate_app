@@ -4,6 +4,7 @@ import "./MyProfile.css";
 import EditIcon from "@mui/icons-material/Edit";
 import ProfilePopup from "../../../components/ProfilePopup/ProfilePopup";
 import { Context } from "../../../Context/AuthContext";
+import AddRoundedIcon from "@mui/icons-material/AddRounded";
 
 const MyProfile = () => {
   const [showOverlay, setShowOverlay] = useState(false);
@@ -20,9 +21,19 @@ const MyProfile = () => {
       <ProfileTemplate>
         {userActive && (
           <div className="info_container">
-            <h1 className="text-xl font-semibold text-gray-700 mb-5">
-              My Profile Informations
-            </h1>
+            <div className="w-full flex justify-between">
+              <h1 className="text-xl font-semibold text-gray-700 mb-5">
+                My Profile Informations
+              </h1>
+              {userActive.subscribe && (
+                <div className="font-semibold flex justify-center">
+                  Membership
+                  <span className="font-bold ml-1">
+                    <AddRoundedIcon sx={{ color: "rgb(59 130 246)" }} />
+                  </span>
+                </div>
+              )}
+            </div>
             <div className="name input_box">
               <label htmlFor="name">Name Surname</label>
               <div className="flex items-center gap-3">

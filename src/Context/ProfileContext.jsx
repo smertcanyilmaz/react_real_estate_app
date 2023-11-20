@@ -11,12 +11,13 @@ import {
 import { db } from "../firebase-config";
 import useUserPosts from "../components/hooks/useUserPosts";
 import { Context } from "./AuthContext";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 export const ContextProfile = createContext();
 
 const ProfileContext = ({ children }) => {
+  const navigate = useNavigate();
   // my post sayfasında aktif ve pasif ilan sayısını gösterebilmek için stateleri lift etmem gerekti
   const [estateDataFilter, setEstateDataFilter] = useState([]);
   const [estateDataFilter2, setEstateDataFilter2] = useState([]);
@@ -29,6 +30,7 @@ const ProfileContext = ({ children }) => {
   console.log("favoriteEstates", favoriteEstates);
   console.log("estateData", estateData);
   const location = useLocation();
+  const path = location.pathname.substring(1);
 
   //ActivePosts page
 
@@ -55,8 +57,6 @@ const ProfileContext = ({ children }) => {
       console.error("İlan durumu güncellenirken bir hata oluştu: ", error);
     }
   };
-
-  const path = location.pathname.substring(1);
 
   useEffect(() => {
     // ActivePosts page anlık olarak database güncelleme
@@ -270,6 +270,36 @@ const ProfileContext = ({ children }) => {
     }
   };
 
+  //membership section
+
+  const [userSubscribe, setUserSubscribe] = useState(false);
+
+  useEffect(() => {
+    if (path === "membership" || location.pathname === "/") {
+      const userRef = doc(db, "users", userActiveUid);
+
+      const unsubscribe = onSnapshot(userRef, (doc) => {
+        const data = doc.data();
+        console.log(data, "data");
+        if (data) {
+          setUserSubscribe(data.subscribe);
+        }
+      });
+
+      return () => {
+        unsubscribe();
+      };
+    } else return;
+  }, [path, location]);
+
+  const membershipChecker = () => {
+    if (estateData?.length === 0 || userSubscribe) {
+      navigate("/create-post");
+    } else if (!userSubscribe) {
+      navigate("/membership");
+    }
+  };
+
   const values = {
     estateDataFilter: estateDataFilter,
     setEstateDataFilter: setEstateDataFilter,
@@ -285,6 +315,9 @@ const ProfileContext = ({ children }) => {
     isFavorite: isFavorite,
     setIsFavorite: setIsFavorite,
     favChecker: favChecker,
+    membershipChecker: membershipChecker,
+    userSubscribe: userSubscribe,
+    setUserSubscribe: setUserSubscribe,
   };
   return (
     <ContextProfile.Provider value={values}>{children}</ContextProfile.Provider>

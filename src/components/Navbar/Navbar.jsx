@@ -6,11 +6,13 @@ import PersonIcon from "@mui/icons-material/Person";
 import MenuIcon from "@mui/icons-material/Menu";
 import Logout from "./Logout/Logout";
 import { Context } from "../../Context/AuthContext";
+import { ContextProfile } from "../../Context/ProfileContext";
 
 const Navbar = ({ ref0 }) => {
   const [showBox, setShowBox] = useState(false);
   const [showUser, setShowUser] = useState(false);
   const { userActive } = useContext(Context);
+  const { membershipChecker } = useContext(ContextProfile);
 
   const mouseOn = () => {
     setShowUser(true);
@@ -92,10 +94,12 @@ const Navbar = ({ ref0 }) => {
             )}
           </div>
         </div>
-        <div onMouseEnter={showBoxHandler} onMouseLeave={showBoxHandler}>
-          <Link to="create-post">
-            <Button post="true">Post Ad</Button>
-          </Link>
+        <div
+          onClick={membershipChecker}
+          onMouseEnter={showBoxHandler}
+          onMouseLeave={showBoxHandler}
+        >
+          <Button post="true">Post Ad</Button>
         </div>
         {showBox && (
           <div className="box absolute -bottom-[3.7rem] -right-10 border border-gray-300 shadow-lg flex items-center justify-center p-3 gap-1 rounded-md z-50 bg-gray-100">

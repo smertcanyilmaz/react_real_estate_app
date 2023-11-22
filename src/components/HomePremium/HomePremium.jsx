@@ -15,7 +15,7 @@ const HomePremium = () => {
       </div>
       <div className="w-full h-full flex">
         <div className="flex-1 flex flex-col items-center ">
-          <div className="content w-2/3 flex-1 flex flex-col justify-between text-gray-800 bg-gray-300 p-10 rounded-3xl ml-16">
+          <div className="content w-[75%] flex-1 flex flex-col justify-between text-gray-800 bg-gray-300 p-10 rounded-3xl ml-16">
             <h1 className="title w-full text-center text-2xl font-semibold text-black">
               Membership
             </h1>
@@ -62,7 +62,7 @@ const HomePremium = () => {
           </div>
         </div>
         <div className="flex-1 flex flex-col items-center gap-10 relative">
-          <div className="content w-2/3  flex-1 flex flex-col justify-between text-gray-300 bg-gray-800 p-10 rounded-3xl mr-16">
+          <div className="content w-[75%] flex-1 flex flex-col justify-between text-gray-300 bg-gray-800 p-10 rounded-3xl mr-16">
             <div className="title w-full text-center text-2xl font-semibold ">
               Membership
               <span className="font-bold ml-1">

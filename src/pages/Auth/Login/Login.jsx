@@ -131,9 +131,9 @@ const Login = ({ setUnAuthNavbar }) => {
                 className="mr-3 cursor-pointer"
               >
                 {passwordVisible ? (
-                  <VisibilityIcon sx={{ color: "rgb(156 163 175 / 0.6)" }} />
-                ) : (
                   <VisibilityOffIcon sx={{ color: "rgb(156 163 175 / 0.6)" }} />
+                ) : (
+                  <VisibilityIcon sx={{ color: "rgb(156 163 175 / 0.6)" }} />
                 )}
               </div>
             </div>

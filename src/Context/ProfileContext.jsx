@@ -275,21 +275,23 @@ const ProfileContext = ({ children }) => {
   const [userSubscribe, setUserSubscribe] = useState(false);
 
   useEffect(() => {
-    if (path === "membership" || location.pathname === "/") {
-      const userRef = doc(db, "users", userActiveUid);
+    if (userActive) {
+      if (path === "membership" || location.pathname === "/") {
+        const userRef = doc(db, "users", userActiveUid);
 
-      const unsubscribe = onSnapshot(userRef, (doc) => {
-        const data = doc.data();
-        console.log(data, "data");
-        if (data) {
-          setUserSubscribe(data.subscribe);
-        }
-      });
+        const unsubscribe = onSnapshot(userRef, (doc) => {
+          const data = doc.data();
+          console.log(data, "data");
+          if (data) {
+            setUserSubscribe(data.subscribe);
+          }
+        });
 
-      return () => {
-        unsubscribe();
-      };
-    } else return;
+        return () => {
+          unsubscribe();
+        };
+      } else return;
+    }
   }, [path, location]);
 
   const membershipChecker = () => {

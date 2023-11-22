@@ -181,11 +181,11 @@ const Register = ({ setUnAuthNavbar }) => {
                   className="mr-2 cursor-pointer"
                 >
                   {passwordVisible ? (
-                    <VisibilityIcon sx={{ color: "rgb(156 163 175 / 0.6)" }} />
-                  ) : (
                     <VisibilityOffIcon
                       sx={{ color: "rgb(156 163 175 / 0.6)" }}
                     />
+                  ) : (
+                    <VisibilityIcon sx={{ color: "rgb(156 163 175 / 0.6)" }} />
                   )}
                 </div>
               </div>

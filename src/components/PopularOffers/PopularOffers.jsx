@@ -6,7 +6,7 @@ const PopularOffers = ({ refStatus, sale }) => {
     <>
       {/* max-w-[70vw] mx-auto*/}
       <main
-        className={`h-[90vh] w-full duration-500 flex justify-center items-center 
+        className={`w-full duration-500 flex justify-center items-center 
         }`}
         ref={refStatus}
       >

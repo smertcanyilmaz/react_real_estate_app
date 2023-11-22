@@ -29,7 +29,7 @@ const Navbar = ({ ref0 }) => {
   return (
     <div
       ref={ref0}
-      className="flex w-[72rem] h-[10vh] mx-auto justify-between items-center pt-10 relative"
+      className="flex w-full h-[10vh] mx-auto justify-between items-center pt-10 relative"
     >
       <Link to="/">
         <svg

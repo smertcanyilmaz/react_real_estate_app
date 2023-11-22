@@ -39,7 +39,7 @@ const Home = ({ ref0, setUnAuthNavbar }) => {
   console.log(location, "LOCATİON");
 
   return (
-    <>
+    <div className="w-full mx-auto flex flex-col gap-32">
       <FirstLook />
       <Advantages />
       <HomePremium />
@@ -52,7 +52,7 @@ const Home = ({ ref0, setUnAuthNavbar }) => {
         refStatus={refStatus}
       /> */}
       <PopularOffers sale={false} refStatus={ref2} />
-    </>
+    </div>
   );
 };
 

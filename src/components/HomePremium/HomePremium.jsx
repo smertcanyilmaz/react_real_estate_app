@@ -15,7 +15,7 @@ const HomePremium = () => {
       </div>
       <div className="w-full h-full flex">
         <div className="flex-1 flex flex-col items-center ">
-          <div className="content w-[75%] flex-1 flex flex-col justify-between text-gray-800 bg-gray-300 p-10 rounded-3xl ml-16">
+          <div className="content w-[75%] flex-1 flex flex-col justify-between text-gray-800 bg-gray-300 p-10 rounded-3xl ml-12">
             <h1 className="title w-full text-center text-2xl font-semibold text-black">
               Membership
             </h1>
@@ -62,7 +62,7 @@ const HomePremium = () => {
           </div>
         </div>
         <div className="flex-1 flex flex-col items-center gap-10 relative">
-          <div className="content w-[75%] flex-1 flex flex-col justify-between text-gray-300 bg-gray-800 p-10 rounded-3xl mr-16">
+          <div className="content w-[75%] flex-1 flex flex-col justify-between text-gray-300 bg-gray-800 p-10 rounded-3xl mr-12">
             <div className="title w-full text-center text-2xl font-semibold ">
               Membership
               <span className="font-bold ml-1">
@@ -92,7 +92,7 @@ const HomePremium = () => {
             </p>
             <p className="flex items-center gap-2 font-semibold">
               <CheckIcon fontSize="small" /> Post ad
-              <div className="bg-blue-500 text-gray-100 text-sm font-semibold px-4 py-1 rounded-xl flex items-center justify-center  ml-2">
+              <div className="bg-blue-500 text-gray-100 text-sm font-semibold px-4 py-1 rounded-xl flex items-center justify-center ml-2">
                 Limitless
               </div>
             </p>

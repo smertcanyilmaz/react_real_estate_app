@@ -52,11 +52,13 @@ const HomePremium = () => {
 
             <div className="w-full flex items-center justify-center">
               <button
-                disabled={userSubscribe}
+                disabled
                 onClick={() => navigate("/membership")}
-                className={`w-48 h-12 text-base tracking-normal leading-none rounded-lg text-gray-50 flex items-center justify-center gap-1 mt-2 bg-gray-800`}
+                className={`w-48 h-12 text-base tracking-normal leading-none rounded-lg text-gray-50 flex items-center justify-center gap-1 mt-2 bg-gray-800 ${
+                  userSubscribe ? "opacity-60" : "opacity-100"
+                }`}
               >
-                Free
+                Taken
               </button>
             </div>
           </div>

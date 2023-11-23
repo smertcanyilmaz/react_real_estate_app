@@ -3,7 +3,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import { Outlet } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
 
-const Layout = ({ ref0 = { ref0 }, unAuthNavbar, setUnAuthNavbar }) => {
+const Layout = ({ ref0 = { ref0 }, unAuthNavbar }) => {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);

@@ -1,9 +1,9 @@
 .info_container {
-  @apply h-full px-5 py-10 flex flex-col justify-between border border-gray-400/50;
+  @apply h-full px-5 py-16 flex flex-col justify-between border border-gray-400/50;
 }
 
 .input_box {
-  @apply flex flex-col gap-2  text-gray-700 font-medium;
+  @apply flex flex-col gap-2 text-gray-700 font-medium;
 }
 
 .input_box input {

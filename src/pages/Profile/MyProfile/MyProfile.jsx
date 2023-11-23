@@ -26,9 +26,9 @@ const MyProfile = () => {
                 My Profile Informations
               </h1>
               {userActive.subscribe && (
-                <div className="font-semibold flex justify-center">
-                  Membership
-                  <span className="font-bold ml-1">
+                <div className="font-semibold flex justify-center gap-1 text-xl">
+                  <h1>Membership</h1>
+                  <span className="font-bold">
                     <AddRoundedIcon sx={{ color: "rgb(59 130 246)" }} />
                   </span>
                 </div>

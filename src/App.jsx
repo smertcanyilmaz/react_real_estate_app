@@ -34,7 +34,13 @@ function App() {
               <Routes>
                 <Route
                   path="/"
-                  element={<Layout ref0={ref0} unAuthNavbar={unAuthNavbar} />}
+                  element={
+                    <Layout
+                      ref0={ref0}
+                      unAuthNavbar={unAuthNavbar}
+                      setUnAuthNavbar={setUnAuthNavbar}
+                    />
+                  }
                 >
                   <Route
                     index

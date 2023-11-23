@@ -10,7 +10,7 @@ const HomePremium = () => {
   const navigate = useNavigate();
   return (
     <div className="w-full h-[46rem] flex flex-col items-center gap-20">
-      <div className="main_title font-semibold text-4xl tracking-wide leading-snug text-gray-800 relative">
+      <div className="main_title font-semibold text-4xl tracking-wide leading-snug text-gray-800">
         Simple Plan For Everything
       </div>
       <div className="w-full h-full flex">

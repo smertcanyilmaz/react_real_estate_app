@@ -88,11 +88,10 @@ const Login = ({ setUnAuthNavbar }) => {
   };
 
   return (
-    <div className="flex max-w-full ">
+    <div className="flex w-screen ">
       <AuthEntranceSide />
-
-      <div className="flex-1 flex bg-[#ffffff]">
-        <div className="flex flex-col gap-5 w-full px-16 py-32">
+      <div className="flex-1 flex bg-[#ffffff]  items-center justify-center">
+        <div className="flex flex-col gap-5 w-full px-16 ">
           <h3 className="font-semibold">Welcome!</h3>
           <form action="" className="flex flex-col gap-5">
             <input

@@ -5,6 +5,8 @@ import { useEffect, useRef, useState } from "react";
 import Advantages from "../../components/Advantages/Advantages";
 import HomePremium from "../../components/HomePremium/HomePremium";
 import { useLocation } from "react-router-dom";
+import HomeBrands from "../../components/HomeBrands/HomeBrands";
+import Footer from "../../components/Footer/Footer";
 
 const Home = ({ ref0, setUnAuthNavbar }) => {
   const ref1 = useRef(null);
@@ -39,7 +41,7 @@ const Home = ({ ref0, setUnAuthNavbar }) => {
   console.log(location, "LOCATİON");
 
   return (
-    <div className="w-full mx-auto flex flex-col gap-32">
+    <div className="w-full mx-auto flex flex-col gap-40">
       <FirstLook />
       <Advantages />
       <HomePremium />
@@ -51,6 +53,7 @@ const Home = ({ ref0, setUnAuthNavbar }) => {
         ref1={ref1}
         refStatus={refStatus}
       /> */}
+      <HomeBrands />
       <PopularOffers sale={false} refStatus={ref2} />
     </div>
   );

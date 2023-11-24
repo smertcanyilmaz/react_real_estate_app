@@ -37,13 +37,13 @@ const FirstLook = () => {
       });
       const sumTemp = [].concat.apply([], temp);
 
-      const sumTempFilter = sumTemp?.map((city) => city.name);
+      const sumTempFilter = sumTemp?.map((city) => city?.name);
 
       setCities(sumTempFilter);
     };
     datas();
     const filteredCitiesData = cities?.filter((city) =>
-      city.toLowerCase().includes(inputValue.toLowerCase())
+      city.toLowerCase().includes(inputValue?.toLowerCase())
     );
 
     setFilteredCities(filteredCitiesData);
@@ -58,15 +58,8 @@ const FirstLook = () => {
   const { estates } = useFetch();
 
   const clickHandler = (city) => {
-    // const temp = [];
-    // estates.map((estate) => {
-    //   temp.push(estate.place.city);
-    // });
-    // const cityData = temp.filter((estate) => estate === city);
-    // console.log(cityData);
-
-    const fetchEstates = estates.filter(
-      (estates) => estates.place.city === city
+    const fetchEstates = estates?.filter(
+      (estates) => estates?.place?.city === city
     );
     console.log(fetchEstates);
   };

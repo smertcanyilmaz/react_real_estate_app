@@ -42,20 +42,22 @@ const Estate = ({ setUnAuthNavbar }) => {
   };
 
   useEffect(() => {
-    const currentUserId = userActiveUid;
-    const userRef = doc(db, "users", currentUserId);
-    const unsubscribe = onSnapshot(userRef, async (userSnapshot) => {
-      try {
-        const userData = userSnapshot.data();
-        setUserActiveFavorited(userData?.favorites?.includes(id));
-      } catch (error) {
-        console.error("Kullanıcı verilerini getirme hatası: ", error);
-      }
-    });
+    if (userActive) {
+      const currentUserId = userActiveUid;
+      const userRef = doc(db, "users", currentUserId);
+      const unsubscribe = onSnapshot(userRef, async (userSnapshot) => {
+        try {
+          const userData = userSnapshot.data();
+          setUserActiveFavorited(userData?.favorites?.includes(id));
+        } catch (error) {
+          console.error("Kullanıcı verilerini getirme hatası: ", error);
+        }
+      });
 
-    return () => {
-      unsubscribe();
-    };
+      return () => {
+        unsubscribe();
+      };
+    }
   }, [favChecker]);
 
   return (

@@ -2,6 +2,7 @@ import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import FirstLookDropDown from "../FirstLookDropDown/FirstLookDropDown";
 import { useEffect, useState } from "react";
 import { Country, State } from "country-state-city";
+import useFetch from "../hooks/useFetch";
 
 const FirstLook = () => {
   const [country, setCountry] = useState([]);
@@ -54,6 +55,22 @@ const FirstLook = () => {
     }
   }, [inputValue]);
 
+  const { estates } = useFetch();
+
+  const clickHandler = (city) => {
+    // const temp = [];
+    // estates.map((estate) => {
+    //   temp.push(estate.place.city);
+    // });
+    // const cityData = temp.filter((estate) => estate === city);
+    // console.log(cityData);
+
+    const fetchEstates = estates.filter(
+      (estates) => estates.place.city === city
+    );
+    console.log(fetchEstates);
+  };
+
   return (
     <div className="max-w-6xl h-[90vh] flex flex-col gap-[10rem] ">
       <div className="w-[50%] flex flex-col gap-5 mt-[10rem]">
@@ -79,7 +96,12 @@ const FirstLook = () => {
             />
           </button>
         </div>
-        {showDropDown && <FirstLookDropDown filteredCities={filteredCities} />}
+        {showDropDown && (
+          <FirstLookDropDown
+            filteredCities={filteredCities}
+            clickHandler={clickHandler}
+          />
+        )}
       </div>
       <img
         src="images/first_look.png"

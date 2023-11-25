@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import AuthEntranceSide from "../../../components/AuthEntranceSide/AuthEntranceSide";
 import { Link, useNavigate } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { Slide, ToastContainer, toast } from "react-toastify";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
+import { Context } from "../../../Context/AuthContext";
 
 const Login = ({ setUnAuthNavbar }) => {
   const navigate = useNavigate();
@@ -35,50 +36,42 @@ const Login = ({ setUnAuthNavbar }) => {
 
   const handleSignIn = async (e) => {
     e.preventDefault();
-    setLogingLoading(true);
-    signInWithEmailAndPassword(auth, email, password)
-      .then((user) => {
-        console.log(user, "userrrrrrrrrrr");
-        setLogingLoading(false);
+    try {
+      setLogingLoading(true);
 
-        toast.success(
-          "Successfully signed in! You are directed to the home page",
-          {
-            position: "top-right",
-            autoClose: 2000,
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredential.user;
 
-            hideProgressBar: false,
-            closeOnClick: false,
-            pauseOnHover: false,
-            draggable: false,
-            progress: undefined,
-            theme: "light",
-            onClose: () => {
-              // Toast kapatıldığında yapılacak işlemler
-              navigate("/"); // Yeni sayfaya yönlendirme
-            },
-          }
-        );
-
-        // setTimeout(() => {
-        //   navigate("/");
-        // }, 5000);
-      })
-      .catch((error) => {
-        console.log(error.code);
-        setLogingLoading(false);
-        toast.error("Something went wrong!", { autoClose: "1000" });
-        if (error.code === "auth/invalid-login-credentials") {
-          setEmailPasswordChecker(true);
-          setEmailInvalidChecker(false);
-        } else if (error.code === "auth/invalid-email") {
-          setEmailInvalidChecker(true);
-          setEmailPasswordChecker(false);
-        } else {
-          setEmailPasswordChecker(false);
-          setEmailInvalidChecker(false);
-        }
+      navigate("/");
+    } catch (error) {
+      console.log(error.code);
+      toast.error("Something went wrong!", {
+        position: "top-right",
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: "light",
       });
+      if (error.code === "auth/invalid-login-credentials") {
+        setEmailPasswordChecker(true);
+        setEmailInvalidChecker(false);
+      } else if (error.code === "auth/invalid-email") {
+        setEmailInvalidChecker(true);
+        setEmailPasswordChecker(false);
+      } else {
+        setEmailPasswordChecker(false);
+        setEmailInvalidChecker(false);
+      }
+    } finally {
+      setLogingLoading(false);
+    }
   };
 
   const [passwordVisible, setpasswordVisible] = useState(false);
@@ -144,7 +137,7 @@ const Login = ({ setUnAuthNavbar }) => {
               </div>
             )}
             <button
-              onClick={handleSignIn}
+              onClick={(e) => handleSignIn(e)}
               disabled={inputValidity}
               className={`w-24 h-12 text-white bg-[#36cf94] rounded-md mb-5 cursor-not-allowed ${
                 logingLoading ? "opacity-60" : "opacity-100"

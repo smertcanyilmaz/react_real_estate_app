@@ -94,7 +94,7 @@ const Register = ({ setUnAuthNavbar }) => {
       // kayıt olduğu an çıkış yaptırılması gerekiyor çünkü firebase çalışma mantığında register olunduğu an login de oluyor
 
       //navigate("/login");
-      //navigate("/");
+      navigate("/");
       console.log("USER", user);
     } catch (error) {
       console.log(error);

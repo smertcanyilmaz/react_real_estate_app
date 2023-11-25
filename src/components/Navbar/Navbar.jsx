@@ -102,9 +102,9 @@ const Navbar = ({ ref0 }) => {
         >
           <Button post="true">Post Ad</Button>
         </div>
-        {showBox && (
-          <div className="box absolute -bottom-[3.7rem] -right-10 border border-gray-300 shadow-lg flex items-center justify-center p-3 gap-1 rounded-md z-50 bg-gray-100">
-            Post first three ads for
+        {showBox && !userActive && (
+          <div className="box absolute -bottom-[3.7rem] -right-6 border border-gray-300 shadow-lg flex items-center justify-center p-3 gap-1 rounded-md z-50 bg-gray-100">
+            Post first ad for
             <span className="font-semibold text-red-500">free!</span>
           </div>
         )}

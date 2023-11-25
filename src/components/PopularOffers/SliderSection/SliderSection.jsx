@@ -1,13 +1,19 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Button from "../../Button/Button";
 //import Slider from "./Slider/Slider";
 import { Link } from "react-router-dom";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
 import ProductCard from "../../ProductCard/ProductCard";
+import { ContextFilter } from "../../../Context/FilterContext";
 
 const SliderSection = ({ sale }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const { setFirstLookChecker } = useContext(ContextFilter);
+
+  useEffect(() => {
+    setFirstLookChecker(false);
+  }, []);
 
   const prevSlide = () => {
     setCurrentSlide(currentSlide === 0 ? 4 : (prev) => prev - 1); //currentSlide - 1

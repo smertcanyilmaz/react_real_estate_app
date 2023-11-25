@@ -26,6 +26,7 @@ const EstatesList = ({
         selectedRoomNumbers2={selectedRoomNumbers2}
         filterPriceValues={filterPriceValues}
         handleAddItem={handleAddItem}
+        isMain={false}
       />
     </div>
   );

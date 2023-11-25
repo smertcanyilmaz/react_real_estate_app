@@ -3,7 +3,7 @@ import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../../Context/AuthContext";
-import { doc, onSnapshot, updateDoc } from "firebase/firestore";
+import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase-config";
 import { ContextProfile } from "../../Context/ProfileContext";
 import { Slide, ToastContainer, toast } from "react-toastify";
@@ -17,8 +17,6 @@ const Membership = ({ setUnAuthNavbar }) => {
   useEffect(() => {
     setUnAuthNavbar(true);
   }, []);
-
-  console.log(userSubscribe, "userSubscribeuserSubscribeuserSubscribe");
 
   const subscribeHandler = async () => {
     const userRef = doc(db, "users", userActiveUid);

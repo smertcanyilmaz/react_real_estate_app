@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Estates.css";
 import EstatesFilters from "../../components/EstatesFilters/EstatesFilters";
 import EstatesList from "../../components/EstatesList/EstatesList";
 import OverlayFilters from "../../components/OverlayFilters/OverlayFilters";
+import { ContextFilter } from "../../Context/FilterContext";
 
 const Estates = ({ setUnAuthNavbar }) => {
   const [openFiltersOverlay, setOpenFilterOverlay] = useState(false);
@@ -94,6 +95,12 @@ const Estates = ({ setUnAuthNavbar }) => {
       setStartEstatesTop(false);
     }
   }, []);
+
+  const { setFirstLookChecker } = useContext(ContextFilter);
+
+  window.onload = () => {
+    setFirstLookChecker(false);
+  };
 
   return (
     <div className="max-w-6xl mt-10 flex flex-col gap-10">

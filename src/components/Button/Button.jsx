@@ -5,6 +5,7 @@ const Button = (props) => {
   return (
     <>
       <button
+        onClick={props?.onClick ? props?.onClick : ""}
         className={`w-32 h-12 rounded-md duration-200 flex gap-2 justify-center  items-center ${
           props.showAllOffers
             ? "bg-transparent border border-[--blue] text-gray-800 hover:bg-gray-800 hover:text-white  "

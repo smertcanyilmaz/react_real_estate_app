@@ -155,7 +155,7 @@ const OverlayFilters = ({
           className="w-40 h-12 rounded-lg bg-gray-800 flex justify-center items-center text-white cursor-pointer"
           onClick={showHandler}
         >
-          Show 100 places
+          Filter
         </div>
       </div>
     </div>

@@ -1,69 +1,13 @@
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import FirstLookDropDown from "../FirstLookDropDown/FirstLookDropDown";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Country, State } from "country-state-city";
 import useFetch from "../hooks/useFetch";
+import { useNavigate } from "react-router-dom";
+import { ContextFilter } from "../../Context/FilterContext";
 
 const FirstLook = () => {
-  const [country, setCountry] = useState([]);
-  const [cities, setCities] = useState(null);
-  const [inputValue, setInputValue] = useState("");
-  const [notFound, setNotFound] = useState(false);
-  const [showDropDown, setShowDropDown] = useState(false);
-  const [filteredCities, setFilteredCities] = useState([]);
-
-  useEffect(() => {
-    const datas = () => {
-      const countryData = Country.getAllCountries().filter(
-        (country) => country.name === "Turkey"
-      );
-
-      const euCountriesData = Country.getAllCountries().filter(
-        (country) => country.currency === "EUR"
-      );
-      const sumCountries = countryData.concat(euCountriesData); // arrayleri birleştirdim
-
-      setCountry(sumCountries);
-
-      const temp = [];
-
-      country.forEach((targetCountry) => {
-        const selectedCountryIso = targetCountry.isoCode;
-
-        const citiesData = State.getAllStates().filter(
-          (city) => city?.countryCode === selectedCountryIso
-        );
-        temp.push(citiesData);
-      });
-      const sumTemp = [].concat.apply([], temp);
-
-      const sumTempFilter = sumTemp?.map((city) => city?.name);
-
-      setCities(sumTempFilter);
-    };
-    datas();
-    const filteredCitiesData = cities?.filter((city) =>
-      city.toLowerCase().includes(inputValue?.toLowerCase())
-    );
-
-    setFilteredCities(filteredCitiesData);
-
-    if (inputValue?.length === 0) {
-      setShowDropDown(false);
-    } else {
-      setShowDropDown(true);
-    }
-  }, [inputValue]);
-
-  const { estates } = useFetch();
-
-  const clickHandler = (city) => {
-    const fetchEstates = estates?.filter(
-      (estates) => estates?.place?.city === city
-    );
-    console.log(fetchEstates);
-  };
-
+  const { setInputValue, showDropDown } = useContext(ContextFilter);
   return (
     <div className="max-w-6xl h-[90vh] flex flex-col gap-[10rem] ">
       <div className="w-[50%] flex flex-col gap-5 mt-[10rem]">
@@ -89,12 +33,7 @@ const FirstLook = () => {
             />
           </button>
         </div>
-        {showDropDown && (
-          <FirstLookDropDown
-            filteredCities={filteredCities}
-            clickHandler={clickHandler}
-          />
-        )}
+        {showDropDown && <FirstLookDropDown />}
       </div>
       <img
         src="images/first_look.png"

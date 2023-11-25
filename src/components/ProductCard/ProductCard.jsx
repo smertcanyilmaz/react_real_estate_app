@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import useFetch from "../hooks/useFetch";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
 import { ContextProfile } from "../../Context/ProfileContext";
 import { Context } from "../../Context/AuthContext";
 import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "../../firebase-config";
+import { ContextFilter } from "../../Context/FilterContext";
 const ProductCard = ({
   currentSlide,
   sale,
@@ -20,13 +21,31 @@ const ProductCard = ({
   handleAddItem,
 }) => {
   const { estates } = useFetch();
-  const [filteredList, setFilteredList] = useState([]);
   const [notFound, setNotFound] = useState(false);
   const { favoriteClickHandler, setIsFavorite, favChecker } =
     useContext(ContextProfile);
   const { userActiveUid, userActive } = useContext(Context);
 
+  const { setFirstLookChecker, city, firstLookChecker } =
+    useContext(ContextFilter);
+
+  const [finalEstates, setFinalEstates] = useState([]);
+  const [finalEstates2, setFinalEstates2] = useState([]);
   let filteredEstates = estates;
+
+  useEffect(() => {
+    setFinalEstates(estates);
+  }, [estates]);
+
+  useEffect(() => {
+    firstLookChecker ? setFinalEstates2(city) : setFinalEstates2(finalEstates);
+  }, [finalEstates, city, firstLookChecker]);
+
+  const location = useLocation();
+
+  console.log(location.pathname === "/", firstLookChecker);
+  console.log("filteredEstates", filteredEstates);
+  console.log("finalEstates", finalEstates);
 
   useEffect(() => {
     if (filter) {
@@ -53,7 +72,9 @@ const ProductCard = ({
             estate.category === filter && estate.passivePosts === false
         );
       }
-      setFilteredList(filteredEstates);
+      //setFilteredList(filteredEstates);
+      setFinalEstates(filteredEstates);
+      setFirstLookChecker(false);
     }
   }, [filter]);
 
@@ -65,11 +86,13 @@ const ProductCard = ({
           (estate) =>
             estate.topOffers === "sale" && estate.passivePosts === false
         );
+        setFinalEstates(filteredEstates);
       } else {
         filteredEstates = estates.filter(
           (estate) =>
             estate.topOffers === "rent" && estate.passivePosts === false
         );
+        setFinalEstates(filteredEstates);
       }
     }
 
@@ -113,8 +136,10 @@ const ProductCard = ({
       } else {
         setNotFound(false);
       }
+
       handleAddItem();
-      setFilteredList(filteredEstates);
+      //setFilteredList(filteredEstates);
+      setFinalEstates(filteredEstates);
       setFiltersApplied(false); //overlayda filtreleme seçeneklerine tıkladığımızda estatelerin gelmemesini sağlayan state
     }
   }, [
@@ -126,14 +151,8 @@ const ProductCard = ({
     selectedRoomNumbers,
     selectedRoomNumbers2,
     filterPriceValues,
+    firstLookChecker,
   ]);
-
-  useEffect(() => {
-    const passivePosts = filteredEstates.filter(
-      (estate) => estate.passivePosts === false
-    );
-    setFilteredList(passivePosts);
-  }, [filteredEstates]);
 
   const [controlFav, setControlFav] = useState([]);
 
@@ -165,7 +184,7 @@ const ProductCard = ({
           : " flex gap-6 overflow-hidden"
       }
     >
-      {filteredList.map((estate) => (
+      {finalEstates2.map((estate) => (
         <Link to={`/estates/${estate.id}`} key={estate.id}>
           {/* min-w-[14.60rem] h-64 */}
           <div

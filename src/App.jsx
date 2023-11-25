@@ -20,6 +20,7 @@ import ProfileContext from "./Context/ProfileContext";
 import Preview from "./pages/Preview/Preview";
 import { CreatePostContext } from "./Context/CreatePostContext";
 import Membership from "./pages/Membership/Membership";
+import { FilterContext } from "./Context/FilterContext";
 
 function App() {
   const ref0 = useReducer(null);
@@ -31,108 +32,110 @@ function App() {
         <BrowserRouter>
           <CreatePostContext>
             <ProfileContext>
-              <Routes>
-                <Route
-                  path="/"
-                  element={<Layout ref0={ref0} unAuthNavbar={unAuthNavbar} />}
-                >
+              <FilterContext>
+                <Routes>
                   <Route
-                    index
-                    element={
-                      <Home ref0={ref0} setUnAuthNavbar={setUnAuthNavbar} />
-                    }
-                  />
-                  <Route
-                    path="estates"
-                    element={<Estates setUnAuthNavbar={setUnAuthNavbar} />}
-                  />
-                  <Route
-                    path="estates/:id"
-                    element={<Estate setUnAuthNavbar={setUnAuthNavbar} />}
-                  />
-                  <Route
-                    path="register"
-                    element={<Register setUnAuthNavbar={setUnAuthNavbar} />}
-                  />
-                  <Route
-                    path="login"
-                    element={<Login setUnAuthNavbar={setUnAuthNavbar} />}
-                  />
-                  <Route
-                    path="membership"
-                    element={<Membership setUnAuthNavbar={setUnAuthNavbar} />}
-                  />
+                    path="/"
+                    element={<Layout ref0={ref0} unAuthNavbar={unAuthNavbar} />}
+                  >
+                    <Route
+                      index
+                      element={
+                        <Home ref0={ref0} setUnAuthNavbar={setUnAuthNavbar} />
+                      }
+                    />
+                    <Route
+                      path="estates"
+                      element={<Estates setUnAuthNavbar={setUnAuthNavbar} />}
+                    />
+                    <Route
+                      path="estates/:id"
+                      element={<Estate setUnAuthNavbar={setUnAuthNavbar} />}
+                    />
+                    <Route
+                      path="register"
+                      element={<Register setUnAuthNavbar={setUnAuthNavbar} />}
+                    />
+                    <Route
+                      path="login"
+                      element={<Login setUnAuthNavbar={setUnAuthNavbar} />}
+                    />
+                    <Route
+                      path="membership"
+                      element={<Membership setUnAuthNavbar={setUnAuthNavbar} />}
+                    />
 
-                  <Route
-                    path="create-post"
-                    element={
-                      <Protected>
-                        <CreatePost />
-                      </Protected>
-                    }
-                  />
-                  <Route
-                    path="preview"
-                    element={
-                      <Protected>
-                        <Preview />
-                      </Protected>
-                    }
-                  />
-                  <Route
-                    path="myprofile"
-                    element={
-                      <Protected>
-                        <MyProfile />
-                      </Protected>
-                    }
-                  />
+                    <Route
+                      path="create-post"
+                      element={
+                        <Protected>
+                          <CreatePost />
+                        </Protected>
+                      }
+                    />
+                    <Route
+                      path="preview"
+                      element={
+                        <Protected>
+                          <Preview />
+                        </Protected>
+                      }
+                    />
+                    <Route
+                      path="myprofile"
+                      element={
+                        <Protected>
+                          <MyProfile />
+                        </Protected>
+                      }
+                    />
 
-                  <Route
-                    path="posts"
-                    element={
-                      <Protected>
-                        <MyPosts />
-                      </Protected>
-                    }
-                  />
+                    <Route
+                      path="posts"
+                      element={
+                        <Protected>
+                          <MyPosts />
+                        </Protected>
+                      }
+                    />
 
-                  <Route
-                    path="posts/actives"
-                    element={
-                      <Protected>
-                        <ActivePosts />
-                      </Protected>
-                    }
-                  />
+                    <Route
+                      path="posts/actives"
+                      element={
+                        <Protected>
+                          <ActivePosts />
+                        </Protected>
+                      }
+                    />
 
-                  <Route
-                    path="posts/pasives"
-                    element={
-                      <Protected>
-                        <PasivePosts />
-                      </Protected>
-                    }
-                  />
+                    <Route
+                      path="posts/pasives"
+                      element={
+                        <Protected>
+                          <PasivePosts />
+                        </Protected>
+                      }
+                    />
 
-                  <Route
-                    path="posts/incomplete"
-                    element={
-                      <Protected>
-                        <IncompletePosts />
-                      </Protected>
-                    }
-                  />
-                  <Route
-                    path="favorites"
-                    element={
-                      <Protected>
-                        <Favorites setUnAuthNavbar={setUnAuthNavbar} />
-                      </Protected>
-                    }
-                  />
-                </Route>
-              </Routes>
+                    <Route
+                      path="posts/incomplete"
+                      element={
+                        <Protected>
+                          <IncompletePosts />
+                        </Protected>
+                      }
+                    />
+                    <Route
+                      path="favorites"
+                      element={
+                        <Protected>
+                          <Favorites setUnAuthNavbar={setUnAuthNavbar} />
+                        </Protected>
+                      }
+                    />
+                  </Route>
+                </Routes>
+              </FilterContext>
             </ProfileContext>
           </CreatePostContext>
         </BrowserRouter>

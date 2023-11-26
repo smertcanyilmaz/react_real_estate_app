@@ -1,39 +1,85 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
 import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
 import KeyRoundedIcon from "@mui/icons-material/KeyRounded";
 import "./ProfilePopup.css";
 import Button from "../Button/Button";
-import { getAuth, sendEmailVerification, updateEmail } from "firebase/auth";
+import {
+  getAuth,
+  sendEmailVerification,
+  updateEmail,
+  updatePassword,
+} from "firebase/auth";
 import { Context } from "../../Context/AuthContext";
-import { doc, updateDoc } from "firebase/firestore";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase-config";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import CheckIcon from "@mui/icons-material/Check";
 
-const ProfilePopup = ({ clickHandler, showOverlay, edit }) => {
+const ProfilePopup = ({
+  clickHandler,
+  showOverlay,
+  edit,
+  isPasswordCheck,
+  setIsPasswordCheck,
+  newPassword,
+  setNewPassword,
+  passwordCheck,
+  setPasswordCheck,
+}) => {
   const [newName, setNewName] = useState("");
   const [newLastname, setNewLastname] = useState("");
   const [newEmail, setNewEmail] = useState("");
-  const [newPassword, setNewPassword] = useState("");
+  //const [newPassword, setNewPassword] = useState("");
   const auth = getAuth();
   const { userActive, userActiveUid } = useContext(Context);
+  const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState(null);
 
-  const handleEmailUpdate = async (e) => {
+  const user = auth.currentUser;
+  //const [passwordCheck, setPasswordCheck] = useState("");
+  //const [isPasswordCheck, setIsPasswordCheck] = useState(false);
+
+  const changePasswordHandler = async (e) => {
+    e.preventDefault();
+    const userRef = doc(db, "users", userActiveUid);
+    try {
+      await updatePassword(user, newPassword);
+      console.log("auth şifre güncellendi");
+      await updateDoc(userRef, {
+        password: newPassword,
+      });
+      console.log("db şifre güncellendi");
+      clickHandler(3);
+    } catch (error) {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(`${errorCode}: ${errorMessage}`);
+    }
+  };
+
+  const passwordCheckerHandler = (e) => {
     e.preventDefault();
 
-    const user = auth.currentUser;
-    const userEmail = user.email;
-
-    updateEmail(user, newEmail)
-      .then(() => {
-        // E-posta adresi güncellendi
-        console.log("email güncelleme başarılı");
-      })
-      .catch((error) => {
-        // Hata durumunda işlemler burada ele alınabilir
-        console.log("email güncelleme başarılı", error);
-      });
+    if (passwordCheck === userActive?.password) {
+      setIsPasswordCheck(true);
+      console.log("başarılı");
+    } else {
+      console.log("başarısız");
+    }
   };
+
+  const [buttonValid, setButtonValid] = useState(false);
+
+  useEffect(() => {
+    if (newPassword?.length >= 6) {
+      setButtonValid(true);
+    } else {
+      setButtonValid(false);
+    }
+  }, [newPassword, buttonValid]);
 
   return (
     <div
@@ -67,12 +113,15 @@ const ProfilePopup = ({ clickHandler, showOverlay, edit }) => {
               <KeyRoundedIcon fontSize="large" style={{ color: "gray" }} />
             )}
           </div>
-          <p className="font-semibold text-lg tracking-wide text-gray-700">
+          <p className="font-semibold text-xl tracking-wide text-gray-700">
             {edit === 1 && "Change Your Name and Surname"}
             {edit === 2 && "Change Your E-Mail Address"}
-            {edit === 3 && "Change Your Password"}
+            {edit === 3 &&
+              (isPasswordCheck
+                ? "Change Your Password"
+                : "Verify Your Password")}
           </p>
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-3">
             <label
               htmlFor={
                 (edit === 1 && "popupName") ||
@@ -82,7 +131,8 @@ const ProfilePopup = ({ clickHandler, showOverlay, edit }) => {
             >
               {edit === 1 && "Your Name"}
               {edit === 2 && "Your New E-Mail Address"}
-              {edit === 3 && "Your Password"}
+              {edit === 3 &&
+                (isPasswordCheck ? "New Password" : "Your Password")}
               <span className="text-red-500">*</span>
             </label>
             {edit === 1 && (
@@ -103,20 +153,56 @@ const ProfilePopup = ({ clickHandler, showOverlay, edit }) => {
                 onChange={(e) => setNewEmail(e.target.value)}
               />
             )}
+
             {edit === 3 && (
-              <input type="password" name="popupPassword" id="popupPassword" />
+              <div className="flex items-center border border-black pr-2">
+                <input
+                  className="border-none outline-none flex-1"
+                  type={showPassword ? "type" : "password"}
+                  name="popupPassword"
+                  id="popupPassword"
+                  value={isPasswordCheck ? newPassword : passwordCheck}
+                  onChange={(e) => {
+                    isPasswordCheck
+                      ? setNewPassword(e.target.value)
+                      : setPasswordCheck(e.target.value);
+                  }}
+                />
+
+                {isPasswordCheck &&
+                  (showPassword ? (
+                    <VisibilityOffIcon
+                      style={{ cursor: "pointer" }}
+                      sx={{ color: "rgb(156 163 175 / 0.9)" }}
+                      onClick={() => setShowPassword((prev) => !prev)}
+                    />
+                  ) : (
+                    <VisibilityIcon
+                      style={{ cursor: "pointer" }}
+                      sx={{ color: "rgb(156 163 175 / 0.9)" }}
+                      onClick={() => setShowPassword((prev) => !prev)}
+                    />
+                  ))}
+              </div>
+            )}
+            {isPasswordCheck && (
+              <div className="flex items-center gap-[2px] h-3">
+                <p className="text-xs text-gray-800/70">
+                  Password must be at least 6 characters
+                </p>
+                {buttonValid ? (
+                  <CheckIcon fontSize="small" sx={{ color: "#36cf94" }} />
+                ) : (
+                  ""
+                )}
+              </div>
             )}
           </div>
-          {(edit === 1 || edit === 3) && (
+          {edit === 1 && (
             <div className="flex flex-col gap-2">
-              <label
-                htmlFor={
-                  (edit === 1 && "popupSurname") ||
-                  (edit === 3 && "popupPassword2")
-                }
-              >
+              <label htmlFor={edit === 1 && "popupSurname"}>
                 {edit === 1 && "Your Surname"}
-                {edit === 3 && "Your New Password"}
+
                 <span className="text-red-500">*</span>
               </label>
               {edit === 1 && (
@@ -128,32 +214,25 @@ const ProfilePopup = ({ clickHandler, showOverlay, edit }) => {
                   onChange={(e) => setNewLastname(e.target.value)}
                 />
               )}
-              {edit === 3 && (
-                <input
-                  type="password"
-                  name="popupPassword2"
-                  id="popupPassword2"
-                  value={newPassword}
-                  onChange={(e) => setNewPassword(e.target.value)}
-                />
-              )}
             </div>
           )}
-          {edit === 3 && (
-            <div className="flex flex-col gap-2">
-              <label htmlFor="popupPassword3">
-                Your New Password Confirm
-                <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="password"
-                name="popupPassword3"
-                id="popupPassword3"
-              />
-            </div>
-          )}
+
           {/* <Button onClick={handleEmailUpdate}>Save</Button> */}
-          <button onClick={handleEmailUpdate}>kaydet</button>
+
+          <div
+            className={`${
+              !buttonValid && isPasswordCheck ? "opacity-70" : "opacity-100"
+            }`}
+          >
+            <Button
+              disabled={!buttonValid && isPasswordCheck}
+              onClick={
+                isPasswordCheck ? changePasswordHandler : passwordCheckerHandler
+              }
+            >
+              {isPasswordCheck ? "Change" : "Continue"}
+            </Button>
+          </div>
         </form>
       </div>
     </div>

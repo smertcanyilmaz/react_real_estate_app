@@ -5,16 +5,45 @@ import EditIcon from "@mui/icons-material/Edit";
 import ProfilePopup from "../../../components/ProfilePopup/ProfilePopup";
 import { Context } from "../../../Context/AuthContext";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
+import { getAuth, sendPasswordResetEmail, updatePassword } from "firebase/auth";
+import { doc, updateDoc } from "firebase/firestore";
+import { db } from "../../../firebase-config";
 
 const MyProfile = () => {
   const [showOverlay, setShowOverlay] = useState(false);
   const [edit, setEdit] = useState(null);
-  const { userActive } = useContext(Context);
+  const { userActive, userActiveUid } = useContext(Context);
+  const [isPasswordCheck, setIsPasswordCheck] = useState(false);
+  const [newPassword, setNewPassword] = useState("");
+  const [passwordCheck, setPasswordCheck] = useState("");
 
   const clickHandler = (index) => {
     setShowOverlay((prev) => !prev);
     setEdit(index);
+    setIsPasswordCheck(false);
+    setNewPassword("");
+    setPasswordCheck("");
   };
+  // const auth = getAuth();
+  // console.log(auth.currentUser, "auth.currentUser.email;");
+  // const user = auth.currentUser;
+  // const newPassword = "smertcanyimaz123";
+
+  // const changePasswordHandler = async () => {
+  //   const userRef = doc(db, "users", userActiveUid);
+  //   try {
+  //     await updatePassword(user, newPassword);
+  //     console.log("auth şifre güncellendi");
+  //     await updateDoc(userRef, {
+  //       password: newPassword,
+  //     });
+  //     console.log("db şifre güncellendi");
+  //   } catch (error) {
+  //     const errorCode = error.code;
+  //     const errorMessage = error.message;
+  //     console.log(`${errorCode}: ${errorMessage}`);
+  //   }
+  // };
 
   return (
     <>
@@ -82,10 +111,17 @@ const MyProfile = () => {
           </div>
         )}
       </ProfileTemplate>
+
       <ProfilePopup
         clickHandler={clickHandler}
         showOverlay={showOverlay}
         edit={edit}
+        isPasswordCheck={isPasswordCheck}
+        setIsPasswordCheck={setIsPasswordCheck}
+        newPassword={newPassword}
+        setNewPassword={setNewPassword}
+        passwordCheck={passwordCheck}
+        setPasswordCheck={setPasswordCheck}
       />
 
       <div //overlay

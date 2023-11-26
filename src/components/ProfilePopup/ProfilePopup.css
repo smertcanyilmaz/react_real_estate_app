@@ -3,5 +3,5 @@ form input {
 }
 
 form label {
-  @apply text-xs font-semibold text-gray-700;
+  @apply text-sm font-semibold text-gray-700;
 }

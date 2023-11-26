@@ -6,13 +6,14 @@ const Button = (props) => {
     <>
       <button
         onClick={props?.onClick ? props?.onClick : ""}
-        className={`w-32 h-12 rounded-md duration-200 flex gap-2 justify-center  items-center ${
+        disabled={props?.disabled ? props.disabled : ""}
+        className={`w-32 h-12 rounded-md duration-200 flex gap-2 justify-center  items-center hover:text-white ${
           props.showAllOffers
-            ? "bg-transparent border border-[--blue] text-gray-800 hover:bg-gray-800 hover:text-white  "
+            ? "bg-transparent border border-[--blue] text-gray-800 hover:bg-gray-800 hover:text-white"
             : " text-gray-100 "
         } ${
           props.post &&
-          "border-2 bg-gray-800 border-gray-800  hover:bg-gray-800 duration-200 hover:text-white "
+          "border-2 bg-gray-800 border-gray-800  hover:bg-gray-800 duration-200 hover:text-white"
         } 
         
         ${

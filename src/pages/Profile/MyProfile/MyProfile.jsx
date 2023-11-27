@@ -5,9 +5,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import ProfilePopup from "../../../components/ProfilePopup/ProfilePopup";
 import { Context } from "../../../Context/AuthContext";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
-import { getAuth, sendPasswordResetEmail, updatePassword } from "firebase/auth";
-import { doc, updateDoc } from "firebase/firestore";
-import { db } from "../../../firebase-config";
+import { Slide, ToastContainer } from "react-toastify";
 
 const MyProfile = () => {
   const [showOverlay, setShowOverlay] = useState(false);
@@ -16,6 +14,7 @@ const MyProfile = () => {
   const [isPasswordCheck, setIsPasswordCheck] = useState(false);
   const [newPassword, setNewPassword] = useState("");
   const [passwordCheck, setPasswordCheck] = useState("");
+  const [wrongPassword, setWrongPassword] = useState(false);
 
   const clickHandler = (index) => {
     setShowOverlay((prev) => !prev);
@@ -23,27 +22,8 @@ const MyProfile = () => {
     setIsPasswordCheck(false);
     setNewPassword("");
     setPasswordCheck("");
+    setWrongPassword(false);
   };
-  // const auth = getAuth();
-  // console.log(auth.currentUser, "auth.currentUser.email;");
-  // const user = auth.currentUser;
-  // const newPassword = "smertcanyimaz123";
-
-  // const changePasswordHandler = async () => {
-  //   const userRef = doc(db, "users", userActiveUid);
-  //   try {
-  //     await updatePassword(user, newPassword);
-  //     console.log("auth şifre güncellendi");
-  //     await updateDoc(userRef, {
-  //       password: newPassword,
-  //     });
-  //     console.log("db şifre güncellendi");
-  //   } catch (error) {
-  //     const errorCode = error.code;
-  //     const errorMessage = error.message;
-  //     console.log(`${errorCode}: ${errorMessage}`);
-  //   }
-  // };
 
   return (
     <>
@@ -72,6 +52,7 @@ const MyProfile = () => {
                   id="name"
                   disabled
                   value={userActive?.firstName + " " + userActive?.lastName}
+                  className="capitalize"
                 />
                 <div onClick={() => clickHandler(1)} className="iconss">
                   <EditIcon />
@@ -122,6 +103,8 @@ const MyProfile = () => {
         setNewPassword={setNewPassword}
         passwordCheck={passwordCheck}
         setPasswordCheck={setPasswordCheck}
+        wrongPassword={wrongPassword}
+        setWrongPassword={setWrongPassword}
       />
 
       <div //overlay
@@ -134,6 +117,7 @@ const MyProfile = () => {
           showOverlay ? "visible opacity-60" : "invisible opacity-0"
         }`}
       ></div>
+      <ToastContainer transition={Slide} />
     </>
   );
 };

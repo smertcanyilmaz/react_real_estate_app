@@ -38,7 +38,7 @@ const ProfileSideBar = () => {
           <PersonIcon fontSize="large" style={{ color: "gray" }} />
         </div>
         {userActive && (
-          <p className="font-semibold text-lg text-gray-800">
+          <p className="font-semibold text-lg text-gray-800 capitalize">
             {userActive.firstName} {userActive.lastName}
           </p>
         )}

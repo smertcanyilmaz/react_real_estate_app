@@ -5,18 +5,14 @@ import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
 import KeyRoundedIcon from "@mui/icons-material/KeyRounded";
 import "./ProfilePopup.css";
 import Button from "../Button/Button";
-import {
-  getAuth,
-  sendEmailVerification,
-  updateEmail,
-  updatePassword,
-} from "firebase/auth";
+import { getAuth, updatePassword } from "firebase/auth";
 import { Context } from "../../Context/AuthContext";
-import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase-config";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import CheckIcon from "@mui/icons-material/Check";
+import { toast } from "react-toastify";
 
 const ProfilePopup = ({
   clickHandler,
@@ -28,23 +24,24 @@ const ProfilePopup = ({
   setNewPassword,
   passwordCheck,
   setPasswordCheck,
+  wrongPassword,
+  setWrongPassword,
 }) => {
   const [newName, setNewName] = useState("");
   const [newLastname, setNewLastname] = useState("");
   const [newEmail, setNewEmail] = useState("");
-  //const [newPassword, setNewPassword] = useState("");
   const auth = getAuth();
   const { userActive, userActiveUid } = useContext(Context);
   const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState(null);
+  const [buttonValid, setButtonValid] = useState(false);
+  const [passwordLoading, setPasswordLoading] = useState(false);
 
   const user = auth.currentUser;
-  //const [passwordCheck, setPasswordCheck] = useState("");
-  //const [isPasswordCheck, setIsPasswordCheck] = useState(false);
+  const userRef = doc(db, "users", userActiveUid);
 
   const changePasswordHandler = async (e) => {
     e.preventDefault();
-    const userRef = doc(db, "users", userActiveUid);
+    setPasswordLoading(true);
     try {
       await updatePassword(user, newPassword);
       console.log("auth şifre güncellendi");
@@ -52,11 +49,23 @@ const ProfilePopup = ({
         password: newPassword,
       });
       console.log("db şifre güncellendi");
+      setPasswordLoading(false);
+      toast.success("Password is changed!", {
+        position: "top-right",
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: "light",
+      });
       clickHandler(3);
     } catch (error) {
       const errorCode = error.code;
       const errorMessage = error.message;
       console.log(`${errorCode}: ${errorMessage}`);
+      setPasswordLoading(false);
     }
   };
 
@@ -65,13 +74,14 @@ const ProfilePopup = ({
 
     if (passwordCheck === userActive?.password) {
       setIsPasswordCheck(true);
+      setWrongPassword(false);
       console.log("başarılı");
     } else {
+      setIsPasswordCheck(false);
+      setWrongPassword(true);
       console.log("başarısız");
     }
   };
-
-  const [buttonValid, setButtonValid] = useState(false);
 
   useEffect(() => {
     if (newPassword?.length >= 6) {
@@ -80,6 +90,25 @@ const ProfilePopup = ({
       setButtonValid(false);
     }
   }, [newPassword, buttonValid]);
+
+  const nameHandler = async (e) => {
+    e.preventDefault();
+    try {
+      await updateDoc(userRef, {
+        firstName: newName,
+        lastName: newLastname,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const passwordSum = isPasswordCheck
+    ? changePasswordHandler
+    : passwordCheckerHandler;
+
+  const selectedButtonFunc =
+    edit === 1 ? nameHandler : edit === 2 ? "" : passwordSum;
 
   return (
     <div
@@ -155,7 +184,11 @@ const ProfilePopup = ({
             )}
 
             {edit === 3 && (
-              <div className="flex items-center border border-black pr-2">
+              <div
+                className={`flex items-center border pr-2 ${
+                  wrongPassword ? " border-red-500" : "border-gray-800"
+                }`}
+              >
                 <input
                   className="border-none outline-none flex-1"
                   type={showPassword ? "type" : "password"}
@@ -197,6 +230,11 @@ const ProfilePopup = ({
                 )}
               </div>
             )}
+            {wrongPassword && (
+              <div className=" w-full h-8 flex items-center justify-center  bg-red-200/80 font-semibold text-[#ef4a4a] text-xs rounded-md">
+                <p className="text-xs">Password is incorrect</p>
+              </div>
+            )}
           </div>
           {edit === 1 && (
             <div className="flex flex-col gap-2">
@@ -226,11 +264,20 @@ const ProfilePopup = ({
           >
             <Button
               disabled={!buttonValid && isPasswordCheck}
-              onClick={
-                isPasswordCheck ? changePasswordHandler : passwordCheckerHandler
-              }
+              onClick={selectedButtonFunc}
             >
-              {isPasswordCheck ? "Change" : "Continue"}
+              {!passwordLoading && edit === 3
+                ? isPasswordCheck
+                  ? "Change"
+                  : "Continue"
+                : edit === 1
+                ? "Change"
+                : ""}
+              <div className="flex items-center justify-center gap-2">
+                {passwordLoading && (
+                  <div className="inline-block h-5 w-5 animate-spin rounded-full border-2 border-solid border-gray-50 border-r-transparent align-[-0.125em] "></div>
+                )}
+              </div>
             </Button>
           </div>
         </form>

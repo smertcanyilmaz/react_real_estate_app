@@ -7,12 +7,13 @@ import "./ProfilePopup.css";
 import Button from "../Button/Button";
 import { getAuth, updatePassword } from "firebase/auth";
 import { Context } from "../../Context/AuthContext";
-import { doc, updateDoc } from "firebase/firestore";
+import { doc, onSnapshot, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase-config";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import CheckIcon from "@mui/icons-material/Check";
 import { toast } from "react-toastify";
+import { useLocation } from "react-router-dom";
 
 const ProfilePopup = ({
   clickHandler,
@@ -33,8 +34,13 @@ const ProfilePopup = ({
   const auth = getAuth();
   const { userActive, userActiveUid } = useContext(Context);
   const [showPassword, setShowPassword] = useState(false);
-  const [buttonValid, setButtonValid] = useState(false);
+  const [buttonValid, setButtonValid] = useState({
+    name: false,
+    email: false,
+    password: false,
+  });
   const [passwordLoading, setPasswordLoading] = useState(false);
+  const [emailLoading, setEmailLoading] = useState(false);
 
   const user = auth.currentUser;
   const userRef = doc(db, "users", userActiveUid);
@@ -71,7 +77,6 @@ const ProfilePopup = ({
 
   const passwordCheckerHandler = (e) => {
     e.preventDefault();
-
     if (passwordCheck === userActive?.password) {
       setIsPasswordCheck(true);
       setWrongPassword(false);
@@ -85,21 +90,45 @@ const ProfilePopup = ({
 
   useEffect(() => {
     if (newPassword?.length >= 6) {
-      setButtonValid(true);
+      setButtonValid((prev) => ({ ...prev, password: true }));
     } else {
-      setButtonValid(false);
+      setButtonValid((prev) => ({ ...prev, password: false }));
     }
-  }, [newPassword, buttonValid]);
+
+    if (newName.length === 0 || newLastname.length === 0) {
+      setButtonValid((prev) => ({ ...prev, name: false }));
+    } else {
+      setButtonValid((prev) => ({ ...prev, name: true }));
+    }
+  }, [newPassword, newName, newLastname, buttonValid]);
 
   const nameHandler = async (e) => {
     e.preventDefault();
+    setEmailLoading(true);
     try {
       await updateDoc(userRef, {
         firstName: newName,
         lastName: newLastname,
       });
+      setEmailLoading(false);
+
+      toast.success("Password is changed!", {
+        position: "top-right",
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: "light",
+      });
+      clickHandler(1);
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
     } catch (error) {
       console.log(error);
+      setEmailLoading(false);
     }
   };
 
@@ -223,7 +252,7 @@ const ProfilePopup = ({
                 <p className="text-xs text-gray-800/70">
                   Password must be at least 6 characters
                 </p>
-                {buttonValid ? (
+                {buttonValid?.password ? (
                   <CheckIcon fontSize="small" sx={{ color: "#36cf94" }} />
                 ) : (
                   ""
@@ -259,22 +288,26 @@ const ProfilePopup = ({
 
           <div
             className={`${
-              !buttonValid && isPasswordCheck ? "opacity-70" : "opacity-100"
+              (!buttonValid?.password && isPasswordCheck) || !buttonValid.name
+                ? "opacity-70"
+                : "opacity-100"
             }`}
           >
             <Button
-              disabled={!buttonValid && isPasswordCheck}
+              disabled={
+                (!buttonValid?.password && isPasswordCheck) || !buttonValid.name
+              }
               onClick={selectedButtonFunc}
             >
               {!passwordLoading && edit === 3
                 ? isPasswordCheck
                   ? "Change"
                   : "Continue"
-                : edit === 1
+                : !emailLoading && edit === 1
                 ? "Change"
                 : ""}
               <div className="flex items-center justify-center gap-2">
-                {passwordLoading && (
+                {(passwordLoading || emailLoading) && (
                   <div className="inline-block h-5 w-5 animate-spin rounded-full border-2 border-solid border-gray-50 border-r-transparent align-[-0.125em] "></div>
                 )}
               </div>

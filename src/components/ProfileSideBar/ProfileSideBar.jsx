@@ -7,7 +7,7 @@ import "./ProfileSideBar.css";
 import { Context } from "../../Context/AuthContext";
 
 const ProfileSideBar = () => {
-  const { userActive } = useContext(Context);
+  const { userActive, userActiveUid } = useContext(Context);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -37,9 +37,10 @@ const ProfileSideBar = () => {
         <div className="p-4 border border-gray-300 rounded-full bg-gray-200/50">
           <PersonIcon fontSize="large" style={{ color: "gray" }} />
         </div>
+
         {userActive && (
           <p className="font-semibold text-lg text-gray-800 capitalize">
-            {userActive.firstName} {userActive.lastName}
+            {userActive?.firstName} {userActive?.lastName}
           </p>
         )}
       </div>

@@ -58,7 +58,7 @@ const Membership = ({ setUnAuthNavbar }) => {
 
   return (
     <div className="w-full h-[100vh] flex">
-      <div className="left w-[60%] h-full bg-red-500">
+      <div className="left w-[60%] h-full">
         <img
           src="images\pexels-fauxels-3183197.jpg"
           className="w-full h-full object-cover"

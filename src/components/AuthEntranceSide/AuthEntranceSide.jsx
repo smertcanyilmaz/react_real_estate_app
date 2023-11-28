@@ -28,14 +28,12 @@ const AuthEntranceSide = () => {
             />
           </svg>
         </Link>
-        {/* <div className="text-lg font-semibold tracking-wider">ESTATE</div> */}
       </div>
       <div
         className={`flex-1 w-full flex items-end justify-center tranform-translate  ${
           transition ? "-translate-y-0  " : "translate-y-full"
         } duration-[1800ms]`}
       >
-        {/* <img src="public\images\authHouse.gif" alt="" /> */}
         <img
           src="images\house2.png"
           alt=""

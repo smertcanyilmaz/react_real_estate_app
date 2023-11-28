@@ -11,9 +11,9 @@ const Layout = ({ ref0 = { ref0 }, unAuthNavbar }) => {
   return (
     <div className="h-screen flex flex-col gap-20">
       <div
-        className={`flex-1 max-w-6xl  mx-auto flex flex-col ${
-          unAuthNavbar && "max-w-full"
-        }`}
+        className={`flex-1 max-w-6xl  mx-auto flex flex-col 
+        ${unAuthNavbar && "max-w-full"}
+       `}
       >
         {!unAuthNavbar && <Navbar ref0={ref0} />}
 

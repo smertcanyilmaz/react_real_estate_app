@@ -12,7 +12,7 @@ const Preview = () => {
 
   return (
     <>
-      <div className="max-w-6xl mt-10 mb-10 flex flex-col gap-10 items-center justify-center">
+      <div className="w-[72rem] mt-10 flex flex-col gap-10 items-center justify-center">
         <PostLine custom="preview" />
         <div className="w-full flex ">
           <PreviewSum />

@@ -55,7 +55,7 @@ const Advantages = () => {
         <div className="w-[70%] h-full flex justify-end gap-5 text-gray-100">
           <div className="w-[65%] rounded-xl">
             <img
-              src="images/owner.jpg"
+              src="images/owner_tiny.jpg"
               className="w-full h-full object-cover rounded-xl"
             />
           </div>

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import Navbar from "../../components/Navbar/Navbar";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
 
 const Layout = ({ ref0 = { ref0 }, unAuthNavbar }) => {
@@ -9,9 +9,9 @@ const Layout = ({ ref0 = { ref0 }, unAuthNavbar }) => {
   }, []);
 
   return (
-    <div className="h-screen flex flex-col gap-20">
+    <div className="h-screen max-w-full flex flex-col gap-20">
       <div
-        className={`flex-1 max-w-6xl  mx-auto flex flex-col 
+        className={`flex-1 max-w-6xl mx-auto flex flex-col 
         ${unAuthNavbar && "max-w-full"}
        `}
       >

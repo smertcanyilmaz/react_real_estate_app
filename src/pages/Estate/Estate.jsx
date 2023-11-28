@@ -61,7 +61,7 @@ const Estate = ({ setUnAuthNavbar }) => {
   }, [favChecker]);
 
   return (
-    <div className="max-w-6xl max-h-[100vh] mt-10 mb-10">
+    <div className="w-[72rem] max-h-[100vh] mt-10 mb-10">
       {openOverlayEstate && (
         <OverlayEstate
           setOpenOverlayEstate={setOpenOverlayEstate}

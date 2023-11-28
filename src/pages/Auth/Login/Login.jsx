@@ -148,7 +148,6 @@ const Login = ({ setUnAuthNavbar }) => {
               ) : (
                 <div className="flex items-center justify-center gap-2">
                   <div className="inline-block h-5 w-5 animate-spin rounded-full border-2 border-solid border-gray-50 border-r-transparent align-[-0.125em] "></div>
-                  <p className="text-sm text-gray-50">Loading</p>
                 </div>
               )}
             </button>

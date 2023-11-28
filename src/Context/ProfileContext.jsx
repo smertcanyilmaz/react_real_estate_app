@@ -25,10 +25,6 @@ const ProfileContext = ({ children }) => {
   const { estateData } = useUserPosts();
   const { userActive, userActiveUid } = useContext(Context);
 
-  console.log("estateDataFilter", estateDataFilter);
-  console.log("estateDataFilter2", estateDataFilter2);
-  console.log("favoriteEstates", favoriteEstates);
-  console.log("estateData", estateData);
   const location = useLocation();
   const path = location.pathname.substring(1);
 
@@ -236,32 +232,22 @@ const ProfileContext = ({ children }) => {
     setFavChecker(!favChecker);
 
     try {
-      if (!userActive?.favorites?.includes(estateId)) {
-        const userSnapshot = await getDoc(userRef);
-        const estateSnapshot = await getDoc(estateRef);
+      const userSnapshot = await getDoc(userRef);
+      const estateSnapshot = await getDoc(estateRef);
 
-        if (userSnapshot.exists()) {
-          const userData = userSnapshot.data();
-          if (!userData.favorites) {
-            await updateDoc(userRef, { favorites: [estateId] });
-          } else {
-            await updateDoc(userRef, {
-              favorites: [...userData.favorites, estateId],
-            });
-          }
-        }
-
-        if (estateSnapshot.exists()) {
-          await updateDoc(estateRef, { favorited: true }); // Favori olarak işaretle
+      if (userSnapshot.exists()) {
+        const userData = userSnapshot.data();
+        if (!userData.favorites || !userData.favorites.includes(estateId)) {
+          // If the estate is not in favorites, add it
+          await updateDoc(userRef, {
+            favorites: [...(userData.favorites || []), estateId],
+          });
+          await updateDoc(estateRef, { favorited: true });
           setIsFavorite(true);
-        }
-      } else {
-        RemoveFavorite(estateId);
-
-        const estateSnapshot = await getDoc(estateRef);
-
-        if (estateSnapshot.exists()) {
-          await updateDoc(estateRef, { favorited: false }); // Favori işaretini kaldır
+        } else {
+          // If the estate is already in favorites, remove it
+          RemoveFavorite(estateId);
+          await updateDoc(estateRef, { favorited: false });
           setIsFavorite(false);
         }
       }

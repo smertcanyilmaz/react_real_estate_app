@@ -58,13 +58,13 @@ const Membership = ({ setUnAuthNavbar }) => {
 
   return (
     <div className="w-full h-[100vh] flex">
-      <div className="left flex-[60%] h-full">
+      <div className="left w-[60%] h-full bg-red-500">
         <img
           src="images\pexels-fauxels-3183197.jpg"
           className="w-full h-full object-cover"
         />
       </div>
-      <div className="right h-full flex-[40%] flex flex-col  justify-between py-5">
+      <div className="right h-full w-[40%] flex flex-col  justify-between py-5">
         <div onClick={() => navigate("/")} className="ml-6 cursor-pointer">
           <KeyboardBackspaceIcon fontSize="large" />
         </div>

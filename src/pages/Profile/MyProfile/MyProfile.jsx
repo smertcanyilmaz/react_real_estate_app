@@ -10,9 +10,12 @@ import { Slide, ToastContainer } from "react-toastify";
 const MyProfile = () => {
   const [showOverlay, setShowOverlay] = useState(false);
   const [edit, setEdit] = useState(null);
-  const { userActive, userActiveUid } = useContext(Context);
+  const { userActive } = useContext(Context);
   const [isPasswordCheck, setIsPasswordCheck] = useState(false);
   const [newPassword, setNewPassword] = useState("");
+  const [newName, setNewName] = useState("");
+  const [newLastname, setNewLastname] = useState("");
+  const [newEmail, setNewEmail] = useState("");
   const [passwordCheck, setPasswordCheck] = useState("");
   const [wrongPassword, setWrongPassword] = useState(false);
 
@@ -21,6 +24,9 @@ const MyProfile = () => {
     setEdit(index);
     setIsPasswordCheck(false);
     setNewPassword("");
+    setNewLastname("");
+    setNewEmail("");
+    setNewName("");
     setPasswordCheck("");
     setWrongPassword(false);
   };
@@ -105,6 +111,12 @@ const MyProfile = () => {
         setPasswordCheck={setPasswordCheck}
         wrongPassword={wrongPassword}
         setWrongPassword={setWrongPassword}
+        newName={newName}
+        setNewName={setNewName}
+        newLastname={newLastname}
+        setNewLastname={setNewLastname}
+        newEmail={newEmail}
+        setNewEmail={setNewEmail}
       />
 
       <div //overlay

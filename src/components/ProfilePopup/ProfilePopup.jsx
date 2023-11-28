@@ -5,7 +5,7 @@ import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
 import KeyRoundedIcon from "@mui/icons-material/KeyRounded";
 import "./ProfilePopup.css";
 import Button from "../Button/Button";
-import { getAuth, updatePassword } from "firebase/auth";
+import { getAuth, updateEmail, updatePassword } from "firebase/auth";
 import { Context } from "../../Context/AuthContext";
 import { doc, onSnapshot, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase-config";
@@ -21,18 +21,20 @@ const ProfilePopup = ({
   edit,
   isPasswordCheck,
   setIsPasswordCheck,
+
   newPassword,
   setNewPassword,
   passwordCheck,
   setPasswordCheck,
   wrongPassword,
   setWrongPassword,
+  newName,
+  setNewName,
+  newLastname,
+  setNewLastname,
+  newEmail,
+  setNewEmail,
 }) => {
-  const [newName, setNewName] = useState("");
-  const [newLastname, setNewLastname] = useState("");
-  const [newEmail, setNewEmail] = useState("");
-  const auth = getAuth();
-  const { userActive, userActiveUid } = useContext(Context);
   const [showPassword, setShowPassword] = useState(false);
   const [buttonValid, setButtonValid] = useState({
     name: false,
@@ -41,9 +43,46 @@ const ProfilePopup = ({
   });
   const [passwordLoading, setPasswordLoading] = useState(false);
   const [emailLoading, setEmailLoading] = useState(false);
+  const [nameLoading, setNameLoading] = useState(false);
 
+  const { userActive, userActiveUid } = useContext(Context);
+  const auth = getAuth();
   const user = auth.currentUser;
   const userRef = doc(db, "users", userActiveUid);
+
+  const changeEmailHandler = async (e) => {
+    e.preventDefault();
+    setEmailLoading(true);
+    try {
+      await updateEmail(user, newEmail);
+      console.log("auth email güncellendi");
+      await updateDoc(userRef, {
+        email: newEmail,
+      });
+      console.log("db email güncellendi");
+      setEmailLoading(false);
+
+      toast.success("Email is changed!", {
+        position: "top-right",
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: "light",
+      });
+      clickHandler(2);
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
+    } catch (error) {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(`${errorCode}: ${errorMessage}`);
+      setEmailLoading(false);
+    }
+  };
 
   const changePasswordHandler = async (e) => {
     e.preventDefault();
@@ -88,31 +127,17 @@ const ProfilePopup = ({
     }
   };
 
-  useEffect(() => {
-    if (newPassword?.length >= 6) {
-      setButtonValid((prev) => ({ ...prev, password: true }));
-    } else {
-      setButtonValid((prev) => ({ ...prev, password: false }));
-    }
-
-    if (newName.length === 0 || newLastname.length === 0) {
-      setButtonValid((prev) => ({ ...prev, name: false }));
-    } else {
-      setButtonValid((prev) => ({ ...prev, name: true }));
-    }
-  }, [newPassword, newName, newLastname, buttonValid]);
-
   const nameHandler = async (e) => {
     e.preventDefault();
-    setEmailLoading(true);
+    setNameLoading(true);
     try {
       await updateDoc(userRef, {
         firstName: newName,
         lastName: newLastname,
       });
-      setEmailLoading(false);
+      setNameLoading(false);
 
-      toast.success("Password is changed!", {
+      toast.success("Name and surname are changed!", {
         position: "top-right",
         autoClose: 1500,
         hideProgressBar: false,
@@ -128,16 +153,47 @@ const ProfilePopup = ({
       }, 2000);
     } catch (error) {
       console.log(error);
-      setEmailLoading(false);
+      setNameLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (newPassword?.length >= 6) {
+      setButtonValid((prev) => ({ ...prev, password: true }));
+    } else {
+      setButtonValid((prev) => ({ ...prev, password: false }));
+    }
+  }, [newPassword]);
+
+  useEffect(() => {
+    if (newName?.length === 0 || newLastname?.length === 0) {
+      setButtonValid((prev) => ({ ...prev, name: false }));
+    } else {
+      setButtonValid((prev) => ({ ...prev, name: true }));
+    }
+  }, [newName, newLastname]);
+
+  useEffect(() => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailCheck = emailRegex.test(newEmail);
+
+    if (!emailCheck) {
+      setButtonValid((prev) => ({ ...prev, email: false }));
+    } else {
+      setButtonValid((prev) => ({ ...prev, email: true }));
+    }
+  }, [newEmail]);
 
   const passwordSum = isPasswordCheck
     ? changePasswordHandler
     : passwordCheckerHandler;
 
+  const passwordSum2 = isPasswordCheck
+    ? changeEmailHandler
+    : passwordCheckerHandler;
+
   const selectedButtonFunc =
-    edit === 1 ? nameHandler : edit === 2 ? "" : passwordSum;
+    edit === 1 ? nameHandler : edit === 2 ? passwordSum2 : passwordSum;
 
   return (
     <div
@@ -173,7 +229,8 @@ const ProfilePopup = ({
           </div>
           <p className="font-semibold text-xl tracking-wide text-gray-700">
             {edit === 1 && "Change Your Name and Surname"}
-            {edit === 2 && "Change Your E-Mail Address"}
+            {edit === 2 &&
+              (isPasswordCheck ? "Change Your Email" : "Verify Your Password")}
             {edit === 3 &&
               (isPasswordCheck
                 ? "Change Your Password"
@@ -188,7 +245,7 @@ const ProfilePopup = ({
               }
             >
               {edit === 1 && "Your Name"}
-              {edit === 2 && "Your New E-Mail Address"}
+              {edit === 2 && (isPasswordCheck ? "New Email" : "Your Password")}
               {edit === 3 &&
                 (isPasswordCheck ? "New Password" : "Your Password")}
               <span className="text-red-500">*</span>
@@ -203,13 +260,24 @@ const ProfilePopup = ({
               />
             )}
             {edit === 2 && (
-              <input
-                type="email"
-                name="popupEmail"
-                id="popupEmail"
-                value={newEmail}
-                onChange={(e) => setNewEmail(e.target.value)}
-              />
+              <div
+                className={`flex items-center border pr-2 ${
+                  wrongPassword ? " border-red-500" : "border-gray-800"
+                }`}
+              >
+                <input
+                  className="border-none outline-none flex-1"
+                  type={isPasswordCheck ? "email" : "password"}
+                  name="popupEmail"
+                  id="popupEmail"
+                  value={isPasswordCheck ? newEmail : passwordCheck}
+                  onChange={(e) => {
+                    isPasswordCheck
+                      ? setNewEmail(e.target.value)
+                      : setPasswordCheck(e.target.value);
+                  }}
+                />
+              </div>
             )}
 
             {edit === 3 && (
@@ -247,7 +315,7 @@ const ProfilePopup = ({
                   ))}
               </div>
             )}
-            {isPasswordCheck && (
+            {isPasswordCheck && edit === 3 && (
               <div className="flex items-center gap-[2px] h-3">
                 <p className="text-xs text-gray-800/70">
                   Password must be at least 6 characters
@@ -284,31 +352,37 @@ const ProfilePopup = ({
             </div>
           )}
 
-          {/* <Button onClick={handleEmailUpdate}>Save</Button> */}
-
           <div
             className={`${
-              (!buttonValid?.password && isPasswordCheck) || !buttonValid.name
+              (!buttonValid?.name && edit === 1) ||
+              (!buttonValid?.password && isPasswordCheck && !buttonValid?.email)
                 ? "opacity-70"
                 : "opacity-100"
             }`}
           >
             <Button
               disabled={
-                (!buttonValid?.password && isPasswordCheck) || !buttonValid.name
+                (!buttonValid?.name && edit === 1) ||
+                (!buttonValid?.password &&
+                  isPasswordCheck &&
+                  !buttonValid?.email)
               }
               onClick={selectedButtonFunc}
             >
-              {!passwordLoading && edit === 3
-                ? isPasswordCheck
-                  ? "Change"
-                  : "Continue"
-                : !emailLoading && edit === 1
-                ? "Change"
-                : ""}
               <div className="flex items-center justify-center gap-2">
-                {(passwordLoading || emailLoading) && (
+                {passwordLoading || nameLoading || emailLoading ? (
                   <div className="inline-block h-5 w-5 animate-spin rounded-full border-2 border-solid border-gray-50 border-r-transparent align-[-0.125em] "></div>
+                ) : (!passwordLoading || !emailLoading) &&
+                  (edit === 3 || edit === 2) ? (
+                  isPasswordCheck ? (
+                    "Change"
+                  ) : (
+                    "Continue"
+                  )
+                ) : !nameLoading && edit === 1 ? (
+                  "Change"
+                ) : (
+                  ""
                 )}
               </div>
             </Button>

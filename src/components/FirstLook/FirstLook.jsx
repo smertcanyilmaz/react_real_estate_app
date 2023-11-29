@@ -1,9 +1,6 @@
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import FirstLookDropDown from "../FirstLookDropDown/FirstLookDropDown";
-import { useContext, useEffect, useState } from "react";
-import { Country, State } from "country-state-city";
-import useFetch from "../hooks/useFetch";
-import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
 import { ContextFilter } from "../../Context/FilterContext";
 
 const FirstLook = () => {

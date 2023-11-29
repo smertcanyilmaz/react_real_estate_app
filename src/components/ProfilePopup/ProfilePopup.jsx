@@ -244,7 +244,7 @@ const ProfilePopup = ({
                 (edit === 3 && "popupPassword")
               }
             >
-              {edit === 1 && "Your Name"}
+              {edit === 1 && "Your New Name"}
               {edit === 2 && (isPasswordCheck ? "New Email" : "Your Password")}
               {edit === 3 &&
                 (isPasswordCheck ? "New Password" : "Your Password")}
@@ -336,7 +336,7 @@ const ProfilePopup = ({
           {edit === 1 && (
             <div className="flex flex-col gap-2">
               <label htmlFor={edit === 1 && "popupSurname"}>
-                {edit === 1 && "Your Surname"}
+                {edit === 1 && "Your New Surname"}
 
                 <span className="text-red-500">*</span>
               </label>

@@ -60,8 +60,12 @@ const Navbar = ({ ref0 }) => {
             }`}
           >
             <MenuIcon />
-            <div className="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center">
-              <PersonIcon style={{ color: "rgb(229 231 235)" }} />
+            <div className="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center text-white">
+              {userActive ? (
+                userActive?.firstName.at(0).toUpperCase()
+              ) : (
+                <PersonIcon style={{ color: "rgb(229 231 235)" }} />
+              )}
             </div>
           </div>
 

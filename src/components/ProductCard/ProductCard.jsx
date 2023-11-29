@@ -7,6 +7,7 @@ import { Context } from "../../Context/AuthContext";
 import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "../../firebase-config";
 import { ContextFilter } from "../../Context/FilterContext";
+
 const ProductCard = ({
   currentSlide,
   sale,
@@ -226,8 +227,8 @@ const ProductCard = ({
                 </div>
               )}
             </div>
-            <div
-              onClick={favoriteClickHandler}
+            <button
+              onClick={(e) => favoriteClickHandler(e, estate?.id)}
               className="absolute top-2 right-3 text-gray-50 opacity-90 z-10 hover:opacity-100 hover:text-white"
             >
               <FavoriteRoundedIcon
@@ -235,7 +236,7 @@ const ProductCard = ({
                   color: controlFav?.includes(estate.id) ? "#ef4a4a" : "",
                 }}
               />
-            </div>
+            </button>
           </div>
         </Link>
       ))}

@@ -224,8 +224,9 @@ const ProfileContext = ({ children }) => {
 
   const [isFavorite, setIsFavorite] = useState(false); // bu state, favorilenen ilanın veritabanındaki favorited boolean tutuyor ve css özelleştirmesi yapıyor
 
-  const favoriteClickHandler = async (estateId) => {
+  const favoriteClickHandler = async (e, estateId) => {
     //estate ve product card'da favori click fonksiyonu
+    e.preventDefault();
     const userId = userActiveUid;
     const userRef = doc(db, "users", userId);
     const estateRef = doc(db, "estates", estateId);

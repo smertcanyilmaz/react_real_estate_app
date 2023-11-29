@@ -74,10 +74,13 @@ export const FilterContext = ({ children }) => {
       setFirstLookChecker(true);
       navigate("/estates");
     }
+    setShowDropDown((prev) => !prev);
   };
+
   const values = {
     setInputValue: setInputValue,
     showDropDown: showDropDown,
+    setShowDropDown: setShowDropDown,
     filteredCities: filteredCities,
     clickHandler: clickHandler,
     showDropDown: showDropDown,

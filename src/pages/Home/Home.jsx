@@ -62,8 +62,8 @@ const Home = ({ ref0, setUnAuthNavbar }) => {
         ref1={ref1}
         refStatus={refStatus}
       /> */}
-      <HomeBrands />
       <PopularOffers sale={false} refStatus={ref2} />
+      <HomeBrands />
     </div>
   );
 };

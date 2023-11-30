@@ -5,7 +5,6 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import PaidOutlinedIcon from "@mui/icons-material/PaidOutlined";
 
 const Advantages = () => {
-  // h-[90vh] pt-20
   return (
     <div className="w-full flex flex-col gap-5">
       <div className="up flex-1 h-full flex">

@@ -8,7 +8,6 @@ import { ContextProfile } from "../../Context/ProfileContext";
 const HomePremium = () => {
   const { userSubscribe } = useContext(ContextProfile);
   const navigate = useNavigate();
-  // h-[46rem] pt-20
   return (
     <div className="w-full h-[46rem] flex flex-col items-center gap-20">
       <div className="main_title font-semibold text-4xl tracking-wide leading-snug text-gray-800">

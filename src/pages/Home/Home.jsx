@@ -54,7 +54,8 @@ const Home = ({ ref0, setUnAuthNavbar }) => {
       <FirstLook />
       <Advantages />
       <HomePremium />
-      <PopularOffers sale={true} refStatus={ref1} />
+      <PopularOffers sale={true} />
+      {/* refStatus={ref1} sale */}
       {/* <PopularOffersButton
         handleButtonClick={handleButtonClick}
         handleGoTop={handleGoTop}
@@ -62,7 +63,8 @@ const Home = ({ ref0, setUnAuthNavbar }) => {
         ref1={ref1}
         refStatus={refStatus}
       /> */}
-      <PopularOffers sale={false} refStatus={ref2} />
+      <PopularOffers sale={false} />
+      {/* refStatus={ref2} rent */}
       <HomeBrands />
     </div>
   );

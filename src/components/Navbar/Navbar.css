@@ -12,3 +12,7 @@
   border-right-color: transparent;
   z-index: 50;
 }
+
+.links p {
+  @apply cursor-pointer hover:bg-gray-300/50 px-8 py-3 rounded-lg duration-200;
+}

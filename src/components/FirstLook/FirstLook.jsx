@@ -6,7 +6,7 @@ import { ContextFilter } from "../../Context/FilterContext";
 const FirstLook = () => {
   const { setInputValue, showDropDown, setShowDropDown } =
     useContext(ContextFilter);
-
+  // h-[90vh]
   return (
     <div className="max-w-6xl h-[90vh] flex flex-col gap-[10rem] ">
       <div className="w-[50%] flex flex-col gap-5 mt-[10rem]">

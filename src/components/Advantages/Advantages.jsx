@@ -5,8 +5,9 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import PaidOutlinedIcon from "@mui/icons-material/PaidOutlined";
 
 const Advantages = () => {
+  // h-[90vh] pt-20
   return (
-    <div className="w-full h-[42rem] flex flex-col gap-5">
+    <div className="w-full flex flex-col gap-5">
       <div className="up flex-1 h-full flex">
         <div className="flex-1 flex items-center">
           <h1 className="text-5xl text-[#06815b] w-2/3 leading-snug">

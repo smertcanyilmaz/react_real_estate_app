@@ -1,8 +1,9 @@
 import React from "react";
 
 const HomeBrands = () => {
+  // h-[8rem] -mt-5 mb-5
   return (
-    <div className="w-full max-w-6xl mx-auto h-[8rem] flex flex-col items-center justify-center gap-12 px-10 -mt-5 mb-5">
+    <div className="w-full max-w-6xl mx-auto  flex flex-col items-center justify-center gap-12 px-10 mb-16">
       <h2 className="font-semibold text-2xl leading-snug text-gray-800">
         Brands We Work With
       </h2>

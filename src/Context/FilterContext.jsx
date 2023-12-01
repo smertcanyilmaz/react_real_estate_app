@@ -77,6 +77,8 @@ export const FilterContext = ({ children }) => {
     setShowDropDown((prev) => !prev);
   };
 
+  //navbar filter section
+
   const [navbarFiltering, setNavbarFiltering] = useState([]);
   const [navbarFilteringChecker, setNavbarFilteringChecker] = useState(false);
 

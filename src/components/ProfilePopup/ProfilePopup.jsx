@@ -368,6 +368,7 @@ const ProfilePopup = ({
                   !buttonValid?.email)
               }
               onClick={selectedButtonFunc}
+              popup="popup"
             >
               <div className="flex items-center justify-center gap-2">
                 {passwordLoading || nameLoading || emailLoading ? (

@@ -10,7 +10,7 @@ import { Slide, ToastContainer, toast } from "react-toastify";
 
 const Membership = ({ setUnAuthNavbar }) => {
   const navigate = useNavigate();
-  const { userActiveUid } = useContext(Context);
+  const { userActive, userActiveUid } = useContext(Context);
   const { userSubscribe, setUserSubscribe } = useContext(ContextProfile);
   const [membershipLoading, setMembershipLoading] = useState(false);
 
@@ -19,28 +19,32 @@ const Membership = ({ setUnAuthNavbar }) => {
   }, []);
 
   const subscribeHandler = async () => {
-    const userRef = doc(db, "users", userActiveUid);
-    setMembershipLoading(true);
-    try {
-      await updateDoc(userRef, {
-        subscribe: true,
-      });
-      setUserSubscribe(true);
-      setMembershipLoading(false);
-      toast.success("Congrats, you have subscribed!", {
-        position: "top-right",
-        autoClose: 1500,
-        hideProgressBar: false,
-        closeOnClick: false,
-        pauseOnHover: false,
-        draggable: false,
-        progress: undefined,
-        theme: "light",
-      });
-      console.log("Kullanıcı abone oldu");
-    } catch (error) {
-      console.error("Abonelik hatası:", error);
-      setMembershipLoading(false);
+    if (userActive) {
+      const userRef = doc(db, "users", userActiveUid);
+      setMembershipLoading(true);
+      try {
+        await updateDoc(userRef, {
+          subscribe: true,
+        });
+        setUserSubscribe(true);
+        setMembershipLoading(false);
+        toast.success("Congrats, you have subscribed!", {
+          position: "top-right",
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: false,
+          draggable: false,
+          progress: undefined,
+          theme: "light",
+        });
+        console.log("Kullanıcı abone oldu");
+      } catch (error) {
+        console.error("Abonelik hatası:", error);
+        setMembershipLoading(false);
+      }
+    } else {
+      navigate("/login");
     }
   };
 

@@ -6,6 +6,7 @@ const Logout = () => {
   const handleSignOut = async () => {
     try {
       await signOut(auth);
+      window.location.reload();
     } catch (error) {
       console.log(error);
     }

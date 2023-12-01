@@ -14,5 +14,5 @@
 }
 
 .links p {
-  @apply cursor-pointer hover:bg-gray-300/50 px-8 py-3 rounded-lg duration-200;
+  @apply cursor-pointer hover:bg-gray-300/50 w-28 h-12 rounded-lg duration-200 flex items-center justify-center;
 }

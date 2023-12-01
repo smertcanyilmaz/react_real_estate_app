@@ -82,7 +82,11 @@ const EstatesFilters = ({
         {buttons.map((button) => (
           <div
             key={button.id}
-            className={`quick ${selectedButton === button.id && "border-2"} ${
+            className={`quick ${
+              selectedButton === button.id
+                ? "border-2 border-[--dark_blue]"
+                : "border border-[--dark_blue]"
+            } ${
               selectedButton === button.id &&
               button.name === "trending" &&
               "shadow-xl shadow-yellow-200 "

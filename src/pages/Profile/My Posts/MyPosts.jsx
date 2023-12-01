@@ -11,7 +11,7 @@ import OtherHousesRoundedIcon from "@mui/icons-material/OtherHousesRounded";
 const MyPosts = () => {
   const navigate = useNavigate();
   const { loading } = useUserPosts();
-  const { estateDataFilter, estateDataFilter2, favoriteEstates } =
+  const { estateDataFilter, estateDataFilter2, favoriteEstates, loadingFav } =
     useContext(ContextProfile);
 
   useEffect(() => {
@@ -78,7 +78,7 @@ const MyPosts = () => {
         </div>
 
         <div className="free flex-1 pb-3 bg-gray-50 flex flex-col items-center justify-center border border-gray-400/50">
-          {favoriteEstates.length === 0 ? (
+          {favoriteEstates.length === 0 && !loadingFav ? (
             <>
               <div className="border-2 border-gray-300 p-2 rounded-full flex items-center justify-center">
                 <OtherHousesRoundedIcon

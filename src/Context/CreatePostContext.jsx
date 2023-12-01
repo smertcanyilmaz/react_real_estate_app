@@ -47,7 +47,6 @@ export const CreatePostContext = ({ children }) => {
         await uploadBytes(imageRef, file).then((snapshot) => {
           const contentType = "image/jpeg"; // Örnek: jpeg, png, vb.
 
-          // Dosyanın metadata'sını güncelle
           getMetadata(imageRef)
             .then((metadata) => {
               metadata.contentType = contentType;

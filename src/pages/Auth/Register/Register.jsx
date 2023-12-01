@@ -37,6 +37,7 @@ const Register = ({ setUnAuthNavbar }) => {
   const [inputValidity, setInputValidity] = useState(false);
   const [passwordValidity, setPasswordValidity] = useState(false);
   const [emailChecker, setEmailChecker] = useState(false); // aynı email ile kayıt olunamayacağı için bunu kullanıcıya gösteren state
+  const [createLoading, setCreateLoading] = useState(false);
 
   const isValidEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -68,6 +69,7 @@ const Register = ({ setUnAuthNavbar }) => {
     e.preventDefault();
 
     try {
+      setCreateLoading(true);
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         email,
@@ -88,14 +90,8 @@ const Register = ({ setUnAuthNavbar }) => {
         // Diğer kullanıcı bilgileri
       });
       console.log("kayıt başarılı");
-
-      //signOut(auth);
-      //await auth.signOut();
-      // kayıt olduğu an çıkış yaptırılması gerekiyor çünkü firebase çalışma mantığında register olunduğu an login de oluyor
-
-      //navigate("/login");
-      navigate("/");
       console.log("USER", user);
+      navigate("/");
     } catch (error) {
       console.log(error);
       console.error("Firebase Hata Kodu:", error.code);
@@ -104,6 +100,8 @@ const Register = ({ setUnAuthNavbar }) => {
       } else {
         setEmailChecker(false);
       }
+    } finally {
+      setCreateLoading(false);
     }
   };
 
@@ -208,7 +206,7 @@ const Register = ({ setUnAuthNavbar }) => {
             )}
 
             <button
-              onClick={handleSignUp}
+              onClick={(e) => handleSignUp(e)}
               className={`w-24 h-12 text-white bg-[#36cf94] rounded-md mb-5 ${
                 inputValidity
                   ? "opacity-60 cursor-not-allowed"
@@ -216,7 +214,14 @@ const Register = ({ setUnAuthNavbar }) => {
               }`}
               disabled={inputValidity}
             >
-              SIGN UP
+              {!createLoading ? (
+                <>SIGN UP</>
+              ) : (
+                <>
+                  <div className="inline-block h-5 w-5 animate-spin rounded-full border-2 border-solid border-gray-50 border-r-transparent align-[-0.125em]"></div>
+                  {/* <p className="text-sm text-gray-50">Loading</p> */}
+                </>
+              )}
             </button>
           </form>
           <Link to="/login">

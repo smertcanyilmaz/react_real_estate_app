@@ -59,7 +59,7 @@ const Navbar = ({ ref0 }) => {
         <button
           disabled={userActive?.subscribe}
           onClick={() => navigate("/membership")}
-          className={`px-8 py-3 rounded-lg duration-200  hover:bg-gray-300/50 ${
+          className={`w-32 h-12 rounded-lg duration-200  hover:bg-gray-300/50 ${
             userActive?.subscribe ? "cursor-default" : "cursor-pointer"
           }`}
         >

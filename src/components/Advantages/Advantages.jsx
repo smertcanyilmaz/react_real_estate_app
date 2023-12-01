@@ -49,7 +49,7 @@ const Advantages = () => {
       <div className="flex-1 flex ">
         <div className="w-[30%] flex items-center">
           <h1 className="text-3xl text-black w-2/3 leading-snug italic">
-            "I am profitable with my subscription with a reliable business plan"
+            "I make a profit from my subscription with a reliable business plan"
           </h1>
         </div>
         <div className="w-[70%] h-full flex justify-end gap-5 text-gray-100">

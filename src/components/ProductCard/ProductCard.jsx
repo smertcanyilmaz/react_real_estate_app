@@ -31,9 +31,9 @@ const ProductCard = ({
     setFirstLookChecker,
     city,
     firstLookChecker,
-    forSaleFiltering,
-    forSaleFilteringChecker,
-    setForSaleFilteringChecker,
+    navbarFiltering,
+    navbarFilteringChecker,
+    setNavbarFilteringChecker,
   } = useContext(ContextFilter);
 
   const [finalEstates, setFinalEstates] = useState([]);
@@ -45,8 +45,8 @@ const ProductCard = ({
   }, [estates]);
 
   useEffect(() => {
-    forSaleFilteringChecker
-      ? setFinalEstates2(forSaleFiltering)
+    navbarFilteringChecker
+      ? setFinalEstates2(navbarFiltering)
       : firstLookChecker
       ? setFinalEstates2(city)
       : setFinalEstates2(finalEstates);
@@ -54,8 +54,8 @@ const ProductCard = ({
     finalEstates,
     city,
     firstLookChecker,
-    forSaleFiltering,
-    forSaleFilteringChecker,
+    navbarFiltering,
+    navbarFilteringChecker,
   ]);
 
   useEffect(() => {
@@ -86,7 +86,7 @@ const ProductCard = ({
       //setFilteredList(filteredEstates);
       setFinalEstates(filteredEstates);
       setFirstLookChecker(false);
-      setForSaleFilteringChecker(false);
+      setNavbarFilteringChecker(false);
     }
   }, [filter]);
 
@@ -153,7 +153,7 @@ const ProductCard = ({
       //setFilteredList(filteredEstates);
       setFinalEstates(filteredEstates);
       setFiltersApplied(false); //overlayda filtreleme seçeneklerine tıkladığımızda estatelerin gelmemesini sağlayan state
-      setForSaleFilteringChecker(false);
+      setNavbarFilteringChecker(false);
     }
   }, [
     estates,

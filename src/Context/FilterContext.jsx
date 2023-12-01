@@ -77,8 +77,8 @@ export const FilterContext = ({ children }) => {
     setShowDropDown((prev) => !prev);
   };
 
-  const [forSaleFiltering, setForSaleFiltering] = useState([]);
-  const [forSaleFilteringChecker, setForSaleFilteringChecker] = useState(false);
+  const [navbarFiltering, setNavbarFiltering] = useState([]);
+  const [navbarFilteringChecker, setNavbarFilteringChecker] = useState(false);
 
   const navbarStatusClickHandler = (status) => {
     const filterForSale = estates.filter(
@@ -87,15 +87,20 @@ export const FilterContext = ({ children }) => {
     const filterToRent = estates.filter(
       (estate) => estate.status === "rent" && estate.passivePosts === false
     );
+
+    const allEstates = estates.filter(
+      (estate) => estate.passivePosts === false
+    );
+
     if (status === "sale") {
-      setForSaleFiltering(filterForSale);
+      setNavbarFiltering(filterForSale);
     } else if (status === "rent") {
-      setForSaleFiltering(filterToRent);
+      setNavbarFiltering(filterToRent);
     } else if (status === "all") {
-      setForSaleFiltering(estates);
+      setNavbarFiltering(allEstates);
     }
 
-    setForSaleFilteringChecker(true);
+    setNavbarFilteringChecker(true);
     navigate("/estates");
   };
 
@@ -109,10 +114,10 @@ export const FilterContext = ({ children }) => {
     setFirstLookChecker: setFirstLookChecker,
     inputValue: inputValue,
     city: city,
-    forSaleFiltering: forSaleFiltering,
-    forSaleFilteringChecker: forSaleFilteringChecker,
+    navbarFiltering: navbarFiltering,
+    navbarFilteringChecker: navbarFilteringChecker,
     navbarStatusClickHandler: navbarStatusClickHandler,
-    setForSaleFilteringChecker: setForSaleFilteringChecker,
+    setNavbarFilteringChecker: setNavbarFilteringChecker,
   };
   return (
     <ContextFilter.Provider value={values}>{children}</ContextFilter.Provider>

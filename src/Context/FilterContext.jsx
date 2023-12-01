@@ -77,6 +77,28 @@ export const FilterContext = ({ children }) => {
     setShowDropDown((prev) => !prev);
   };
 
+  const [forSaleFiltering, setForSaleFiltering] = useState([]);
+  const [forSaleFilteringChecker, setForSaleFilteringChecker] = useState(false);
+
+  const navbarStatusClickHandler = (status) => {
+    const filterForSale = estates.filter(
+      (estate) => estate.status === "sale" && estate.passivePosts === false
+    );
+    const filterToRent = estates.filter(
+      (estate) => estate.status === "rent" && estate.passivePosts === false
+    );
+    if (status === "sale") {
+      setForSaleFiltering(filterForSale);
+    } else if (status === "rent") {
+      setForSaleFiltering(filterToRent);
+    } else if (status === "all") {
+      setForSaleFiltering(estates);
+    }
+
+    setForSaleFilteringChecker(true);
+    navigate("/estates");
+  };
+
   const values = {
     setInputValue: setInputValue,
     showDropDown: showDropDown,
@@ -87,7 +109,10 @@ export const FilterContext = ({ children }) => {
     setFirstLookChecker: setFirstLookChecker,
     inputValue: inputValue,
     city: city,
-    firstLookChecker: firstLookChecker,
+    forSaleFiltering: forSaleFiltering,
+    forSaleFilteringChecker: forSaleFilteringChecker,
+    navbarStatusClickHandler: navbarStatusClickHandler,
+    setForSaleFilteringChecker: setForSaleFilteringChecker,
   };
   return (
     <ContextFilter.Provider value={values}>{children}</ContextFilter.Provider>

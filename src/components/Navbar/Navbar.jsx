@@ -8,14 +8,15 @@ import Logout from "./Logout/Logout";
 import { Context } from "../../Context/AuthContext";
 import { ContextProfile } from "../../Context/ProfileContext";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
+import { ContextFilter } from "../../Context/FilterContext";
 
 const Navbar = ({ ref0 }) => {
   const [showBox, setShowBox] = useState(false);
   const [showUser, setShowUser] = useState(false);
   const { userActive } = useContext(Context);
   const { membershipChecker } = useContext(ContextProfile);
-  const { userSubscribe } = useContext(ContextProfile);
   const navigate = useNavigate();
+  const { navbarStatusClickHandler } = useContext(ContextFilter);
 
   const mouseOn = () => {
     setShowUser(true);
@@ -51,15 +52,15 @@ const Navbar = ({ ref0 }) => {
         </svg>
       </Link>
 
-      <div className="links flex  text-gray-800 font-semibold">
-        <p onClick={() => navigate("/estates")}>All Estates</p>
-        <p>For Sale</p>
-        <p>To Rent</p>
+      <div className="links flex text-gray-800 font-semibold gap-3">
+        <p onClick={() => navbarStatusClickHandler("all")}>All Estates</p>
+        <p onClick={() => navbarStatusClickHandler("sale")}>For Sale</p>
+        <p onClick={() => navbarStatusClickHandler("rent")}>To Rent</p>
         <button
-          disabled={userSubscribe}
+          disabled={userActive?.subscribe}
           onClick={() => navigate("/membership")}
           className={`px-8 py-3 rounded-lg duration-200  hover:bg-gray-300/50 ${
-            userSubscribe ? "cursor-default" : "cursor-pointer"
+            userActive?.subscribe ? "cursor-default" : "cursor-pointer"
           }`}
         >
           Membership

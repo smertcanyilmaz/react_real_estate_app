@@ -6,11 +6,13 @@ import { useNavigate } from "react-router-dom";
 import { ContextProfile } from "../../../Context/ProfileContext";
 import ProfileProductCard from "../../../components/ProfileProductCard/ProfileProductCard";
 import "../Favorites/Favorites.css";
+import OtherHousesRoundedIcon from "@mui/icons-material/OtherHousesRounded";
 
 const MyPosts = () => {
   const navigate = useNavigate();
   const { loading } = useUserPosts();
-  const { estateDataFilter, estateDataFilter2 } = useContext(ContextProfile);
+  const { estateDataFilter, estateDataFilter2, favoriteEstates } =
+    useContext(ContextProfile);
 
   useEffect(() => {
     console.log("estateDataFilter in myPost", estateDataFilter);
@@ -73,19 +75,24 @@ const MyPosts = () => {
                   : `You have ${estateDataFilter2.length} passive posts`)}
             </p>
           </div>
-          {/* <div
-            onClick={() => navigate("/posts/incomplete")}
-            className="flex-1 h-28 border border-gray-400/50 shadow-md px-3 py-5 flex flex-col items-start justify-between rounded-md bg-gray-50"
-          >
-            <h1 className="text-lg font-semibold text-gray-700">
-              Incomplete Posts
-            </h1>
-            <p className="text-gray-600 text-sm">No post yet</p>
-          </div> */}
         </div>
 
         <div className="free flex-1 pb-3 bg-gray-50 flex flex-col items-center justify-center border border-gray-400/50">
-          <ProfileProductCard post="favorites" myPost={true} />
+          {favoriteEstates.length === 0 ? (
+            <>
+              <div className="border-2 border-gray-300 p-2 rounded-full flex items-center justify-center">
+                <OtherHousesRoundedIcon
+                  fontSize="large"
+                  style={{ color: "gray" }}
+                />
+              </div>
+              <p className="text-gray-600 mt-2">
+                You don't have any favorite yet
+              </p>
+            </>
+          ) : (
+            <ProfileProductCard post="favorites" myPost={true} />
+          )}
         </div>
         <PostAd />
       </div>

@@ -65,7 +65,7 @@ export const FilterContext = ({ children }) => {
 
   const clickHandler = (city) => {
     const fetchEstates = estates?.filter(
-      (estates) => estates?.place?.city === city
+      (estate) => estate?.place?.city === city && estate?.passivePosts === false
     );
     console.log(fetchEstates);
     setCity(fetchEstates);
@@ -113,6 +113,7 @@ export const FilterContext = ({ children }) => {
     filteredCities: filteredCities,
     clickHandler: clickHandler,
     showDropDown: showDropDown,
+    firstLookChecker: firstLookChecker,
     setFirstLookChecker: setFirstLookChecker,
     inputValue: inputValue,
     city: city,

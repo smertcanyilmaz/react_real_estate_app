@@ -41,7 +41,10 @@ const ProductCard = ({
   let filteredEstates = estates;
 
   useEffect(() => {
-    setFinalEstates(estates);
+    const filterPassiveEstates = filteredEstates.filter(
+      (estate) => estate.passivePosts === false
+    );
+    setFinalEstates(filterPassiveEstates);
   }, [estates]);
 
   useEffect(() => {

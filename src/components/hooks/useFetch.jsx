@@ -4,7 +4,6 @@ import { collection, getDocs } from "firebase/firestore";
 
 const useFetch = () => {
   const [estates, setEstates] = useState([]);
-  const [estateLength, setEstateLength] = useState();
 
   const [isLoadingFetch, setIsLoadingFetch] = useState(true);
   const estatesCollectionRef = collection(db, "estates");
@@ -17,8 +16,9 @@ const useFetch = () => {
           ...doc.data(),
           id: doc.id,
         }));
+
         setEstates(estatesDatas);
-        console.log(estateLength, " estatesDatas estatesDatas estatesDatas");
+
         setIsLoadingFetch(false);
       };
       getUsers();
@@ -28,7 +28,10 @@ const useFetch = () => {
     }
   }, []);
 
-  return { estates, isLoadingFetch };
+  return {
+    estates,
+    isLoadingFetch,
+  };
 };
 
 export default useFetch;

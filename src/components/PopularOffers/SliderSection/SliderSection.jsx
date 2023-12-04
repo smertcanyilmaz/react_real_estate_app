@@ -9,10 +9,12 @@ import { ContextFilter } from "../../../Context/FilterContext";
 
 const SliderSection = ({ sale }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const { setFirstLookChecker } = useContext(ContextFilter);
+  const { setFirstLookChecker, setNavbarFilteringChecker } =
+    useContext(ContextFilter);
 
   useEffect(() => {
     setFirstLookChecker(false);
+    setNavbarFilteringChecker(false);
   }, []);
 
   const prevSlide = () => {

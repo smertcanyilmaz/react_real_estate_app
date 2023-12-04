@@ -8,7 +8,7 @@ import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
 import LaunchRoundedIcon from "@mui/icons-material/LaunchRounded";
 import { ContextProfile } from "../../Context/ProfileContext";
 import { Context } from "../../Context/AuthContext";
-import { Slide, ToastContainer } from "react-toastify";
+import { Slide, ToastContainer, toast } from "react-toastify";
 
 const ProfileProductCard = ({ post, myPost }) => {
   const navigate = useNavigate();
@@ -56,7 +56,7 @@ const ProfileProductCard = ({ post, myPost }) => {
       });
       console.log("İlan silindi.");
     } catch (error) {
-      toast.error("Something went wrong!");
+      //toast.error("Something went wrong!");
       console.error("İlan silinirken bir hata oluştu: ", error);
     }
   };
@@ -76,7 +76,7 @@ const ProfileProductCard = ({ post, myPost }) => {
         theme: "light",
       });
     } catch (error) {
-      toast.error("Something went wrong!");
+      //toast.error("Something went wrong!");
       console.log("removeFavoriteHandler", error);
     }
   };

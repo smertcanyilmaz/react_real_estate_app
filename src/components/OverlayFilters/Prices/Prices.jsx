@@ -25,8 +25,6 @@ const Prices = ({
     setFilterPriceValues(updatedFilterPriceValues);
   };
 
-  console.log(filterPriceValues);
-
   return (
     <div className="section2_1 w-full flex justify-between items-center px-10 gap-10">
       <div className="inputbox ">

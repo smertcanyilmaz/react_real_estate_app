@@ -1,15 +1,16 @@
 import React, { useContext, useEffect, useState } from "react";
 import Button from "../../Button/Button";
 //import Slider from "./Slider/Slider";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
 import ProductCard from "../../ProductCard/ProductCard";
 import { ContextFilter } from "../../../Context/FilterContext";
 
 const SliderSection = ({ sale }) => {
+  const navigate = useNavigate();
   const [currentSlide, setCurrentSlide] = useState(0);
-  const { setFirstLookChecker, setNavbarFilteringChecker } =
+  const { setFirstLookChecker, setNavbarFilteringChecker, setStatus } =
     useContext(ContextFilter);
 
   useEffect(() => {
@@ -24,6 +25,12 @@ const SliderSection = ({ sale }) => {
   const nextSlide = () => {
     setCurrentSlide(currentSlide === 4 ? 0 : (prev) => prev + 1);
   };
+
+  const showOffersClickHandler = () => {
+    setStatus("");
+    navigate("/estates");
+  };
+
   return (
     <div className="flex flex-col w-full h-full items-center justify-center ">
       <div className="content-buy w-full flex flex-col">
@@ -51,9 +58,10 @@ const SliderSection = ({ sale }) => {
                   <ArrowForwardRoundedIcon />
                 </div>
               </div>
-              <Link to="/estates">
-                <Button showAllOffers={true}>Show all offers</Button>
-              </Link>
+
+              <Button onClick={showOffersClickHandler} showAllOffers={true}>
+                Show all offers
+              </Button>
             </div>
           </div>
           {/* <Slider sale={sale} currentSlide={currentSlide} /> */}

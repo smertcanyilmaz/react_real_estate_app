@@ -32,6 +32,8 @@ const Estates = ({ setUnAuthNavbar }) => {
     setFilterTypes((prev) => prev.filter((item) => item !== "price"));
   };
 
+  const { setStatus, setCityStatus } = useContext(ContextFilter);
+
   const selectedButtonHandler = (id, name) => {
     // quick section seçim
     if (selectedButton === id) {
@@ -42,6 +44,8 @@ const Estates = ({ setUnAuthNavbar }) => {
       setFilter(name);
       clearHandler();
     }
+    setStatus("");
+    //setCityStatus("");
   };
   const [selectedNumbers, setSelectedNumbers] = useState(null); // rooms butonlarını seçer. NOT: overlayFilters'da yapılmış filtrelemeler, estates sayfası tekrar render edilmeden kaybolmasın istedim. bundan dolayı bu ve selectedButtonsStatus stateleri estates içine yazılıp prop edildi.
   const [selectedNumbers2, setSelectedNumbers2] = useState(null);

@@ -1,4 +1,4 @@
-import React, { createContext } from "react";
+import React, { createContext, startTransition } from "react";
 import { useEffect, useState } from "react";
 import { Country, State } from "country-state-city";
 import useFetch from "../components/hooks/useFetch";
@@ -62,13 +62,11 @@ export const FilterContext = ({ children }) => {
   }, [inputValue]);
 
   const { estates } = useFetch();
+  const [status, setStatus] = useState("");
+  const [cityStatus, setCityStatus] = useState("");
 
   const clickHandler = (city) => {
-    const fetchEstates = estates?.filter(
-      (estate) => estate?.place?.city === city && estate?.passivePosts === false
-    );
-    console.log(fetchEstates);
-    setCity(fetchEstates);
+    setCityStatus(city);
 
     if (inputValue?.length !== 0) {
       setFirstLookChecker(true);
@@ -83,28 +81,21 @@ export const FilterContext = ({ children }) => {
   const [navbarFilteringChecker, setNavbarFilteringChecker] = useState(false);
 
   const navbarStatusClickHandler = (status) => {
-    const filterForSale = estates.filter(
-      (estate) => estate.status === "sale" && estate.passivePosts === false
-    );
-    const filterToRent = estates.filter(
-      (estate) => estate.status === "rent" && estate.passivePosts === false
-    );
+    setCityStatus("");
 
-    const allEstates = estates.filter(
-      (estate) => estate.passivePosts === false
-    );
-
-    if (status === "sale") {
-      setNavbarFiltering(filterForSale);
+    if (status === "all") {
+      setStatus("all");
+    } else if (status === "sale") {
+      setStatus("sale");
     } else if (status === "rent") {
-      setNavbarFiltering(filterToRent);
-    } else if (status === "all") {
-      setNavbarFiltering(allEstates);
+      setStatus("rent");
     }
-
     setNavbarFilteringChecker(true);
+    setFirstLookChecker(false);
     navigate("/estates");
   };
+
+  console.log(status, "status");
 
   const values = {
     setInputValue: setInputValue,
@@ -121,6 +112,12 @@ export const FilterContext = ({ children }) => {
     navbarFilteringChecker: navbarFilteringChecker,
     navbarStatusClickHandler: navbarStatusClickHandler,
     setNavbarFilteringChecker: setNavbarFilteringChecker,
+    setNavbarFiltering: setNavbarFiltering,
+    status: status,
+    setStatus: setStatus,
+    cityStatus: cityStatus,
+    setCityStatus: setCityStatus,
+    setCity: setCity,
   };
   return (
     <ContextFilter.Provider value={values}>{children}</ContextFilter.Provider>

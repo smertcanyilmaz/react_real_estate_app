@@ -34,31 +34,62 @@ const ProductCard = ({
     navbarFiltering,
     navbarFilteringChecker,
     setNavbarFilteringChecker,
+    setNavbarFiltering,
+    status,
+    cityStatus,
+    setCityStatus,
+    setCity,
   } = useContext(ContextFilter);
 
   const [finalEstates, setFinalEstates] = useState([]);
   const [finalEstates2, setFinalEstates2] = useState([]);
+
   let filteredEstates = estates;
+  let filteredEstates2 = estates;
+  let filteredEstates3 = estates;
 
   useEffect(() => {
-    const filterPassiveEstates = filteredEstates.filter(
+    if (status === "sale") {
+      filteredEstates2 = filteredEstates2.filter(
+        (estate) => estate.status === "sale" && estate.passivePosts === false
+      );
+    } else if (status === "rent") {
+      filteredEstates2 = filteredEstates2.filter(
+        (estate) => estate.status === "rent" && estate.passivePosts === false
+      );
+    } else if (status === "all") {
+      filteredEstates2 = filteredEstates2.filter(
+        (estate) => estate.passivePosts === false
+      );
+    }
+
+    if (cityStatus !== "") {
+      filteredEstates3 = filteredEstates3?.filter(
+        (estate) =>
+          estate?.place?.city === cityStatus && estate?.passivePosts === false
+      );
+
+      setCity(filteredEstates3);
+    }
+
+    const filteredPassiveEstates = filteredEstates.filter(
       (estate) => estate.passivePosts === false
     );
-    setFinalEstates(filterPassiveEstates);
-  }, [estates]);
+
+    setFinalEstates(status ? filteredEstates2 : filteredPassiveEstates);
+  }, [estates, status, cityStatus]);
 
   useEffect(() => {
-    navbarFilteringChecker
-      ? setFinalEstates2(navbarFiltering)
-      : firstLookChecker
-      ? setFinalEstates2(city)
-      : setFinalEstates2(finalEstates);
+    //   // navbarFilteringChecker
+    //   //   ? setFinalEstates2(navbarFiltering)
+    //   //   :
+    firstLookChecker ? setFinalEstates2(city) : setFinalEstates2(finalEstates);
   }, [
     finalEstates,
     city,
     firstLookChecker,
-    navbarFiltering,
-    navbarFilteringChecker,
+    //   // navbarFiltering,
+    //   // navbarFilteringChecker,
   ]);
 
   useEffect(() => {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./EstatesFilters.css";
 import ApartmentIcon from "@mui/icons-material/Apartment";
 import BungalowOutlinedIcon from "@mui/icons-material/BungalowOutlined";
@@ -10,13 +10,12 @@ import PoolOutlinedIcon from "@mui/icons-material/PoolOutlined";
 import LandscapeOutlinedIcon from "@mui/icons-material/LandscapeOutlined";
 import SortOutlinedIcon from "@mui/icons-material/SortOutlined";
 import SnowmobileOutlinedIcon from "@mui/icons-material/SnowmobileOutlined";
+import { ContextFilter } from "../../Context/FilterContext";
 
-const EstatesFilters = ({
-  openFilters,
-  selectedButtonHandler,
-  selectedButton,
-  filterTypes,
-}) => {
+const EstatesFilters = () => {
+  const { openFilters, selectedButtonHandler, selectedButton, filterTypes } =
+    useContext(ContextFilter);
+
   const buttons = [
     {
       id: 0,

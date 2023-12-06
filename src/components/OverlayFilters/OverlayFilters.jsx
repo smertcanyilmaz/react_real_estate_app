@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import "./OverlayFilters.css";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
@@ -6,25 +6,28 @@ import HouseOutlinedIcon from "@mui/icons-material/HouseOutlined";
 import HomeWorkOutlinedIcon from "@mui/icons-material/HomeWorkOutlined";
 import Rooms from "./Rooms/Rooms";
 import Prices from "./Prices/Prices";
+import { ContextFilter } from "../../Context/FilterContext";
 
-const OverlayFilters = ({
-  openFilters,
-  selectedButtonsStatus,
-  setSelectedButtonsStatus,
-  showHandler,
-  setSelectedRoomNumbers,
-  setSelectedRoomNumbers2,
-  selectedNumbers,
-  setSelectedNumbers,
-  selectedNumbers2,
-  setSelectedNumbers2,
-  setFilterTypeValue,
-  setFilterTypes,
-  filterPriceValues,
-  setFilterPriceValues,
-  clearHandler,
-  openFiltersOverlay,
-}) => {
+const OverlayFilters = () => {
+  const {
+    openFilters,
+    selectedButtonsStatus,
+    setSelectedButtonsStatus,
+    setSelectedRoomNumbers,
+    setSelectedRoomNumbers2,
+    selectedNumbers,
+    setSelectedNumbers,
+    selectedNumbers2,
+    setSelectedNumbers2,
+    setFilterTypeValue,
+    setFilterTypes,
+    filterPriceValues,
+    setFilterPriceValues,
+    clearHandler,
+    showHandler,
+    openFiltersOverlay,
+  } = useContext(ContextFilter);
+
   const buttonsStatusHandler = (id) => {
     if (selectedButtonsStatus === id) {
       setSelectedButtonsStatus(null);

@@ -1,12 +1,13 @@
-import React, { createContext, startTransition } from "react";
+import React, { createContext } from "react";
 import { useEffect, useState } from "react";
 import { Country, State } from "country-state-city";
-import useFetch from "../components/hooks/useFetch";
 import { useNavigate } from "react-router-dom";
 
 export const ContextFilter = createContext();
 
 export const FilterContext = ({ children }) => {
+  //firstLook componentinin filter state ve fonksiyonları
+
   const [country, setCountry] = useState([]);
   const [cities, setCities] = useState(null);
   const [inputValue, setInputValue] = useState("");
@@ -74,7 +75,7 @@ export const FilterContext = ({ children }) => {
     setShowDropDown((prev) => !prev);
   };
 
-  //overlay filters global'a sonradan lift etmek zorunda kaldığım stateler ve fonksiyonlar
+  //overlay filters'ın stateleri ve fonksiyonları
 
   const [selectedButtonsStatus, setSelectedButtonsStatus] = useState(null); // property type seçim
   const [selectedNumbers, setSelectedNumbers] = useState(null); // rooms butonlarını seçer. NOT: overlayFilters'da yapılmış filtrelemeler, estates sayfası tekrar render edilmeden kaybolmasın istedim. bundan dolayı bu ve selectedButtonsStatus stateleri estates içine yazılıp prop edildi.
@@ -93,6 +94,8 @@ export const FilterContext = ({ children }) => {
   const [filterTypeValue, setFilterTypeValue] = useState(""); // filterTypes içine pushlanacak typeları içeren state
   // const [filterTypes, setFilterTypes] = useState([]); // overlayFilters'da seçilen filtrelemelerin typelarını tutan state
 
+  const [openFiltersOverlay, setOpenFilterOverlay] = useState(false);
+
   const clearHandler = (e) => {
     // clear all fonksiyonu
     setSelectedButtonsStatus(null);
@@ -108,6 +111,41 @@ export const FilterContext = ({ children }) => {
     setFilterTypes((prev) => prev.filter((item) => item !== "bedrooms"));
     setFilterTypes((prev) => prev.filter((item) => item !== "bathrooms"));
     setFilterTypes((prev) => prev.filter((item) => item !== "price"));
+  };
+
+  const openFilters = () => {
+    // overlayFilters componentini açar ve kapatır
+    setOpenFilterOverlay((prev) => !prev);
+  };
+
+  const selectedButtonHandler = (id, name) => {
+    // quick section seçim
+    if (selectedButton === id) {
+      setSelectedButtons(null);
+      setFilter("all");
+    } else {
+      setSelectedButtons(id);
+      setFilter(name);
+      clearHandler();
+    }
+    //setStatus("");
+  };
+
+  const handleAddItem = () => {
+    //filters butonun seçilen filter sayısını göstermesini sağlayan fonksiyon
+    if (filterTypeValue && !filterTypes.includes(filterTypeValue)) {
+      setFilterTypes([...filterTypes, filterTypeValue]);
+    }
+    setFilterTypeValue("");
+  };
+
+  const showHandler = () => {
+    // overlayFilter'da show places butonuna yazılan click fonksiyonu
+    openFilters();
+    setFiltersApplied(true);
+    setSelectedButtons(null);
+    setFilter("");
+    setStatus("");
   };
 
   //navbar filter section
@@ -178,6 +216,12 @@ export const FilterContext = ({ children }) => {
     setFiltersApplied,
     filterTypeValue,
     setFilterTypeValue,
+    selectedButtonHandler,
+    handleAddItem,
+    showHandler,
+    openFilters,
+    openFiltersOverlay,
+    setOpenFilterOverlay,
   };
   return (
     <ContextFilter.Provider value={values}>{children}</ContextFilter.Provider>

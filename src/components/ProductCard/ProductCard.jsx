@@ -8,19 +8,7 @@ import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "../../firebase-config";
 import { ContextFilter } from "../../Context/FilterContext";
 
-const ProductCard = ({
-  currentSlide,
-  sale,
-  EstatesList,
-  filter,
-  selectedButtonsStatus,
-  filtersApplied,
-  setFiltersApplied,
-  selectedRoomNumbers,
-  selectedRoomNumbers2,
-  filterPriceValues,
-  handleAddItem,
-}) => {
+const ProductCard = ({ currentSlide, sale, EstatesList }) => {
   const { estates } = useFetch();
   const [notFound, setNotFound] = useState(false);
   const { favoriteClickHandler, setIsFavorite, favChecker } =
@@ -28,14 +16,20 @@ const ProductCard = ({
   const { userActiveUid, userActive } = useContext(Context);
 
   const {
-    setFirstLookChecker,
     city,
     firstLookChecker,
     setNavbarFilteringChecker,
     status,
     cityStatus,
     setCity,
-    setStatus,
+    filter,
+    selectedButtonsStatus,
+    filtersApplied,
+    setFiltersApplied,
+    selectedRoomNumbers,
+    selectedRoomNumbers2,
+    filterPriceValues,
+    handleAddItem,
   } = useContext(ContextFilter);
 
   const [finalEstates, setFinalEstates] = useState([]);
@@ -222,7 +216,6 @@ const ProductCard = ({
       }
 
       handleAddItem();
-      //setFilteredList(filteredEstates);
       setFinalEstates(filteredEstates);
       setFiltersApplied(false); //overlayda filtreleme seçeneklerine tıkladığımızda estatelerin gelmemesini sağlayan state
       setNavbarFilteringChecker(false);

@@ -61,7 +61,6 @@ export const FilterContext = ({ children }) => {
     }
   }, [inputValue]);
 
-  const { estates } = useFetch();
   const [status, setStatus] = useState("");
   const [cityStatus, setCityStatus] = useState("");
 
@@ -75,14 +74,54 @@ export const FilterContext = ({ children }) => {
     setShowDropDown((prev) => !prev);
   };
 
+  //overlay filters global'a sonradan lift etmek zorunda kaldığım stateler ve fonksiyonlar
+
+  const [selectedButtonsStatus, setSelectedButtonsStatus] = useState(null); // property type seçim
+  const [selectedNumbers, setSelectedNumbers] = useState(null); // rooms butonlarını seçer. NOT: overlayFilters'da yapılmış filtrelemeler, estates sayfası tekrar render edilmeden kaybolmasın istedim. bundan dolayı bu ve selectedButtonsStatus stateleri estates içine yazılıp prop edildi.
+  const [selectedNumbers2, setSelectedNumbers2] = useState(null);
+
+  const [selectedRoomNumbers, setSelectedRoomNumbers] = useState(null); // overlayFilters bedroom numbers state
+  const [selectedRoomNumbers2, setSelectedRoomNumbers2] = useState(null); // overlayFilters bathroom numbers state
+
+  const [filterPriceValues, setFilterPriceValues] = useState({
+    min: "",
+    max: "",
+  }); //overlayFilters minimum ve maximum price state
+  const [filterTypes, setFilterTypes] = useState([]); // overlayFilters'da seçilen filtrelemelerin typelarını tutan state
+  const [filtersApplied, setFiltersApplied] = useState(false); // property type tıklamadan önce listelemeyi engellemek için yazılan state
+
+  const [filterTypeValue, setFilterTypeValue] = useState(""); // filterTypes içine pushlanacak typeları içeren state
+  // const [filterTypes, setFilterTypes] = useState([]); // overlayFilters'da seçilen filtrelemelerin typelarını tutan state
+
+  const clearHandler = (e) => {
+    // clear all fonksiyonu
+    setSelectedButtonsStatus(null);
+    setSelectedNumbers(null);
+    setSelectedRoomNumbers(null);
+    setSelectedNumbers2(null);
+    setSelectedRoomNumbers2(null);
+    setFilterPriceValues({
+      min: "",
+      max: "",
+    });
+    setFilterTypes((prev) => prev.filter((item) => item !== "property"));
+    setFilterTypes((prev) => prev.filter((item) => item !== "bedrooms"));
+    setFilterTypes((prev) => prev.filter((item) => item !== "bathrooms"));
+    setFilterTypes((prev) => prev.filter((item) => item !== "price"));
+  };
+
   //navbar filter section
 
   const [navbarFiltering, setNavbarFiltering] = useState([]);
   const [navbarFilteringChecker, setNavbarFilteringChecker] = useState(false);
+  const [filter, setFilter] = useState("");
+  const [selectedButton, setSelectedButtons] = useState(null); // quick section butonlarını tutan state (estates sayfasından buraya lift etmem gerekti çünkü navbar filtrelemelerini yaparken quick seçimlerin resetlenmesi gerekiyordu)
 
   const navbarStatusClickHandler = (status) => {
     setCityStatus("");
-
+    setSelectedButtons(null);
+    setFilter("");
+    clearHandler();
     if (status === "all") {
       setStatus("all");
     } else if (status === "sale") {
@@ -95,29 +134,50 @@ export const FilterContext = ({ children }) => {
     navigate("/estates");
   };
 
-  console.log(status, "status");
-
   const values = {
-    setInputValue: setInputValue,
-    showDropDown: showDropDown,
-    setShowDropDown: setShowDropDown,
-    filteredCities: filteredCities,
-    clickHandler: clickHandler,
-    showDropDown: showDropDown,
-    firstLookChecker: firstLookChecker,
-    setFirstLookChecker: setFirstLookChecker,
-    inputValue: inputValue,
-    city: city,
-    navbarFiltering: navbarFiltering,
-    navbarFilteringChecker: navbarFilteringChecker,
-    navbarStatusClickHandler: navbarStatusClickHandler,
-    setNavbarFilteringChecker: setNavbarFilteringChecker,
-    setNavbarFiltering: setNavbarFiltering,
-    status: status,
-    setStatus: setStatus,
-    cityStatus: cityStatus,
-    setCityStatus: setCityStatus,
+    setInputValue,
+    showDropDown,
+    setShowDropDown,
+    filteredCities,
+    clickHandler,
+    showDropDown,
+    firstLookChecker,
+    setFirstLookChecker,
+    inputValue,
+    city,
+    navbarFiltering,
+    navbarFilteringChecker,
+    navbarStatusClickHandler,
+    setNavbarFilteringChecker,
+    setNavbarFiltering,
+    status,
+    setStatus,
+    cityStatus,
+    setCityStatus,
     setCity: setCity,
+    selectedButton,
+    setSelectedButtons,
+    filter,
+    setFilter,
+    selectedButtonsStatus,
+    setSelectedButtonsStatus,
+    selectedNumbers,
+    setSelectedNumbers,
+    selectedNumbers2,
+    setSelectedNumbers2,
+    selectedRoomNumbers,
+    setSelectedRoomNumbers,
+    selectedRoomNumbers2,
+    setSelectedRoomNumbers2,
+    filterPriceValues,
+    setFilterPriceValues,
+    filterTypes,
+    setFilterTypes,
+    clearHandler,
+    filtersApplied,
+    setFiltersApplied,
+    filterTypeValue,
+    setFilterTypeValue,
   };
   return (
     <ContextFilter.Provider value={values}>{children}</ContextFilter.Provider>

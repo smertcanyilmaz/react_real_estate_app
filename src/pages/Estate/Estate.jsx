@@ -13,6 +13,7 @@ import { doc, updateDoc, getDoc, onSnapshot } from "firebase/firestore";
 import { db } from "../../firebase-config";
 import { ContextProfile } from "../../Context/ProfileContext";
 import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
+import { ContextFilter } from "../../Context/FilterContext";
 
 const Estate = ({ setUnAuthNavbar }) => {
   const { id } = useParams();
@@ -20,6 +21,7 @@ const Estate = ({ setUnAuthNavbar }) => {
   const { userActive, userActiveUid } = useContext(Context);
   const { favoriteClickHandler, setIsFavorite, favChecker } =
     useContext(ContextProfile);
+  const { setStatus } = useContext(ContextFilter);
 
   const item = estates.find((estate) => estate.id === id);
   console.log(item);
@@ -29,6 +31,7 @@ const Estate = ({ setUnAuthNavbar }) => {
 
   useEffect(() => {
     setUnAuthNavbar(false);
+    setStatus("");
   }, []);
 
   const [userActiveFavorited, setUserActiveFavorited] = useState(null);

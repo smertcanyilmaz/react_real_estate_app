@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import useFetch from "../hooks/useFetch";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
 import { ContextProfile } from "../../Context/ProfileContext";
 import { Context } from "../../Context/AuthContext";
@@ -31,36 +31,72 @@ const ProductCard = ({
     setFirstLookChecker,
     city,
     firstLookChecker,
-    navbarFiltering,
-    navbarFilteringChecker,
     setNavbarFilteringChecker,
-    setNavbarFiltering,
     status,
     cityStatus,
-    setCityStatus,
     setCity,
+    setStatus,
   } = useContext(ContextFilter);
 
   const [finalEstates, setFinalEstates] = useState([]);
   const [finalEstates2, setFinalEstates2] = useState([]);
 
-  let filteredEstates = estates;
-  let filteredEstates2 = estates;
-  let filteredEstates3 = estates;
+  let filteredEstates = estates; //overlay estate filtrelemeleri tutar
+  let filteredEstates2 = estates; //navbar ve quick section'dan yapılan filterelemeleri tutar
+  let filteredEstates3 = estates; //anasayfadan şehir arayarak yapılan filtrelemeleri tuar
 
   useEffect(() => {
     if (status === "sale") {
       filteredEstates2 = filteredEstates2.filter(
         (estate) => estate.status === "sale" && estate.passivePosts === false
       );
+      if (filter && filter !== "trending") {
+        filteredEstates2 = filteredEstates2.filter(
+          (estate) =>
+            estate.category === filter &&
+            estate.passivePosts === false &&
+            estate.status === "sale"
+        );
+      }
+      if (filter === "trending") {
+        filteredEstates2 = filteredEstates2.filter(
+          (estate) =>
+            estate.topOffers === "sale" && estate.passivePosts === false
+        );
+      }
     } else if (status === "rent") {
       filteredEstates2 = filteredEstates2.filter(
         (estate) => estate.status === "rent" && estate.passivePosts === false
       );
+      if (filter && filter !== "trending") {
+        filteredEstates2 = filteredEstates2.filter(
+          (estate) =>
+            estate.category === filter &&
+            estate.passivePosts === false &&
+            estate.status === "rent"
+        );
+      }
+      if (filter === "trending") {
+        filteredEstates2 = filteredEstates2.filter(
+          (estate) =>
+            estate.topOffers === "rent" && estate.passivePosts === false
+        );
+      }
     } else if (status === "all") {
       filteredEstates2 = filteredEstates2.filter(
         (estate) => estate.passivePosts === false
       );
+      if (filter && filter !== "trending") {
+        filteredEstates2 = filteredEstates2.filter(
+          (estate) =>
+            estate.category === filter && estate.passivePosts === false
+        );
+      }
+      if (filter === "trending") {
+        filteredEstates2 = filteredEstates2.filter(
+          (estate) => estate.topOffers && estate.passivePosts === false
+        );
+      }
     }
 
     if (cityStatus !== "") {
@@ -68,6 +104,12 @@ const ProductCard = ({
         (estate) =>
           estate?.place?.city === cityStatus && estate?.passivePosts === false
       );
+      if (filter) {
+        filteredEstates3 = filteredEstates3.filter(
+          (estate) =>
+            estate.category === filter && estate.passivePosts === false
+        );
+      }
 
       setCity(filteredEstates3);
     }
@@ -77,52 +119,48 @@ const ProductCard = ({
     );
 
     setFinalEstates(status ? filteredEstates2 : filteredPassiveEstates);
-  }, [estates, status, cityStatus]);
+  }, [estates, status, cityStatus, filter]);
 
   useEffect(() => {
-    //   // navbarFilteringChecker
-    //   //   ? setFinalEstates2(navbarFiltering)
-    //   //   :
     firstLookChecker ? setFinalEstates2(city) : setFinalEstates2(finalEstates);
-  }, [
-    finalEstates,
-    city,
-    firstLookChecker,
-    //   // navbarFiltering,
-    //   // navbarFilteringChecker,
-  ]);
+  }, [finalEstates, city, firstLookChecker]);
 
-  useEffect(() => {
-    if (filter) {
-      //quick section'da seçim yapma
-      if (filter === "sale") {
-        filteredEstates = filteredEstates.filter(
-          (estate) => estate.status === "sale" && estate.passivePosts === false
-        );
-      } else if (filter === "rent") {
-        filteredEstates = filteredEstates.filter(
-          (estate) => estate.status === "rent" && estate.passivePosts === false
-        );
-      } else if (filter === "trending") {
-        filteredEstates = filteredEstates.filter(
-          (estate) => estate.topOffers && estate.passivePosts === false
-        );
-      } else if (filter === "all") {
-        filteredEstates = filteredEstates.filter(
-          (estate) => estate.passivePosts === false
-        );
-      } else {
-        filteredEstates = filteredEstates.filter(
-          (estate) =>
-            estate.category === filter && estate.passivePosts === false
-        );
-      }
-      //setFilteredList(filteredEstates);
-      setFinalEstates(filteredEstates);
-      setFirstLookChecker(false);
-      setNavbarFilteringChecker(false);
-    }
-  }, [filter]);
+  // useEffect(() => {
+  //   if (!status) {
+  //     if (filter) {
+  //       //quick section'da seçim yapma
+  //       if (filter === "sale") {
+  //         filteredEstates = filteredEstates.filter(
+  //           (estate) =>
+  //             estate.status === "sale" && estate.passivePosts === false
+  //         );
+  //       } else if (filter === "rent") {
+  //         filteredEstates = filteredEstates.filter(
+  //           (estate) =>
+  //             estate.status === "rent" && estate.passivePosts === false
+  //         );
+  //       } else if (filter === "trending") {
+  //         filteredEstates = filteredEstates.filter(
+  //           (estate) => estate.topOffers && estate.passivePosts === false
+  //         );
+  //       } else if (filter === "all") {
+  //         filteredEstates = filteredEstates.filter(
+  //           (estate) => estate.passivePosts === false
+  //         );
+  //       } else {
+  //         filteredEstates = filteredEstates.filter(
+  //           (estate) =>
+  //             estate.category === filter && estate.passivePosts === false
+  //         );
+  //       }
+
+  //       //setFilteredList(filteredEstates);
+  //       setFinalEstates(filteredEstates);
+  //       setFirstLookChecker(false);
+  //       setNavbarFilteringChecker(false);
+  //     }
+  //   }
+  // }, [filter, status]);
 
   useEffect(() => {
     if (!EstatesList) {

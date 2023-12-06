@@ -24,7 +24,6 @@ const OverlayFilters = ({
   setFilterPriceValues,
   clearHandler,
   openFiltersOverlay,
-  setFiltersApplied,
 }) => {
   const buttonsStatusHandler = (id) => {
     if (selectedButtonsStatus === id) {
@@ -155,7 +154,7 @@ const OverlayFilters = ({
           className="w-40 h-12 rounded-lg bg-gray-800 flex justify-center items-center text-white cursor-pointer"
           onClick={showHandler}
         >
-          Filter
+          Show Places
         </div>
       </div>
     </div>

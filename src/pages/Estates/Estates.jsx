@@ -7,32 +7,65 @@ import { ContextFilter } from "../../Context/FilterContext";
 
 const Estates = ({ setUnAuthNavbar }) => {
   const [openFiltersOverlay, setOpenFilterOverlay] = useState(false);
-  const [selectedButton, setSelectedButtons] = useState(null);
-  const [filter, setFilter] = useState("");
+
+  const {
+    setFirstLookChecker,
+    selectedButton,
+    setSelectedButtons,
+    filter,
+    setFilter,
+    setStatus,
+    status,
+    selectedButtonsStatus,
+    setSelectedButtonsStatus,
+    selectedNumbers,
+    setSelectedNumbers,
+    selectedNumbers2,
+    setSelectedNumbers2,
+    selectedRoomNumbers,
+    setSelectedRoomNumbers,
+    selectedRoomNumbers2,
+    setSelectedRoomNumbers2,
+    filterPriceValues,
+    setFilterPriceValues,
+    filterTypes,
+    setFilterTypes,
+    clearHandler,
+    filtersApplied,
+    setFiltersApplied,
+    filterTypeValue,
+    setFilterTypeValue,
+  } = useContext(ContextFilter);
+
+  useEffect(() => {
+    document.body.style.overflow = openFiltersOverlay ? "hidden" : "auto"; // TODO:scrollbar hidden yerine transparent olması için alternatif ara
+    setUnAuthNavbar(false);
+  }, [openFiltersOverlay]);
+
+  // useEffect(() => {
+  //   setUnAuthNavbar(false);
+  // }, []);
+
+  useEffect(() => {
+    if (filter) {
+      if (!status) {
+        setStatus("all");
+      }
+    }
+  }, [filter]);
+
+  // useEffect(() => {
+  //   if (!selectedButton) {
+  //     if (!status && !filter) {
+  //       setStatus("all");
+  //     }
+  //   }
+  // }, [status, filter, selectedButton]);
 
   const openFilters = () => {
     // overlayFilters componentini açar ve kapatır
     setOpenFilterOverlay((prev) => !prev);
   };
-
-  const clearHandler = (e) => {
-    // clear all fonksiyonu
-    setSelectedButtonsStatus(null);
-    setSelectedNumbers(null);
-    setSelectedRoomNumbers(null);
-    setSelectedNumbers2(null);
-    setSelectedRoomNumbers2(null);
-    setFilterPriceValues({
-      min: "",
-      max: "",
-    });
-    setFilterTypes((prev) => prev.filter((item) => item !== "property"));
-    setFilterTypes((prev) => prev.filter((item) => item !== "bedrooms"));
-    setFilterTypes((prev) => prev.filter((item) => item !== "bathrooms"));
-    setFilterTypes((prev) => prev.filter((item) => item !== "price"));
-  };
-
-  const { setStatus, setCityStatus } = useContext(ContextFilter);
 
   const selectedButtonHandler = (id, name) => {
     // quick section seçim
@@ -44,17 +77,8 @@ const Estates = ({ setUnAuthNavbar }) => {
       setFilter(name);
       clearHandler();
     }
-    setStatus("");
-    //setCityStatus("");
+    //setStatus("");
   };
-  const [selectedNumbers, setSelectedNumbers] = useState(null); // rooms butonlarını seçer. NOT: overlayFilters'da yapılmış filtrelemeler, estates sayfası tekrar render edilmeden kaybolmasın istedim. bundan dolayı bu ve selectedButtonsStatus stateleri estates içine yazılıp prop edildi.
-  const [selectedNumbers2, setSelectedNumbers2] = useState(null);
-
-  const [selectedButtonsStatus, setSelectedButtonsStatus] = useState(null); // property type seçim
-  const [filtersApplied, setFiltersApplied] = useState(false); // property type tıklamadan önce listelemeyi engellemek için yazılan state
-
-  const [filterTypeValue, setFilterTypeValue] = useState(""); // filterTypes içine pushlanacak typeları içeren state
-  const [filterTypes, setFilterTypes] = useState([]); // overlayFilters'da seçilen filtrelemelerin typelarını tutan state
 
   const handleAddItem = () => {
     //filters butonun seçilen filter sayısını göstermesini sağlayan fonksiyon
@@ -64,30 +88,14 @@ const Estates = ({ setUnAuthNavbar }) => {
     setFilterTypeValue("");
   };
 
-  useEffect(() => {
-    setUnAuthNavbar(false);
-  }, []);
-
   const showHandler = () => {
     // overlayFilter'da show places butonuna yazılan click fonksiyonu
     openFilters();
     setFiltersApplied(true);
     setSelectedButtons(null);
     setFilter("");
+    setStatus("");
   };
-
-  const [selectedRoomNumbers, setSelectedRoomNumbers] = useState(null); // overlayFilters bedroom numbers state
-  const [selectedRoomNumbers2, setSelectedRoomNumbers2] = useState(null); // overlayFilters bathroom numbers state
-
-  const [filterPriceValues, setFilterPriceValues] = useState({
-    min: "",
-    max: "",
-  }); //overlayFilters minimum ve maximum price state
-
-  useEffect(() => {
-    document.body.style.overflow = openFiltersOverlay ? "hidden" : "auto"; // TODO:scrollbar hidden yerine transparent olması için alternatif ara
-    setUnAuthNavbar(false);
-  }, [openFiltersOverlay]);
 
   const [startEstatesTop, setStartEstatesTop] = useState(false);
 
@@ -99,8 +107,6 @@ const Estates = ({ setUnAuthNavbar }) => {
       setStartEstatesTop(false);
     }
   }, []);
-
-  const { setFirstLookChecker } = useContext(ContextFilter);
 
   window.onload = () => {
     setFirstLookChecker(false);

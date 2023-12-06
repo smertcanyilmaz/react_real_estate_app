@@ -10,8 +10,14 @@ import { ContextFilter } from "../../../Context/FilterContext";
 const SliderSection = ({ sale }) => {
   const navigate = useNavigate();
   const [currentSlide, setCurrentSlide] = useState(0);
-  const { setFirstLookChecker, setNavbarFilteringChecker, setStatus } =
-    useContext(ContextFilter);
+  const {
+    setFirstLookChecker,
+    setNavbarFilteringChecker,
+    setStatus,
+    setFilter,
+    setSelectedButtons,
+    clearHandler,
+  } = useContext(ContextFilter);
 
   useEffect(() => {
     setFirstLookChecker(false);
@@ -27,7 +33,11 @@ const SliderSection = ({ sale }) => {
   };
 
   const showOffersClickHandler = () => {
-    setStatus("");
+    sale ? setStatus("sale") : setStatus("rent");
+    //setStatus("");
+    clearHandler();
+    setFilter("trending");
+    setSelectedButtons(0);
     navigate("/estates");
   };
 

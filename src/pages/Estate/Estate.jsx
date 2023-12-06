@@ -86,7 +86,7 @@ const Estate = ({ setUnAuthNavbar }) => {
               className={`text-gray-800/80 rounded-lg px-3 py-2 hover:bg-gray-300/50 cursor-pointer duration-300 active:scale-90 ${
                 userActiveFavorited && "bg-gray-300/50"
               }`}
-              onClick={() => favoriteClickHandler(item.id)}
+              onClick={(e) => favoriteClickHandler(e, item.id)}
             >
               {!userActiveFavorited ? (
                 <FavoriteBorderRoundedIcon

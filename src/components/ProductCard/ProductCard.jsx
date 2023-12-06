@@ -30,6 +30,7 @@ const ProductCard = ({ currentSlide, sale, EstatesList }) => {
     selectedRoomNumbers2,
     filterPriceValues,
     handleAddItem,
+    showHandler,
   } = useContext(ContextFilter);
 
   const [finalEstates, setFinalEstates] = useState([]);
@@ -38,6 +39,12 @@ const ProductCard = ({ currentSlide, sale, EstatesList }) => {
   let filteredEstates = estates; //overlay estate filtrelemeleri tutar
   let filteredEstates2 = estates; //navbar ve quick section'dan yapılan filterelemeleri tutar
   let filteredEstates3 = estates; //anasayfadan şehir arayarak yapılan filtrelemeleri tuar
+
+  useEffect(() => {
+    filteredEstates = filteredEstates.filter(
+      (estate) => estate.passivePosts === false
+    );
+  }, [filteredEstates, showHandler]);
 
   useEffect(() => {
     if (status === "sale") {
@@ -179,7 +186,8 @@ const ProductCard = ({ currentSlide, sale, EstatesList }) => {
         filteredEstates = filteredEstates.filter(
           (estate) =>
             estate.price >= parseInt(filterPriceValues.min) &&
-            estate.price <= parseInt(filterPriceValues.max)
+            estate.price <= parseInt(filterPriceValues.max) &&
+            estate.passivePosts === false
         );
       }
 

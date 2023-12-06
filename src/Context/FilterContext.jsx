@@ -96,23 +96,6 @@ export const FilterContext = ({ children }) => {
 
   const [openFiltersOverlay, setOpenFilterOverlay] = useState(false);
 
-  const clearHandler = (e) => {
-    // clear all fonksiyonu
-    setSelectedButtonsStatus(null);
-    setSelectedNumbers(null);
-    setSelectedRoomNumbers(null);
-    setSelectedNumbers2(null);
-    setSelectedRoomNumbers2(null);
-    setFilterPriceValues({
-      min: "",
-      max: "",
-    });
-    setFilterTypes((prev) => prev.filter((item) => item !== "property"));
-    setFilterTypes((prev) => prev.filter((item) => item !== "bedrooms"));
-    setFilterTypes((prev) => prev.filter((item) => item !== "bathrooms"));
-    setFilterTypes((prev) => prev.filter((item) => item !== "price"));
-  };
-
   const openFilters = () => {
     // overlayFilters componentini açar ve kapatır
     setOpenFilterOverlay((prev) => !prev);
@@ -146,6 +129,23 @@ export const FilterContext = ({ children }) => {
     setSelectedButtons(null);
     setFilter("");
     setStatus("");
+  };
+
+  const clearHandler = (e) => {
+    // clear all fonksiyonu
+    setSelectedButtonsStatus(null);
+    setSelectedNumbers(null);
+    setSelectedRoomNumbers(null);
+    setSelectedNumbers2(null);
+    setSelectedRoomNumbers2(null);
+    setFilterPriceValues({
+      min: "",
+      max: "",
+    });
+    setFilterTypes((prev) => prev.filter((item) => item !== "property"));
+    setFilterTypes((prev) => prev.filter((item) => item !== "bedrooms"));
+    setFilterTypes((prev) => prev.filter((item) => item !== "bathrooms"));
+    setFilterTypes((prev) => prev.filter((item) => item !== "price"));
   };
 
   //navbar filter section

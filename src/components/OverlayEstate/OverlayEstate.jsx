@@ -11,11 +11,8 @@ const OverlayEstate = ({
   openOverlayEstate,
 }) => {
   const imagesDatas = item.images;
-  console.log(imagesDatas);
 
   const images = imagesDatas.flatMap((data) => data);
-
-  console.log(images);
 
   const [count, setCount] = useState(imagesIndex);
   const [showRightArrow, setShowRightArrow] = useState(true);

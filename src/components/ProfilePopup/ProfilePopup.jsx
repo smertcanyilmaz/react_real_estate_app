@@ -117,11 +117,9 @@ const ProfilePopup = ({
     if (passwordCheck === userActive?.password) {
       setIsPasswordCheck(true);
       setWrongPassword(false);
-      console.log("başarılı");
     } else {
       setIsPasswordCheck(false);
       setWrongPassword(true);
-      console.log("başarısız");
     }
   };
 

@@ -95,9 +95,12 @@ export const FilterContext = ({ children }) => {
 
   const [openFiltersOverlay, setOpenFilterOverlay] = useState(false);
 
+  const [productCardNotFound, setProductCardNotFound] = useState(false);
+
   const openFilters = () => {
     // overlayFilters componentini açar ve kapatır
     setOpenFilterOverlay((prev) => !prev);
+    setProductCardNotFound(false);
   };
 
   const selectedButtonHandler = (id, name) => {
@@ -110,6 +113,7 @@ export const FilterContext = ({ children }) => {
       setFilter(name);
       clearHandler();
     }
+    setProductCardNotFound(false);
   };
 
   const showHandler = () => {
@@ -133,6 +137,7 @@ export const FilterContext = ({ children }) => {
       max: "",
     });
     setFilterTypes([]);
+    setProductCardNotFound(false);
   };
 
   //navbar filter section
@@ -147,6 +152,7 @@ export const FilterContext = ({ children }) => {
     setSelectedButtons(null);
     setFilter("");
     clearHandler();
+    setProductCardNotFound(false);
 
     if (status === "all") {
       setStatus("all");
@@ -209,6 +215,8 @@ export const FilterContext = ({ children }) => {
     openFilters,
     openFiltersOverlay,
     setOpenFilterOverlay,
+    productCardNotFound,
+    setProductCardNotFound,
   };
   return (
     <ContextFilter.Provider value={values}>{children}</ContextFilter.Provider>

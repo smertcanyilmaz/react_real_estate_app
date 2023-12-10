@@ -22,33 +22,33 @@ const HomePremium = () => {
             <h2 className=" w-full text-center text-2xl font-semibold text-black mb-2">
               Free
             </h2>
-            <p className="flex gap-2 font-semibold">
+            <div className="flex gap-2 font-semibold">
               <CheckIcon fontSize="small" /> Full service agent
-            </p>
-            <p className="flex gap-2 font-semibold">
+            </div>
+            <div className="flex gap-2 font-semibold">
               <CheckIcon fontSize="small" /> Personalized home search
-            </p>
-            <p className="flex gap-2 font-semibold">
+            </div>
+            <div className="flex gap-2 font-semibold">
               <CheckIcon fontSize="small" /> On-demand private showing
-            </p>
-            <p className="flex gap-2 font-semibold">
+            </div>
+            <div className="flex gap-2 font-semibold">
               <CheckIcon fontSize="small" /> Board package preparation
-            </p>
-            <p className="flex gap-2 font-semibold">
+            </div>
+            <div className="flex gap-2 font-semibold">
               <CheckIcon fontSize="small" /> Online home buying platform
-            </p>
-            <p className="flex items-center gap-2 font-semibold">
+            </div>
+            <div className="flex items-center gap-2 font-semibold">
               <CheckIcon fontSize="small" /> Post ad
               <div className="bg-red-400 text-gray-100 text-sm font-semibold px-4 py-1 rounded-xl flex items-center justify-center ml-2">
                 Only 1 post
               </div>
-            </p>
-            <p className="flex gap-2 font-semibold">
+            </div>
+            <div className="flex gap-2 font-semibold">
               <CloseIcon fontSize="small" /> Negotiation assistance
-            </p>
-            <p className="flex gap-2 font-semibold">
+            </div>
+            <div className="flex gap-2 font-semibold">
               <CloseIcon fontSize="small" /> Commission rebate
-            </p>
+            </div>
 
             <div className="w-full flex items-center justify-center">
               <button
@@ -77,33 +77,33 @@ const HomePremium = () => {
             <h2 className=" w-full text-center text-2xl font-semibold mb-2 tracking-wide">
               €80<span className="text-xs">/mo</span>
             </h2>
-            <p className="flex gap-2 font-semibold">
+            <div className="flex gap-2 font-semibold">
               <CheckIcon fontSize="small" /> Full service agent
-            </p>
-            <p className="flex gap-2 font-semibold">
+            </div>
+            <div className="flex gap-2 font-semibold">
               <CheckIcon fontSize="small" /> Personalized home search
-            </p>
-            <p className="flex gap-2 font-semibold">
+            </div>
+            <div className="flex gap-2 font-semibold">
               <CheckIcon fontSize="small" /> On-demand private showing
-            </p>
-            <p className="flex gap-2 font-semibold">
+            </div>
+            <div className="flex gap-2 font-semibold">
               <CheckIcon fontSize="small" /> Board package preparation
-            </p>
-            <p className="flex gap-2 font-semibold">
+            </div>
+            <div className="flex gap-2 font-semibold">
               <CheckIcon fontSize="small" /> Online home buying platform
-            </p>
-            <p className="flex items-center gap-2 font-semibold">
+            </div>
+            <div className="flex items-center gap-2 font-semibold">
               <CheckIcon fontSize="small" /> Post ad
-              <div className="bg-blue-500 text-gray-100 text-sm font-semibold px-4 py-1 rounded-xl flex items-center justify-center ml-2">
+              <p className="bg-blue-500 text-gray-100 text-sm font-semibold px-4 py-1 rounded-xl flex items-center justify-center ml-2">
                 Limitless
-              </div>
-            </p>
-            <p className="flex gap-2 font-semibold">
+              </p>
+            </div>
+            <div className="flex gap-2 font-semibold">
               <CheckIcon fontSize="small" /> Negotiation assistance
-            </p>
-            <p className="flex gap-2 font-semibold">
+            </div>
+            <div className="flex gap-2 font-semibold">
               <CheckIcon fontSize="small" /> Commission rebate
-            </p>
+            </div>
             <div className="w-full flex items-center justify-center">
               <button
                 disabled={userSubscribe}

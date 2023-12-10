@@ -10,7 +10,6 @@ import { ContextFilter } from "../../Context/FilterContext";
 
 const ProductCard = ({ currentSlide, sale, EstatesList }) => {
   const { estates } = useFetch();
-  const [notFound, setNotFound] = useState(false);
   const { favoriteClickHandler, setIsFavorite, favChecker } =
     useContext(ContextProfile);
   const { userActiveUid, userActive } = useContext(Context);
@@ -30,6 +29,8 @@ const ProductCard = ({ currentSlide, sale, EstatesList }) => {
     selectedRoomNumbers2,
     filterPriceValues,
     showHandler,
+    productCardNotFound,
+    setProductCardNotFound,
   } = useContext(ContextFilter);
 
   const [finalEstates, setFinalEstates] = useState([]);
@@ -179,11 +180,11 @@ const ProductCard = ({ currentSlide, sale, EstatesList }) => {
         );
       }
 
-      // if (filteredEstates.length === 0) {
-      //   setNotFound(true);
-      // } else {
-      //   setNotFound(false);
-      // }
+      if (filteredEstates.length === 0) {
+        setProductCardNotFound(true);
+      } else {
+        setProductCardNotFound(false);
+      }
 
       setFinalEstates(filteredEstates);
       setFiltersApplied(false); //overlayda filtreleme seçeneklerine tıkladığımızda estatelerin gelmemesini sağlayan state
@@ -285,7 +286,7 @@ const ProductCard = ({ currentSlide, sale, EstatesList }) => {
           </div>
         </Link>
       ))}
-      {notFound && <p>Not Found</p>}
+      {productCardNotFound && <p>Not Found</p>}
     </div>
   );
 };

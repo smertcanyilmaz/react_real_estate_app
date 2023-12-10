@@ -43,7 +43,6 @@ const UploadPhoto = ({
     setUploadImage(removeImage);
   };
 
-  console.log("SELECTEDPHOTO", selectedFiles);
   return (
     <div className="three form_box">
       <h1 className="text-lg font-semibold text-gray-800 mb-5">Ad Photos</h1>

@@ -33,10 +33,9 @@ const OverlayFilters = () => {
     if (selectedButtonsStatus === id) {
       setSelectedButtonsStatus(null);
       setFilterTypes((prev) => prev.filter((item) => item !== "property"));
-      console.log("if");
     } else {
       setSelectedButtonsStatus(id);
-      console.log("else");
+
       if (!filterTypes.includes("property")) {
         setFilterTypes([...filterTypes, "property"]);
       }

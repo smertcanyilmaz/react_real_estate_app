@@ -11,8 +11,6 @@ export const AuthContext = ({ children }) => {
   const [userActiveUid, setUserActiveUid] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
-  console.log(userActive);
-
   useEffect(() => {
     let unsubscribe;
     unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
@@ -26,7 +24,6 @@ export const AuthContext = ({ children }) => {
             .then((docSnapshot) => {
               if (docSnapshot.exists()) {
                 const userData = docSnapshot.data();
-                console.log("Kullanıcı bilgileri:", userData);
                 setUserActive(userData);
                 setIsLoading(false);
               } else {

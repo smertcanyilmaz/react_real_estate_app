@@ -47,10 +47,10 @@ const Rooms = ({
   return (
     <div className="flex gap-4 items-center">
       {numbers.map((number, index) => (
-        <>
+        // fragment kullandım çünkü sadece <> kullandığımda ve maplenen divlere key verdiğimde unique key sorunu oluşuyordu
+        <React.Fragment key={index}>
           {number === "Any" ? (
             <div
-              //key={index}
               className={`w-20 h-10 rounded-2xl  flex justify-center items-center cursor-pointer duration-300 ${
                 (type === "bedrooms" ? selectedNumbers : selectedNumbers2) ===
                 null
@@ -69,13 +69,12 @@ const Rooms = ({
                   ? "bg-gray-800 text-white"
                   : "bg-gray-100 text-gray-800"
               } flex justify-center items-center cursor-pointer duration-300`}
-              key={index}
               onClick={() => selectedNumbersHandler(index)}
             >
               {number}
             </div>
           )}
-        </>
+        </React.Fragment>
       ))}
     </div>
   );

@@ -62,19 +62,15 @@ const AdressInfo = ({ setSum, setSumChecker }) => {
     //hangi ili seçtiysek onunla ilgili ilçe filtrelemelerini yapan fonksiyon
 
     const cityInfo = cities?.find((country) => country?.name === citySelected);
-    console.log(cityInfo);
     const isoCode = cityInfo?.isoCode;
-    console.log(isoCode);
     const districtSelected = districts?.filter(
       (district) => district?.stateCode === isoCode
     );
-    console.log(districtSelected);
+
     setNewDistricts(districtSelected);
 
     setInputBoxDistricts("choose");
   };
-
-  console.log(newDistricts);
 
   const [arrowState, setArrowState] = useState({
     // searchDropDown componentini tutan state

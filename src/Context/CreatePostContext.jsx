@@ -62,10 +62,7 @@ export const CreatePostContext = ({ children }) => {
 
         const downloadURL = await getDownloadURL(imageRef);
         imageRefs.push(downloadURL);
-        console.log("DOWNLOAD URL", downloadURL);
       }
-
-      console.log("İMAGEREFS", imageRefs);
 
       const user = auth.currentUser;
 

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import ProfileTemplate from "../../../components/ProfileTemplate/ProfileTemplate";
 import PostAd from "../../../components/PostAd/PostAd";
 import useUserPosts from "../../../components/hooks/useUserPosts";
@@ -13,11 +13,6 @@ const MyPosts = () => {
   const { loading } = useUserPosts();
   const { estateDataFilter, estateDataFilter2, favoriteEstates, loadingFav } =
     useContext(ContextProfile);
-
-  useEffect(() => {
-    console.log("estateDataFilter in myPost", estateDataFilter);
-    console.log("estateDataFilter2 in myPost", estateDataFilter2);
-  }, [estateDataFilter, estateDataFilter2]);
 
   return (
     <ProfileTemplate>

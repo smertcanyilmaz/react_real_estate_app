@@ -26,7 +26,6 @@ const AdFeatures = ({ features, setFeatures, setSum }) => {
 
   const featuresChangeHandler = (name) => {
     setFeatures((prev) => [...prev, name]);
-    console.log(name);
   };
 
   useEffect(() => {

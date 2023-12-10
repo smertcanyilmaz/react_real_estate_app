@@ -84,8 +84,6 @@ const Register = ({ setUnAuthNavbar }) => {
         favorites: favorites,
         subscribe: subscribe,
       });
-      console.log("kayıt başarılı");
-      console.log("USER", user);
       navigate("/");
     } catch (error) {
       console.log(error);

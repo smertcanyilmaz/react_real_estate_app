@@ -21,7 +21,6 @@ const Estate = ({ setUnAuthNavbar }) => {
   const { setStatus } = useContext(ContextFilter);
 
   const item = estates.find((estate) => estate.id === id);
-  console.log(item);
 
   const [openOverlayEstate, setOpenOverlayEstate] = useState(false);
   const [imagesIndex, setImagesIndex] = useState(null); // tıklanan seçili resmin büyütülebilmesi için index tutan state

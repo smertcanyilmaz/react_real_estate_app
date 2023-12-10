@@ -72,7 +72,6 @@ const ProfileContext = ({ children }) => {
           updatedEstateData.push({ id: doc.id, ...doc.data() });
         });
         setEstateDataFilter(updatedEstateData);
-        console.log("girdi");
       });
 
       return () => {
@@ -271,7 +270,6 @@ const ProfileContext = ({ children }) => {
 
         const unsubscribe = onSnapshot(userRef, (doc) => {
           const data = doc.data();
-          console.log(data, "data");
           if (data) {
             setUserSubscribe(data.subscribe);
           }
@@ -287,14 +285,13 @@ const ProfileContext = ({ children }) => {
   const membershipChecker = () => {
     if (estateData?.length === 0 || userSubscribe) {
       navigate("/create-post");
-      setStatus("");
     } else if (!userSubscribe) {
       navigate("/membership");
-      setStatus("");
     }
+    setStatus("");
   };
 
-  console.log(userSubscribe, " userSubscribe userSubscribe userSubscribe");
+  const [productCardNotFound, setProductCardNotFound] = useState(false);
 
   const values = {
     estateDataFilter,
@@ -314,6 +311,8 @@ const ProfileContext = ({ children }) => {
     membershipChecker,
     userSubscribe,
     setUserSubscribe,
+    productCardNotFound,
+    setProductCardNotFound,
   };
   return (
     <ContextProfile.Provider value={values}>{children}</ContextProfile.Provider>

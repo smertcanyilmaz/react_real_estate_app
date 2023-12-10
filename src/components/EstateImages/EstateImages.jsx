@@ -15,8 +15,6 @@ const EstateImages = ({
     document.body.style.overflow = openOverlayEstate ? "hidden" : "auto";
   }, [openOverlayEstate]);
 
-  console.log(item);
-
   return (
     <div className="images w-full max-h-[40rem] flex gap-2 rounded-lg">
       <div

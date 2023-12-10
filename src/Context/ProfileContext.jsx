@@ -131,6 +131,7 @@ const ProfileContext = ({ children }) => {
   }, [path]);
 
   const [loadingFav, setLoadingFav] = useState(true);
+
   // Favorites page
 
   const fetchFavoriteEstates = async () => {

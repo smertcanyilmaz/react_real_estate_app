@@ -3,7 +3,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import { Outlet } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
 
-const Layout = ({ ref0 = { ref0 }, unAuthNavbar }) => {
+const Layout = ({ unAuthNavbar }) => {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
@@ -15,7 +15,7 @@ const Layout = ({ ref0 = { ref0 }, unAuthNavbar }) => {
         ${unAuthNavbar && "max-w-full"}
        `}
       >
-        {!unAuthNavbar && <Navbar ref0={ref0} />}
+        {!unAuthNavbar && <Navbar />}
 
         <Outlet />
       </div>

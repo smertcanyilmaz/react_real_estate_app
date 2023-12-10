@@ -10,7 +10,7 @@ import { ContextProfile } from "../../Context/ProfileContext";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import { ContextFilter } from "../../Context/FilterContext";
 
-const Navbar = ({ ref0 }) => {
+const Navbar = () => {
   const [showBox, setShowBox] = useState(false);
   const [showUser, setShowUser] = useState(false);
   const { userActive } = useContext(Context);
@@ -43,10 +43,7 @@ const Navbar = ({ ref0 }) => {
   };
 
   return (
-    <div
-      ref={ref0}
-      className="flex w-full max-w-6xl mx-auto h-[11vh] justify-between items-end relative"
-    >
+    <div className="flex w-full max-w-6xl mx-auto h-[11vh] justify-between items-end relative">
       <svg
         width="65"
         height="40"

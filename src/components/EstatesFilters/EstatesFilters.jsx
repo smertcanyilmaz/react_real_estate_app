@@ -83,11 +83,11 @@ const EstatesFilters = () => {
 
   return (
     <div className="categories w-full flex justify-between items-center gap-5">
-      <div className="quickSelection flex gap-5 ">
+      <div className="quickSelection flex gap-5">
         {buttons.map((button) => (
           <div
             key={button.id}
-            className={`quick ${
+            className={`quick z-10  ${
               selectedButton === button.id
                 ? "border-2 border-[--dark_blue]"
                 : "border border-[--dark_blue]"
@@ -116,7 +116,7 @@ const EstatesFilters = () => {
       >
         {filterTypes.length !== 0 &&
           (!openFiltersOverlay || (filtersApplied && openFiltersOverlay)) && (
-            <div className="bg-[--bg_color] absolute -top-1 -right-1 w-5 h-5 rounded-full  flex justify-center items-center ">
+            <div className="bg-[--bg_color] absolute -top-1 -right-1 w-5 h-5 rounded-full  flex justify-center items-center">
               <div className="bg-black rounded-full text-xs text-white flex justify-center items-center  w-[1.125rem] h-[1.125rem] ">
                 {filterTypes.length}
               </div>

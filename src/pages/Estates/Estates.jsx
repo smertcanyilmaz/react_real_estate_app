@@ -59,7 +59,7 @@ const Estates = ({ setUnAuthNavbar }) => {
       <div //overlay
         onClick={() => openFilters()}
         className={`fixed left-0 top-0 w-full h-full bg-black duration-300  ${
-          openFiltersOverlay ? "visible opacity-60" : "invisible opacity-0"
+          openFiltersOverlay ? "visible opacity-60 z-20" : "invisible opacity-0"
         }`}
       ></div>
     </div>

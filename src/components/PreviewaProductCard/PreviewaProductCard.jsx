@@ -3,7 +3,7 @@ import { PostContext } from "../../Context/CreatePostContext";
 import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
 
 const PreviewaProductCard = () => {
-  const { sum, previewImages, setPreviewImages } = useContext(PostContext);
+  const { sum, previewImages } = useContext(PostContext);
 
   return (
     <div className="flex-1 flex flex-col items-center justify-between">

@@ -1,13 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { doc, deleteDoc, getDoc, updateDoc, getDocs } from "firebase/firestore";
+import { doc, deleteDoc } from "firebase/firestore";
 import { db } from "../../firebase-config";
 import DeleteIcon from "@mui/icons-material/Delete";
 import RemoveCircleOutlineRoundedIcon from "@mui/icons-material/RemoveCircleOutlineRounded";
 import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
 import LaunchRoundedIcon from "@mui/icons-material/LaunchRounded";
 import { ContextProfile } from "../../Context/ProfileContext";
-import { Context } from "../../Context/AuthContext";
 import { Slide, ToastContainer, toast } from "react-toastify";
 
 const ProfileProductCard = ({ post, myPost }) => {
@@ -19,10 +18,8 @@ const ProfileProductCard = ({ post, myPost }) => {
     passiveClickHandler,
     activeClickHandler,
     favoriteEstates,
-    setFavoriteEstates,
     RemoveFavorite,
   } = useContext(ContextProfile);
-  const { userActiveUid } = useContext(Context);
   const [deleteValid, setDeleteValid] = useState({});
   const [postChecker, setPostChecker] = useState([]);
 

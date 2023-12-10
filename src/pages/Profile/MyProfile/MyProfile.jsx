@@ -31,8 +31,6 @@ const MyProfile = () => {
     setWrongPassword(false);
   };
 
-  console.log(userActive.firstName.at(0), "aaaaaaaaaaaa");
-
   return (
     <>
       <ProfileTemplate>

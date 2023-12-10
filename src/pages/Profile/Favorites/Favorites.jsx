@@ -4,11 +4,9 @@ import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
 import ProfileProductCard from "../../../components/ProfileProductCard/ProfileProductCard";
 import { ContextProfile } from "../../../Context/ProfileContext";
 import "./Favorites.css";
-import useUserPosts from "../../../components/hooks/useUserPosts";
 
 const Favorites = () => {
   const { favoriteEstates, loadingFav } = useContext(ContextProfile);
-  const { loading } = useUserPosts();
 
   return (
     <ProfileTemplate>

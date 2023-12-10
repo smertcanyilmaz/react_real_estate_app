@@ -7,13 +7,12 @@ import "./ProfilePopup.css";
 import Button from "../Button/Button";
 import { getAuth, updateEmail, updatePassword } from "firebase/auth";
 import { Context } from "../../Context/AuthContext";
-import { doc, onSnapshot, updateDoc } from "firebase/firestore";
+import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase-config";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import CheckIcon from "@mui/icons-material/Check";
 import { toast } from "react-toastify";
-import { useLocation } from "react-router-dom";
 
 const ProfilePopup = ({
   clickHandler,
@@ -21,7 +20,6 @@ const ProfilePopup = ({
   edit,
   isPasswordCheck,
   setIsPasswordCheck,
-
   newPassword,
   setNewPassword,
   passwordCheck,

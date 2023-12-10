@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import Button from "../../Button/Button";
 //import Slider from "./Slider/Slider";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
 import ProductCard from "../../ProductCard/ProductCard";
@@ -34,7 +34,7 @@ const SliderSection = ({ sale }) => {
 
   const showOffersClickHandler = () => {
     sale ? setStatus("sale") : setStatus("rent");
-    //setStatus("");
+
     clearHandler();
     setFilter("trending");
     setSelectedButtons(0);

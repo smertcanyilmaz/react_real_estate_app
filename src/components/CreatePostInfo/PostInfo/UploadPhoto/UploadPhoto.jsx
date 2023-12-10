@@ -57,13 +57,11 @@ const UploadPhoto = ({
           <input
             type="file"
             className="opacity-0 absolute top-0 left-0 h-full w-full"
-            //ref={fileInputRef}
             multiple={true}
             accept="image/*"
             onChange={handleFileChange}
           />
         </div>
-        {/* başlangıç ekleme divi */}
 
         {selectedFiles.length === 0 ? (
           <div className="w-36 h-24 rounded-[4px] border border-gray-400/50 flex flex-col items-center justify-center gap-2 shadow-sm ">

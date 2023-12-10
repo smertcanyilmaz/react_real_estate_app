@@ -3,14 +3,12 @@ import "./EstatesFilters.css";
 import ApartmentIcon from "@mui/icons-material/Apartment";
 import BungalowOutlinedIcon from "@mui/icons-material/BungalowOutlined";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-import HouseOutlinedIcon from "@mui/icons-material/HouseOutlined";
 import LocalFireDepartmentOutlinedIcon from "@mui/icons-material/LocalFireDepartmentOutlined";
 import TsunamiOutlinedIcon from "@mui/icons-material/TsunamiOutlined";
 import PoolOutlinedIcon from "@mui/icons-material/PoolOutlined";
 import LandscapeOutlinedIcon from "@mui/icons-material/LandscapeOutlined";
 import SortOutlinedIcon from "@mui/icons-material/SortOutlined";
 import SnowmobileOutlinedIcon from "@mui/icons-material/SnowmobileOutlined";
-import ForestIcon from "@mui/icons-material/Forest";
 import AgricultureIcon from "@mui/icons-material/Agriculture";
 import { ContextFilter } from "../../Context/FilterContext";
 

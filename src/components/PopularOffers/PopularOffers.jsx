@@ -1,4 +1,3 @@
-import { forwardRef } from "react";
 import SliderSection from "./SliderSection/SliderSection";
 
 const PopularOffers = ({ sale }) => {
@@ -15,4 +14,3 @@ const PopularOffers = ({ sale }) => {
 };
 
 export default PopularOffers;
-// forwardRef(PopularOffers)

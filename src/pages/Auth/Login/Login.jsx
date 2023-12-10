@@ -1,11 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import AuthEntranceSide from "../../../components/AuthEntranceSide/AuthEntranceSide";
 import { Link, useNavigate } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { Slide, ToastContainer, toast } from "react-toastify";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import { Context } from "../../../Context/AuthContext";
 
 const Login = ({ setUnAuthNavbar }) => {
   const navigate = useNavigate();

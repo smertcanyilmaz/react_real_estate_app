@@ -1,11 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import AuthEntranceSide from "../../../components/AuthEntranceSide/AuthEntranceSide";
 import { Link, useNavigate } from "react-router-dom";
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signOut,
-} from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { db } from "../../../firebase-config";
 import { doc, setDoc } from "@firebase/firestore";
 import { Context } from "../../../Context/AuthContext";
@@ -87,7 +83,6 @@ const Register = ({ setUnAuthNavbar }) => {
         password: password,
         favorites: favorites,
         subscribe: subscribe,
-        // Diğer kullanıcı bilgileri
       });
       console.log("kayıt başarılı");
       console.log("USER", user);
@@ -219,7 +214,6 @@ const Register = ({ setUnAuthNavbar }) => {
               ) : (
                 <>
                   <div className="inline-block h-5 w-5 animate-spin rounded-full border-2 border-solid border-gray-50 border-r-transparent align-[-0.125em]"></div>
-                  {/* <p className="text-sm text-gray-50">Loading</p> */}
                 </>
               )}
             </button>

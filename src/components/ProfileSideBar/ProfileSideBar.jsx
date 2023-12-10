@@ -7,7 +7,7 @@ import "./ProfileSideBar.css";
 import { Context } from "../../Context/AuthContext";
 
 const ProfileSideBar = () => {
-  const { userActive, userActiveUid } = useContext(Context);
+  const { userActive } = useContext(Context);
 
   const navigate = useNavigate();
   const location = useLocation();

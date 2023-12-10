@@ -12,7 +12,7 @@ const EstateImages = ({
   };
 
   useEffect(() => {
-    document.body.style.overflow = openOverlayEstate ? "hidden" : "auto"; // TODO:scrollbar hidden yerine transparent olması için alternatif ara
+    document.body.style.overflow = openOverlayEstate ? "hidden" : "auto";
   }, [openOverlayEstate]);
 
   console.log(item);

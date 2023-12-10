@@ -8,7 +8,7 @@ import { ContextProfile } from "../../../Context/ProfileContext";
 import { Slide, ToastContainer } from "react-toastify";
 
 const PasivePosts = () => {
-  const { estateData, loading } = useUserPosts();
+  const { loading } = useUserPosts();
   const { estateDataFilter2 } = useContext(ContextProfile);
 
   return (

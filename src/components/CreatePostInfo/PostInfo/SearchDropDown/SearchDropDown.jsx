@@ -7,7 +7,6 @@ const SearchDropDown = ({
   cities,
   arrowState,
   arrowClickHandler,
-  setArrowState,
   setInputBoxCountry,
   setInputBoxCity,
   setInputBoxDistricts,

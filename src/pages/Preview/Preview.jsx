@@ -7,8 +7,7 @@ import { ToastContainer, Slide } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Preview = () => {
-  const { postClickHandler, postLoading, postError, setPostError } =
-    useContext(PostContext);
+  const { postClickHandler, postLoading } = useContext(PostContext);
 
   return (
     <>

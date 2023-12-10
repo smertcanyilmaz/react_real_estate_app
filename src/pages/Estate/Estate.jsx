@@ -137,7 +137,7 @@ const Estate = ({ setUnAuthNavbar }) => {
           </div>
           <div className="flex-1 h-full flex items-center justify-center text-lg">
             Contact our agents by call center:
-            <span className="font-semibold">55555-55</span>
+            <span className="font-semibold ml-1">55555-55</span>
           </div>
         </div>
       </div>

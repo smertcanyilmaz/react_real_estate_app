@@ -1,19 +1,16 @@
 import React, { useContext, useEffect, useState } from "react";
 import EstateImages from "../../components/EstateImages/EstateImages";
 import useFetch from "../../components/hooks/useFetch";
-import { Link, useParams } from "react-router-dom";
-import { IconButton } from "@mui/material";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import TwitterIcon from "@mui/icons-material/Twitter";
-import GitHubIcon from "@mui/icons-material/GitHub";
+import { useParams } from "react-router-dom";
 import OverlayEstate from "../../components/OverlayEstate/OverlayEstate";
 import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
 import { Context } from "../../Context/AuthContext";
-import { doc, updateDoc, getDoc, onSnapshot } from "firebase/firestore";
+import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "../../firebase-config";
 import { ContextProfile } from "../../Context/ProfileContext";
 import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
 import { ContextFilter } from "../../Context/FilterContext";
+import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
 
 const Estate = ({ setUnAuthNavbar }) => {
   const { id } = useParams();
@@ -116,14 +113,27 @@ const Estate = ({ setUnAuthNavbar }) => {
                 € {item?.price}
               </div>
             </div>
-            <div className="text-gray-700 flex gap-1">
-              <p>{item?.rooms?.bedrooms} bedrooms |</p>{" "}
-              <p>{item?.rooms?.bathrooms} bathrooms |</p>
-              {item?.specials?.map((special, index) => (
-                <div key={index}>
-                  {special} {index === item.specials.length - 1 ? "" : "|"}
+            <div className="text-gray-700 flex flex-col gap-5">
+              <div className="w-full flex gap-3">
+                <p>{item?.rooms?.bedrooms} bedrooms</p>
+                <p>|</p>
+                <p>{item?.rooms?.bathrooms} bathrooms</p>
+              </div>
+              <div className="w-full flex flex-col gap-3 bg-gray-200/50 border border-gray-800 rounded-lg p-2">
+                <h3 className="font-semibold">Features</h3>
+                <div className="w-full flex flex-wrap gap-3">
+                  {item?.specials?.map((special, index) => (
+                    <div className="flex gap-1" key={index}>
+                      {index === item.specials.length ? (
+                        ""
+                      ) : (
+                        <CheckOutlinedIcon />
+                      )}
+                      {special}
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </div>
             </div>
           </div>
           <div className="flex-1 h-full flex items-center justify-center text-lg">

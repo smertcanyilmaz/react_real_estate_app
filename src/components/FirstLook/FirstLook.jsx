@@ -22,7 +22,7 @@ const FirstLook = () => {
           <input
             type="text"
             className="w-full h-full outline-none pl-5 bg-transparent text-lg"
-            placeholder="Istanbul, Amsterdam, Rome, etc.."
+            placeholder="Istanbul, Sicily, Porto, etc.."
             onChange={(e) => setInputValue(e.target.value)}
           />
           <button className="w-28 h-full">

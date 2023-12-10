@@ -11,6 +11,7 @@ import LandscapeOutlinedIcon from "@mui/icons-material/LandscapeOutlined";
 import SortOutlinedIcon from "@mui/icons-material/SortOutlined";
 import SnowmobileOutlinedIcon from "@mui/icons-material/SnowmobileOutlined";
 import ForestIcon from "@mui/icons-material/Forest";
+import AgricultureIcon from "@mui/icons-material/Agriculture";
 import { ContextFilter } from "../../Context/FilterContext";
 
 const EstatesFilters = () => {
@@ -33,15 +34,15 @@ const EstatesFilters = () => {
 
     {
       id: 1,
-      icon: <ForestIcon className="icons" />,
-      title: "Tree Houses ",
-      name: "treeHouses ",
+      icon: <AgricultureIcon className="icons" />,
+      title: "Farms",
+      name: "farms",
     },
     {
       id: 2,
       icon: <HomeOutlinedIcon className="icons" />,
-      title: "Container",
-      name: "container",
+      title: "Containers",
+      name: "containers",
     },
 
     {
@@ -92,11 +93,7 @@ const EstatesFilters = () => {
               selectedButton === button.id
                 ? "border-2 border-[--dark_blue]"
                 : "border border-[--dark_blue]"
-            } ${
-              selectedButton === button.id &&
-              button.name === "trending" &&
-              "shadow-xl shadow-yellow-200 "
-            } ${button.name === "trending" && "bg-yellow-300 border-none"} `}
+            }`}
             onClick={() => selectedButtonHandler(button.id, button.name)}
           >
             {button.icon}

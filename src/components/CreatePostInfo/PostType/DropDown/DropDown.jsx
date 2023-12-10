@@ -7,7 +7,6 @@ const DropDown = ({
   showDropDown2,
   setSelectedProperty,
   setSelectedCategory,
-  setShowDropDown,
   setShowDropDown2,
 }) => {
   const properties = [
@@ -15,8 +14,8 @@ const DropDown = ({
     { label: "Rent", value: "rent" },
   ];
   const categories = [
-    { label: "Tree Houses", value: "treeHouses" },
-    { label: "Container", value: "container" },
+    { label: "Farms", value: "farms" },
+    { label: "Containers", value: "containers" },
     { label: "Amazing Views", value: "amazingViews" },
     { label: "Apartment", value: "apartment" },
     { label: "Tiny Houses", value: "tinyHouses" },

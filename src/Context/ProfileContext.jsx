@@ -13,6 +13,7 @@ import useUserPosts from "../components/hooks/useUserPosts";
 import { Context } from "./AuthContext";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { ContextFilter } from "./FilterContext";
 
 export const ContextProfile = createContext();
 
@@ -24,6 +25,7 @@ const ProfileContext = ({ children }) => {
   const [favoriteEstates, setFavoriteEstates] = useState([]);
   const { estateData } = useUserPosts();
   const { userActive, userActiveUid } = useContext(Context);
+  const { setStatus } = useContext(ContextFilter);
 
   const location = useLocation();
   const path = location.pathname.substring(1);
@@ -284,8 +286,10 @@ const ProfileContext = ({ children }) => {
   const membershipChecker = () => {
     if (estateData?.length === 0 || userSubscribe) {
       navigate("/create-post");
+      setStatus("");
     } else if (!userSubscribe) {
       navigate("/membership");
+      setStatus("");
     }
   };
 

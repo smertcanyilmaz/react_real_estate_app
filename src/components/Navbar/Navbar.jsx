@@ -36,6 +36,12 @@ const Navbar = ({ ref0 }) => {
     navigate("/");
   };
 
+  const profileClickHandler = () => {
+    setShowUser(false);
+    navigate("/myprofile");
+    setStatus("");
+  };
+
   return (
     <div
       ref={ref0}
@@ -136,9 +142,9 @@ const Navbar = ({ ref0 }) => {
           >
             {userActive ? (
               <>
-                <Link to="myprofile" onClick={() => setShowUser(false)}>
+                <span className="cursor-pointer" onClick={profileClickHandler}>
                   Profile
-                </Link>
+                </span>
                 <Logout />
               </>
             ) : (

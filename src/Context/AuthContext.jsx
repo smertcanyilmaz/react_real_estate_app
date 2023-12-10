@@ -63,6 +63,6 @@ export const AuthContext = ({ children }) => {
   };
 
   return (
-    <Context.Provider value={values}>{!isLoading && children}</Context.Provider> // children render edilmeden önce isLoading durumu kontrol edilir
+    <Context.Provider value={values}>{!isLoading && children}</Context.Provider>
   );
 };

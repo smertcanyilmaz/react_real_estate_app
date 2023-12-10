@@ -37,8 +37,8 @@ function App() {
       <>
         <BrowserRouter>
           <CreatePostContext>
-            <ProfileContext>
-              <FilterContext>
+            <FilterContext>
+              <ProfileContext>
                 <Suspense
                   fallback={
                     <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
@@ -153,8 +153,8 @@ function App() {
                     </Route>
                   </Routes>
                 </Suspense>
-              </FilterContext>
-            </ProfileContext>
+              </ProfileContext>
+            </FilterContext>
           </CreatePostContext>
         </BrowserRouter>
       </>

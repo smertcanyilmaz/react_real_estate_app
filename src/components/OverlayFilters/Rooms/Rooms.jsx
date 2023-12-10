@@ -9,8 +9,8 @@ const Rooms = ({
   selectedNumbers2,
   setSelectedNumbers2,
   type,
-  setFilterTypeValue,
   setFilterTypes,
+  filterTypes,
 }) => {
   const numbers = ["Any", 1, 2, 3, 4, 5, 6, 7, "8+"];
 
@@ -23,7 +23,10 @@ const Rooms = ({
       } else {
         setSelectedNumbers(id);
         setSelectedRoomNumbers(id);
-        setFilterTypeValue(type);
+
+        if (!filterTypes.includes(type)) {
+          setFilterTypes([...filterTypes, type]);
+        }
       }
     } else if (type === "bathrooms") {
       if (selectedNumbers2 === id) {
@@ -33,7 +36,10 @@ const Rooms = ({
       } else {
         setSelectedNumbers2(id);
         setSelectedRoomNumbers2(id);
-        setFilterTypeValue(type);
+
+        if (!filterTypes.includes(type)) {
+          setFilterTypes([...filterTypes, type]);
+        }
       }
     }
   };

@@ -29,7 +29,6 @@ const ProductCard = ({ currentSlide, sale, EstatesList }) => {
     selectedRoomNumbers,
     selectedRoomNumbers2,
     filterPriceValues,
-    handleAddItem,
     showHandler,
   } = useContext(ContextFilter);
 
@@ -126,43 +125,6 @@ const ProductCard = ({ currentSlide, sale, EstatesList }) => {
     firstLookChecker ? setFinalEstates2(city) : setFinalEstates2(finalEstates);
   }, [finalEstates, city, firstLookChecker]);
 
-  // useEffect(() => {
-  //   if (!status) {
-  //     if (filter) {
-  //       //quick section'da seçim yapma
-  //       if (filter === "sale") {
-  //         filteredEstates = filteredEstates.filter(
-  //           (estate) =>
-  //             estate.status === "sale" && estate.passivePosts === false
-  //         );
-  //       } else if (filter === "rent") {
-  //         filteredEstates = filteredEstates.filter(
-  //           (estate) =>
-  //             estate.status === "rent" && estate.passivePosts === false
-  //         );
-  //       } else if (filter === "trending") {
-  //         filteredEstates = filteredEstates.filter(
-  //           (estate) => estate.topOffers && estate.passivePosts === false
-  //         );
-  //       } else if (filter === "all") {
-  //         filteredEstates = filteredEstates.filter(
-  //           (estate) => estate.passivePosts === false
-  //         );
-  //       } else {
-  //         filteredEstates = filteredEstates.filter(
-  //           (estate) =>
-  //             estate.category === filter && estate.passivePosts === false
-  //         );
-  //       }
-
-  //       //setFilteredList(filteredEstates);
-  //       setFinalEstates(filteredEstates);
-  //       setFirstLookChecker(false);
-  //       setNavbarFilteringChecker(false);
-  //     }
-  //   }
-  // }, [filter, status]);
-
   useEffect(() => {
     if (!EstatesList) {
       // top offers'da gelecek olan cardların sell mi rent mi olduğunu belirleyen koşul
@@ -217,13 +179,12 @@ const ProductCard = ({ currentSlide, sale, EstatesList }) => {
         );
       }
 
-      if (filteredEstates.length === 0) {
-        setNotFound(true);
-      } else {
-        setNotFound(false);
-      }
+      // if (filteredEstates.length === 0) {
+      //   setNotFound(true);
+      // } else {
+      //   setNotFound(false);
+      // }
 
-      handleAddItem();
       setFinalEstates(filteredEstates);
       setFiltersApplied(false); //overlayda filtreleme seçeneklerine tıkladığımızda estatelerin gelmemesini sağlayan state
       setNavbarFilteringChecker(false);
@@ -272,7 +233,6 @@ const ProductCard = ({ currentSlide, sale, EstatesList }) => {
     >
       {finalEstates2.map((estate) => (
         <Link to={`/estates/${estate.id}`} key={estate.id}>
-          {/* min-w-[14.60rem] h-64 */}
           <div
             className={`flex flex-col  bg-gray-50 rounded-2xl transform transition-transform duration-300 cursor-pointer relative ${
               EstatesList ? "min-w-[14.60rem] h-64" : "min-w-[23rem] h-[24rem]"

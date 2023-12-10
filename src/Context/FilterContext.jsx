@@ -67,7 +67,7 @@ export const FilterContext = ({ children }) => {
 
   const clickHandler = (city) => {
     setCityStatus(city);
-
+    setStatus("all");
     if (inputValue?.length !== 0) {
       setFirstLookChecker(true);
       navigate("/estates");
@@ -92,7 +92,6 @@ export const FilterContext = ({ children }) => {
   const [filtersApplied, setFiltersApplied] = useState(false); // property type tıklamadan önce listelemeyi engellemek için yazılan state
 
   const [filterTypeValue, setFilterTypeValue] = useState(""); // filterTypes içine pushlanacak typeları içeren state
-  // const [filterTypes, setFilterTypes] = useState([]); // overlayFilters'da seçilen filtrelemelerin typelarını tutan state
 
   const [openFiltersOverlay, setOpenFilterOverlay] = useState(false);
 
@@ -111,15 +110,15 @@ export const FilterContext = ({ children }) => {
       setFilter(name);
       clearHandler();
     }
-    //setStatus("");
   };
+
+  console.log(filterTypes, "filterTypes");
 
   const handleAddItem = () => {
     //filters butonun seçilen filter sayısını göstermesini sağlayan fonksiyon
     if (filterTypeValue && !filterTypes.includes(filterTypeValue)) {
       setFilterTypes([...filterTypes, filterTypeValue]);
     }
-    setFilterTypeValue("");
   };
 
   const showHandler = () => {
@@ -142,10 +141,7 @@ export const FilterContext = ({ children }) => {
       min: "",
       max: "",
     });
-    setFilterTypes((prev) => prev.filter((item) => item !== "property"));
-    setFilterTypes((prev) => prev.filter((item) => item !== "bedrooms"));
-    setFilterTypes((prev) => prev.filter((item) => item !== "bathrooms"));
-    setFilterTypes((prev) => prev.filter((item) => item !== "price"));
+    setFilterTypes([]);
   };
 
   //navbar filter section
@@ -160,6 +156,7 @@ export const FilterContext = ({ children }) => {
     setSelectedButtons(null);
     setFilter("");
     clearHandler();
+
     if (status === "all") {
       setStatus("all");
     } else if (status === "sale") {

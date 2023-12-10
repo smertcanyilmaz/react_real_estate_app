@@ -3,8 +3,8 @@ import React from "react";
 const Prices = ({
   filterPriceValues,
   setFilterPriceValues,
-  setFilterTypeValue,
   setFilterTypes,
+  filterTypes,
 }) => {
   const handleChange = (e) => {
     const updatedFilterPriceValues = {
@@ -19,7 +19,9 @@ const Prices = ({
     ) {
       setFilterTypes((prev) => prev.filter((item) => item !== "price"));
     } else {
-      setFilterTypeValue("price");
+      if (!filterTypes.includes("price")) {
+        setFilterTypes([...filterTypes, "price"]);
+      }
     }
 
     setFilterPriceValues(updatedFilterPriceValues);

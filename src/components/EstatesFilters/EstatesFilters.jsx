@@ -13,8 +13,14 @@ import SnowmobileOutlinedIcon from "@mui/icons-material/SnowmobileOutlined";
 import { ContextFilter } from "../../Context/FilterContext";
 
 const EstatesFilters = () => {
-  const { openFilters, selectedButtonHandler, selectedButton, filterTypes } =
-    useContext(ContextFilter);
+  const {
+    openFilters,
+    selectedButtonHandler,
+    selectedButton,
+    filterTypes,
+    filtersApplied,
+    openFiltersOverlay,
+  } = useContext(ContextFilter);
 
   const buttons = [
     {
@@ -100,7 +106,7 @@ const EstatesFilters = () => {
       <div
         className={`flex items-center justify-center gap-2 w-28 h-12 rounded-xl bg-[--white] border border-gray-400 hover:bg-gray-800  cursor-pointer relative 
         ${
-          filterTypes.length !== 0
+          filterTypes.length !== 0 && !openFiltersOverlay
             ? "border-2 border-gray-800 hover:bg-white hover:text-black duration-0"
             : "hover:text-white duration-200 "
         } 
@@ -108,13 +114,14 @@ const EstatesFilters = () => {
         `}
         onClick={() => openFilters()}
       >
-        {filterTypes.length !== 0 && (
-          <div className="bg-[--bg_color] absolute -top-1 -right-1 w-5 h-5 rounded-full  flex justify-center items-center ">
-            <div className="bg-black rounded-full text-xs text-white flex justify-center items-center  w-[1.125rem] h-[1.125rem] ">
-              {filterTypes.length}
+        {filterTypes.length !== 0 &&
+          (!openFiltersOverlay || (filtersApplied && openFiltersOverlay)) && (
+            <div className="bg-[--bg_color] absolute -top-1 -right-1 w-5 h-5 rounded-full  flex justify-center items-center ">
+              <div className="bg-black rounded-full text-xs text-white flex justify-center items-center  w-[1.125rem] h-[1.125rem] ">
+                {filterTypes.length}
+              </div>
             </div>
-          </div>
-        )}
+          )}
         <SortOutlinedIcon />
         Filters
       </div>

@@ -1,11 +1,10 @@
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import FirstLookDropDown from "../FirstLookDropDown/FirstLookDropDown";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { ContextFilter } from "../../Context/FilterContext";
 
 const FirstLook = () => {
-  const { setInputValue, showDropDown, setShowDropDown } =
-    useContext(ContextFilter);
+  const { setInputValue, showDropDown } = useContext(ContextFilter);
 
   return (
     <div className="max-w-6xl h-[90vh] flex flex-col gap-[10rem] ">

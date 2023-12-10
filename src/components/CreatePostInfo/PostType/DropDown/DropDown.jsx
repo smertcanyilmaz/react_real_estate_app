@@ -16,7 +16,7 @@ const DropDown = ({
   ];
   const categories = [
     { label: "Amazing Views", value: "amazingViews" },
-    { label: "Apartment", value: "apartmen" },
+    { label: "Apartment", value: "apartment" },
     { label: "Tiny Houses", value: "tinyHouses" },
     { label: "Amazing Pools", value: "amazingPools" },
     { label: "In Nature", value: "inNature" },

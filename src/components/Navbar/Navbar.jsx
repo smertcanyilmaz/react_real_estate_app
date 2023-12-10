@@ -60,7 +60,7 @@ const Navbar = ({ ref0 }) => {
         <p
           disabled={status === "all"}
           onClick={() => navbarStatusClickHandler("all")}
-          className={`${
+          className={`hover:bg-[#c0c6ff] duration-200 ${
             status === "all"
               ? "bg-[#c0c6ff] border border-[#5366ff]  cursor-default"
               : "cursor-pointer"
@@ -70,7 +70,7 @@ const Navbar = ({ ref0 }) => {
         </p>
         <p
           onClick={() => navbarStatusClickHandler("sale")}
-          className={`${
+          className={`hover:bg-[#c0c6ff] duration-200  ${
             status === "sale"
               ? "bg-[#c0c6ff] border border-[#5366ff]  cursor-default"
               : "cursor-pointer"
@@ -80,7 +80,7 @@ const Navbar = ({ ref0 }) => {
         </p>
         <p
           onClick={() => navbarStatusClickHandler("rent")}
-          className={`${
+          className={`hover:bg-[#c0c6ff] duration-200  ${
             status === "rent"
               ? "bg-[#c0c6ff] border border-[#5366ff] cursor-default"
               : "cursor-pointer"

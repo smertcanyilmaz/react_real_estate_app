@@ -26,56 +26,37 @@ const OverlayFilters = () => {
     clearHandler,
     showHandler,
     openFiltersOverlay,
+    filterTypes,
   } = useContext(ContextFilter);
 
   const buttonsStatusHandler = (id) => {
     if (selectedButtonsStatus === id) {
       setSelectedButtonsStatus(null);
       setFilterTypes((prev) => prev.filter((item) => item !== "property"));
+      console.log("if");
     } else {
       setSelectedButtonsStatus(id);
-      setFilterTypeValue("property");
+      console.log("else");
+      if (!filterTypes.includes("property")) {
+        setFilterTypes([...filterTypes, "property"]);
+      }
     }
   };
 
   const buttonsStatus = [
     {
       id: 1,
-      icon: (
-        <HomeWorkOutlinedIcon
-          className="icons"
-          fontSize="large"
-          // style={{
-          //   color: selectedButtonsStatus === 0 ? "rgb(209 213 219)" : "initial",
-          // }}
-        />
-      ),
+      icon: <HomeWorkOutlinedIcon className="icons" fontSize="large" />,
       title: "Any",
     },
     {
       id: 2,
-      icon: (
-        <HouseOutlinedIcon
-          className="icons"
-          fontSize="large"
-          // style={{
-          //   color: selectedButtonsStatus === 1 ? "rgb(209 213 219)" : "initial",
-          // }}
-        />
-      ),
+      icon: <HouseOutlinedIcon className="icons" fontSize="large" />,
       title: "Sell",
     },
     {
       id: 3,
-      icon: (
-        <HomeOutlinedIcon
-          className="icons"
-          fontSize="large"
-          // style={{
-          //   color: selectedButtonsStatus === 2 ? "rgb(209 213 219)" : "initial",
-          // }}
-        />
-      ),
+      icon: <HomeOutlinedIcon className="icons" fontSize="large" />,
       title: "Rent",
     },
   ];
@@ -103,6 +84,7 @@ const OverlayFilters = () => {
             setFilterPriceValues={setFilterPriceValues}
             setFilterTypeValue={setFilterTypeValue}
             setFilterTypes={setFilterTypes}
+            filterTypes={filterTypes}
           />
           <div className="section2_2 w-full flex justify-around">
             {buttonsStatus.map((buttonStatus, index) => (
@@ -130,6 +112,7 @@ const OverlayFilters = () => {
                 type="bedrooms"
                 setFilterTypeValue={setFilterTypeValue}
                 setFilterTypes={setFilterTypes}
+                filterTypes={filterTypes}
               />
             </div>
             <div className="flex flex-col gap-3">
@@ -141,6 +124,7 @@ const OverlayFilters = () => {
                 type="bathrooms"
                 setFilterTypeValue={setFilterTypeValue}
                 setFilterTypes={setFilterTypes}
+                filterTypes={filterTypes}
               />
             </div>
           </div>

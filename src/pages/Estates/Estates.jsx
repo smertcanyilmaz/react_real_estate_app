@@ -21,17 +21,21 @@ const Estates = ({ setUnAuthNavbar }) => {
     setUnAuthNavbar(false);
   }, [openFiltersOverlay]);
 
-  // useEffect(() => {
-  //   setUnAuthNavbar(false);
-  // }, []);
-
   useEffect(() => {
+    // filters üzerinden filtreleme yapıldığı ise ve tekrar kategoriden seçim yapılacaksa all estates'in seçilmesini sağlar
     if (filter) {
       if (!status) {
         setStatus("all");
       }
     }
-  }, [filter]);
+  }, [filter, status]);
+
+  useEffect(() => {
+    // sayfa eğer reload edilirse navbar'da all estates'in seçili olmasını sağlar
+    if (!status) {
+      setStatus("all");
+    }
+  }, []);
 
   useEffect(() => {
     //eğer estates sayfasına böyle bir useEffect yazmazsak, estates render olduğu an overlayFilters da render oluyor ve scroll en aşağıdan sayfayı başlatıyor. hem bunu engellemek hem de sayfanın hızlı yüklenmesini sağlamak için bu kodu yazmam gerekti

@@ -106,18 +106,18 @@ export const CreatePostContext = ({ children }) => {
   );
 
   const values = {
-    sum: sum,
-    setSum: setSum,
-    previewImages: previewImages,
-    setPreviewImages: setPreviewImages,
-    uploadImage: uploadImage,
-    setUploadImage: setUploadImage,
-    selectedFiles: selectedFiles,
-    setSelectedFiles: setSelectedFiles,
-    postClickHandler: postClickHandler,
-    postLoading: postLoading,
-    postError: postError,
-    setPostError: setPostError,
+    sum,
+    setSum,
+    previewImages,
+    setPreviewImages,
+    uploadImage,
+    setUploadImage,
+    selectedFiles,
+    setSelectedFiles,
+    postClickHandler,
+    postLoading,
+    postError,
+    setPostError,
   };
   return <PostContext.Provider value={values}>{children}</PostContext.Provider>;
 };

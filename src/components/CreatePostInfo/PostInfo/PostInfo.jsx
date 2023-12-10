@@ -4,12 +4,11 @@ import AdressInfo from "./AdressInfo/AdressInfo";
 import UploadPhoto from "./UploadPhoto/UploadPhoto";
 import AdFeatures from "./AdFeatures/AdFeatures";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { PostContext } from "../../../Context/CreatePostContext";
 
 const PostInfo = ({ selectedCategory }) => {
   const {
-    sum,
     setSum,
     selectedFiles,
     setSelectedFiles,
@@ -31,8 +30,6 @@ const PostInfo = ({ selectedCategory }) => {
     district: false,
     images: [],
   });
-
-  console.log(sumChecker, "SUMCHECKER");
 
   const [formValid, setFormValid] = useState(false);
 
@@ -94,6 +91,16 @@ const PostInfo = ({ selectedCategory }) => {
       sumChecker.images.length >= 5;
     setFormValid(validChecker);
   }, [sumChecker]);
+
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname !== "/preview") {
+      setSelectedFiles([]);
+      setUploadImage([]);
+      setFeatures([]);
+    }
+  }, [location]);
 
   return (
     <div

@@ -29,8 +29,6 @@ const UploadPhoto = ({
     uploadImage.length === 0
       ? setUploadImage(e.target.files)
       : setUploadImage((prev) => [...prev, ...e.target.files]);
-
-    //uploadImages.push(...e.target.files);
   };
 
   const removeImage = (index) => {

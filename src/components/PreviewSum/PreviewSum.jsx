@@ -5,8 +5,7 @@ import PlaceOutlinedIcon from "@mui/icons-material/PlaceOutlined";
 import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
 
 const PreviewSum = () => {
-  const { sum, setSum } = useContext(PostContext);
-  console.log(sum);
+  const { sum } = useContext(PostContext);
 
   const replacements = [
     //database'e filtreleme için giden kategorileri birleşik olarak yazmıştım. burada onları ayırdım

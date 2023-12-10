@@ -4,7 +4,7 @@ import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
 
 const PreviewaProductCard = () => {
   const { sum, previewImages, setPreviewImages } = useContext(PostContext);
-  console.log(previewImages);
+
   return (
     <div className="flex-1 flex flex-col items-center justify-between">
       <div className="flex flex-col min-w-[20rem] h-[20rem] bg-gray-50 rounded-2xl relative mt-12">

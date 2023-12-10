@@ -126,42 +126,9 @@ const Estate = ({ setUnAuthNavbar }) => {
               ))}
             </div>
           </div>
-          <div className="info2 flex-1 flex items-center justify-between">
-            <div className="flex-1 flex flex-col items-center justify-center  font-semibold text-[15px]">
-              Contact the owner: Mertcan Yılmaz
-              <div className="flex justify-between items-center gap-5">
-                <div className="icons flex items-center justify-center md:block  ">
-                  <Link to="https://github.com/smertcanyilmaz">
-                    <IconButton>
-                      <GitHubIcon fontSize="medium" />
-                    </IconButton>
-                  </Link>
-                  <Link to="https://www.linkedin.com/in/s%C3%BCleyman-mertcan-y%C4%B1lmaz-87312b196/">
-                    <IconButton>
-                      <LinkedInIcon
-                        className="text-[#0077b5]"
-                        fontSize="medium"
-                      />
-                    </IconButton>
-                  </Link>
-
-                  <Link to="https://twitter.com/smertcann">
-                    <IconButton>
-                      <TwitterIcon
-                        className=" text-[#1DA1F2]"
-                        fontSize="medium"
-                      />
-                    </IconButton>
-                  </Link>
-                </div>
-              </div>
-            </div>
-            <div className="w-16 h-16 rounded-full mr-6">
-              <img
-                src="https://firebasestorage.googleapis.com/v0/b/real-estate-app-b1e5c.appspot.com/o/profile%2FWhatsApp%20G%C3%B6rsel%202023-10-02%20saat%2005.28.54_74cba30e.jpg?alt=media&token=998763b7-a0e0-45c7-8406-8528b64ddc53&_gl=1*11liie4*_ga*MTY1NzMyNDUxNi4xNjk2MjAyMDI3*_ga_CW55HF8NVT*MTY5NjIxMTkwMy40LjEuMTY5NjIxNDQ2NS42MC4wLjA."
-                className="w-full h-full object-cover rounded-full"
-              />
-            </div>
+          <div className="flex-1 h-full flex items-center justify-center text-lg">
+            Contact our agents by call center:
+            <span className="font-semibold">55555-55</span>
           </div>
         </div>
       </div>

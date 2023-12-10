@@ -15,6 +15,8 @@ const DropDown = ({
     { label: "Rent", value: "rent" },
   ];
   const categories = [
+    { label: "Tree Houses", value: "treeHouses" },
+    { label: "Container", value: "container" },
     { label: "Amazing Views", value: "amazingViews" },
     { label: "Apartment", value: "apartment" },
     { label: "Tiny Houses", value: "tinyHouses" },
@@ -38,7 +40,7 @@ const DropDown = ({
         showDropDown || showDropDown2
           ? "translate-y-[8%] opacity-100 z-10 pointer-events-auto"
           : "translate-y-0 opacity-0 pointer-events-none"
-      } ${property ? "-bottom-[4.5rem]" : "-bottom-[11.8rem]"}`}
+      } ${property ? "-bottom-[4.5rem]" : "-bottom-[15.6rem]"}`}
     >
       {property &&
         properties.map((property, index) => (

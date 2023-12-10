@@ -112,15 +112,6 @@ export const FilterContext = ({ children }) => {
     }
   };
 
-  console.log(filterTypes, "filterTypes");
-
-  const handleAddItem = () => {
-    //filters butonun seçilen filter sayısını göstermesini sağlayan fonksiyon
-    if (filterTypeValue && !filterTypes.includes(filterTypeValue)) {
-      setFilterTypes([...filterTypes, filterTypeValue]);
-    }
-  };
-
   const showHandler = () => {
     // overlayFilter'da show places butonuna yazılan click fonksiyonu
     openFilters();
@@ -214,7 +205,6 @@ export const FilterContext = ({ children }) => {
     filterTypeValue,
     setFilterTypeValue,
     selectedButtonHandler,
-    handleAddItem,
     showHandler,
     openFilters,
     openFiltersOverlay,

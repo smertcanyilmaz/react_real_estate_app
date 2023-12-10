@@ -5,7 +5,7 @@ import DropDown from "./DropDown/DropDown";
 import { PostContext } from "../../../Context/CreatePostContext";
 
 const PostType = ({ selectedCategory, setSelectedCategory }) => {
-  const { sum, setSum } = useContext(PostContext);
+  const { setSum } = useContext(PostContext);
   const [showDropDown, setShowDropDown] = useState(false);
   const [showDropDown2, setShowDropDown2] = useState(false);
   const [selectedProperty, setSelectedProperty] = useState(null);

@@ -10,6 +10,7 @@ import PoolOutlinedIcon from "@mui/icons-material/PoolOutlined";
 import LandscapeOutlinedIcon from "@mui/icons-material/LandscapeOutlined";
 import SortOutlinedIcon from "@mui/icons-material/SortOutlined";
 import SnowmobileOutlinedIcon from "@mui/icons-material/SnowmobileOutlined";
+import ForestIcon from "@mui/icons-material/Forest";
 import { ContextFilter } from "../../Context/FilterContext";
 
 const EstatesFilters = () => {
@@ -32,15 +33,15 @@ const EstatesFilters = () => {
 
     {
       id: 1,
-      icon: <HouseOutlinedIcon className="icons" />,
-      title: "Sale",
-      name: "sale",
+      icon: <ForestIcon className="icons" />,
+      title: "Tree Houses ",
+      name: "treeHouses ",
     },
     {
       id: 2,
       icon: <HomeOutlinedIcon className="icons" />,
-      title: "Rent",
-      name: "rent",
+      title: "Container",
+      name: "container",
     },
 
     {

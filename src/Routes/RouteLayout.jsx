@@ -70,14 +70,14 @@ const RouteLayout = () => {
                         }
                       />
 
-                      {/* <Route
+                      <Route
                         path="create-post"
                         element={
                           <Protected>
                             <CreatePost />
                           </Protected>
                         }
-                      />*/}
+                      />
                       <Route
                         path="preview"
                         element={

@@ -93,7 +93,7 @@ const RouteLayout = () => {
                             <MyProfile />
                           </Protected>
                         }
-                      />
+                      />*/}
 
                       <Route
                         path="posts"
@@ -102,7 +102,7 @@ const RouteLayout = () => {
                             <MyPosts />
                           </Protected>
                         }
-                      />*/}
+                      />
 
                       <Route
                         path="posts/actives"

@@ -111,7 +111,7 @@ const RouteLayout = () => {
                             <ActivePosts />
                           </Protected>
                         }
-                      />
+                      />*/}
 
                       <Route
                         path="posts/pasives"
@@ -120,7 +120,7 @@ const RouteLayout = () => {
                             <PasivePosts />
                           </Protected>
                         }
-                      />*/}
+                      />
 
                       <Route
                         path="posts/incomplete"

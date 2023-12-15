@@ -129,7 +129,7 @@ const RouteLayout = () => {
                             <IncompletePosts />
                           </Protected>
                         }
-                      />
+                      />*/}
                       <Route
                         path="favorites"
                         element={
@@ -137,7 +137,7 @@ const RouteLayout = () => {
                             <Favorites setUnAuthNavbar={setUnAuthNavbar} />
                           </Protected>
                         }
-                      /> */}
+                      />
                     </Route>
                   </Routes>
                 </Suspense>

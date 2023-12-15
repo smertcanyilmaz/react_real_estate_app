@@ -77,7 +77,7 @@ const RouteLayout = () => {
                             <CreatePost />
                           </Protected>
                         }
-                      />
+                      />*/}
                       <Route
                         path="preview"
                         element={
@@ -85,7 +85,7 @@ const RouteLayout = () => {
                             <Preview />
                           </Protected>
                         }
-                      />*/}
+                      />
                       <Route
                         path="myprofile"
                         element={

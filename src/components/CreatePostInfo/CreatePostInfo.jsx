@@ -12,7 +12,7 @@ const CreatePostInfo = () => {
         setSelectedCategory={setSelectedCategory}
       />
 
-      <PostInfo selectedCategory={selectedCategory} />
+      {/* <PostInfo selectedCategory={selectedCategory} /> */}
     </div>
   );
 };

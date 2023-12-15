@@ -39,14 +39,14 @@ const RouteLayout = () => {
                   }
                 >
                   <Routes>
-                    <Route
+                    {/* <Route
                       path="/"
                       element={<Layout unAuthNavbar={unAuthNavbar} />}
                     >
-                      {/* <Route
+                      <Route
                         index
                         element={<Home setUnAuthNavbar={setUnAuthNavbar} />}
-                      /> */}
+                      />
                       <Route
                         path="estates"
                         element={<Estates setUnAuthNavbar={setUnAuthNavbar} />}
@@ -138,7 +138,8 @@ const RouteLayout = () => {
                           </Protected>
                         }
                       />
-                    </Route>
+                    </Route> */}
+                    <Route path="/" element={<div>test</div>}></Route>
                   </Routes>
                 </Suspense>
               </ProfileContext>

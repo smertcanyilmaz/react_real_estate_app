@@ -21,7 +21,7 @@ const Home = ({ setUnAuthNavbar }) => {
   return (
     <div
       onClick={closeDropDown}
-      className="w-full mx-auto flex flex-col gap-40"
+      //className="w-full mx-auto flex flex-col gap-40"
     >
       <FirstLook />
       <Advantages />

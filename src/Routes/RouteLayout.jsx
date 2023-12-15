@@ -39,7 +39,7 @@ const RouteLayout = () => {
                   }
                 >
                   <Routes>
-                    {/* <Route
+                    <Route
                       path="/"
                       element={<Layout unAuthNavbar={unAuthNavbar} />}
                     >
@@ -47,7 +47,7 @@ const RouteLayout = () => {
                         index
                         element={<Home setUnAuthNavbar={setUnAuthNavbar} />}
                       />
-                      <Route
+                      {/* <Route
                         path="estates"
                         element={<Estates setUnAuthNavbar={setUnAuthNavbar} />}
                       />
@@ -137,9 +137,8 @@ const RouteLayout = () => {
                             <Favorites setUnAuthNavbar={setUnAuthNavbar} />
                           </Protected>
                         }
-                      />
-                    </Route> */}
-                    <Route path="/" element={<div>test</div>}></Route>
+                      /> */}
+                    </Route>
                   </Routes>
                 </Suspense>
               </ProfileContext>

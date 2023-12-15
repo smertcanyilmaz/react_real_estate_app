@@ -5,11 +5,13 @@ import Footer from "../../components/Footer/Footer";
 
 const Layout = ({ unAuthNavbar }) => {
   return (
-    <div className="min-h-screen max-w-full flex flex-col gap-20">
+    <div
+    // className="min-h-screen max-w-full flex flex-col gap-20"
+    >
       <div
-        className={`flex-1 max-w-6xl mx-auto flex flex-col 
-        ${unAuthNavbar && "max-w-full"}
-       `}
+      //   className={`flex-1 max-w-6xl mx-auto flex flex-col
+      //   ${unAuthNavbar && "max-w-full"}
+      //  `}
       >
         {!unAuthNavbar && <Navbar />}
 

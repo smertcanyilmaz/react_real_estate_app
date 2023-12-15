@@ -70,7 +70,7 @@ const RouteLayout = () => {
                         }
                       />
 
-                      <Route
+                      {/* <Route
                         path="create-post"
                         element={
                           <Protected>
@@ -137,7 +137,7 @@ const RouteLayout = () => {
                             <Favorites setUnAuthNavbar={setUnAuthNavbar} />
                           </Protected>
                         }
-                      />
+                      /> */}
                     </Route>
                   </Routes>
                 </Suspense>

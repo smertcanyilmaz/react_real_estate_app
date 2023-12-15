@@ -8,7 +8,7 @@ const useUserPosts = () => {
 
   const [estateData, setEstateData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const { userActiveUid } = useContext(Context);
+  const { userActiveUid, userActive } = useContext(Context);
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -16,6 +16,7 @@ const useUserPosts = () => {
       const currentUserId = userActiveUid;
 
       const estatesRef = collection(db, "estates");
+
       const q = query(estatesRef, where("userData", "==", currentUserId));
 
       try {
@@ -32,7 +33,10 @@ const useUserPosts = () => {
       }
     };
 
-    fetchData();
+    if (userActive) {
+      // 16.12.2023 where error muhtemel çözümü
+      fetchData();
+    }
   }, []);
   return { estateData, loading };
 };

@@ -85,7 +85,7 @@ const RouteLayout = () => {
                             <Preview />
                           </Protected>
                         }
-                      />
+                      />*/}
                       <Route
                         path="myprofile"
                         element={
@@ -93,7 +93,7 @@ const RouteLayout = () => {
                             <MyProfile />
                           </Protected>
                         }
-                      />*/}
+                      />
 
                       <Route
                         path="posts"

@@ -161,7 +161,7 @@ const AdressInfo = ({ setSum, setSumChecker }) => {
                 {arrowFunc("country")}
               </div>
 
-              {/* <SearchDropDown
+              <SearchDropDown
                 id="countryId"
                 country={country}
                 arrowState={arrowState}
@@ -169,7 +169,7 @@ const AdressInfo = ({ setSum, setSumChecker }) => {
                 setInputBoxCountry={setInputBoxCountry}
                 arrowClickHandler={arrowClickHandler}
                 selectedFilterHandler={selectedFilterHandler}
-              /> */}
+              />
             </div>
           </div>
         </div>
@@ -205,7 +205,7 @@ const AdressInfo = ({ setSum, setSumChecker }) => {
                 {arrowFunc("city")}
               </div>
 
-              {/* <SearchDropDown
+              <SearchDropDown
                 id="cityId"
                 cities={cities}
                 arrowState={arrowState}
@@ -213,7 +213,7 @@ const AdressInfo = ({ setSum, setSumChecker }) => {
                 setInputBoxCity={setInputBoxCity}
                 arrowClickHandler={arrowClickHandler}
                 cityFilterHandler={cityFilterHandler}
-              /> */}
+              />
             </div>
           </div>
         </div>
@@ -248,7 +248,7 @@ const AdressInfo = ({ setSum, setSumChecker }) => {
                 </div>
                 {arrowFunc("district")}
               </div>
-              {/* <SearchDropDown
+              <SearchDropDown
                 id="districtId"
                 districts={districts}
                 arrowState={arrowState}
@@ -256,7 +256,7 @@ const AdressInfo = ({ setSum, setSumChecker }) => {
                 setInputBoxDistricts={setInputBoxDistricts}
                 arrowClickHandler={arrowClickHandler}
                 newDistricts={newDistricts}
-              /> */}
+              />
             </div>
           </div>
         </div>

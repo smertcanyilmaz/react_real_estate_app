@@ -21,7 +21,7 @@ const Layout = ({ unAuthNavbar }) => {
 
         <Outlet />
       </div>
-      {!unAuthNavbar && <Footer />}
+      {/* {!unAuthNavbar && <Footer />} */}
     </div>
   );
 };

@@ -56,17 +56,19 @@ const Home = ({ setUnAuthNavbar }) => {
         </div>
       </div>
 
-      <div
-        onClick={closeDropDown}
-        className="w-full mx-auto flex flex-col gap-40"
-      >
-        <FirstLook />
-        <Advantages />
-        <HomePremium />
-        <PopularOffers sale={true} />
-        <PopularOffers sale={false} />
-        <HomeBrands />
-      </div>
+      {toggle && (
+        <div
+          onClick={closeDropDown}
+          className="w-full mx-auto flex flex-col gap-40"
+        >
+          <FirstLook />
+          <Advantages />
+          <HomePremium />
+          <PopularOffers sale={true} />
+          <PopularOffers sale={false} />
+          <HomeBrands />
+        </div>
+      )}
     </>
   );
 };

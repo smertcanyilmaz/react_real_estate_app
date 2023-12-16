@@ -56,13 +56,13 @@ const SearchDropDown = ({
     }
   }, [inputValue, datas]);
 
-  useEffect(() => {
-    if (filteredData.length === 0 && !inputValue) {
-      setNotFound(true);
-    } else {
-      setNotFound(false);
-    }
-  }, [filteredData]);
+  // useEffect(() => {
+  //   if (filteredData.length === 0 && !inputValue) {
+  //     setNotFound(true);
+  //   } else {
+  //     setNotFound(false);
+  //   }
+  // }, [filteredData]);
 
   const inputBoxHandler = (data) => {
     if (id === "countryId") {

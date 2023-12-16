@@ -34,9 +34,11 @@ const AdressInfo = ({ setSum, setSumChecker }) => {
 
   const selectedFilterHandler = (countrySelected) => {
     //hangi ülkeyi seçtiysek onunla ilgili filtrelemeleri yapan fonksiyon
-    const countryInfo = country?.find(
-      (country) => country?.name === countrySelected
-    );
+    // const countryInfo = country?.find(
+    //   (country) => country?.name === countrySelected
+    // );
+
+    const countryInfo = {};
 
     console.log(countryInfo);
 

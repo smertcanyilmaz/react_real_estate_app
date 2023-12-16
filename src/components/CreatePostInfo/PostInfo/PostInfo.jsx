@@ -110,7 +110,7 @@ const PostInfo = ({ selectedCategory }) => {
           : "translate-y-[10%] opacity-0 -z-10 max-h-0 overflow-y-hidden"
       } `}
     >
-      {/* <form className="one form_box">
+      <form className="one form_box">
         <h1 className="text-lg font-semibold text-gray-800 mb-5">
           Ad Information
         </h1>
@@ -158,15 +158,15 @@ const PostInfo = ({ selectedCategory }) => {
             onChange={(e) => adInfoChangeHandler(e, "bathrooms")}
           />
         </div>
-      </form> */}
-      {/* <AdressInfo setSum={setSum} setSumChecker={setSumChecker} /> */}
-      {/* <UploadPhoto
+      </form>
+      <AdressInfo setSum={setSum} setSumChecker={setSumChecker} />
+      <UploadPhoto
         selectedFiles={selectedFiles}
         setSelectedFiles={setSelectedFiles}
         uploadImage={uploadImage}
         setUploadImage={setUploadImage}
         setSumChecker={setSumChecker}
-      /> */}
+      />
       <AdFeatures
         features={features}
         setFeatures={setFeatures}

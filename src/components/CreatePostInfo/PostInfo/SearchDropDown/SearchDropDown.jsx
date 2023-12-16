@@ -102,7 +102,7 @@ const SearchDropDown = ({
               scrollShow ? "scroll_custom" : "scroll_custom_none"
             }`}
           >
-            {filteredData.map((data, index) => (
+            {filteredData?.map((data, index) => (
               <div
                 key={index}
                 className="item w-full px-1 py-2 mx-auto cursor-pointer bg-gray-50 border-none hover:bg-gray-100"

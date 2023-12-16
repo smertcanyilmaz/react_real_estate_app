@@ -64,28 +64,32 @@ const SearchDropDown = ({
   //   }
   // }, [filteredData]);
 
-  const inputBoxHandler = (data) => {
-    if (id === "countryId") {
-      setInputBoxCountry(data);
-      arrowClickHandler("country");
-      selectedFilterHandler(data);
-    } else if (id === "cityId") {
-      setInputBoxCity(data);
-      arrowClickHandler("city");
-      cityFilterHandler(data);
-    } else if (id === "districtId") {
-      setInputBoxDistricts(data);
-      arrowClickHandler("district");
-    }
-  };
-
+  // const inputBoxHandler = (data) => {
+  //   if (id === "countryId") {
+  //     setInputBoxCountry(data);
+  //     arrowClickHandler("country");
+  //     selectedFilterHandler(data);
+  //   } else if (id === "cityId") {
+  //     setInputBoxCity(data);
+  //     arrowClickHandler("city");
+  //     cityFilterHandler(data);
+  //   } else if (id === "districtId") {
+  //     setInputBoxDistricts(data);
+  //     arrowClickHandler("district");
+  //   }
+  // };
+  //  ${
+  //         countryBox || cityBox || districtBox
+  //           ? `top-[4.5rem] z-10 opacity-100 pointer-events-auto `
+  //           : "top-[4rem]  opacity-0 pointer-events-none"
+  //       }
   return (
     <div
-      className={`w-60 flex flex-col items-center gap-2 p-[6px] border border-gray-500/50 rounded-[4px] cursor-pointer bg-gray-50 absolute left-0  duration-300 ${
-        countryBox || cityBox || districtBox
-          ? `top-[4.5rem] z-10 opacity-100 pointer-events-auto `
-          : "top-[4rem]  opacity-0 pointer-events-none"
-      }`}
+      className={`w-60 flex flex-col items-center gap-2 p-[6px] border border-gray-500/50 rounded-[4px] cursor-pointer bg-gray-50 absolute left-0  duration-300 
+     
+     
+      
+      `}
     >
       {/* {notFound ? (
         <p className="text-sm p-2">not found</p>

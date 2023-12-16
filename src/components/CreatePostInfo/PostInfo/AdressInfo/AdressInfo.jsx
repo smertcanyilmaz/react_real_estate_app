@@ -224,7 +224,7 @@ const AdressInfo = ({ setSum, setSumChecker }) => {
             </div>
           </div>
         </div>
-        <div className="flex items-end gap-5">
+        {/* <div className="flex items-end gap-5">
           <div
             className={`h-[4rem] flex items-end justify-center duration-500 `}
           >
@@ -238,8 +238,8 @@ const AdressInfo = ({ setSum, setSumChecker }) => {
                 ? "opacity-50 cursor-default pointer-events-none"
                 : "opacity-100 cursor-pointer pointer-events-auto"
             }`}
-          >
-            <label htmlFor="district">
+          > */}
+        {/* <label htmlFor="district">
               District <span className="text-red-500">*</span>
             </label>
             <div className="flex flex-col">
@@ -264,9 +264,9 @@ const AdressInfo = ({ setSum, setSumChecker }) => {
                 arrowClickHandler={arrowClickHandler}
                 newDistricts={newDistricts}
               />
-            </div>
-          </div>
-        </div>
+            </div> */}
+        {/* </div>
+        </div> */}
       </div>
     </form>
   );

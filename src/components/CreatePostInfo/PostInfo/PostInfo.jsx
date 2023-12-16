@@ -87,7 +87,7 @@ const PostInfo = ({ selectedCategory }) => {
       sumChecker.bathrooms &&
       sumChecker.country !== "choose" &&
       sumChecker.city !== "choose" &&
-      sumChecker.district !== "choose" &&
+      //sumChecker.district !== "choose" &&
       sumChecker.images.length >= 5;
     setFormValid(validChecker);
   }, [sumChecker]);

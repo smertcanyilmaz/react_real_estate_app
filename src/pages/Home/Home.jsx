@@ -5,6 +5,8 @@ import Advantages from "../../components/Advantages/Advantages";
 import HomePremium from "../../components/HomePremium/HomePremium";
 import HomeBrands from "../../components/HomeBrands/HomeBrands";
 import { ContextFilter } from "../../Context/FilterContext";
+import EngineeringIcon from "@mui/icons-material/Engineering";
+import CloseIcon from "@mui/icons-material/Close";
 
 const Home = ({ setUnAuthNavbar }) => {
   const { setShowDropDown } = useContext(ContextFilter);
@@ -21,7 +23,7 @@ const Home = ({ setUnAuthNavbar }) => {
   return (
     <div
       onClick={closeDropDown}
-      className="w-full mx-auto flex flex-col gap-40"
+      className="w-full mx-auto sm:hidden md:flex flex-col gap-40"
     >
       <FirstLook />
       <Advantages />

@@ -160,13 +160,13 @@ const PostInfo = ({ selectedCategory }) => {
         </div>
       </form>
       {/* <AdressInfo setSum={setSum} setSumChecker={setSumChecker} /> */}
-      {/* <UploadPhoto
+      <UploadPhoto
         selectedFiles={selectedFiles}
         setSelectedFiles={setSelectedFiles}
         uploadImage={uploadImage}
         setUploadImage={setUploadImage}
         setSumChecker={setSumChecker}
-      /> */}
+      />
       <AdFeatures
         features={features}
         setFeatures={setFeatures}

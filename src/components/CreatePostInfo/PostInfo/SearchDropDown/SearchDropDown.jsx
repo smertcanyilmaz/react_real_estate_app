@@ -78,16 +78,16 @@ const SearchDropDown = ({
   //     arrowClickHandler("district");
   //   }
   // };
-  //  ${
-  //         countryBox || cityBox || districtBox
-  //           ? `top-[4.5rem] z-10 opacity-100 pointer-events-auto `
-  //           : "top-[4rem]  opacity-0 pointer-events-none"
-  //       }
+
   return (
     <div
       className={`w-60 flex flex-col items-center gap-2 p-[6px] border border-gray-500/50 rounded-[4px] cursor-pointer bg-gray-50 absolute left-0  duration-300 
      
-     
+        ${
+          countryBox || cityBox || districtBox
+            ? `top-[4.5rem] z-10 opacity-100 pointer-events-auto `
+            : "top-[4rem]  opacity-0 pointer-events-none"
+        }
       
       `}
     >

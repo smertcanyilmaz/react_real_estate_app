@@ -16,7 +16,7 @@ const UploadPhoto = ({
   const handleFileChange = (e) => {
     //client tarafında gözükecek resimlerin kodları
     const files = e.target.files;
-    const selectedImages = [...selectedFiles];
+    const selectedImages = selectedFiles ? [...selectedFiles] : [];
 
     for (let i = 0; i < files.length; i++) {
       selectedImages.push(URL.createObjectURL(files[i]));
@@ -26,20 +26,20 @@ const UploadPhoto = ({
     setSumChecker((prev) => ({ ...prev, images: selectedImages }));
 
     //firebase'e gidecek arrayin kodları
-    uploadImage.length === 0
+    uploadImage?.length === 0
       ? setUploadImage(e.target.files)
       : setUploadImage((prev) => [...prev, ...e.target.files]);
   };
 
   const removeImage = (index) => {
     //client tarafında gözüken resimlerden seçilen resmin silinmesi
-    const removePrev = [...selectedFiles];
-    removePrev.splice(index, 1);
+    const removePrev = selectedFiles ? [...selectedFiles] : [];
+    removePrev?.splice(index, 1);
     setSelectedFiles(removePrev);
     setSumChecker((prev) => ({ ...prev, images: removePrev }));
 
     //client tarafına gidecek olan arrayin içinden seçilen resmin silinmesi
-    const removeImage = uploadImage.filter((_, i) => i !== index);
+    const removeImage = uploadImage?.filter((_, i) => i !== index);
     setUploadImage(removeImage);
   };
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import SearchDropDown from "../SearchDropDown/SearchDropDown";
-import { City, Country, State } from "country-state-city";
+import { Country, State } from "country-state-city";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 

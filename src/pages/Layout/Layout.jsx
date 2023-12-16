@@ -22,13 +22,13 @@ const Layout = ({ unAuthNavbar }) => {
   return (
     <>
       <div
-        className={`md:hidden w-full h-screen bg-black opacity-80 ${
-          toggle ? "hidden" : "sm:fixed top-0 left-0 right-0 bottom-0"
+        className={`md:hidden fixed top-0 left-0 right-0 bottom-0" w-screen h-screen bg-black opacity-80 ${
+          toggle ? "hidden" : ""
         }`}
       ></div>
       <div
-        className={`md:hidden top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2  w-2/3 h-1/2 text-center  bg-gray-200 p-3 rounded-md ${
-          toggle ? "hidden" : "sm:absolute"
+        className={`absolute md:hidden  top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 w-2/3 h-1/2 text-center  bg-gray-200 p-3 rounded-md ${
+          toggle ? "hidden" : ""
         } `}
       >
         <div className="w-full h-full flex flex-col items-center justify-center gap-10">

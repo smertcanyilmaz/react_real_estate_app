@@ -50,6 +50,7 @@ const AdressInfo = ({ setSum, setSumChecker }) => {
     setCities(citiesData);
 
     const districtsData = City?.getCitiesOfCountry(selectedCountryIso);
+
     // .filter(
     //   (district) => district?.countryCode // ülkelerin ilçeleri seçildi
     // );

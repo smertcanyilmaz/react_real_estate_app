@@ -6,28 +6,28 @@ import EngineeringIcon from "@mui/icons-material/Engineering";
 
 const Layout = ({ unAuthNavbar }) => {
   const [toggle, setToggle] = useState(false);
-
   useEffect(() => {
+    // Add event listener to handle body overflow-y when the component mounts
     if (!toggle) {
-      document.body.style.overflow = "hidden";
+      document.body.style.overflowY = "hidden";
     } else {
-      document.body.style.overflow = "auto";
+      document.body.style.overflowY = "auto";
     }
 
+    // Cleanup: Remove event listener when the component unmounts
     return () => {
-      document.body.style.overflow = "auto";
+      document.body.style.overflowY = "auto";
     };
   }, [toggle]);
-
   return (
     <>
       <div
-        className={`md:hidden w-screen h-full bg-black opacity-80 ${
+        className={`md:hidden w-full h-screen bg-black opacity-80 ${
           toggle ? "hidden" : "sm:fixed top-0 left-0 right-0 bottom-0"
         }`}
       ></div>
       <div
-        className={`md:hidden top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[18rem] h-1/2 bg-gray-200 p-3 rounded-md ${
+        className={`md:hidden top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2  w-2/3 h-1/2 text-center  bg-gray-200 p-3 rounded-md ${
           toggle ? "hidden" : "sm:absolute"
         } `}
       >

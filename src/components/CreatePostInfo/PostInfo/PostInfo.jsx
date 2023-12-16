@@ -173,7 +173,7 @@ const PostInfo = ({ selectedCategory }) => {
         setSum={setSum}
       /> */}
 
-      <button
+      {/* <button
         onClick={() => navigate("/preview")}
         disabled={!formValid}
         className={`w-32 h-12 rounded-md duration-200 flex gap-2 justify-center items-center bg-gray-800 text-gray-50 ${
@@ -184,7 +184,7 @@ const PostInfo = ({ selectedCategory }) => {
       >
         Preview
         <ArrowForwardIcon style={{ color: "rgb(249 250 251)" }} />
-      </button>
+      </button> */}
     </div>
   );
 };

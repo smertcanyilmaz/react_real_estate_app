@@ -23,27 +23,27 @@ const SearchDropDown = ({
   const [districtBox, setDistrictBox] = useState(false);
   const [notFound, setNotFound] = useState(false);
 
-  useEffect(() => {
-    if (id === "countryId") {
-      setDatas(country);
-      setCountryBox(arrowState.country);
-    } else if (id === "cityId") {
-      setDatas(cities);
-      setCityBox(arrowState.city);
-    } else if (id === "districtId") {
-      setDatas(newDistricts);
-      setDistrictBox(arrowState.district);
-    }
-  }, [
-    id,
-    country,
-    cities,
-    newDistricts,
-    arrowState,
-    setCountryBox,
-    setCityBox,
-    setDistrictBox,
-  ]);
+  // useEffect(() => {
+  //   if (id === "countryId") {
+  //     setDatas(country);
+  //     setCountryBox(arrowState.country);
+  //   } else if (id === "cityId") {
+  //     setDatas(cities);
+  //     setCityBox(arrowState.city);
+  //   } else if (id === "districtId") {
+  //     setDatas(newDistricts);
+  //     setDistrictBox(arrowState.district);
+  //   }
+  // }, [
+  //   id,
+  //   country,
+  //   cities,
+  //   newDistricts,
+  //   arrowState,
+  //   setCountryBox,
+  //   setCityBox,
+  //   setDistrictBox,
+  // ]);
 
   // useEffect(() => {
   //   const lowerInputValue = inputValue.toLowerCase();

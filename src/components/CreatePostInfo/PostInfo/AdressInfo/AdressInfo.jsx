@@ -49,13 +49,13 @@ const AdressInfo = ({ setSum, setSumChecker }) => {
 
     setCities(citiesData);
 
-    const districtsData = City?.getCitiesOfCountry(selectedCountryIso).filter(
-      (district) => district?.countryCode === selectedCountryIso // ülkelerin ilçeleri seçildi
-    );
+    // const districtsData = City?.getCitiesOfCountry(selectedCountryIso).filter(
+    //   (district) => district?.countryCode === selectedCountryIso // ülkelerin ilçeleri seçildi
+    // );
 
-    console.log(City?.getCitiesOfCountry(selectedCountryIso));
+    // console.log(City?.getCitiesOfCountry(selectedCountryIso));
 
-    setDistricts(districtsData);
+    setDistricts("mert");
     setInputBoxCity("choose");
     setInputBoxDistricts("choose");
     console.log("test");

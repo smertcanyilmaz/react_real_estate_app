@@ -34,26 +34,27 @@ const AdressInfo = ({ setSum, setSumChecker }) => {
 
   const selectedFilterHandler = (countrySelected) => {
     //hangi ülkeyi seçtiysek onunla ilgili filtrelemeleri yapan fonksiyon
-    const countryInfo = country?.find(
-      (country) => country?.name === countrySelected
-    );
+    // const countryInfo = country?.find(
+    //   (country) => country?.name === countrySelected
+    // );
 
-    const selectedCountryIso = countryInfo?.isoCode;
+    // const selectedCountryIso = countryInfo?.isoCode;
 
-    const citiesData = State.getAllStates().filter(
-      // ülkelere göre il seçildi
-      (city) => city?.countryCode === selectedCountryIso
-    );
+    // const citiesData = State.getAllStates().filter(
+    //   // ülkelere göre il seçildi
+    //   (city) => city?.countryCode === selectedCountryIso
+    // );
 
-    setCities(citiesData);
+    // setCities(citiesData);
 
-    const districtsData = City.getAllCities().filter(
-      (district) => district?.countryCode === selectedCountryIso // ülkelerin ilçeleri seçildi
-    );
+    // const districtsData = City.getAllCities().filter(
+    //   (district) => district?.countryCode === selectedCountryIso // ülkelerin ilçeleri seçildi
+    // );
 
-    setDistricts(districtsData);
-    setInputBoxCity("choose");
-    setInputBoxDistricts("choose");
+    // setDistricts(districtsData);
+    // setInputBoxCity("choose");
+    // setInputBoxDistricts("choose");
+    console.log("test");
   };
 
   const [newDistricts, setNewDistricts] = useState(); // seçili ilçeleri tutan state

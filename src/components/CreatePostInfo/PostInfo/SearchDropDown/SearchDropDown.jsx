@@ -23,61 +23,61 @@ const SearchDropDown = ({
   const [districtBox, setDistrictBox] = useState(false);
   const [notFound, setNotFound] = useState(false);
 
-  // useEffect(() => {
-  //   if (id === "countryId") {
-  //     setDatas(country);
-  //     setCountryBox(arrowState.country);
-  //   } else if (id === "cityId") {
-  //     setDatas(cities);
-  //     setCityBox(arrowState.city);
-  //   } else if (id === "districtId") {
-  //     setDatas(newDistricts);
-  //     setDistrictBox(arrowState.district);
-  //   }
-  // }, [
-  //   id,
-  //   country,
-  //   cities,
-  //   newDistricts,
-  //   arrowState,
-  //   setCountryBox,
-  //   setCityBox,
-  //   setDistrictBox,
-  // ]);
+  useEffect(() => {
+    if (id === "countryId") {
+      setDatas(country);
+      setCountryBox(arrowState.country);
+    } else if (id === "cityId") {
+      setDatas(cities);
+      setCityBox(arrowState.city);
+    } else if (id === "districtId") {
+      setDatas(newDistricts);
+      setDistrictBox(arrowState.district);
+    }
+  }, [
+    id,
+    country,
+    cities,
+    newDistricts,
+    arrowState,
+    setCountryBox,
+    setCityBox,
+    setDistrictBox,
+  ]);
 
-  // useEffect(() => {
-  //   const lowerInputValue = inputValue.toLowerCase();
-  //   if (datas) {
-  //     const filtered = datas.filter((data) =>
-  //       data.name.toLowerCase().includes(lowerInputValue)
-  //     );
+  useEffect(() => {
+    const lowerInputValue = inputValue.toLowerCase();
+    if (datas) {
+      const filtered = datas.filter((data) =>
+        data.name.toLowerCase().includes(lowerInputValue)
+      );
 
-  //     setFilteredData(filtered);
-  //   }
-  // }, [inputValue, datas]);
+      setFilteredData(filtered);
+    }
+  }, [inputValue, datas]);
 
-  // useEffect(() => {
-  //   if (filteredData.length === 0 && !inputValue) {
-  //     setNotFound(true);
-  //   } else {
-  //     setNotFound(false);
-  //   }
-  // }, [filteredData]);
+  useEffect(() => {
+    if (filteredData.length === 0 && !inputValue) {
+      setNotFound(true);
+    } else {
+      setNotFound(false);
+    }
+  }, [filteredData]);
 
-  // const inputBoxHandler = (data) => {
-  //   if (id === "countryId") {
-  //     setInputBoxCountry(data);
-  //     arrowClickHandler("country");
-  //     selectedFilterHandler(data);
-  //   } else if (id === "cityId") {
-  //     setInputBoxCity(data);
-  //     arrowClickHandler("city");
-  //     cityFilterHandler(data);
-  //   } else if (id === "districtId") {
-  //     setInputBoxDistricts(data);
-  //     arrowClickHandler("district");
-  //   }
-  // };
+  const inputBoxHandler = (data) => {
+    if (id === "countryId") {
+      setInputBoxCountry && setInputBoxCountry(data);
+      arrowClickHandler("country");
+      selectedFilterHandler && selectedFilterHandler(data);
+    } else if (id === "cityId") {
+      setInputBoxCity && setInputBoxCity(data);
+      arrowClickHandler("city");
+      cityFilterHandler && cityFilterHandler(data);
+    } else if (id === "districtId") {
+      setInputBoxDistricts && setInputBoxDistricts(data);
+      arrowClickHandler("district");
+    }
+  };
 
   return (
     <div
@@ -91,7 +91,7 @@ const SearchDropDown = ({
       
       `}
     >
-      {/* {notFound ? (
+      {notFound ? (
         <p className="text-sm p-2">not found</p>
       ) : (
         <>
@@ -119,7 +119,7 @@ const SearchDropDown = ({
             ))}
           </div>
         </>
-      )} */}
+      )}
     </div>
   );
 };

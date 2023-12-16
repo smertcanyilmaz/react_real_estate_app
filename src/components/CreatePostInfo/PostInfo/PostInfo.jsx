@@ -159,7 +159,7 @@ const PostInfo = ({ selectedCategory }) => {
           />
         </div>
       </form> */}
-      <AdressInfo setSum={setSum} setSumChecker={setSumChecker} />
+      {/* <AdressInfo setSum={setSum} setSumChecker={setSumChecker} /> */}
       {/* <UploadPhoto
         selectedFiles={selectedFiles}
         setSelectedFiles={setSelectedFiles}
@@ -167,11 +167,11 @@ const PostInfo = ({ selectedCategory }) => {
         setUploadImage={setUploadImage}
         setSumChecker={setSumChecker}
       /> */}
-      <AdFeatures
+      {/* <AdFeatures
         features={features}
         setFeatures={setFeatures}
         setSum={setSum}
-      />
+      /> */}
 
       <button
         onClick={() => navigate("/preview")}

@@ -6,19 +6,11 @@ import EngineeringIcon from "@mui/icons-material/Engineering";
 
 const Layout = ({ unAuthNavbar }) => {
   const [toggle, setToggle] = useState(false);
-  useEffect(() => {
-    // Add event listener to handle body overflow-y when the component mounts
-    if (!toggle) {
-      document.body.style.overflowY = "hidden";
-    } else {
-      document.body.style.overflowY = "auto";
-    }
 
-    // Cleanup: Remove event listener when the component unmounts
-    return () => {
-      document.body.style.overflowY = "auto";
-    };
+  useEffect(() => {
+    document.body.style.overflow = !toggle ? "hidden" : "auto";
   }, [toggle]);
+
   return (
     <>
       <div

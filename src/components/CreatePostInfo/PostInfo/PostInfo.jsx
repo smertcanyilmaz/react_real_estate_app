@@ -167,11 +167,11 @@ const PostInfo = ({ selectedCategory }) => {
         setUploadImage={setUploadImage}
         setSumChecker={setSumChecker}
       /> */}
-      {/* <AdFeatures
+      <AdFeatures
         features={features}
         setFeatures={setFeatures}
         setSum={setSum}
-      /> */}
+      />
 
       {/* <button
         onClick={() => navigate("/preview")}

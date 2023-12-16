@@ -40,6 +40,8 @@ const AdressInfo = ({ setSum, setSumChecker }) => {
 
     const selectedCountryIso = countryInfo?.isoCode;
 
+    console.log(countryInfo);
+
     const citiesData = State?.getAllStates()?.filter(
       // ülkelere göre il seçildi
       (city) => city?.countryCode === selectedCountryIso
@@ -47,13 +49,13 @@ const AdressInfo = ({ setSum, setSumChecker }) => {
 
     setCities(citiesData);
 
-    const districtsData = City?.getAllCities()?.filter(
+    const districtsData = City?.getCitiesOfCountry(selectedCountryIso).filter(
       (district) => district?.countryCode === selectedCountryIso // ülkelerin ilçeleri seçildi
     );
 
-    console.log(districtsData);
+    console.log(City?.getCitiesOfCountry(selectedCountryIso));
 
-    // setDistricts(districtsData);
+    setDistricts(districtsData);
     setInputBoxCity("choose");
     setInputBoxDistricts("choose");
     console.log("test");

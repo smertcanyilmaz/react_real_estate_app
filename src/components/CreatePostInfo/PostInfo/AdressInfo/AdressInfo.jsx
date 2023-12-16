@@ -47,11 +47,11 @@ const AdressInfo = ({ setSum, setSumChecker }) => {
 
     setCities(citiesData);
 
-    const districtsData = City?.getAllCities()?.filter(
-      (district) => district?.countryCode === selectedCountryIso // ülkelerin ilçeleri seçildi
-    );
+    // const districtsData = City?.getAllCities()?.filter(
+    //   (district) => district?.countryCode === selectedCountryIso // ülkelerin ilçeleri seçildi
+    // );
 
-    setDistricts(districtsData);
+    // setDistricts(districtsData);
     setInputBoxCity("choose");
     setInputBoxDistricts("choose");
     console.log("test");

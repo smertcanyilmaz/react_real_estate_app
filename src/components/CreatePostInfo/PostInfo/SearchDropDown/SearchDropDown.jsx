@@ -45,16 +45,16 @@ const SearchDropDown = ({
     setDistrictBox,
   ]);
 
-  useEffect(() => {
-    const lowerInputValue = inputValue.toLowerCase();
-    if (datas) {
-      const filtered = datas.filter((data) =>
-        data.name.toLowerCase().includes(lowerInputValue)
-      );
+  // useEffect(() => {
+  //   const lowerInputValue = inputValue.toLowerCase();
+  //   if (datas) {
+  //     const filtered = datas.filter((data) =>
+  //       data.name.toLowerCase().includes(lowerInputValue)
+  //     );
 
-      setFilteredData(filtered);
-    }
-  }, [inputValue, datas]);
+  //     setFilteredData(filtered);
+  //   }
+  // }, [inputValue, datas]);
 
   // useEffect(() => {
   //   if (filteredData.length === 0 && !inputValue) {

@@ -3,13 +3,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import { Outlet } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
 
-const Layout = ({ unAuthNavbar }) => {
-  // const [toggle, setToggle] = useState(false);
-
-  // useEffect(() => {
-  //   document.body.style.overflow = !toggle ? "hidden" : "auto";
-  // }, [toggle]);
-
+const Layout = ({ unAuthNavbar, toggle }) => {
   return (
     <div className="min-h-screen max-w-full flex flex-col gap-20 ">
       <div
@@ -17,11 +11,11 @@ const Layout = ({ unAuthNavbar }) => {
         ${unAuthNavbar && "max-w-full"}
        `}
       >
-        {/* {!unAuthNavbar && <Navbar />} */}
+        {toggle && !unAuthNavbar && <Navbar />}
 
         <Outlet />
       </div>
-      {/* {!unAuthNavbar && <Footer />} */}
+      {toggle && !unAuthNavbar && <Footer />}
     </div>
   );
 };

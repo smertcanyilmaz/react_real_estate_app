@@ -7,7 +7,7 @@ import HomeBrands from "../../components/HomeBrands/HomeBrands";
 import { ContextFilter } from "../../Context/FilterContext";
 import EngineeringIcon from "@mui/icons-material/Engineering";
 
-const Home = ({ setUnAuthNavbar }) => {
+const Home = ({ setUnAuthNavbar, toggle, setToggle }) => {
   const { setShowDropDown } = useContext(ContextFilter);
 
   useEffect(() => {
@@ -19,7 +19,7 @@ const Home = ({ setUnAuthNavbar }) => {
     setShowDropDown(false);
   };
 
-  const [toggle, setToggle] = useState(false);
+  // const [toggle, setToggle] = useState(false);
 
   useEffect(() => {
     document.body.style.overflow = !toggle ? "hidden" : "auto";

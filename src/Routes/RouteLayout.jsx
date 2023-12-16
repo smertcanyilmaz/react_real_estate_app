@@ -24,6 +24,7 @@ const Membership = React.lazy(() => import("../pages/Membership/Membership"));
 
 const RouteLayout = () => {
   const [unAuthNavbar, setUnAuthNavbar] = useState(false);
+  const [toggle, setToggle] = useState(false);
   return (
     <AuthContext>
       <>
@@ -41,11 +42,19 @@ const RouteLayout = () => {
                   <Routes>
                     <Route
                       path="/"
-                      element={<Layout unAuthNavbar={unAuthNavbar} />}
+                      element={
+                        <Layout unAuthNavbar={unAuthNavbar} toggle={toggle} />
+                      }
                     >
                       <Route
                         index
-                        element={<Home setUnAuthNavbar={setUnAuthNavbar} />}
+                        element={
+                          <Home
+                            setUnAuthNavbar={setUnAuthNavbar}
+                            toggle={toggle}
+                            setToggle={setToggle}
+                          />
+                        }
                       />
                       <Route
                         path="estates"

@@ -55,9 +55,9 @@ const AdressInfo = ({ setSum, setSumChecker }) => {
     //   (district) => district?.countryCode // ülkelerin ilçeleri seçildi
     // );
 
-    console.log(districtsData);
+    //console.log(districtsData);
 
-    setDistricts(districtsData);
+    //setDistricts(districtsData);
     setInputBoxCity("choose");
     setInputBoxDistricts("choose");
     console.log("test");

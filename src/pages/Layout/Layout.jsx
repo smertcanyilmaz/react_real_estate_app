@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import { Outlet } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
@@ -6,12 +6,21 @@ import EngineeringIcon from "@mui/icons-material/Engineering";
 import CloseIcon from "@mui/icons-material/Close";
 
 const Layout = ({ unAuthNavbar }) => {
+  const [toggle, setToggle] = useState(false);
+
   return (
     <div className="min-h-screen max-w-full flex flex-col gap-20">
-      <div className="md:hidden sm:fixed sm:top-0 sm:left-0 w-screen h-screen sm:overflow-y-hidden bg-black opacity-80">
+      <div
+        className={`md:hidden w-screen h-screen sm:overflow-y-hidden bg-black opacity-80 ${
+          toggle ? "hidden" : "sm:fixed  "
+        }`}
+      >
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[18rem] h-1/2 bg-gray-200/80 p-3 rounded-md">
           <div className="w-full h-full flex flex-col items-center gap-8">
-            <div className="close w-full">
+            <div
+              onClick={() => setToggle((prev) => !prev)}
+              className="close w-full"
+            >
               <CloseIcon />
             </div>
             <div className="w-full flex flex-col items-center justify-center gap-8">
@@ -21,7 +30,7 @@ const Layout = ({ unAuthNavbar }) => {
               </h3>
               <p className="text-sm">Please continue on your computer</p>
             </div>
-            <button className="capitalize w-2/3 h-10  bg-gray-800 text-gray-100 rounded-md text-sm ">
+            <button className="capitalize w-2/3 h-16  bg-gray-800 text-gray-100 rounded-md text-sm ">
               go ahead anyway
             </button>
           </div>

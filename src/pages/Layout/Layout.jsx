@@ -17,7 +17,7 @@ const Layout = ({ unAuthNavbar }) => {
         ${unAuthNavbar && "max-w-full"}
        `}
       >
-        {!unAuthNavbar && <Navbar />}
+        {/* {!unAuthNavbar && <Navbar />} */}
 
         <Outlet />
       </div>

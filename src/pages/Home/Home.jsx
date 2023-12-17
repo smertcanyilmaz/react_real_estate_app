@@ -11,15 +11,16 @@ const Home = ({ setUnAuthNavbar, toggle, setToggle }) => {
   const { setShowDropDown } = useContext(ContextFilter);
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
     setUnAuthNavbar(false); // anasayfanın navbar'ı her zaman unAuth durumunu koruması için burada false olması lazım
   }, []);
+
+  useEffect(() => {
+    window.innerWidth >= 640 && setToggle(true);
+  }, [window]);
 
   const closeDropDown = () => {
     setShowDropDown(false);
   };
-
-  // const [toggle, setToggle] = useState(false);
 
   useEffect(() => {
     document.body.style.overflow = !toggle ? "hidden" : "auto";

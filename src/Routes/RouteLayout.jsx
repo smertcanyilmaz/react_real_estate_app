@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "../pages/Layout/Layout";
 import Register from "../pages/Auth/Register/Register";
@@ -25,6 +25,9 @@ const Membership = React.lazy(() => import("../pages/Membership/Membership"));
 const RouteLayout = () => {
   const [unAuthNavbar, setUnAuthNavbar] = useState(false);
   const [toggle, setToggle] = useState(false);
+  useEffect(() => {
+    window.innerWidth >= 640 && setToggle(true);
+  }, [window]);
   return (
     <AuthContext>
       <>

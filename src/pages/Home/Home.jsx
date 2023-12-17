@@ -14,10 +14,6 @@ const Home = ({ setUnAuthNavbar, toggle, setToggle }) => {
     setUnAuthNavbar(false); // anasayfanın navbar'ı her zaman unAuth durumunu koruması için burada false olması lazım
   }, []);
 
-  useEffect(() => {
-    window.innerWidth >= 640 && setToggle(true);
-  }, [window]);
-
   const closeDropDown = () => {
     setShowDropDown(false);
   };

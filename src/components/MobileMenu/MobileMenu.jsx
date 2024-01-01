@@ -27,28 +27,28 @@ const MobileMenu = () => {
       <div className="w-full h-full flex items-center justify-between">
         <div
           onClick={logoClickHandler}
-          className="flex flex-col items-center justify-center gap-1 text-gray-700"
+          className="flex flex-col items-center justify-center gap-1 text-gray-600"
         >
-          <HomeOutlinedIcon fontSize="large" />
+          <HomeOutlinedIcon style={{ fontSize: 33 }} />
           <p className="text-xs">Home</p>
         </div>
-        <div className="flex flex-col items-center justify-center gap-1 text-gray-700">
-          <SearchOutlinedIcon fontSize="large" />
+        <div className="flex flex-col items-center justify-center gap-1 text-gray-600">
+          <SearchOutlinedIcon style={{ fontSize: 33 }} />
           <p className="text-xs">Explore</p>
         </div>
-        <div className="flex flex-col items-center justify-center gap-1 text-gray-700">
-          <ControlPointOutlinedIcon fontSize="large" />
+        <div className="flex flex-col items-center justify-center gap-1 text-gray-600">
+          <ControlPointOutlinedIcon style={{ fontSize: 33 }} />
           <p className="text-xs">Post Ad</p>
         </div>
-        <div className="flex flex-col items-center justify-center gap-1 text-gray-700">
-          <FavoriteBorderOutlinedIcon fontSize="large" />
+        <div className="flex flex-col items-center justify-center gap-1 text-gray-600">
+          <FavoriteBorderOutlinedIcon style={{ fontSize: 33 }} />
           <p className="text-xs">Favorites</p>
         </div>
         <div
           onClick={profileClickHandler}
-          className="flex flex-col items-center justify-center gap-1 text-gray-700"
+          className="flex flex-col items-center justify-center gap-1 text-gray-600"
         >
-          <PersonOutlineOutlinedIcon fontSize="large" />
+          <PersonOutlineOutlinedIcon style={{ fontSize: 33 }} />
           <p className="text-xs">Profile</p>
         </div>
       </div>

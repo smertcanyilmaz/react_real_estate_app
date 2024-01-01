@@ -43,7 +43,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="flex w-full max-w-6xl mx-auto h-[11vh] justify-between items-end relative">
+    <div className="hidden md:flex w-full max-w-6xl mx-auto h-[11vh] justify-between items-end relative">
       <svg
         width="65"
         height="40"

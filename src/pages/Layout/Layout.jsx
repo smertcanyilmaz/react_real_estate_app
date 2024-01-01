@@ -16,6 +16,7 @@ const Layout = ({ unAuthNavbar, toggle }) => {
         <Outlet />
       </div>
       {toggle && !unAuthNavbar && <Footer />}
+      <div className="w-full h-10 sticky bottom-0 bg-gray-100"></div>
     </div>
   );
 };

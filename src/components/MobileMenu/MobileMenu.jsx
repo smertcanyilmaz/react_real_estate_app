@@ -48,12 +48,12 @@ const MobileMenu = () => {
   };
 
   return (
-    <div className="w-full h-20 sticky bottom-0 bg-gray-100 md:hidden px-5 py-2">
+    <div className="w-full h-16 sticky bottom-0 bg-gray-100 md:hidden px-5 py-2">
       <div className="w-full h-full flex items-center justify-between">
         <div
           onClick={() => selectedIconClickHandler("home")}
           className={`flex flex-col items-center justify-center gap-1  ${
-            selectedMenuIcon === "home" ? "text-[#5366ff]" : "text-gray-600"
+            selectedMenuIcon === "home" ? "text-[#5366ff]" : "text-gray-500/90"
           }`}
         >
           <HomeOutlinedIcon style={{ fontSize: 33 }} />
@@ -62,7 +62,9 @@ const MobileMenu = () => {
         <div
           onClick={() => selectedIconClickHandler("explore")}
           className={`flex flex-col items-center justify-center gap-1  ${
-            selectedMenuIcon === "explore" ? "text-[#5366ff]" : "text-gray-600"
+            selectedMenuIcon === "explore"
+              ? "text-[#5366ff]"
+              : "text-gray-500/90"
           }`}
         >
           <SearchOutlinedIcon style={{ fontSize: 33 }} />
@@ -71,7 +73,9 @@ const MobileMenu = () => {
         <div
           onClick={() => selectedIconClickHandler("postAd")}
           className={`flex flex-col items-center justify-center gap-1  ${
-            selectedMenuIcon === "postAd" ? "text-[#5366ff]" : "text-gray-600"
+            selectedMenuIcon === "postAd"
+              ? "text-[#5366ff]"
+              : "text-gray-500/90"
           }`}
         >
           <ControlPointOutlinedIcon style={{ fontSize: 33 }} />
@@ -82,7 +86,7 @@ const MobileMenu = () => {
           className={`flex flex-col items-center justify-center gap-1  ${
             selectedMenuIcon === "favorites"
               ? "text-[#5366ff]"
-              : "text-gray-600"
+              : "text-gray-500/90"
           }`}
         >
           <FavoriteBorderOutlinedIcon style={{ fontSize: 33 }} />
@@ -91,7 +95,9 @@ const MobileMenu = () => {
         <div
           onClick={() => selectedIconClickHandler("profile")}
           className={`flex flex-col items-center justify-center gap-1  ${
-            selectedMenuIcon === "profile" ? "text-[#5366ff]" : "text-gray-600"
+            selectedMenuIcon === "profile"
+              ? "text-[#5366ff]"
+              : "text-gray-500/90"
           }`}
         >
           <PersonOutlineOutlinedIcon style={{ fontSize: 33 }} />

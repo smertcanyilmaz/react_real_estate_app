@@ -29,27 +29,27 @@ const MobileMenu = () => {
           onClick={logoClickHandler}
           className="flex flex-col items-center justify-center gap-1 text-gray-700"
         >
-          <HomeOutlinedIcon />
-          <p>Home</p>
+          <HomeOutlinedIcon fontSize="large" />
+          <p className="text-xs">Home</p>
         </div>
         <div className="flex flex-col items-center justify-center gap-1 text-gray-700">
-          <SearchOutlinedIcon />
-          <p>Explore</p>
+          <SearchOutlinedIcon fontSize="large" />
+          <p className="text-xs">Explore</p>
         </div>
         <div className="flex flex-col items-center justify-center gap-1 text-gray-700">
-          <ControlPointOutlinedIcon />
-          <p>Post Ad</p>
+          <ControlPointOutlinedIcon fontSize="large" />
+          <p className="text-xs">Post Ad</p>
         </div>
         <div className="flex flex-col items-center justify-center gap-1 text-gray-700">
-          <FavoriteBorderOutlinedIcon />
-          <p>Favorites</p>
+          <FavoriteBorderOutlinedIcon fontSize="large" />
+          <p className="text-xs">Favorites</p>
         </div>
         <div
           onClick={profileClickHandler}
           className="flex flex-col items-center justify-center gap-1 text-gray-700"
         >
-          <PersonOutlineOutlinedIcon />
-          <p>Profile</p>
+          <PersonOutlineOutlinedIcon fontSize="large" />
+          <p className="text-xs">Profile</p>
         </div>
       </div>
     </div>

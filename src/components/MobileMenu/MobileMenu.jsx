@@ -53,7 +53,7 @@ const MobileMenu = () => {
         <div
           onClick={() => selectedIconClickHandler("home")}
           className={`flex flex-col items-center justify-center gap-1  ${
-            selectedMenuIcon === "home" ? "text-[#5366ff]" : "text-gray-500/90"
+            selectedMenuIcon === "home" ? "text-[#5366ff]" : "text-gray-600"
           }`}
         >
           <HomeOutlinedIcon style={{ fontSize: 33 }} />
@@ -62,9 +62,7 @@ const MobileMenu = () => {
         <div
           onClick={() => selectedIconClickHandler("explore")}
           className={`flex flex-col items-center justify-center gap-1  ${
-            selectedMenuIcon === "explore"
-              ? "text-[#5366ff]"
-              : "text-gray-500/90"
+            selectedMenuIcon === "explore" ? "text-[#5366ff]" : "text-gray-600"
           }`}
         >
           <SearchOutlinedIcon style={{ fontSize: 33 }} />
@@ -73,9 +71,7 @@ const MobileMenu = () => {
         <div
           onClick={() => selectedIconClickHandler("postAd")}
           className={`flex flex-col items-center justify-center gap-1  ${
-            selectedMenuIcon === "postAd"
-              ? "text-[#5366ff]"
-              : "text-gray-500/90"
+            selectedMenuIcon === "postAd" ? "text-[#5366ff]" : "text-gray-600"
           }`}
         >
           <ControlPointOutlinedIcon style={{ fontSize: 33 }} />
@@ -86,7 +82,7 @@ const MobileMenu = () => {
           className={`flex flex-col items-center justify-center gap-1  ${
             selectedMenuIcon === "favorites"
               ? "text-[#5366ff]"
-              : "text-gray-500/90"
+              : "text-gray-600"
           }`}
         >
           <FavoriteBorderOutlinedIcon style={{ fontSize: 33 }} />
@@ -95,9 +91,7 @@ const MobileMenu = () => {
         <div
           onClick={() => selectedIconClickHandler("profile")}
           className={`flex flex-col items-center justify-center gap-1  ${
-            selectedMenuIcon === "profile"
-              ? "text-[#5366ff]"
-              : "text-gray-500/90"
+            selectedMenuIcon === "profile" ? "text-[#5366ff]" : "text-gray-600"
           }`}
         >
           <PersonOutlineOutlinedIcon style={{ fontSize: 33 }} />

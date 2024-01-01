@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import { Outlet } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
+import MobileMenu from "../../components/MobileMenu/MobileMenu";
 
 const Layout = ({ unAuthNavbar, toggle }) => {
   return (
@@ -16,7 +17,7 @@ const Layout = ({ unAuthNavbar, toggle }) => {
         <Outlet />
       </div>
       {toggle && !unAuthNavbar && <Footer />}
-      <div className="w-full h-10 sticky bottom-0 bg-gray-100"></div>
+      <MobileMenu />
     </div>
   );
 };

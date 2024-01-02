@@ -36,6 +36,10 @@ const MobileMenu = () => {
     };
   }, []);
 
+  useEffect(() => {
+    setSelectedMenuIcon("home");
+  }, []);
+
   const selectedIconClickHandler = (element) => {
     setStatus("");
     if (element === "home") {

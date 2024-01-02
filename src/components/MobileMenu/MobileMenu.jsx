@@ -15,7 +15,7 @@ const MobileMenu = () => {
   const { membershipChecker } = useContext(ContextProfile);
 
   const [selectedMenuIcon, setSelectedMenuIcon] = useState("");
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(true);
 
   useEffect(() => {
     let prevScrollPos = window.scrollY;

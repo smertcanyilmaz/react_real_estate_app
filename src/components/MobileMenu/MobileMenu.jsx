@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import ControlPointOutlinedIcon from "@mui/icons-material/ControlPointOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
@@ -9,23 +9,32 @@ import { useNavigate } from "react-router-dom";
 import { ContextProfile } from "../../Context/ProfileContext";
 
 const MobileMenu = () => {
+  const navigate = useNavigate();
   const { navbarStatusClickHandler, status, setStatus } =
     useContext(ContextFilter);
   const { membershipChecker } = useContext(ContextProfile);
-  const navigate = useNavigate();
+
   const [selectedMenuIcon, setSelectedMenuIcon] = useState("");
+  const [isScrolled, setIsScrolled] = useState(false);
 
-  // const logoClickHandler = () => {
-  //   setStatus("");
-  //   navigate("/");
-  // };
+  useEffect(() => {
+    let prevScrollPos = window.scrollY;
 
-  // const profileClickHandler = () => {
-  //   // setShowUser(false);
-  //   navigate("/myprofile");
-  //   setStatus("");
-  // };
-  // bg-[#c0c6ff] border border-[#5366ff]
+    const handleScroll = () => {
+      const currentScrollPos = window.scrollY;
+      const shouldShow =
+        currentScrollPos < prevScrollPos || currentScrollPos < 10;
+
+      setIsScrolled(shouldShow);
+      prevScrollPos = currentScrollPos;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const selectedIconClickHandler = (element) => {
     setStatus("");
@@ -48,7 +57,13 @@ const MobileMenu = () => {
   };
 
   return (
-    <div className="w-full h-16 sticky bottom-0 bg-gray-100 md:hidden px-5 py-2">
+    <div
+      className={`${
+        isScrolled
+          ? "w-full h-16 sticky bottom-0 bg-gray-100 md:hidden px-5 py-2"
+          : "hidden"
+      } `}
+    >
       <div className="w-full h-full flex items-center justify-between">
         <div
           onClick={() => selectedIconClickHandler("home")}

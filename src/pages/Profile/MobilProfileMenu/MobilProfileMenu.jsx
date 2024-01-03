@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
@@ -7,8 +7,16 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
 
 const MobilProfileMenu = () => {
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, []);
+
   return (
-    <div className="w-screen h-[calc(100vh-4rem)] flex flex-col justify-between bg-[#ffffff]">
+    <div className="w-screen h-[calc(100vh-4rem)] flex flex-col  bg-[#ffffff] justify-between">
       <h1 className="text-xl text-gray-800 font-semibold p-3">
         Mertcan Yılmaz
       </h1>

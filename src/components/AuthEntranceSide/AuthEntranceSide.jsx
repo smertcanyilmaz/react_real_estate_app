@@ -8,7 +8,7 @@ const AuthEntranceSide = () => {
     setTransition(true);
   }, []);
   return (
-    <div className="bg-gray-900 text-gray-200 flex-1 h-screen flex flex-col items-center overflow-hidden ">
+    <div className="bg-gray-900 text-gray-200 flex-1 h-40 md:h-screen flex flex-col items-center overflow-hidden ">
       <div
         className={`flex-1 w-full flex items-end justify-center tranform-translate  ${
           transition ? "opacity-100 " : "opacity-0"
@@ -30,7 +30,7 @@ const AuthEntranceSide = () => {
         </Link>
       </div>
       <div
-        className={`flex-1 w-full flex items-end justify-center tranform-translate  ${
+        className={`hidden flex-1 w-full md:flex items-end justify-center tranform-translate  ${
           transition ? "-translate-y-0  " : "translate-y-full"
         } duration-[1800ms]`}
       >

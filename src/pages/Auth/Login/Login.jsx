@@ -6,7 +6,7 @@ import { Slide, ToastContainer, toast } from "react-toastify";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 
-const Login = ({ setUnAuthNavbar }) => {
+const Login = ({ setUnAuthNavbar, authMenuChecker, setAuthMenuChecker }) => {
   const navigate = useNavigate();
   useEffect(() => {
     setUnAuthNavbar(true);
@@ -79,10 +79,18 @@ const Login = ({ setUnAuthNavbar }) => {
     setpasswordVisible(!passwordVisible);
   };
 
+  useEffect(() => {
+    setAuthMenuChecker(true);
+
+    return () => {
+      setAuthMenuChecker(false);
+    };
+  }, []);
+
   return (
-    <div className="flex w-screen ">
+    <div className="flex w-screen flex-col md:flex-row bg-[#ffffff]">
       <AuthEntranceSide />
-      <div className="flex-1 flex bg-[#ffffff]  items-center justify-center">
+      <div className="md:flex-1 h-[calc(100vh-13.4rem)] md:h-screen flex bg-[#ffffff] items-center justify-center">
         <div className="flex flex-col gap-5 w-full px-16 ">
           <h3 className="font-semibold">Welcome!</h3>
           <form action="" className="flex flex-col gap-5">

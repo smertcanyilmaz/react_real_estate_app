@@ -71,7 +71,6 @@ const MobileMenu = () => {
       } else {
         navigate("/myprofile");
       }
-
       setSelectedMenuIcon("profile");
     }
   };

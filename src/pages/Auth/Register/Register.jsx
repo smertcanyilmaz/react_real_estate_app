@@ -113,7 +113,7 @@ const Register = ({ setUnAuthNavbar }) => {
   return (
     <div className="flex w-screen flex-col md:flex-row bg-[#ffffff]">
       <AuthEntranceSide />
-      <div className="md:flex-1 h-[90vh] bg-[#ffffff] flex items-center justify-center">
+      <div className="md:flex-1 h-[95vh] bg-[#ffffff] flex items-center justify-center">
         <div className="flex flex-col gap-5 w-full px-8 md:px-16 ">
           <p className="text-gray-800 mb-2 font-semibold text-sm">
             Sell, Rent or Explore Your New Home..

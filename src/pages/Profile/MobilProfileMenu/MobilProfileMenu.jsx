@@ -7,13 +7,13 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
 
 const MobilProfileMenu = () => {
-  useEffect(() => {
-    document.body.style.overflow = "hidden";
+  // useEffect(() => {
+  //   document.body.style.overflow = "hidden";
 
-    return () => {
-      document.body.style.overflow = "auto";
-    };
-  }, []);
+  //   return () => {
+  //     document.body.style.overflow = "auto";
+  //   };
+  // }, []);
 
   return (
     <div className="w-screen h-[calc(100vh-4rem)] flex flex-col gap-5  bg-[#ffffff] ">

@@ -111,10 +111,10 @@ const Register = ({ setUnAuthNavbar }) => {
   };
 
   return (
-    <div className="flex w-screen">
+    <div className="flex w-screen flex-col md:flex-row bg-[#ffffff]">
       <AuthEntranceSide />
-      <div className="flex-1 bg-[#ffffff] flex items-center justify-center">
-        <div className="flex flex-col gap-5 w-full px-16 ">
+      <div className="md:flex-1 h-[90vh] bg-[#ffffff] flex items-center justify-center">
+        <div className="flex flex-col gap-5 w-full px-8 md:px-16 ">
           <p className="text-gray-800 mb-2 font-semibold text-sm">
             Sell, Rent or Explore Your New Home..
           </p>
@@ -155,7 +155,7 @@ const Register = ({ setUnAuthNavbar }) => {
                 }}
               />
             </div>
-            <div className="passwords w-1/2 flex flex-col gap-3">
+            <div className="passwords md:w-1/2 flex flex-col gap-3">
               <div className="w-full flex items-center border border-gray-400/60 rounded-md">
                 <input
                   type={passwordVisible ? "string" : "password"}

@@ -7,12 +7,14 @@ import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import { ContextFilter } from "../../Context/FilterContext";
 import { useNavigate } from "react-router-dom";
 import { ContextProfile } from "../../Context/ProfileContext";
+import { Context } from "../../Context/AuthContext";
 
 const MobileMenu = () => {
   const navigate = useNavigate();
   const { navbarStatusClickHandler, status, setStatus } =
     useContext(ContextFilter);
   const { membershipChecker } = useContext(ContextProfile);
+  const { userActive } = useContext(Context);
 
   const [selectedMenuIcon, setSelectedMenuIcon] = useState("");
   const [isScrolled, setIsScrolled] = useState(true);
@@ -50,12 +52,26 @@ const MobileMenu = () => {
       setSelectedMenuIcon("explore");
     } else if (element === "postAd") {
       membershipChecker();
-      setSelectedMenuIcon("postAd");
+      if (!userActive) {
+        setSelectedMenuIcon("profile");
+      } else {
+        setSelectedMenuIcon("postAd");
+      }
     } else if (element === "favorites") {
-      navigate("/favorites");
-      setSelectedMenuIcon("favorites");
+      if (!userActive) {
+        navigate("/login");
+        setSelectedMenuIcon("profile");
+      } else {
+        navigate("/favorites");
+        setSelectedMenuIcon("favorites");
+      }
     } else if (element === "profile") {
-      navigate("/myprofile");
+      if (!userActive) {
+        navigate("/login");
+      } else {
+        navigate("/myprofile");
+      }
+
       setSelectedMenuIcon("profile");
     }
   };
@@ -114,7 +130,7 @@ const MobileMenu = () => {
           }`}
         >
           <PersonOutlineOutlinedIcon style={{ fontSize: 33 }} />
-          <p className="text-xs">Profile</p>
+          <p className="text-xs">{userActive ? "Profile" : "Log In"}</p>
         </div>
       </div>
     </div>

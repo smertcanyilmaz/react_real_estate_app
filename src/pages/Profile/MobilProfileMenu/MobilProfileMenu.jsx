@@ -5,6 +5,7 @@ import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import LogoutIcon from "@mui/icons-material/Logout";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
+import { useLocation } from "react-router-dom";
 
 const MobilProfileMenu = () => {
   // useEffect(() => {
@@ -14,6 +15,16 @@ const MobilProfileMenu = () => {
   //     document.body.style.overflow = "auto";
   //   };
   // }, []);
+
+  const pathname = useLocation();
+
+  useEffect(() => {
+    if (location.pathname === "/profilemenu")
+      document.body.style.backgroundColor = "#ffffff";
+    return () => {
+      document.body.style.backgroundColor = "#e3e3e1";
+    };
+  }, [pathname]);
 
   return (
     <div className="w-screen max-h-screen flex flex-col gap-3 bg-[#ffffff] ">

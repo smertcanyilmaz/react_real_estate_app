@@ -24,7 +24,7 @@ const MobileMenu = () => {
   useEffect(() => {
     let prevScrollPos = window.scrollY;
 
-    if (location.pathname === "/profilemenu") {
+    if (location.pathname !== "/profilemenu") {
       const handleScroll = () => {
         const currentScrollPos = window.scrollY;
         const shouldShow =

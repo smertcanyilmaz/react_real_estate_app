@@ -76,7 +76,13 @@ const RouteLayout = () => {
                       />
                       <Route
                         path="register"
-                        element={<Register setUnAuthNavbar={setUnAuthNavbar} />}
+                        element={
+                          <Register
+                            setUnAuthNavbar={setUnAuthNavbar}
+                            authMenuChecker={authMenuChecker}
+                            setAuthMenuChecker={setAuthMenuChecker}
+                          />
+                        }
                       />
                       <Route
                         path="login"

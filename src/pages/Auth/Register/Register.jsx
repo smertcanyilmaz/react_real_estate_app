@@ -9,7 +9,7 @@ import CheckIcon from "@mui/icons-material/Check";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 
-const Register = ({ setUnAuthNavbar }) => {
+const Register = ({ setUnAuthNavbar, authMenuChecker, setAuthMenuChecker }) => {
   const navigate = useNavigate();
   const { userActive } = useContext(Context);
 
@@ -109,6 +109,14 @@ const Register = ({ setUnAuthNavbar }) => {
   const passwordVisibleHandler = () => {
     setpasswordVisible(!passwordVisible);
   };
+  useEffect(() => {
+    //layout da gap-20 olduğundan onu register sayfasında geçersiz kılmak için yazılan state'i güncellemek gerekti
+    setAuthMenuChecker(true);
+
+    return () => {
+      setAuthMenuChecker(false);
+    };
+  }, []);
 
   return (
     <div className="flex w-screen flex-col md:flex-row bg-[#ffffff]">

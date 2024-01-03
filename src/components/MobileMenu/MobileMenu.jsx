@@ -69,7 +69,7 @@ const MobileMenu = () => {
       if (!userActive) {
         navigate("/login");
       } else {
-        navigate("/myprofile");
+        navigate("/profilemenu");
       }
       setSelectedMenuIcon("profile");
     }

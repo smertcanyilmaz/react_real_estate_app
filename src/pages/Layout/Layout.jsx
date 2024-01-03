@@ -25,7 +25,7 @@ const Layout = ({
 
         <Outlet />
       </div>
-      {toggle && !unAuthNavbar && <Footer />}
+      {/* {toggle && !unAuthNavbar && <Footer />} */}
       <MobileMenu />
     </div>
   );

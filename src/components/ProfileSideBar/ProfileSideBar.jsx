@@ -32,7 +32,7 @@ const ProfileSideBar = () => {
   }, [location]);
 
   return (
-    <div className="sticky top-8 flex flex-col gap-10 w-[28%] max-h-[32rem] p-6 bg-gray-50 border border-gray-400/50 rounded-sm ">
+    <div className="sticky top-8 hidden md:flex flex-col gap-10 w-[28%] max-h-[32rem] p-6 bg-gray-50 border border-gray-400/50 rounded-sm ">
       <div className="flex items-center gap-5 pb-6 border-b-2 border-gray-200/50">
         <div className="p-4 border border-gray-300 rounded-full bg-gray-200/50">
           <PersonIcon fontSize="large" style={{ color: "gray" }} />
@@ -120,7 +120,7 @@ const ProfileSideBar = () => {
               : "text-gray-500 font-normal"
           } `}
         >
-          Pasive Posts
+          Passive Posts
         </div>
       </div>
 

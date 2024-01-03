@@ -17,6 +17,7 @@ import { AuthContext } from "../Context/AuthContext";
 import { CreatePostContext } from "../Context/CreatePostContext";
 import { FilterContext } from "../Context/FilterContext";
 import ProfileContext from "../Context/ProfileContext";
+import MobilProfileMenu from "../pages/Profile/MobilProfileMenu/MobilProfileMenu";
 
 const Estates = React.lazy(() => import("../pages/Estates/Estates"));
 const Estate = React.lazy(() => import("../pages/Estate/Estate"));
@@ -166,6 +167,16 @@ const RouteLayout = () => {
                         element={
                           <Protected>
                             <Favorites setUnAuthNavbar={setUnAuthNavbar} />
+                          </Protected>
+                        }
+                      />
+                      <Route
+                        path="profilemenu"
+                        element={
+                          <Protected>
+                            <MobilProfileMenu
+                              setUnAuthNavbar={setUnAuthNavbar}
+                            />
                           </Protected>
                         }
                       />

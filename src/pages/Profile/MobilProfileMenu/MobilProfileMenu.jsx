@@ -7,16 +7,16 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
 
 const MobilProfileMenu = () => {
-  useEffect(() => {
-    document.body.style.overflow = "hidden";
+  // useEffect(() => {
+  //   document.body.style.overflow = "hidden";
 
-    return () => {
-      document.body.style.overflow = "auto";
-    };
-  }, []);
+  //   return () => {
+  //     document.body.style.overflow = "auto";
+  //   };
+  // }, []);
 
   return (
-    <div className="w-screen h-screen flex flex-col gap-3 bg-[#ffffff] ">
+    <div className="w-screen max-h-screen flex flex-col gap-3 bg-[#ffffff] ">
       <h1 className="text-xl text-gray-800 font-semibold p-3">
         Mertcan Yılmaz
       </h1>

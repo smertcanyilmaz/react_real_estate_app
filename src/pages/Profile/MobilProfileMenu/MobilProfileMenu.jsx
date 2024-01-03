@@ -1,30 +1,41 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import LogoutIcon from "@mui/icons-material/Logout";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
+import { getAuth, signOut } from "firebase/auth";
+import { ContextProfile } from "../../../Context/ProfileContext";
 
 const MobilProfileMenu = () => {
-  // useEffect(() => {
-  //   document.body.style.overflow = "hidden";
-
-  //   return () => {
-  //     document.body.style.overflow = "auto";
-  //   };
-  // }, []);
-
   const pathname = useLocation();
+  const path = location.pathname;
 
   useEffect(() => {
-    if (location.pathname === "/profilemenu")
+    if (path === "/profilemenu")
       document.body.style.backgroundColor = "#ffffff";
     return () => {
       document.body.style.backgroundColor = "#e3e3e1";
     };
   }, [pathname]);
+
+  const auth = getAuth();
+  const { id } = useParams();
+  const { setUserSubscribe } = useContext(ContextProfile);
+
+  const handleSignOut = async () => {
+    try {
+      await signOut(auth);
+      if (path === "/" || path === "/estates" || path === `/estates/${id}`) {
+        window.location.reload();
+      }
+      setUserSubscribe(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="w-screen max-h-screen flex flex-col gap-3 bg-[#ffffff] ">
@@ -77,7 +88,10 @@ const MobilProfileMenu = () => {
         </div>
       </div>
 
-      <div className="mx-3 py-3 border border-gray-500 rounded-xl">
+      <div
+        onClick={handleSignOut}
+        className="mx-3 py-3 border border-gray-500 rounded-xl"
+      >
         <div className="flex p-2 items-center justify-between">
           <div className="flex gap-2">
             <LogoutIcon />

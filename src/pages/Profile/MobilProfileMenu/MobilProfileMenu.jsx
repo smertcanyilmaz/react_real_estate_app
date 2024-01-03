@@ -9,7 +9,7 @@ import AddRoundedIcon from "@mui/icons-material/AddRounded";
 const MobilProfileMenu = () => {
   return (
     <div className="w-screen h-[calc(100vh-4rem)] flex flex-col justify-between bg-[#ffffff]">
-      <h1 className="text-xl text-gray-800 font-semibold p-3 border-b border-gray-400/80">
+      <h1 className="text-xl text-gray-800 font-semibold p-3">
         Mertcan Yılmaz
       </h1>
       <div className="mx-3 py-3 border border-gray-500 rounded-xl">

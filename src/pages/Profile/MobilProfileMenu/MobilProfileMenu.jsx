@@ -16,7 +16,7 @@ const MobilProfileMenu = () => {
   // }, []);
 
   return (
-    <div className="w-screen h-[calc(100vh-4rem)] flex flex-col gap-3 bg-[#ffffff] ">
+    <div className="w-screen h-screen flex flex-col gap-3 bg-[#ffffff] ">
       <h1 className="text-xl text-gray-800 font-semibold p-3">
         Mertcan Yılmaz
       </h1>

@@ -80,6 +80,7 @@ const Login = ({ setUnAuthNavbar, authMenuChecker, setAuthMenuChecker }) => {
   };
 
   useEffect(() => {
+    //layout da gap-20 olduğundan onu login sayfasında geçersiz kılmak için yazılan state'i güncellemek gerekti
     setAuthMenuChecker(true);
 
     return () => {
@@ -91,7 +92,7 @@ const Login = ({ setUnAuthNavbar, authMenuChecker, setAuthMenuChecker }) => {
     <div className="flex w-screen flex-col md:flex-row bg-[#ffffff]">
       <AuthEntranceSide />
       <div className="md:flex-1 h-[calc(100vh-13.4rem)] md:h-screen flex bg-[#ffffff] items-center justify-center">
-        <div className="flex flex-col gap-5 w-full px-16 ">
+        <div className="flex flex-col gap-5 w-full px-8 md:px-16 ">
           <h3 className="font-semibold">Welcome!</h3>
           <form action="" className="flex flex-col gap-5">
             <input

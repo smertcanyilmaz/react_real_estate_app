@@ -131,7 +131,7 @@ const ProfileProductCard = ({ post, myPost }) => {
             >
               <div
                 className={`cursor-pointer ${
-                  myPost ? "h-full" : "w-full md:w-[14rem]"
+                  myPost ? "h-full" : "w-full h-1/2 md:h-full md:w-[14rem]"
                 }`}
                 onClick={() => navigate(`/estates/${estate.id}`)}
               >

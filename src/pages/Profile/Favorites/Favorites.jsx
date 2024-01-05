@@ -13,7 +13,7 @@ const Favorites = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (location.pathname === "/posts/actives" && window.innerWidth <= 640)
+    if (location.pathname === "/posts/favorites" && window.innerWidth <= 640)
       document.body.style.backgroundColor = "#ffffff";
     return () => {
       document.body.style.backgroundColor = "#e3e3e1";

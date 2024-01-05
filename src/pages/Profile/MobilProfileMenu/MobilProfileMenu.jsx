@@ -8,6 +8,7 @@ import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { getAuth, signOut } from "firebase/auth";
 import { ContextProfile } from "../../../Context/ProfileContext";
+import { Context } from "../../../Context/AuthContext";
 
 const MobilProfileMenu = () => {
   const navigate = useNavigate();
@@ -16,6 +17,7 @@ const MobilProfileMenu = () => {
   const auth = getAuth();
   const { id } = useParams();
   const { setUserSubscribe } = useContext(ContextProfile);
+  const { userActive } = useContext(Context);
 
   useEffect(() => {
     if (path === "/profilemenu")
@@ -40,9 +42,11 @@ const MobilProfileMenu = () => {
   return (
     <div className="w-screen flex flex-col gap-5 bg-[#ffffff]">
       <div>
-        <h1 className="text-xl text-gray-800 font-semibold p-3">
-          Mertcan Yılmaz
-        </h1>
+        {userActive && (
+          <h1 className="text-xl text-gray-800 font-semibold p-3">
+            {userActive?.firstName} {userActive?.lastName}
+          </h1>
+        )}
       </div>
       <div className="flex flex-col gap-3">
         <div

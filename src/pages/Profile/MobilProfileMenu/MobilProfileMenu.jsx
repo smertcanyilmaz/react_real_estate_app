@@ -101,8 +101,10 @@ const MobilProfileMenu = () => {
           onClick={() =>
             navigate(`${userActive?.subscribe ? "" : "/membership"}`)
           }
-          className={`mx-3 py-3 border border-gray-500 rounded-xl ${
-            userActive?.subscribe ? "bg-[#007FFF]" : ""
+          className={`mx-3 py-3rounded-xl ${
+            userActive?.subscribe
+              ? "bg-[#007FFF] border-none"
+              : "border border-gray-500 "
           }`}
         >
           <div className="flex p-2 items-center justify-between">

@@ -111,13 +111,13 @@ const ProfileProductCard = ({ post, myPost }) => {
       {postChecker?.slice(0, myPost ? 1 : postChecker.length)?.map((estate) => (
         <div
           key={estate.id}
-          className={`flex flex-col w-full shadow-md shadow-gray-200/50 ${
-            myPost ? "h-[20.1rem] relative p-10" : "p-3 h-[12rem]"
+          className={`flex flex-col w-full shadow-md shadow-gray-200/50  ${
+            myPost ? "h-[20.1rem] relative p-10" : "p-3 h-[32rem] md:h-[12rem]"
           }`}
         >
           {myPost && (
             <p className="absolute top-3 left-3 text-sm font-semibold text-gray-800">
-              Glimpse at favorite,{" "}
+              Glimpse at favorite,
               <Link to="/favorites">
                 <span className="underline">click for more</span>
               </Link>
@@ -125,10 +125,14 @@ const ProfileProductCard = ({ post, myPost }) => {
           )}
           {
             <div
-              className={`w-full h-full flex gap-5 ${myPost ? "mt-5" : "mt-0"}`}
+              className={`w-full h-full flex flex-col md:flex-row  gap-5 ${
+                myPost ? "mt-5" : "mt-0"
+              }`}
             >
               <div
-                className={`cursor-pointer ${myPost ? "h-full" : "w-[14rem]"}`}
+                className={`cursor-pointer ${
+                  myPost ? "h-full" : "w-full md:w-[14rem]"
+                }`}
                 onClick={() => navigate(`/estates/${estate.id}`)}
               >
                 <img
@@ -138,7 +142,7 @@ const ProfileProductCard = ({ post, myPost }) => {
               </div>
               <div
                 className={`flex-1 h-full flex ${
-                  myPost ? "flex-col" : "flex-row"
+                  myPost ? " flex-col" : " flex-col gap-3 md:flex-row md:gap-0"
                 }`}
               >
                 <div
@@ -198,8 +202,8 @@ const ProfileProductCard = ({ post, myPost }) => {
                   )}
                 </div>
                 <div
-                  className={`flex flex-col items-end justify-between gap-3 relative rounded-md ${
-                    myPost ? "w-full" : "w-1/4 h-full "
+                  className={`flex md:flex-col items-end justify-between gap-3  relative rounded-md ${
+                    myPost ? "w-full" : "md:w-1/4 h-full "
                   }`}
                 >
                   {(post === "active" || post === "favorites") && (

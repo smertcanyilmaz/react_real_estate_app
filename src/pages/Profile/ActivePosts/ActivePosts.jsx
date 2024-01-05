@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import ProfileTemplate from "../../../components/ProfileTemplate/ProfileTemplate";
 import PostAd from "../../../components/PostAd/PostAd";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
@@ -7,14 +7,29 @@ import "./ActivePosts.css";
 import ProfileProductCard from "../../../components/ProfileProductCard/ProfileProductCard";
 import { ContextProfile } from "../../../Context/ProfileContext";
 import { Slide, ToastContainer } from "react-toastify";
+import { useLocation, useNavigate } from "react-router-dom";
+import WestOutlinedIcon from "@mui/icons-material/WestOutlined";
 
 const ActivePosts = () => {
   const { loading } = useUserPosts();
   const { estateDataFilter } = useContext(ContextProfile);
+  const pathname = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (location.pathname === "/posts/actives" && window.innerWidth <= 640)
+      document.body.style.backgroundColor = "#ffffff";
+    return () => {
+      document.body.style.backgroundColor = "#e3e3e1";
+    };
+  }, [pathname]);
 
   return (
     <ProfileTemplate>
-      <div className="active_posts h-full flex flex-col justify-between gap-3 bg-[--bg_color] ">
+      <div onClick={() => navigate("/profilemenu")} className="md:hidden p-3">
+        <WestOutlinedIcon />
+      </div>
+      <div className="active_posts w-[95%] md:w-full mx-auto md:mx-none mt-3 md:mt-0 h-full flex flex-col justify-between gap-3 bg-[--bg_color] ">
         <div
           className={`note w-full h-full  bg-gray-50 flex flex-col gap-5 border border-gray-400/50 ${
             estateDataFilter.length === 0 && "not_post"

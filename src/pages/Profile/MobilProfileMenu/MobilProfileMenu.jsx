@@ -116,7 +116,11 @@ const MobilProfileMenu = () => {
               </p>
 
               <span className="font-bold">
-                <AddRoundedIcon sx={{ color: "rgb(59 130 246)" }} />
+                <AddRoundedIcon
+                  className={`${
+                    userActive?.subscribe ? "text-gray-50" : "text-[#007FFF]"
+                  }`}
+                />
               </span>
             </div>
 

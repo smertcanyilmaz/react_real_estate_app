@@ -30,7 +30,9 @@ const ActivePosts = () => {
         <WestOutlinedIcon />
       </div>
       <div>
-        <h1 className="px-3 py-2 text-xl text-gray-800">Active Posts</h1>
+        <h1 className="px-3 py-2 text-xl font-semibold text-gray-700">
+          Active Posts
+        </h1>
       </div>
       <div className="active_posts w-[95%] md:w-full mx-auto md:mx-none mt-3 md:mt-0 h-full flex flex-col justify-between gap-3 bg-[--bg_color] rounded-lg md:rounded-none">
         <div

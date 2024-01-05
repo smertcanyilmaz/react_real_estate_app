@@ -37,69 +37,137 @@ const MobilProfileMenu = () => {
   };
 
   return (
-    <div className="w-screen h-full flex flex-col gap-3 bg-[#ffffff] ">
-      <h1 className="text-xl text-gray-800 font-semibold p-3">
-        Mertcan Yılmaz
-      </h1>
-      <div className="mx-3 py-3 border border-gray-500 rounded-xl">
-        <div className="flex gap-2 p-3">
-          <HomeOutlinedIcon />
-          <p className="font-semibold text-lg">My Posts</p>
-        </div>
-        <div className="flex items-center justify-between border-t border-gray-500/30 px-8 py-3">
-          <p>Active Posts</p>
-          <ArrowForwardIosOutlinedIcon fontSize="small" className="-mr-2" />
-        </div>
-        <div className="flex items-center justify-between border-t border-gray-500/30 px-8 py-3">
-          <p>Passive Posts</p>
-          <ArrowForwardIosOutlinedIcon fontSize="small" className="-mr-2" />
-        </div>
-      </div>
-      <div className="mx-3 py-3 border border-gray-500 rounded-xl">
-        <div className="flex p-2 items-center justify-between">
-          <div className="flex gap-2">
-            <FavoriteBorderOutlinedIcon />
-            <p className="font-semibold text-lg">Favorites</p>
-          </div>
-          <ArrowForwardIosOutlinedIcon fontSize="small" className="mr-4" />
-        </div>
-      </div>
-      <div className="mx-3 py-3 border border-gray-500 rounded-xl">
-        <div className="flex p-2 items-center justify-between">
-          <div className="flex gap-2">
-            <PersonOutlineOutlinedIcon />
-            <p className="font-semibold text-lg">My Profile Informations</p>
-          </div>
-          <ArrowForwardIosOutlinedIcon fontSize="small" className="mr-4" />
-        </div>
-      </div>
+    // <div className="w-screen h-full flex flex-col gap-3 bg-[#ffffff] ">
+    //   <h1 className="text-xl text-gray-800 font-semibold p-3">
+    //     Mertcan Yılmaz
+    //   </h1>
+    // <div className="mx-3 py-3 border border-gray-500 rounded-xl">
+    //   <div className="flex p-2 items-center justify-between">
+    //     <div className="flex gap-2">
+    //       <PersonOutlineOutlinedIcon />
+    //       <p className="font-semibold text-lg">My Profile Informations</p>
+    //     </div>
+    //     <ArrowForwardIosOutlinedIcon fontSize="small" className="mr-4" />
+    //   </div>
+    // </div>
+    // <div className="mx-3 py-3 border border-gray-500 rounded-xl">
+    //   <div className="flex gap-2 p-3">
+    //     <HomeOutlinedIcon />
+    //     <p className="font-semibold text-lg">My Posts</p>
+    //   </div>
+    //   <div className="flex items-center justify-between border-t border-gray-500/30 px-8 py-3">
+    //     <p>Active Posts</p>
+    //     <ArrowForwardIosOutlinedIcon fontSize="small" className="-mr-2" />
+    //   </div>
+    //   <div className="flex items-center justify-between border-t border-gray-500/30 px-8 py-3">
+    //     <p>Passive Posts</p>
+    //     <ArrowForwardIosOutlinedIcon fontSize="small" className="-mr-2" />
+    //   </div>
+    // </div>
+    // <div className="mx-3 py-3 border border-gray-500 rounded-xl">
+    //   <div className="flex p-2 items-center justify-between">
+    //     <div className="flex gap-2">
+    //       <FavoriteBorderOutlinedIcon />
+    //       <p className="font-semibold text-lg">Favorites</p>
+    //     </div>
+    //     <ArrowForwardIosOutlinedIcon fontSize="small" className="mr-4" />
+    //   </div>
+    // </div>
 
-      <div className="mx-3 py-3 border border-gray-500 rounded-xl">
-        <div className="flex p-2 items-center justify-between">
-          <div className="flex gap-2">
-            <p className="font-semibold text-lg">Membership</p>
+    // <div className="mx-3 py-3 border border-gray-500 rounded-xl">
+    //   <div className="flex p-2 items-center justify-between">
+    //     <div className="flex gap-2">
+    //       <p className="font-semibold text-lg">Membership</p>
 
-            <span className="font-bold">
-              <AddRoundedIcon sx={{ color: "rgb(59 130 246)" }} />
-            </span>
-          </div>
-          <ArrowForwardIosOutlinedIcon fontSize="small" className="mr-4" />
-        </div>
-      </div>
+    //       <span className="font-bold">
+    //         <AddRoundedIcon sx={{ color: "rgb(59 130 246)" }} />
+    //       </span>
+    //     </div>
+    //     <ArrowForwardIosOutlinedIcon fontSize="small" className="mr-4" />
+    //   </div>
+    // </div>
 
-      <div
-        onClick={handleSignOut}
-        className="mx-3 py-3 border border-gray-500 rounded-xl"
-      >
-        <div className="flex p-2 items-center justify-between">
-          <div className="flex gap-2">
-            <LogoutIcon />
-            <p className="font-semibold text-lg">Log Out</p>
-          </div>
-          <ArrowForwardIosOutlinedIcon fontSize="small" className="mr-4" />
-        </div>
+    // <div
+    //   onClick={handleSignOut}
+    //   className="mx-3 py-3 border border-gray-500 rounded-xl"
+    // >
+    //   <div className="flex p-2 items-center justify-between">
+    //     <div className="flex gap-2">
+    //       <LogoutIcon />
+    //       <p className="font-semibold text-lg">Log Out</p>
+    //     </div>
+    //     <ArrowForwardIosOutlinedIcon fontSize="small" className="mr-4" />
+    //   </div>
+    // </div>
+    // <div></div>
+    // </div>
+    <div className="w-screen flex flex-col gap-5 bg-[#ffffff]">
+      <div>
+        <h1 className="text-xl text-gray-800 font-semibold p-3">
+          Mertcan Yılmaz
+        </h1>
       </div>
-      <div></div>
+      <div className="flex flex-col gap-5">
+        <div className="mx-3 py-3 border border-gray-500 rounded-xl">
+          <div className="flex p-2 items-center justify-between">
+            <div className="flex gap-2">
+              <PersonOutlineOutlinedIcon />
+              <p className="font-semibold text-lg">My Profile Informations</p>
+            </div>
+            <ArrowForwardIosOutlinedIcon fontSize="small" className="mr-4" />
+          </div>
+        </div>
+        <div className="mx-3 py-3 border border-gray-500 rounded-xl">
+          <div className="flex gap-2 p-3">
+            <HomeOutlinedIcon />
+            <p className="font-semibold text-lg">My Posts</p>
+          </div>
+          <div className="flex items-center justify-between border-t border-gray-500/30 px-8 py-3">
+            <p>Active Posts</p>
+            <ArrowForwardIosOutlinedIcon fontSize="small" className="-mr-2" />
+          </div>
+          <div className="flex items-center justify-between border-t border-gray-500/30 px-8 py-3">
+            <p>Passive Posts</p>
+            <ArrowForwardIosOutlinedIcon fontSize="small" className="-mr-2" />
+          </div>
+        </div>
+        <div className="mx-3 py-3 border border-gray-500 rounded-xl">
+          <div className="flex p-2 items-center justify-between">
+            <div className="flex gap-2">
+              <FavoriteBorderOutlinedIcon />
+              <p className="font-semibold text-lg">Favorites</p>
+            </div>
+            <ArrowForwardIosOutlinedIcon fontSize="small" className="mr-4" />
+          </div>
+        </div>
+
+        <div className="mx-3 py-3 border border-gray-500 rounded-xl">
+          <div className="flex p-2 items-center justify-between">
+            <div className="flex gap-2">
+              <p className="font-semibold text-lg">Membership</p>
+
+              <span className="font-bold">
+                <AddRoundedIcon sx={{ color: "rgb(59 130 246)" }} />
+              </span>
+            </div>
+            <ArrowForwardIosOutlinedIcon fontSize="small" className="mr-4" />
+          </div>
+        </div>
+
+        <div
+          onClick={handleSignOut}
+          className="mx-3 py-3 border border-gray-500 rounded-xl"
+        >
+          <div className="flex p-2 items-center justify-between">
+            <div className="flex gap-2">
+              <LogoutIcon />
+              <p className="font-semibold text-lg">Log Out</p>
+            </div>
+            <ArrowForwardIosOutlinedIcon fontSize="small" className="mr-4" />
+          </div>
+        </div>
+        <div></div>
+      </div>
     </div>
   );
 };

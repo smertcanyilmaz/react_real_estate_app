@@ -177,7 +177,7 @@ const ProfileProductCard = ({ post, myPost }) => {
                     </div>
                   )}
                   {!myPost && (
-                    <div className="flex gap-1">
+                    <div className="flex gap-1 flex-wrap">
                       <span>Features</span>:
                       {estate?.specials?.length > 3
                         ? estate?.specials

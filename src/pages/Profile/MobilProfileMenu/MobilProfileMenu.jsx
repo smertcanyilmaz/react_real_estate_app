@@ -107,7 +107,7 @@ const MobilProfileMenu = () => {
           Mertcan Yılmaz
         </h1>
       </div>
-      <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-3">
         <div className="mx-3 py-3 border border-gray-500 rounded-xl">
           <div className="flex p-2 items-center justify-between">
             <div className="flex gap-2">
@@ -166,7 +166,7 @@ const MobilProfileMenu = () => {
             <ArrowForwardIosOutlinedIcon fontSize="small" className="mr-4" />
           </div>
         </div>
-        <div></div>
+        {/* <div></div> */}
       </div>
     </div>
   );

@@ -53,7 +53,7 @@ const MyProfile = () => {
         {userActive && (
           <div className="info_container">
             <div className="w-full flex justify-between">
-              <h1 className="text-xl font-semibold text-gray-700 mb-5">
+              <h1 className="text-xl font-semibold text-gray-700 mb-3 md:mb-5">
                 My Profile Informations
               </h1>
               {userActive.subscribe && (

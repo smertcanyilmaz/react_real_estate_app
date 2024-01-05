@@ -43,7 +43,7 @@ const MobilProfileMenu = () => {
     <div className="w-screen flex flex-col gap-5 bg-[#ffffff]">
       <div>
         {userActive && (
-          <h1 className="text-xl text-gray-800 font-semibold p-3">
+          <h1 className="text-xl text-gray-800 font-semibold p-3 capitalize">
             {userActive?.firstName} {userActive?.lastName}
           </h1>
         )}

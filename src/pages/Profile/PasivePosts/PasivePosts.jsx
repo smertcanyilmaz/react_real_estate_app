@@ -6,13 +6,19 @@ import useUserPosts from "../../../components/hooks/useUserPosts";
 import ProfileProductCard from "../../../components/ProfileProductCard/ProfileProductCard";
 import { ContextProfile } from "../../../Context/ProfileContext";
 import { Slide, ToastContainer } from "react-toastify";
+import WestOutlinedIcon from "@mui/icons-material/WestOutlined";
+import { useNavigate } from "react-router-dom";
 
 const PasivePosts = () => {
   const { loading } = useUserPosts();
   const { estateDataFilter2 } = useContext(ContextProfile);
+  const navigate = useNavigate();
 
   return (
     <ProfileTemplate>
+      <div onClick={() => navigate("/profilemenu")} className="md:hidden p-3">
+        <WestOutlinedIcon />
+      </div>
       <div className="active_posts h-full flex flex-col justify-between gap-3 bg-[--bg_color]">
         <div
           className={`note w-full h-full  bg-gray-50 flex flex-col gap-5 border border-gray-400/50 ${

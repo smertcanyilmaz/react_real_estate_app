@@ -29,7 +29,7 @@ const ActivePosts = () => {
       <div onClick={() => navigate("/profilemenu")} className="md:hidden p-3">
         <WestOutlinedIcon />
       </div>
-      <div className="active_posts w-[95%] md:w-full mx-auto md:mx-none mt-3 md:mt-0 h-full flex flex-col justify-between gap-3 bg-[--bg_color] ">
+      <div className="active_posts w-[95%] md:w-full mx-auto md:mx-none mt-3 md:mt-0 h-full flex flex-col justify-between gap-3 bg-[--bg_color] rounded-lg md:rounded-none">
         <div
           className={`note w-full h-full  bg-gray-50 flex flex-col gap-5 border border-gray-400/50 ${
             estateDataFilter.length === 0 && "not_post"

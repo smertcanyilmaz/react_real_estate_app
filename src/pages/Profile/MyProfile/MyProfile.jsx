@@ -36,7 +36,7 @@ const MyProfile = () => {
   };
 
   useEffect(() => {
-    if (location.pathname === "/myprofile")
+    if (location.pathname === "/myprofile" && window.innerWidth <= 640)
       document.body.style.backgroundColor = "#ffffff";
     return () => {
       document.body.style.backgroundColor = "#e3e3e1";

@@ -3,11 +3,11 @@
 }
 
 .input_box {
-  @apply flex flex-col gap-3 md:gap-2 text-gray-800 md:text-gray-700 font-medium;
+  @apply flex flex-col gap-3 md:gap-2 text-gray-700 font-medium;
 }
 
 .input_box input {
-  @apply w-72 h-12 md:h-10 bg-[--bg_color] rounded-sm pl-2 border border-gray-400/50 text-lg md:text-base;
+  @apply w-72 h-12 md:h-10 bg-[--bg_color] rounded-sm pl-2 border border-gray-400/50 text-lg md:text-base text-gray-800 md:text-gray-700;
 }
 
 .iconss {

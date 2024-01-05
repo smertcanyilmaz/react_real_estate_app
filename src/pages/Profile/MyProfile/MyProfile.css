@@ -7,7 +7,7 @@
 }
 
 .input_box input {
-  @apply w-72 h-12 md:h-10 bg-[--bg_color] rounded-sm pl-2 border border-gray-400/50 text-lg md:text-base text-gray-800 md:text-gray-700;
+  @apply w-72 h-12 md:h-10 bg-[--bg_color] rounded-sm pl-2 border border-gray-400/50 text-lg md:text-base text-black md:text-gray-700;
 }
 
 .iconss {

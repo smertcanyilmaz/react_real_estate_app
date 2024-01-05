@@ -1,11 +1,13 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ProfileTemplate from "../../../components/ProfileTemplate/ProfileTemplate";
 import "./MyProfile.css";
 import EditIcon from "@mui/icons-material/Edit";
 import ProfilePopup from "../../../components/ProfilePopup/ProfilePopup";
 import { Context } from "../../../Context/AuthContext";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
+import WestOutlinedIcon from "@mui/icons-material/WestOutlined";
 import { Slide, ToastContainer } from "react-toastify";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const MyProfile = () => {
   const [showOverlay, setShowOverlay] = useState(false);
@@ -18,6 +20,8 @@ const MyProfile = () => {
   const [newEmail, setNewEmail] = useState("");
   const [passwordCheck, setPasswordCheck] = useState("");
   const [wrongPassword, setWrongPassword] = useState(false);
+  const pathname = useLocation();
+  const navigate = useNavigate();
 
   const clickHandler = (index) => {
     setShowOverlay((prev) => !prev);
@@ -31,9 +35,21 @@ const MyProfile = () => {
     setWrongPassword(false);
   };
 
+  useEffect(() => {
+    if (location.pathname === "/myprofile")
+      document.body.style.backgroundColor = "#ffffff";
+    return () => {
+      document.body.style.backgroundColor = "#e3e3e1";
+    };
+  }, [pathname]);
+
   return (
     <>
       <ProfileTemplate>
+        <div onClick={() => navigate("/profilemenu")} className="md:hidden p-3">
+          <WestOutlinedIcon />
+        </div>
+
         {userActive && (
           <div className="info_container">
             <div className="w-full flex justify-between">
@@ -41,7 +57,7 @@ const MyProfile = () => {
                 My Profile Informations
               </h1>
               {userActive.subscribe && (
-                <div className="font-semibold flex justify-center gap-1 text-xl">
+                <div className="font-semibold hidden md:flex justify-center gap-1 text-xl">
                   <h1>Membership</h1>
                   <span className="font-bold">
                     <AddRoundedIcon sx={{ color: "rgb(59 130 246)" }} />

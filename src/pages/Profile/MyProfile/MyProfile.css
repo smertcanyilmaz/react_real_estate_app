@@ -1,13 +1,13 @@
 .info_container {
-  @apply h-full px-5 py-16 flex flex-col justify-between border border-gray-400/50;
+  @apply h-full px-3 md:px-5 py-5 md:py-16 flex flex-col gap-5 md:justify-between md:border md:border-gray-400/50;
 }
 
 .input_box {
-  @apply flex flex-col gap-2 text-gray-700 font-medium;
+  @apply flex flex-col gap-3 md:gap-2 text-gray-700 font-medium;
 }
 
 .input_box input {
-  @apply w-72 h-10 bg-[--bg_color] rounded-sm pl-2 border border-gray-400/50;
+  @apply w-72 h-12 md:h-10 bg-[--bg_color] rounded-sm pl-2 border border-gray-400/50 text-lg md:text-base;
 }
 
 .iconss {

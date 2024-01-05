@@ -54,9 +54,9 @@ export const AuthContext = ({ children }) => {
   }, [auth]);
 
   const values = {
-    userActive: userActive,
-    setUserActive: setUserActive,
-    userActiveUid: userActiveUid,
+    userActive,
+    setUserActive,
+    userActiveUid,
   };
 
   return (

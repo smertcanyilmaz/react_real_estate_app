@@ -105,6 +105,8 @@ const ProfileProductCard = ({ post, myPost }) => {
     return formattedCategory;
   }
 
+  const isMobile = window.innerWidth <= 640;
+
   return (
     //slice kullanmamın nedeni my posts sayfasındaki vitrinde sadece bir tane favorilere atılmış ilan göstermek istemem yoksa tüm favorilenenleri my posts sayfasında render ederdi
     <>
@@ -252,20 +254,28 @@ const ProfileProductCard = ({ post, myPost }) => {
                       {/*overlay*/}
                     </div>
                     <div
-                      className={`bg-gray-50 w-full h-full flex items-center justify-center absolute  p-1 rounded-xl border border-[#ef4a4a] ${
+                      className={`bg-gray-50 w-full h-[32rem] md:h-full flex items-center justify-center absolute p-1 rounded-xl border border-[#ef4a4a] ${
                         deleteValid[estate.id]
                           ? "opacity-100 pointer-events-auto duration-500"
                           : "opacity-0 pointer-events-none duration-500"
                       }`}
                     >
-                      <div className="w-full flex flex-col items-center justify-center gap-3 rounded-md">
-                        <DeleteIcon style={{ color: "#ef4a4a" }} />
-                        <p className="text-xs font-semibold">Are you sure?</p>
+                      <div className="w-full flex flex-col items-center justify-center gap-8 md:gap-3 rounded-md">
+                        <DeleteIcon
+                          style={{
+                            color: "#ef4a4a",
+                            width: isMobile ? "40px" : "25px",
+                            height: isMobile ? "40px" : "25px",
+                          }}
+                        />
+                        <p className="text-xl md:text-xs font-semibold">
+                          Are you sure?
+                        </p>
 
                         {post === "favorites" ? (
                           <button
                             onClick={() => removeFavoriteHandler(estate.id)}
-                            className="w-3/4 p-[6px] text-sm text-gray-50 bg-[#ef4a4a] rounded-md hover:brightness-105 duration-300"
+                            className="w-1/2 md:w-3/4 p-[1.5rem] md:p-[6px] text-xl md:text-sm text-gray-50 bg-[#ef4a4a] rounded-md hover:brightness-105 duration-300"
                           >
                             Yes, remove
                           </button>
@@ -279,7 +289,7 @@ const ProfileProductCard = ({ post, myPost }) => {
                         )}
                         <button
                           onClick={() => deleteValidHandler(estate.id)}
-                          className=" w-full text-xs text-[#ef4a4a] font-semibold hover:brightness-120"
+                          className="w-full text-xl md:text-xs text-[#ef4a4a] font-semibold hover:brightness-120"
                         >
                           Keep it
                         </button>

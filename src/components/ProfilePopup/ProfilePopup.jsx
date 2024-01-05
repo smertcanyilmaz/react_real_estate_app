@@ -193,7 +193,7 @@ const ProfilePopup = ({
 
   return (
     <div
-      className={`absolute top-1/2 left-1/2 transform-translate -translate-x-1/2 w-[30%]  bg-gray-50 border border-gray-400 duration-300 shadow-md shadow-gray-500 rounded-md px-3 py-5 ${
+      className={`absolute top-1/2 left-1/2 transform-translate -translate-x-1/2 w-[90%] md:w-[30%]  bg-gray-50 border border-gray-400 duration-300 shadow-md shadow-gray-500 rounded-md px-3 py-5 ${
         showOverlay
           ? "-translate-y-[60%] z-30 opacity-100"
           : "-translate-y-[75%] -z-30 opacity-0"
@@ -223,7 +223,7 @@ const ProfilePopup = ({
               <KeyRoundedIcon fontSize="large" style={{ color: "gray" }} />
             )}
           </div>
-          <p className="font-semibold text-xl tracking-wide text-gray-700">
+          <p className="font-semibold text-lg md:text-xl tracking-wide text-gray-700">
             {edit === 1 && "Change Your Name and Surname"}
             {edit === 2 &&
               (isPasswordCheck ? "Change Your Email" : "Verify Your Password")}

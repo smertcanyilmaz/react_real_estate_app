@@ -286,7 +286,7 @@ const ProfileProductCard = ({ post, myPost }) => {
                         ) : (
                           <button
                             onClick={() => deleteClickHandler(estate.id)}
-                            className="w-3/4 p-[6px] text-sm text-gray-50 bg-[#ef4a4a] rounded-md hover:brightness-105 duration-300"
+                            className="w-3/4 md:w-3/4 p-[1.5rem] md:p-[6px] text-xl md:text-sm text-gray-50 bg-[#ef4a4a] rounded-md hover:brightness-105 duration-300"
                           >
                             Yes, delete
                           </button>

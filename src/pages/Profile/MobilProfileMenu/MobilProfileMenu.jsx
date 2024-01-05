@@ -101,7 +101,7 @@ const MobilProfileMenu = () => {
           onClick={() =>
             navigate(`${userActive?.subscribe ? "" : "/membership"}`)
           }
-          className={`mx-3 py-3rounded-xl ${
+          className={`mx-3 py-3 rounded-xl ${
             userActive?.subscribe
               ? "bg-[#007FFF] border-none"
               : "border border-gray-500 "

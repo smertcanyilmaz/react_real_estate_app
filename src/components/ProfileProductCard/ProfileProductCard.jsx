@@ -190,7 +190,11 @@ const ProfileProductCard = ({ post, myPost }) => {
                         : estate?.specials?.map((special, index) => (
                             <p key={index}>{special},</p>
                           ))}
-                      {estate?.specials?.length > 3 ? "(...)" : ""}
+                      {estate?.specials?.length > 3
+                        ? isMobile
+                          ? "+"
+                          : "(...)"
+                        : ""}
                     </div>
                   )}
                   <p>

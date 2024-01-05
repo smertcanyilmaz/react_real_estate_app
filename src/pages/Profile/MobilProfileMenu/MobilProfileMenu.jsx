@@ -9,6 +9,7 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { getAuth, signOut } from "firebase/auth";
 import { ContextProfile } from "../../../Context/ProfileContext";
 import { Context } from "../../../Context/AuthContext";
+import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
 
 const MobilProfileMenu = () => {
   const navigate = useNavigate();
@@ -97,18 +98,36 @@ const MobilProfileMenu = () => {
         </div>
 
         <div
-          onClick={() => navigate("/membership")}
-          className="mx-3 py-3 border border-gray-500 rounded-xl"
+          onClick={() =>
+            navigate(`${userActive?.subscribe ? "" : "/membership"}`)
+          }
+          className={`mx-3 py-3 border border-gray-500 rounded-xl ${
+            userActive?.subscribe ? "bg-[#007FFF]" : ""
+          }`}
         >
           <div className="flex p-2 items-center justify-between">
             <div className="flex gap-2">
-              <p className="font-semibold text-lg">Membership</p>
+              <p
+                className={`font-semibold text-lg ${
+                  userActive?.subscribe ? "text-gray-100" : ""
+                }`}
+              >
+                Membership
+              </p>
 
               <span className="font-bold">
                 <AddRoundedIcon sx={{ color: "rgb(59 130 246)" }} />
               </span>
             </div>
-            <ArrowForwardIosOutlinedIcon fontSize="small" className="mr-4" />
+
+            {userActive?.subscribe ? (
+              <CheckOutlinedIcon
+                fontSize="small"
+                className="mr-4 text-gray-50"
+              />
+            ) : (
+              <ArrowForwardIosOutlinedIcon fontSize="small" className="mr-4" />
+            )}
           </div>
         </div>
 

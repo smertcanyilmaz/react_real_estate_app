@@ -24,22 +24,22 @@ const MobileMenu = () => {
   useEffect(() => {
     let prevScrollPos = window.scrollY;
 
-    // if (location.pathname !== "/profilemenu") {
-    const handleScroll = () => {
-      const currentScrollPos = window.scrollY;
-      const shouldShow =
-        currentScrollPos < prevScrollPos || currentScrollPos < 10;
+    if (location.pathname !== "/profilemenu") {
+      const handleScroll = () => {
+        const currentScrollPos = window.scrollY;
+        const shouldShow =
+          currentScrollPos < prevScrollPos || currentScrollPos < 10;
 
-      setIsScrolled(shouldShow);
-      prevScrollPos = currentScrollPos;
-    };
+        setIsScrolled(shouldShow);
+        prevScrollPos = currentScrollPos;
+      };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-    // }
-  }, []);
+      window.addEventListener("scroll", handleScroll);
+      return () => {
+        window.removeEventListener("scroll", handleScroll);
+      };
+    }
+  }, [pathname]);
 
   useEffect(() => {
     setSelectedMenuIcon("home");

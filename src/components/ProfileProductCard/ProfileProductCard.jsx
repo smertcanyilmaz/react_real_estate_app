@@ -113,7 +113,7 @@ const ProfileProductCard = ({ post, myPost }) => {
       {postChecker?.slice(0, myPost ? 1 : postChecker.length)?.map((estate) => (
         <div
           key={estate.id}
-          className={`flex flex-col w-full shadow-md shadow-gray-200/50  ${
+          className={`flex flex-col  w-full shadow-md shadow-gray-200/50  ${
             myPost ? "h-[20.1rem] relative p-10" : "p-3 h-[32rem] md:h-[12rem]"
           }`}
         >
@@ -254,7 +254,7 @@ const ProfileProductCard = ({ post, myPost }) => {
                       {/*overlay*/}
                     </div>
                     <div
-                      className={`bg-gray-50 w-full h-[32rem] md:h-full flex items-center justify-center absolute p-1 rounded-xl border border-[#ef4a4a] ${
+                      className={`bg-gray-50 w-full h-[31rem] md:h-full flex items-center justify-center absolute p-1 rounded-xl border border-[#ef4a4a] ${
                         deleteValid[estate.id]
                           ? "opacity-100 pointer-events-auto duration-500"
                           : "opacity-0 pointer-events-none duration-500"

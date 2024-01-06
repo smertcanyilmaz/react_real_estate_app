@@ -17,7 +17,7 @@ const MobilProfileMenu = () => {
   const path = location.pathname;
   const auth = getAuth();
   const { id } = useParams();
-  const { setUserSubscribe } = useContext(ContextProfile);
+  const { userSubscribe, setUserSubscribe } = useContext(ContextProfile);
   const { userActive } = useContext(Context);
 
   useEffect(() => {
@@ -98,11 +98,9 @@ const MobilProfileMenu = () => {
         </div>
 
         <div
-          onClick={() =>
-            navigate(`${userActive?.subscribe ? "" : "/membership"}`)
-          }
+          onClick={() => navigate(`${userSubscribe ? "" : "/membership"}`)}
           className={`mx-3 py-3 rounded-xl ${
-            userActive?.subscribe
+            userSubscribe
               ? "bg-[#007FFF] border-none"
               : "border border-gray-500 "
           }`}
@@ -111,7 +109,7 @@ const MobilProfileMenu = () => {
             <div className="flex gap-2">
               <p
                 className={`font-semibold text-lg ${
-                  userActive?.subscribe ? "text-gray-100" : ""
+                  userSubscribe ? "text-gray-100" : ""
                 }`}
               >
                 Membership
@@ -120,13 +118,13 @@ const MobilProfileMenu = () => {
               <span className="font-bold">
                 <AddRoundedIcon
                   className={`${
-                    userActive?.subscribe ? "text-gray-50" : "text-[#007FFF]"
+                    userSubscribe ? "text-gray-50" : "text-[#007FFF]"
                   }`}
                 />
               </span>
             </div>
 
-            {userActive?.subscribe ? (
+            {userSubscribe ? (
               <CheckOutlinedIcon
                 fontSize="small"
                 className="mr-4 text-gray-50"

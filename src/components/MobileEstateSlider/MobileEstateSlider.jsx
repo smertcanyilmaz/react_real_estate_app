@@ -36,7 +36,7 @@ const MobileEstateSlider = ({
     <div className="relative">
       <Slider {...settings}>
         {item?.images.map((image, index) => (
-          <div key={index} className="relative">
+          <div key={index} className="relative h-[40vh]">
             <img src={image} alt="" className="w-full h-full object-cover" />
           </div>
         ))}

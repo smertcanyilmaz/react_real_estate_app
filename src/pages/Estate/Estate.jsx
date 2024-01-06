@@ -59,89 +59,152 @@ const Estate = ({ setUnAuthNavbar }) => {
     }
   }, [favChecker]);
 
-  return (
-    <div className="w-[72rem] max-h-[100vh] mt-10 mb-10">
-      {openOverlayEstate && (
-        <OverlayEstate
-          setOpenOverlayEstate={setOpenOverlayEstate}
-          imagesIndex={imagesIndex}
-          item={item}
-          openOverlayEstate={openOverlayEstate}
-        />
-      )}
+  const forMobile = window.innerWidth <= 640;
 
-      <div key={item?.id} className="flex flex-col gap-5">
-        <div className="content flex flex-col gap-2">
-          <h1 className="text-3xl font-bold">{item?.title}</h1>
-          <div className="w-full flex justify-between items-center">
-            <div className="text-sm">
-              {item?.place?.district}, {item?.place?.city},
-              {item?.place?.country} | {item?.date}
-            </div>
-            <div
-              className={`text-gray-800/80 rounded-lg px-3 py-2 hover:bg-gray-300/50 cursor-pointer duration-300 active:scale-90 ${
-                userActiveFavorited && "bg-gray-300/50"
-              }`}
-              onClick={(e) => favoriteClickHandler(e, item.id)}
-            >
-              {!userActiveFavorited ? (
-                <FavoriteBorderRoundedIcon
-                  fontSize="small"
-                  style={componentStyle}
-                />
-              ) : (
-                <FavoriteRoundedIcon fontSize="small" style={componentStyle} />
-              )}
-              <span className="text-sm font-semibold underline ml-2">
-                {userActiveFavorited ? "Saved" : "Save"}
-              </span>
-            </div>
-          </div>
-        </div>
-        <EstateImages
-          item={item}
-          setOpenOverlayEstate={setOpenOverlayEstate}
-          setImagesIndex={setImagesIndex}
-          openOverlayEstate={openOverlayEstate}
-        />
-        <div className="info flex justify-between mt-5">
-          <div className="info1 flex-1 flex flex-col gap-2">
-            <div className="w-full flex justify-between text-xl font-bold">
-              House Status: {item?.status?.toUpperCase()}
-              <div className="flex-1 text-2xl font-bold text-end">
-                € {item?.price}
-              </div>
-            </div>
-            <div className="text-gray-700 flex flex-col gap-5">
-              <div className="w-full flex gap-3">
-                <p>{item?.rooms?.bedrooms} bedrooms</p>
-                <p>|</p>
-                <p>{item?.rooms?.bathrooms} bathrooms</p>
-              </div>
-              <div className="w-full flex flex-col gap-3 bg-gray-200/50 border border-gray-800 rounded-lg p-2">
-                <h3 className="font-semibold">Features</h3>
-                <div className="w-full flex flex-wrap gap-3">
-                  {item?.specials?.map((special, index) => (
-                    <div className="flex gap-1" key={index}>
-                      {index === item.specials.length ? (
-                        ""
-                      ) : (
-                        <CheckOutlinedIcon />
-                      )}
-                      {special}
-                    </div>
-                  ))}
+  return (
+    <>
+      {!forMobile ? (
+        <div className="w-[72rem] max-h-[100vh] mt-10 mb-10">
+          {openOverlayEstate && (
+            <OverlayEstate
+              setOpenOverlayEstate={setOpenOverlayEstate}
+              imagesIndex={imagesIndex}
+              item={item}
+              openOverlayEstate={openOverlayEstate}
+            />
+          )}
+
+          <div key={item?.id} className="flex flex-col gap-5">
+            <div className="content flex flex-col gap-2">
+              <h1 className="text-3xl font-bold">{item?.title}</h1>
+              <div className="w-full flex justify-between items-center">
+                <div className="text-sm">
+                  {item?.place?.district}, {item?.place?.city},
+                  {item?.place?.country} | {item?.date}
+                </div>
+                <div
+                  className={`text-gray-800/80 rounded-lg px-3 py-2 hover:bg-gray-300/50 cursor-pointer duration-300 active:scale-90 ${
+                    userActiveFavorited && "bg-gray-300/50"
+                  }`}
+                  onClick={(e) => favoriteClickHandler(e, item.id)}
+                >
+                  {!userActiveFavorited ? (
+                    <FavoriteBorderRoundedIcon
+                      fontSize="small"
+                      style={componentStyle}
+                    />
+                  ) : (
+                    <FavoriteRoundedIcon
+                      fontSize="small"
+                      style={componentStyle}
+                    />
+                  )}
+                  <span className="text-sm font-semibold underline ml-2">
+                    {userActiveFavorited ? "Saved" : "Save"}
+                  </span>
                 </div>
               </div>
             </div>
-          </div>
-          <div className="flex-1 h-full flex items-center justify-center text-lg">
-            Contact our agents by call center:
-            <span className="font-semibold ml-1">55555-55</span>
+            <EstateImages
+              item={item}
+              setOpenOverlayEstate={setOpenOverlayEstate}
+              setImagesIndex={setImagesIndex}
+              openOverlayEstate={openOverlayEstate}
+            />
+            <div className="info flex justify-between mt-5">
+              <div className="info1 flex-1 flex flex-col gap-2">
+                <div className="w-full flex justify-between text-xl font-bold">
+                  House Status: {item?.status?.toUpperCase()}
+                  <div className="flex-1 text-2xl font-bold text-end">
+                    € {item?.price}
+                  </div>
+                </div>
+                <div className="text-gray-700 flex flex-col gap-5">
+                  <div className="w-full flex gap-3">
+                    <p>{item?.rooms?.bedrooms} bedrooms</p>
+                    <p>|</p>
+                    <p>{item?.rooms?.bathrooms} bathrooms</p>
+                  </div>
+                  <div className="w-full flex flex-col gap-3 bg-gray-200/50 border border-gray-800 rounded-lg p-2">
+                    <h3 className="font-semibold">Features</h3>
+                    <div className="w-full flex flex-wrap gap-3">
+                      {item?.specials?.map((special, index) => (
+                        <div className="flex gap-1" key={index}>
+                          {index === item.specials.length ? (
+                            ""
+                          ) : (
+                            <CheckOutlinedIcon />
+                          )}
+                          {special}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="flex-1 h-full flex items-center justify-center text-lg">
+                Contact our agents by call center:
+                <span className="font-semibold ml-1">55555-55</span>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+      ) : (
+        //todo
+        <div className="w-screen flex flex-col gap-5">
+          {/* slayt yapılacak */}
+          <div className="w-full h-[40vh]">
+            <img
+              src={item?.images[0]}
+              alt=""
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div className="estate_infos w-full flex flex-col gap-5 px-2">
+            <div className="w-full flex justify-between">
+              <div className="flex flex-col gap-2">
+                <h1 className="text-xl font-semibold">{item?.title}</h1>
+                <div className="text-xs">
+                  {item?.place?.district}, {item?.place?.city},
+                  {item?.place?.country}
+                </div>
+              </div>
+              <div className="text-sm">{item?.date}</div>
+            </div>
+            <div className="w-full flex justify-between  font-bold">
+              House Status: {item?.status?.toUpperCase()}
+              <div className="flex-1 text-lg  font-bold text-end">
+                € {item?.price}
+              </div>
+            </div>
+            <div className="w-full flex gap-3 text-sm">
+              <p>{item?.rooms?.bedrooms} bedrooms</p>
+              <p>|</p>
+              <p>{item?.rooms?.bathrooms} bathrooms</p>
+            </div>
+            <div className="w-full flex flex-col gap-3 bg-gray-200/50 border border-gray-800 rounded-lg p-2">
+              <h3 className="font-semibold">Features</h3>
+              <div className="w-full flex flex-wrap gap-3">
+                {item?.specials?.map((special, index) => (
+                  <div className="flex gap-1 text-sm" key={index}>
+                    {index === item.specials.length ? (
+                      ""
+                    ) : (
+                      <CheckOutlinedIcon />
+                    )}
+                    {special}
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="flex-1 h-full flex items-center">
+              Contact our agents by call center:
+              <span className="font-semibold ml-1">55555-55</span>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

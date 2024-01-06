@@ -20,6 +20,7 @@ const MobileEstateSlider = ({
     slidesToShow: 1,
     slidesToScroll: 1,
     swipeToSlide: true,
+    arrows: false,
     beforeChange: (oldIndex, newIndex) => setCurrentSlide(newIndex),
   };
 

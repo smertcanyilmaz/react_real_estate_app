@@ -161,7 +161,7 @@ const Estate = ({ setUnAuthNavbar }) => {
             />
           </div>
           <div className="estate_infos w-full flex flex-col gap-5 px-2">
-            <div className="w-full flex justify-between">
+            <div className="w-full flex  justify-between">
               <div className="flex flex-col gap-2">
                 <h1 className="text-xl font-semibold">{item?.title}</h1>
                 <div className="text-xs">
@@ -169,7 +169,7 @@ const Estate = ({ setUnAuthNavbar }) => {
                   {item?.place?.country}
                 </div>
               </div>
-              <div className="text-sm">{item?.date}</div>
+              <div className="text-sm mt-1">{item?.date}</div>
             </div>
             <div className="w-full flex justify-between  font-bold">
               House Status: {item?.status?.toUpperCase()}

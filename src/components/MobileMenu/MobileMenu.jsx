@@ -5,7 +5,7 @@ import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlin
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import { ContextFilter } from "../../Context/FilterContext";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { ContextProfile } from "../../Context/ProfileContext";
 import { Context } from "../../Context/AuthContext";
 
@@ -21,25 +21,27 @@ const MobileMenu = () => {
 
   const pathname = useLocation();
 
-  useEffect(() => {
-    let prevScrollPos = window.scrollY;
+  // useEffect(() => {
+  //   let prevScrollPos = window.scrollY;
 
-    if (location.pathname !== "/profilemenu") {
-      const handleScroll = () => {
-        const currentScrollPos = window.scrollY;
-        const shouldShow =
-          currentScrollPos < prevScrollPos || currentScrollPos < 10;
+  //   if (
+  //     location.pathname !== "/profilemenu"
+  //   ) {
+  //     const handleScroll = () => {
+  //       const currentScrollPos = window.scrollY;
+  //       const shouldShow =
+  //         currentScrollPos < prevScrollPos || currentScrollPos < 10;
 
-        setIsScrolled(shouldShow);
-        prevScrollPos = currentScrollPos;
-      };
+  //       setIsScrolled(shouldShow);
+  //       prevScrollPos = currentScrollPos;
+  //     };
 
-      window.addEventListener("scroll", handleScroll);
-      return () => {
-        window.removeEventListener("scroll", handleScroll);
-      };
-    }
-  }, [pathname]);
+  //     window.addEventListener("scroll", handleScroll);
+  //     return () => {
+  //       window.removeEventListener("scroll", handleScroll);
+  //     };
+  //   }
+  // }, [pathname]);
 
   useEffect(() => {
     setSelectedMenuIcon("home");

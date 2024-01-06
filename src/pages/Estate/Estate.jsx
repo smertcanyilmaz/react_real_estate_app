@@ -11,6 +11,7 @@ import { ContextProfile } from "../../Context/ProfileContext";
 import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
 import { ContextFilter } from "../../Context/FilterContext";
 import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
+import MobileEstateSlider from "../../components/MobileEstateSlider/MobileEstateSlider";
 
 const Estate = ({ setUnAuthNavbar }) => {
   const { id } = useParams();
@@ -153,13 +154,19 @@ const Estate = ({ setUnAuthNavbar }) => {
         //todo
         <div className="w-screen flex flex-col gap-5">
           {/* slayt yapılacak */}
-          <div className="w-full h-[40vh]">
+          <MobileEstateSlider
+            item={item}
+            setOpenOverlayEstate={setOpenOverlayEstate}
+            setImagesIndex={setImagesIndex}
+            openOverlayEstate={openOverlayEstate}
+          />
+          {/* <div className="w-full h-[40vh]">
             <img
               src={item?.images[0]}
               alt=""
               className="w-full h-full object-cover"
             />
-          </div>
+          </div> */}
           <div className="estate_infos w-full flex flex-col gap-5 px-2">
             <div className="w-full flex  justify-between">
               <div className="flex flex-col gap-2">

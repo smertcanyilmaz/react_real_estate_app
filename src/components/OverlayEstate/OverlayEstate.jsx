@@ -3,6 +3,9 @@ import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import "./OverlayEstate.css";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const OverlayEstate = ({
   setOpenOverlayEstate,
@@ -53,9 +56,24 @@ const OverlayEstate = ({
     }
   }, [count, images.length]);
 
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 300,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    swipeToSlide: true,
+    arrows: false,
+    beforeChange: (oldIndex, newIndex) => setCurrentSlide(newIndex),
+  };
+
+  const forMobile = window.innerWidth <= 640;
+
   return (
     <div
-      className={`fixed left-0 top-0 bottom-0 min-w-[15rem] md:w-full px-1 md:p-12 bg-black z-30 text-gray-200 duration-500 transition-transform  ${
+      className={`fixed left-0 top-0 bottom-0 min-w-[100vw] md:w-full px-1 md:p-12 bg-black z-30 text-gray-200 duration-500 transition-transform  ${
         openOverlayEstate
           ? "-translate-y-0 z-30 opacity-100"
           : "translate-y-[30%] z-30 opacity-0"
@@ -82,6 +100,7 @@ const OverlayEstate = ({
         >
           <ArrowBackIosNewIcon fontSize="small" />
         </div>
+
         <div className="md:max-w-4xl h-[50vh] md:h-[75vh] max-h-screen flex-1 ">
           <img
             src={images[count]}

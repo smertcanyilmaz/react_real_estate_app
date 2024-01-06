@@ -228,7 +228,7 @@ const ProductCard = ({ currentSlide, sale, EstatesList }) => {
     <div
       className={
         EstatesList
-          ? "grid grid-cols-4 gap-x-5 gap-y-7"
+          ? "flex flex-col gap-5 md:grid md:grid-cols-4 md:gap-x-5 md:gap-y-7"
           : " flex gap-6 overflow-hidden"
       }
     >
@@ -236,7 +236,9 @@ const ProductCard = ({ currentSlide, sale, EstatesList }) => {
         <Link to={`/estates/${estate.id}`} key={estate.id}>
           <div
             className={`flex flex-col  bg-gray-50 rounded-2xl transform transition-transform duration-300 cursor-pointer relative ${
-              EstatesList ? "min-w-[14.60rem] h-64" : "min-w-[23rem] h-[24rem]"
+              EstatesList
+                ? "min-w-[14.60rem] h-72 md:h-64"
+                : "min-w-[23rem] h-[24rem]"
             }`}
             style={{ transform: `translateX(-${currentSlide * 24.5}rem)` }}
           >
@@ -244,7 +246,7 @@ const ProductCard = ({ currentSlide, sale, EstatesList }) => {
               src={estate?.image}
               alt=""
               className={`object-cover rounded-t-2xl ${
-                EstatesList ? "h-40 " : "h-[15rem]"
+                EstatesList ? "h-2/3 md:h-40 " : "h-[15rem]"
               }`}
             />
             <div

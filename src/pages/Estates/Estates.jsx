@@ -51,7 +51,7 @@ const Estates = ({ setUnAuthNavbar }) => {
   };
 
   return (
-    <div className="max-w-6xl mt-10 flex flex-col gap-10">
+    <div className="w-screen px-5 md:px-0 md:max-w-6xl md:mt-10 flex flex-col gap-10">
       {startEstatesTop && <OverlayFilters />}
 
       <EstatesFilters />

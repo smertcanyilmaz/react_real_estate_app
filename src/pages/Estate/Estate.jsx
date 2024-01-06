@@ -180,7 +180,7 @@ const Estate = ({ setUnAuthNavbar }) => {
                 € {item?.price}
               </div>
             </div>
-            <div className="w-full flex gap-3 text-sm">
+            <div className="w-full flex gap-1 text-sm">
               <p>{item?.rooms?.bedrooms} bedrooms</p>
               <p>|</p>
               <p>{item?.rooms?.bathrooms} bathrooms</p>

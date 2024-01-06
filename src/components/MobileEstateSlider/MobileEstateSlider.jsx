@@ -42,7 +42,7 @@ const MobileEstateSlider = ({
         ))}
       </Slider>
 
-      <div className="absolute top-0 left-0 w-full  flex justify-between p-2">
+      <div className="absolute top-0 left-0 w-full flex justify-between p-2">
         <div
           onClick={() => navigate(-1)}
           className="flex items-center justify-center w-8 h-8 rounded-full bg-gray-100 text-gray-800 shadow-md"

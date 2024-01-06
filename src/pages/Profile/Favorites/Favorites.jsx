@@ -13,7 +13,7 @@ const Favorites = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (location.pathname === "/posts/favorites" && window.innerWidth <= 640)
+    if (location.pathname === "/favorites" && window.innerWidth <= 640)
       document.body.style.backgroundColor = "#ffffff";
     return () => {
       document.body.style.backgroundColor = "#e3e3e1";
@@ -39,7 +39,9 @@ const Favorites = () => {
               <div className="border-2 border-gray-300 p-2 rounded-full flex items-center justify-center">
                 <FavoriteRoundedIcon style={{ color: "gray" }} />
               </div>
-              <p className="text-gray-600">You don't have any favorite yet</p>
+              <p className="text-gray-600 text-sm md:text-base">
+                You don't have any favorite yet
+              </p>
             </>
           ) : (
             <ProfileProductCard post="favorites" />

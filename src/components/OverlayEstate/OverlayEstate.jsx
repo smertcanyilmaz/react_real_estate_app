@@ -68,7 +68,7 @@ const OverlayEstate = ({
         >
           <CloseOutlinedIcon /> Close
         </div>
-        <div className="text-lg tracking-wider">
+        <div className="md:text-lg tracking-wider">
           {count + 1}/{images.length}
         </div>
         <div className="hidden md:block"></div>
@@ -82,7 +82,7 @@ const OverlayEstate = ({
         >
           <ArrowBackIosNewIcon fontSize="small" />
         </div>
-        <div className="md:max-w-4xl h-[75vh] max-h-screen flex-1 ">
+        <div className="md:max-w-4xl h-[50vh] md:h-[75vh] max-h-screen flex-1 ">
           <img
             src={images[count]}
             alt=""

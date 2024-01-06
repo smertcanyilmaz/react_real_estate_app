@@ -39,7 +39,7 @@ const MobileEstateSlider = ({
           <span
             key={index}
             onClick={() => setImagesIndex(index)}
-            className={`cursor-pointer mx-[5px] mb-2 inline-block w-3 h-3 rounded-full ${
+            className={`cursor-pointer mx-1 mb-2 inline-block w-2 h-2 rounded-full ${
               index === currentSlide ? "bg-gray-500" : "bg-gray-200"
             }`}
           />

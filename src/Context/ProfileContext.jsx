@@ -265,7 +265,11 @@ const ProfileContext = ({ children }) => {
 
   useEffect(() => {
     if (userActive) {
-      if (path === "membership" || location.pathname === "/") {
+      if (
+        path === "membership" ||
+        location.pathname === "/" ||
+        location.pathname === "/profilemenu"
+      ) {
         const userRef = doc(db, "users", userActiveUid);
 
         const unsubscribe = onSnapshot(userRef, (doc) => {

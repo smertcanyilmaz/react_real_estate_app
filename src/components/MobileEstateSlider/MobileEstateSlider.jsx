@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -32,11 +32,24 @@ const MobileEstateSlider = ({
     beforeChange: (oldIndex, newIndex) => setCurrentSlide(newIndex),
   };
 
+  const clickHandler = (index) => {
+    setOpenOverlayEstate(true);
+    setImagesIndex(index);
+  };
+
+  //   useEffect(() => {
+  //     document.body.style.overflow = openOverlayEstate ? "hidden" : "auto";
+  //   }, [openOverlayEstate]);
+
   return (
     <div className="relative">
       <Slider {...settings}>
         {item?.images.map((image, index) => (
-          <div key={index} className="relative h-[40vh]">
+          <div
+            onClick={() => clickHandler(index)}
+            key={index}
+            className="relative h-[40vh]"
+          >
             <img src={image} alt="" className="w-full h-full object-cover" />
           </div>
         ))}
@@ -53,7 +66,9 @@ const MobileEstateSlider = ({
         </div>
         <div
           onClick={(e) => favoriteClickHandler(e, item.id)}
-          className="flex items-center justify-center w-8 h-8 rounded-full bg-gray-100 text-gray-600/80 shadow-md z-50"
+          className={`flex items-center justify-center w-8 h-8 rounded-full bg-gray-100 text-gray-600/80 shadow-md ${
+            openOverlayEstate ? "z-0" : "z-50"
+          }`}
         >
           {!userActiveFavorited ? (
             <FavoriteBorderRoundedIcon

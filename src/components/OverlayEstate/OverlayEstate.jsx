@@ -55,13 +55,13 @@ const OverlayEstate = ({
 
   return (
     <div
-      className={`fixed left-0 top-0 bottom-0 w-full p-12 bg-black z-30 text-gray-200 duration-500 transition-transform  ${
+      className={`fixed left-0 top-0 bottom-0 min-w-[15rem] md:w-full px-1 md:p-12 bg-black z-30 text-gray-200 duration-500 transition-transform  ${
         openOverlayEstate
           ? "-translate-y-0 z-30 opacity-100"
           : "translate-y-[30%] z-30 opacity-0"
       }   `}
     >
-      <div className=" flex items-center justify-between ">
+      <div className="flex items-center justify-between pt-5 px-2 md:pt-0 md:px-0">
         <div
           className="w-24 p-2 text-gray-200 hover:bg-gray-800 hover:border-black rounded-lg flex items-center gap-2 cursor-pointer"
           onClick={closeHandler}
@@ -71,18 +71,18 @@ const OverlayEstate = ({
         <div className="text-lg tracking-wider">
           {count + 1}/{images.length}
         </div>
-        <div></div>
+        <div className="hidden md:block"></div>
       </div>
-      <div className="flex items-center justify-between mt-10">
+      <div className="w-full flex items-center justify-between mt-10">
         <div
           onClick={prevHandler}
-          className={`w-12 h-12 rounded-full border-2 border-gray-400 flex items-center justify-center cursor-pointer ${
+          className={`md:w-12 md:h-12 rounded-full md:border-2 border-gray-400 flex items-center justify-center cursor-pointer ${
             !showLeftArrow && "opacity-0 cursor-default "
           }`}
         >
           <ArrowBackIosNewIcon fontSize="small" />
         </div>
-        <div className="max-w-4xl h-[75vh] max-h-screen flex-1 ">
+        <div className="md:max-w-4xl h-[75vh] max-h-screen flex-1 ">
           <img
             src={images[count]}
             alt=""
@@ -92,7 +92,7 @@ const OverlayEstate = ({
 
         <div
           onClick={nextHandler}
-          className={`w-12 h-12 rounded-full border-2 border-gray-400 flex items-center justify-center cursor-pointer ${
+          className={`md:w-12 md:h-12 rounded-full md:border-2 border-gray-400 flex items-center justify-center cursor-pointer ${
             !showRightArrow && "opacity-0 cursor-default"
           }`}
         >

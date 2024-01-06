@@ -64,17 +64,16 @@ const Estate = ({ setUnAuthNavbar }) => {
 
   return (
     <>
+      {openOverlayEstate && (
+        <OverlayEstate
+          setOpenOverlayEstate={setOpenOverlayEstate}
+          imagesIndex={imagesIndex}
+          item={item}
+          openOverlayEstate={openOverlayEstate}
+        />
+      )}
       {!forMobile ? (
         <div className="w-[72rem] max-h-[100vh] mt-10 mb-10">
-          {openOverlayEstate && (
-            <OverlayEstate
-              setOpenOverlayEstate={setOpenOverlayEstate}
-              imagesIndex={imagesIndex}
-              item={item}
-              openOverlayEstate={openOverlayEstate}
-            />
-          )}
-
           <div key={item?.id} className="flex flex-col gap-5">
             <div className="content flex flex-col gap-2">
               <h1 className="text-3xl font-bold">{item?.title}</h1>

@@ -153,20 +153,16 @@ const Estate = ({ setUnAuthNavbar }) => {
       ) : (
         //todo
         <div className="w-screen flex flex-col gap-5">
-          {/* slayt yapılacak */}
           <MobileEstateSlider
             item={item}
             setOpenOverlayEstate={setOpenOverlayEstate}
             setImagesIndex={setImagesIndex}
             openOverlayEstate={openOverlayEstate}
+            favoriteClickHandler={favoriteClickHandler}
+            componentStyle={componentStyle}
+            userActiveFavorited={userActiveFavorited}
           />
-          {/* <div className="w-full h-[40vh]">
-            <img
-              src={item?.images[0]}
-              alt=""
-              className="w-full h-full object-cover"
-            />
-          </div> */}
+
           <div className="estate_infos w-full flex flex-col gap-5 px-2">
             <div className="w-full flex  justify-between">
               <div className="flex flex-col gap-2">

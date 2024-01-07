@@ -91,7 +91,7 @@ const MobileEstatesSlider = ({ selectedButtonHandler, selectedButton }) => {
   return (
     <Slider
       {...settings}
-      className=" bg-gray-100/80 rounded-lg border-b-2 shadow"
+      className=" bg-gray-100/80 rounded-lg border-b-2 shadow absolute -left-5 w-screen"
     >
       {buttons.map((button) => (
         <div key={button.id} className="text-center ">

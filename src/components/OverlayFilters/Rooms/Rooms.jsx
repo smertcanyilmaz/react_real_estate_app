@@ -53,7 +53,7 @@ const Rooms = ({
     dots: false,
     infinite: false,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: 5,
     slidesToScroll: 2,
     arrows: false,
     responsive: [
@@ -69,12 +69,12 @@ const Rooms = ({
   return (
     <>
       {forMobile ? (
-        <Slider {...settings} className="absolute -left-5 w-screen pl-2">
+        <Slider {...settings} className="absolute -left-5 w-screen">
           {numbers.map((number, index) => (
             <React.Fragment key={index}>
               {number === "Any" ? (
                 <div
-                  className={`w-20 h-10 rounded-2xl flex justify-center items-center cursor-pointer duration-300 ${
+                  className={`w-20 h-10 ml-5 md:ml-0 rounded-2xl flex justify-center items-center cursor-pointer duration-300 ${
                     (type === "bedrooms"
                       ? selectedNumbers
                       : selectedNumbers2) === null
@@ -93,7 +93,7 @@ const Rooms = ({
                       : selectedNumbers2) === index
                       ? "bg-gray-800 text-white"
                       : "bg-gray-100 text-gray-800"
-                  } flex justify-center items-center cursor-pointer duration-300 ml-4`}
+                  } flex justify-center items-center cursor-pointer duration-300 ml-10`}
                   onClick={() => selectedNumbersHandler(index)}
                 >
                   {number}

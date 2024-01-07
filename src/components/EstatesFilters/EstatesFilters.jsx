@@ -16,6 +16,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import MobileEstatesSlider from "../MobileEstatesSlider/MobileEstatesSlider";
 import WestOutlinedIcon from "@mui/icons-material/WestOutlined";
+import { useNavigate } from "react-router-dom";
 
 const EstatesFilters = () => {
   const {
@@ -86,6 +87,7 @@ const EstatesFilters = () => {
     },
   ];
 
+  const navigate = useNavigate();
   const forMobile = window.innerWidth <= 640;
 
   return (

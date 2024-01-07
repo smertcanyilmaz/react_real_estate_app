@@ -120,7 +120,7 @@ const EstatesFilters = () => {
           <WestOutlinedIcon />
         </div>
         <div
-          className={`flex items-center justify-center gap-2 w-[60%] h-10 md:w-28 md:h-12 rounded-xl bg-[--white] border border-gray-400 hover:bg-gray-800 cursor-pointer relative 
+          className={`flex items-center justify-center gap-2 w-[30%] h-10 md:w-28 md:h-12 rounded-xl bg-[--white] border border-gray-400 hover:bg-gray-800 cursor-pointer relative text-sm md:text-base
         ${
           filterTypes.length !== 0 && !openFiltersOverlay
             ? "border-2 border-gray-800 hover:bg-white hover:text-black duration-0"
@@ -138,7 +138,7 @@ const EstatesFilters = () => {
                 </div>
               </div>
             )}
-          <SortOutlinedIcon />
+          <SortOutlinedIcon fontSize={forMobile ? "small" : "medium"} />
           Filters
         </div>
       </div>

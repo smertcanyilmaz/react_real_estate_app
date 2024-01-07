@@ -93,7 +93,7 @@ const Rooms = ({
                       : selectedNumbers2) === index
                       ? "bg-gray-800 text-white"
                       : "bg-gray-100 text-gray-800"
-                  } flex justify-center items-center cursor-pointer duration-300 ml-10`}
+                  } flex justify-center items-center cursor-pointer duration-300 ml-10 mb-[1px]`}
                   onClick={() => selectedNumbersHandler(index)}
                 >
                   {number}

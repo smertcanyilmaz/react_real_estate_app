@@ -98,7 +98,7 @@ const MobileEstatesSlider = ({ selectedButtonHandler, selectedButton }) => {
           <div
             onClick={() => selectedButtonHandler(button.id, button.name)}
             className={` p-2 rounded-lg mx-2 h-16 w-20  ${
-              selectedButton === button.id ? "bg-[#c0c6ff]" : "bg-gray-100/80"
+              selectedButton === button.id ? "bg-[#c0c6ff]" : "bg-inherit"
             }`}
           >
             {button.icon}

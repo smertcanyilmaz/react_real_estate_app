@@ -2,13 +2,13 @@ import React, { useContext } from "react";
 import { signOut, getAuth } from "firebase/auth";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useLocation, useParams } from "react-router-dom";
-import { ContextProfile } from "../../../Context/ProfileContext";
+// import { ContextProfile } from "../../../Context/ProfileContext";
 const Logout = () => {
   const auth = getAuth();
   const { id } = useParams();
   const location = useLocation();
   const path = location.pathname;
-  const { setUserSubscribe } = useContext(ContextProfile);
+  // const { setUserSubscribe } = useContext(ContextProfile);
 
   const handleSignOut = async () => {
     try {

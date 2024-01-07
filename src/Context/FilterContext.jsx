@@ -107,7 +107,9 @@ export const FilterContext = ({ children }) => {
     // quick section seçim
     if (selectedButton === id) {
       setSelectedButtons(null);
-      setFilter("all");
+      // setFilter("all");
+      setFilter("");
+      setStatus("all");
     } else {
       setSelectedButtons(id);
       setFilter(name);

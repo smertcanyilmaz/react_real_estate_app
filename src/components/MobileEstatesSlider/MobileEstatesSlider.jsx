@@ -11,8 +11,11 @@ import PoolOutlinedIcon from "@mui/icons-material/PoolOutlined";
 import LandscapeOutlinedIcon from "@mui/icons-material/LandscapeOutlined";
 import SnowmobileOutlinedIcon from "@mui/icons-material/SnowmobileOutlined";
 import AgricultureIcon from "@mui/icons-material/Agriculture";
+import WestOutlinedIcon from "@mui/icons-material/WestOutlined";
+import { useNavigate } from "react-router-dom";
 
 const MobileEstatesSlider = ({ selectedButtonHandler, selectedButton }) => {
+  const navigate = useNavigate();
   const buttons = [
     {
       id: 0,
@@ -89,21 +92,29 @@ const MobileEstatesSlider = ({ selectedButtonHandler, selectedButton }) => {
     ],
   };
   return (
-    <Slider {...settings} className="mt-8">
-      {buttons.map((button) => (
-        <div key={button.id} className="text-center">
-          <div
-            onClick={() => selectedButtonHandler(button.id, button.name)}
-            className={` p-2 rounded-lg shadow-md mx-2 h-16 w-20 border ${
-              selectedButton === button.id ? "bg-[#c0c6ff]" : "bg-gray-100/80"
-            }`}
-          >
-            {button.icon}
-            <p className="mt-2 text-[0.55rem]">{button.title}</p>
+    <>
+      {/* <div onClick={() => navigate(-1)} className="md:hidden p-3">
+        <WestOutlinedIcon />
+      </div> */}
+      <Slider
+        {...settings}
+        className=" bg-gray-100/80 rounded-lg border-b-2 shadow mb-3"
+      >
+        {buttons.map((button) => (
+          <div key={button.id} className="text-center ">
+            <div
+              onClick={() => selectedButtonHandler(button.id, button.name)}
+              className={` p-2 rounded-lg mx-2 h-16 w-20  ${
+                selectedButton === button.id ? "bg-[#c0c6ff]" : "bg-gray-100/80"
+              }`}
+            >
+              {button.icon}
+              <p className="mt-2 text-[0.55rem]">{button.title}</p>
+            </div>
           </div>
-        </div>
-      ))}
-    </Slider>
+        ))}
+      </Slider>
+    </>
   );
 };
 

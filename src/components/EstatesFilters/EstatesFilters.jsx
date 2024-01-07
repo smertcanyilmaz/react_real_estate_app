@@ -15,6 +15,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import MobileEstatesSlider from "../MobileEstatesSlider/MobileEstatesSlider";
+import WestOutlinedIcon from "@mui/icons-material/WestOutlined";
 
 const EstatesFilters = () => {
   const {
@@ -88,7 +89,7 @@ const EstatesFilters = () => {
   const forMobile = window.innerWidth <= 640;
 
   return (
-    <div className="categories w-full flex flex-col md:flex-row md:justify-between md:items-center md:gap-5">
+    <div className="categories w-full flex flex-col-reverse  md:flex-row md:justify-between md:items-center md:gap-5">
       {!forMobile ? (
         <div className="quickSelection flex gap-5">
           {buttons.map((button) => (
@@ -112,8 +113,12 @@ const EstatesFilters = () => {
           selectedButton={selectedButton}
         />
       )}
-      <div
-        className={`flex items-center justify-center gap-2 w-28 h-12 rounded-xl bg-[--white] border border-gray-400 hover:bg-gray-800  cursor-pointer relative 
+      <div className="flex justify-between my-3">
+        <div onClick={() => navigate(-1)} className="md:hidden p-3">
+          <WestOutlinedIcon />
+        </div>
+        <div
+          className={`flex items-center justify-center gap-2 w-28 h-12 rounded-xl bg-[--white] border border-gray-400 hover:bg-gray-800 cursor-pointer relative 
         ${
           filterTypes.length !== 0 && !openFiltersOverlay
             ? "border-2 border-gray-800 hover:bg-white hover:text-black duration-0"
@@ -121,18 +126,19 @@ const EstatesFilters = () => {
         } 
         
         `}
-        onClick={() => openFilters()}
-      >
-        {filterTypes.length !== 0 &&
-          (!openFiltersOverlay || (filtersApplied && openFiltersOverlay)) && (
-            <div className="bg-[--bg_color] absolute -top-1 -right-1 w-5 h-5 rounded-full  flex justify-center items-center">
-              <div className="bg-black rounded-full text-xs text-white flex justify-center items-center  w-[1.125rem] h-[1.125rem] ">
-                {filterTypes.length}
+          onClick={() => openFilters()}
+        >
+          {filterTypes.length !== 0 &&
+            (!openFiltersOverlay || (filtersApplied && openFiltersOverlay)) && (
+              <div className="bg-[--bg_color] absolute -top-1 -right-1 w-5 h-5 rounded-full  flex justify-center items-center">
+                <div className="bg-black rounded-full text-xs text-white flex justify-center items-center  w-[1.125rem] h-[1.125rem] ">
+                  {filterTypes.length}
+                </div>
               </div>
-            </div>
-          )}
-        <SortOutlinedIcon />
-        Filters
+            )}
+          <SortOutlinedIcon />
+          Filters
+        </div>
       </div>
     </div>
   );

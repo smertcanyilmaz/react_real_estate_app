@@ -85,7 +85,7 @@ const OverlayFilters = () => {
           : "translate-y-[30%] -z-30 opacity-0"
       } `}
     >
-      <div className="section1 w-full flex justify-between py-3 px-5 md:py-6 md:px-10">
+      <div className="section1 w-full flex justify-between py-2 px-5 md:py-6 md:px-10">
         <CloseOutlinedIcon
           className="cursor-pointer"
           onClick={() => openFilters()}
@@ -146,7 +146,7 @@ const OverlayFilters = () => {
           </div>
         </div>
       </div>
-      <div className="section3 w-full flex justify-between items-center py-6 px-10">
+      <div className="section3 w-full flex justify-between items-center py-2 px-5 md:py-6 md:px-10">
         <p
           className="underline font-semibold cursor-pointer"
           onClick={clearHandler}
@@ -154,7 +154,7 @@ const OverlayFilters = () => {
           Clear all
         </p>
         <div
-          className="w-40 h-12 rounded-lg bg-gray-800 flex justify-center items-center text-white cursor-pointer"
+          className="w-28 h-10 md:w-40 md:h-12 text-sm md:text-base rounded-lg bg-gray-800 flex justify-center items-center text-white cursor-pointer"
           onClick={showHandler}
         >
           Show Places

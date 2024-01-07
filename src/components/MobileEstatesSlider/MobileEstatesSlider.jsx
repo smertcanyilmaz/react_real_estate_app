@@ -91,14 +91,14 @@ const MobileEstatesSlider = ({ selectedButtonHandler, selectedButton }) => {
   return (
     <Slider
       {...settings}
-      className=" bg-gray-100/80 rounded-lg border-b-2 shadow absolute -left-5 w-screen"
+      className=" bg-gray-100 rounded-lg border-b-2 shadow absolute -left-5 w-screen"
     >
       {buttons.map((button) => (
         <div key={button.id} className="text-center ">
           <div
             onClick={() => selectedButtonHandler(button.id, button.name)}
-            className={` p-2 rounded-lg mx-2 h-16 w-20  ${
-              selectedButton === button.id ? "bg-[#c0c6ff]" : "bg-inherit"
+            className={`p-2 rounded-lg mx-2 h-16 w-20  ${
+              selectedButton === button.id ? "bg-[#c0c6ff]" : "bg-gray-100"
             }`}
           >
             {button.icon}

@@ -77,7 +77,7 @@ const MobileEstatesSlider = ({ selectedButtonHandler, selectedButton }) => {
     infinite: false,
     speed: 500,
     slidesToShow: 3,
-    slidesToScroll: 2,
+    slidesToScroll: 1,
     arrows: false,
     responsive: [
       {

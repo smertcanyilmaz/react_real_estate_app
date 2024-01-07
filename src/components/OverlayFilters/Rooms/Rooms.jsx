@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import "./Rooms.css";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const Rooms = ({
   setSelectedRoomNumbers,
@@ -44,39 +47,97 @@ const Rooms = ({
     }
   };
 
+  const forMobile = window.innerWidth <= 640;
+
+  const settings = {
+    dots: false,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    arrows: false,
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 5,
+        },
+      },
+    ],
+  };
+
   return (
-    <div className="flex gap-4 items-center">
-      {numbers.map((number, index) => (
-        // fragment kullandım çünkü sadece <> kullandığımda ve maplenen divlere key verdiğimde unique key sorunu oluşuyordu
-        <React.Fragment key={index}>
-          {number === "Any" ? (
-            <div
-              className={`w-20 h-10 rounded-2xl  flex justify-center items-center cursor-pointer duration-300 ${
-                (type === "bedrooms" ? selectedNumbers : selectedNumbers2) ===
-                null
-                  ? "bg-gray-800 text-white "
-                  : "bg-gray-100 text-gray-800 border border-gray-800"
-              }`}
-              onClick={() => selectedNumbersHandler(null)}
-            >
-              {number}
-            </div>
-          ) : (
-            <div
-              className={`numbers ${
-                (type === "bedrooms" ? selectedNumbers : selectedNumbers2) ===
-                index
-                  ? "bg-gray-800 text-white"
-                  : "bg-gray-100 text-gray-800"
-              } flex justify-center items-center cursor-pointer duration-300`}
-              onClick={() => selectedNumbersHandler(index)}
-            >
-              {number}
-            </div>
-          )}
-        </React.Fragment>
-      ))}
-    </div>
+    <>
+      {forMobile ? (
+        <Slider {...settings} className="absolute -left-5 w-screen pl-2">
+          {numbers.map((number, index) => (
+            <React.Fragment key={index}>
+              {number === "Any" ? (
+                <div
+                  className={`w-20 h-10 rounded-2xl flex justify-center items-center cursor-pointer duration-300 ${
+                    (type === "bedrooms"
+                      ? selectedNumbers
+                      : selectedNumbers2) === null
+                      ? "bg-gray-800 text-white "
+                      : "bg-gray-100 text-gray-800 border border-gray-800"
+                  }`}
+                  onClick={() => selectedNumbersHandler(null)}
+                >
+                  {number}
+                </div>
+              ) : (
+                <div
+                  className={`numbers ${
+                    (type === "bedrooms"
+                      ? selectedNumbers
+                      : selectedNumbers2) === index
+                      ? "bg-gray-800 text-white"
+                      : "bg-gray-100 text-gray-800"
+                  } flex justify-center items-center cursor-pointer duration-300 ml-4`}
+                  onClick={() => selectedNumbersHandler(index)}
+                >
+                  {number}
+                </div>
+              )}
+            </React.Fragment>
+          ))}
+        </Slider>
+      ) : (
+        <div className="flex gap-4 items-center">
+          {numbers.map((number, index) => (
+            <React.Fragment key={index}>
+              {number === "Any" ? (
+                <div
+                  className={`w-20 h-10 rounded-2xl  flex justify-center items-center cursor-pointer duration-300 ${
+                    (type === "bedrooms"
+                      ? selectedNumbers
+                      : selectedNumbers2) === null
+                      ? "bg-gray-800 text-white "
+                      : "bg-gray-100 text-gray-800 border border-gray-800"
+                  }`}
+                  onClick={() => selectedNumbersHandler(null)}
+                >
+                  {number}
+                </div>
+              ) : (
+                <div
+                  className={`numbers ${
+                    (type === "bedrooms"
+                      ? selectedNumbers
+                      : selectedNumbers2) === index
+                      ? "bg-gray-800 text-white"
+                      : "bg-gray-100 text-gray-800"
+                  } flex justify-center items-center cursor-pointer duration-300`}
+                  onClick={() => selectedNumbersHandler(index)}
+                >
+                  {number}
+                </div>
+              )}
+            </React.Fragment>
+          ))}
+        </div>
+      )}
+    </>
   );
 };
 

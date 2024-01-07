@@ -62,7 +62,7 @@ const OverlayFilters = () => {
 
   return (
     <div
-      className={`fixed w-screen h-screen md:w-[55vw] md:h-[90vh] top-1/2 left-1/2 bottom-0 -translate-x-[50%] -translate-y-[50%] rounded-2xl bg-white  flex flex-col justify-between transform-translate duration-500 ${
+      className={`fixed w-screen h-[95%] md:w-[55vw] md:h-[90vh] top-1/2 left-1/2 bottom-0 -translate-x-[50%] -translate-y-[50%] rounded-2xl bg-white  flex flex-col justify-between transform-translate duration-500 ${
         openFiltersOverlay
           ? "-translate-y-[50%] z-30 opacity-100"
           : "translate-y-[30%] -z-30 opacity-0"
@@ -100,7 +100,7 @@ const OverlayFilters = () => {
               </div>
             ))}
           </div>
-          <div className="section2_3 flex flex-col gap-5">
+          <div className="section2_3 flex flex-col gap-5 px-3 md:px-0">
             <h1 className="text-2xl font-semibold">Rooms</h1>
             <div className="flex flex-col gap-3">
               Bedrooms

@@ -117,7 +117,7 @@ const EstatesFilters = () => {
           selectedButton={selectedButton}
         />
       )}
-      <div className="flex items-center justify-between my-3 ">
+      <div className="flex items-center justify-between my-3">
         <div onClick={() => navigate(-1)} className="md:hidden ">
           <WestOutlinedIcon />
         </div>

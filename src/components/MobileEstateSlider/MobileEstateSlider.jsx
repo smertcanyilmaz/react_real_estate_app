@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -16,7 +16,7 @@ const MobileEstateSlider = ({
   componentStyle,
   userActiveFavorited,
 }) => {
-  //? bu kütüphane css adına kullandığım tek kütüphane olabilir. mobile slider yapmak için bu kütüphaneyi kurabilirsin: npm install react-slick slick-carousel
+  // ? bu kütüphane css adına kullandığım tek kütüphane olabilir. mobile slider yapmak için bu kütüphaneyi kurabilirsin: npm install react-slick slick-carousel
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const navigate = useNavigate();
@@ -36,10 +36,6 @@ const MobileEstateSlider = ({
     setOpenOverlayEstate(true);
     setImagesIndex(index);
   };
-
-  //   useEffect(() => {
-  //     document.body.style.overflow = openOverlayEstate ? "hidden" : "auto";
-  //   }, [openOverlayEstate]);
 
   return (
     <div className="relative">

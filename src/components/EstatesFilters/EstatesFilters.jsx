@@ -11,6 +11,10 @@ import SortOutlinedIcon from "@mui/icons-material/SortOutlined";
 import SnowmobileOutlinedIcon from "@mui/icons-material/SnowmobileOutlined";
 import AgricultureIcon from "@mui/icons-material/Agriculture";
 import { ContextFilter } from "../../Context/FilterContext";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import MobileEstatesSlider from "../MobileEstatesSlider/MobileEstatesSlider";
 
 const EstatesFilters = () => {
   const {
@@ -81,24 +85,33 @@ const EstatesFilters = () => {
     },
   ];
 
+  const forMobile = window.innerWidth <= 640;
+
   return (
-    <div className="categories w-full flex justify-between items-center gap-5">
-      <div className="quickSelection flex gap-5">
-        {buttons.map((button) => (
-          <div
-            key={button.id}
-            className={`quick z-10  ${
-              selectedButton === button.id
-                ? "border-2 border-[--dark_blue]"
-                : "border border-[--dark_blue]"
-            }`}
-            onClick={() => selectedButtonHandler(button.id, button.name)}
-          >
-            {button.icon}
-            {button.title}
-          </div>
-        ))}
-      </div>
+    <div className="categories w-full flex flex-col md:flex-row md:justify-between md:items-center md:gap-5">
+      {!forMobile ? (
+        <div className="quickSelection flex gap-5">
+          {buttons.map((button) => (
+            <div
+              key={button.id}
+              className={`quick z-10  ${
+                selectedButton === button.id
+                  ? "border-2 border-[--dark_blue]"
+                  : "border border-[--dark_blue]"
+              }`}
+              onClick={() => selectedButtonHandler(button.id, button.name)}
+            >
+              {button.icon}
+              {button.title}
+            </div>
+          ))}
+        </div>
+      ) : (
+        <MobileEstatesSlider
+          selectedButtonHandler={selectedButtonHandler}
+          selectedButton={selectedButton}
+        />
+      )}
       <div
         className={`flex items-center justify-center gap-2 w-28 h-12 rounded-xl bg-[--white] border border-gray-400 hover:bg-gray-800  cursor-pointer relative 
         ${

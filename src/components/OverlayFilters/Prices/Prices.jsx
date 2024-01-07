@@ -28,7 +28,7 @@ const Prices = ({
   };
 
   return (
-    <div className="section2_1 w-full flex justify-between items-center px-10 gap-10">
+    <div className="section2_1 w-full flex justify-between items-center px-5 md:px-10 md:gap-10">
       <div className="inputbox ">
         <span className="text-xs text-gray-600">Minimum</span>
         <div className="flex items-center gap-1">

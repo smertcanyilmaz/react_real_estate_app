@@ -62,7 +62,7 @@ const OverlayFilters = () => {
 
   return (
     <div
-      className={`fixed w-[55vw] h-[90vh] top-1/2 left-1/2 bottom-0 -translate-x-[50%] -translate-y-[50%] rounded-2xl bg-white  flex flex-col justify-between transform-translate duration-500 ${
+      className={`fixed w-screen h-screen md:w-[55vw] md:h-[90vh] top-1/2 left-1/2 bottom-0 -translate-x-[50%] -translate-y-[50%] rounded-2xl bg-white  flex flex-col justify-between transform-translate duration-500 ${
         openFiltersOverlay
           ? "-translate-y-[50%] z-30 opacity-100"
           : "translate-y-[30%] -z-30 opacity-0"
@@ -77,7 +77,7 @@ const OverlayFilters = () => {
         <div>{/* empty div */}</div>
       </div>
       <div className="overflow-auto flex-1 border-t border-b border-gray-200">
-        <div className="section2 flex-1 flex flex-col gap-10 mt-4 py-6 px-10">
+        <div className="section2 flex-1 flex flex-col justify-between md:justify-normal h-full md:h-auto md:gap-10 md:mt-4 md:py-6 md:px-10">
           <Prices
             filterPriceValues={filterPriceValues}
             setFilterPriceValues={setFilterPriceValues}
@@ -85,7 +85,7 @@ const OverlayFilters = () => {
             setFilterTypes={setFilterTypes}
             filterTypes={filterTypes}
           />
-          <div className="section2_2 w-full flex justify-around">
+          <div className="section2_2 w-full flex flex-col gap-3 items-center md:items-start md:gap-0 md:flex-row md:justify-around">
             {buttonsStatus.map((buttonStatus, index) => (
               <div
                 key={buttonStatus.id}

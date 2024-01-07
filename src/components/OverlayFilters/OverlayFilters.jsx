@@ -42,20 +42,37 @@ const OverlayFilters = () => {
     }
   };
 
+  const forMobile = window.innerWidth <= 640;
+
   const buttonsStatus = [
     {
       id: 1,
-      icon: <HomeWorkOutlinedIcon className="icons" fontSize="large" />,
+      icon: (
+        <HomeWorkOutlinedIcon
+          className="icons"
+          fontSize={forMobile ? "medium" : "large"}
+        />
+      ),
       title: "Any",
     },
     {
       id: 2,
-      icon: <HouseOutlinedIcon className="icons" fontSize="large" />,
+      icon: (
+        <HouseOutlinedIcon
+          className="icons"
+          fontSize={forMobile ? "medium" : "large"}
+        />
+      ),
       title: "Sell",
     },
     {
       id: 3,
-      icon: <HomeOutlinedIcon className="icons" fontSize="large" />,
+      icon: (
+        <HomeOutlinedIcon
+          className="icons"
+          fontSize={forMobile ? "medium" : "large"}
+        />
+      ),
       title: "Rent",
     },
   ];
@@ -77,7 +94,7 @@ const OverlayFilters = () => {
         <div>{/* empty div */}</div>
       </div>
       <div className="overflow-auto flex-1 border-t border-b border-gray-200">
-        <div className="section2 flex-1 flex flex-col justify-between md:justify-normal h-full md:h-auto md:gap-10 md:mt-4 md:py-6 md:px-10">
+        <div className="section2 flex-1 flex flex-col justify-between md:justify-normal h-full md:h-auto gap-3 md:gap-10 md:mt-4  py-3 md:py-6 md:px-10">
           <Prices
             filterPriceValues={filterPriceValues}
             setFilterPriceValues={setFilterPriceValues}

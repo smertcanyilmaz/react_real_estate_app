@@ -12,7 +12,7 @@ const PostLine = ({ custom }) => {
 
   return (
     <div className="w-full ">
-      <div className="flex items-center justify-between md:justify-center gap-5 md:gap-12">
+      <div className="flex items-center justify-center gap-5 md:gap-12">
         <div
           className={`icon_containers ${
             !componentStyle("adInfo") && "opacity-40"
@@ -28,7 +28,7 @@ const PostLine = ({ custom }) => {
               fontSize={forMobile ? "small" : "medium"}
             />
           </div>
-          <p>Ad Informations</p>
+          <p className="hidden md:block">Ad Informations</p>
         </div>
         <div className="lines">{/*line*/}</div>
         <div
@@ -45,7 +45,7 @@ const PostLine = ({ custom }) => {
               style={{ color: componentStyle("preview") }}
             />
           </div>
-          <p>Preview</p>
+          <p className="hidden md:block">Preview</p>
         </div>
       </div>
     </div>

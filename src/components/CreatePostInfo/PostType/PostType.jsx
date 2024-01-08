@@ -35,7 +35,7 @@ const PostType = ({ selectedCategory, setSelectedCategory }) => {
   const forMobile = window.innerWidth <= 640;
 
   return (
-    <div className="bg-gray-50 p-5 flex flex-col gap-5 rounded-[4px] border border-gray-400/50 ">
+    <div className="bg-gray-50 p-5 flex flex-col gap-5 rounded-[4px] border border-gray-400/50">
       <h1 className="text-sm md:text-lg font-semibold text-gray-800">
         Ad Category
       </h1>
@@ -48,7 +48,9 @@ const PostType = ({ selectedCategory, setSelectedCategory }) => {
             onClick={clickDown1}
             className="w-32 h-8 md:w-60 md:h-10 flex items-center px-2 border border-gray-500/50 rounded-[4px] cursor-pointer "
           >
-            <div className="flex-1 ">{selectedProperty?.label}</div>
+            <div className="flex-1 text-xs md:text-base">
+              {selectedProperty?.label}
+            </div>
             <DropDown
               property="property"
               showDropDown={showDropDown}
@@ -83,18 +85,18 @@ const PostType = ({ selectedCategory, setSelectedCategory }) => {
           <div className="w-32 h-8 md:w-60 md:h-10 flex items-center px-2 border border-gray-500/50 rounded-[4px] cursor-pointer relative ">
             <div
               onClick={clickDown2}
-              className="flex-1 h-full bg-gray-50 flex items-center"
+              className="flex-1 text-xs md:text-base h-full bg-gray-50 flex items-center"
             >
               {selectedCategory?.label}
             </div>
             <div
               onClick={() => closeSelectedHandler()}
-              className="w-5 h-5  bg-gray-300/80 flex items-center justify-center rounded-full cursor-pointer z-30"
+              className="w-3 h-3 md:w-5 md:h-5 bg-gray-300/80 flex items-center justify-center rounded-full cursor-pointer z-30"
             >
               <CloseRoundedIcon
                 style={{
-                  width: "14px",
-                  height: "14px",
+                  width: forMobile ? "7px" : "14px",
+                  height: forMobile ? "7px" : "14px",
                   color: "rgb(249 250 251)",
                 }}
               />

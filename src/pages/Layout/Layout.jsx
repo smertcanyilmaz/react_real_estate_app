@@ -17,7 +17,7 @@ const Layout = ({
       }`}
     >
       <div
-        className={`flex-1 md:max-w-6xl md:mx-auto flex flex-col
+        className={`flex-1 md:max-w-6xl md:mx-auto flex flex-col 
         ${unAuthNavbar && "max-w-full"}
        `}
       >

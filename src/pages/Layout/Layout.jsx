@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import { Outlet } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
@@ -13,11 +13,11 @@ const Layout = ({
   return (
     <div
       className={`min-h-screen max-w-full flex flex-col ${
-        authMenuChecker ? "gap-0" : "gap-20"
+        authMenuChecker || window.innerWidth <= 640 ? "gap-0" : "gap-20"
       }`}
     >
       <div
-        className={`flex-1 md:max-w-6xl md:mx-auto flex flex-col 
+        className={`flex-1 max-w-6xl md:mx-auto flex flex-col 
         ${unAuthNavbar && "max-w-full"}
        `}
       >
@@ -25,7 +25,7 @@ const Layout = ({
 
         <Outlet />
       </div>
-      {/* {toggle && !unAuthNavbar && <Footer />} */}
+      {!unAuthNavbar && <Footer />}
       <MobileMenu />
     </div>
   );

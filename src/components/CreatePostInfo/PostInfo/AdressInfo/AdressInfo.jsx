@@ -143,7 +143,7 @@ const AdressInfo = ({ setSum, setSumChecker }) => {
 
   return (
     <form className="two form_box">
-      <h1 className="text-lg font-semibold text-gray-800 mb-5">
+      <h1 className="text-sm md:text-lg font-semibold text-gray-800 mb-5">
         Ad Adress Information
       </h1>
       <div className="w-full flex info_boxes_even flex-row gap-5 py-5">
@@ -152,8 +152,9 @@ const AdressInfo = ({ setSum, setSumChecker }) => {
             className={`h-[4rem] flex items-end justify-center duration-500 `}
           ></div>
           <div className="flex flex-col gap-3 relative">
-            <label htmlFor="country">
-              Country <span className="text-red-500">*</span>
+            <label className="text-xs md:text-base" htmlFor="country">
+              Country
+              <span className=" text-red-500">*</span>
             </label>
             <div className="flex flex-col">
               <div className="w-60 h-10 flex items-center px-2 border border-gray-500/50 rounded-[4px] cursor-pointer bg-gray-50 ">
@@ -196,7 +197,7 @@ const AdressInfo = ({ setSum, setSumChecker }) => {
                 : "opacity-100 cursor-pointer pointer-events-auto"
             }`}
           >
-            <label htmlFor="city">
+            <label className="text-xs md:text-base" htmlFor="city">
               City <span className="text-red-500">*</span>
             </label>
             <div className="flex flex-col">

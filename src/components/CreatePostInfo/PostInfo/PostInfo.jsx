@@ -104,14 +104,14 @@ const PostInfo = ({ selectedCategory }) => {
 
   return (
     <div
-      className={`max-w-6xl duration-500 flex flex-col gap-10 items-center ${
+      className={`max-w-6xl duration-500 flex flex-col gap-10 items-center  ${
         selectedCategory
           ? "translate-y-0 opacity-100 h-full"
           : "translate-y-[10%] opacity-0 -z-10 max-h-0 overflow-y-hidden"
       } `}
     >
       <form className="one form_box">
-        <h1 className="text-lg font-semibold text-gray-800 mb-5">
+        <h1 className="text-sm md:text-lg font-semibold text-gray-800 mb-5">
           Ad Information
         </h1>
         <div className="info_boxes info_boxes_even">

@@ -39,7 +39,7 @@ const PostType = ({ selectedCategory, setSelectedCategory }) => {
       <h1 className="text-sm md:text-lg font-semibold text-gray-800">
         Ad Category
       </h1>
-      <div className="flex justify-between md:justify-start md:gap-10">
+      <div className=" flex justify-between md:justify-start md:gap-10">
         <div className="flex flex-col gap-2 relative">
           <h2 className="text-[0.7rem] md:text-sm font-semibold">
             Property Type <span className="text-red-500">*</span>

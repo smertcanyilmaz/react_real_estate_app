@@ -148,10 +148,10 @@ const AdressInfo = ({ setSum, setSumChecker }) => {
       <h1 className="text-sm md:text-lg font-semibold text-gray-800 mb-5">
         Ad Adress Information
       </h1>
-      <div className="w-full flex info_boxes_even flex-row gap-5 py-5">
+      <div className="w-full flex bg-gray-50 md:bg-gray-100 rounded-[4px] flex-row gap-5 py-5  ">
         <div className="flex items-end gap-5">
           <div
-            className={`h-[4rem] flex items-end justify-center duration-500 `}
+            className={`hidden h-[4rem] md:flex items-end justify-center duration-500 bg-red-500`}
           ></div>
           <div className="flex flex-col gap-3 relative">
             <label className="text-xs md:text-base" htmlFor="country">
@@ -183,12 +183,11 @@ const AdressInfo = ({ setSum, setSumChecker }) => {
             </div>
           </div>
         </div>
-
-        <div className="flex items-end gap-2 md:gap-5 ">
+        <div className="flex items-end  gap-2 md:gap-5   ">
           <div
             className={`h-[2rem] md:h-[4rem] flex items-center md:items-end justify-center duration-500 `}
           >
-            <div className="md:w-8 md:h-8 bg-gray-50 border-2 border-gray-500/30 flex items-center justify-center rounded-full -ml-3 md:-ml-0">
+            <div className="md:w-8 md:h-8 bg-gray-50 border-2 border-gray-500/30 flex items-center justify-center rounded-full -ml-1 md:-ml-0 mr-1 md:-mr1">
               <ArrowForwardIcon
                 style={{
                   color: "var(--bg_color)",
@@ -199,7 +198,7 @@ const AdressInfo = ({ setSum, setSumChecker }) => {
             </div>
           </div>
           <div
-            className={`flex flex-col gap-3 relative ${
+            className={`flex flex-col gap-3 relative  ${
               inputBoxCountry === "choose"
                 ? "opacity-50 cursor-default pointer-events-none"
                 : "opacity-100 cursor-pointer pointer-events-auto"
@@ -209,7 +208,7 @@ const AdressInfo = ({ setSum, setSumChecker }) => {
               City <span className="text-red-500">*</span>
             </label>
             <div className="flex flex-col">
-              <div className="w-32 h-8 md:w-60 md:h-10 flex items-center px-2 border border-gray-500/50 rounded-[4px] cursor-pointer bg-gray-50">
+              <div className="w-32 h-8 md:w-60 md:h-10 flex items-center px-2 border border-gray-500/50 rounded-[4px] cursor-pointer bg-gray-50 ">
                 <div
                   onClick={() => arrowClickHandler("city")}
                   className={`w-full h-full bg-gray-50 flex items-center duration-300 text-xs md:text-[15px] ${
@@ -233,6 +232,8 @@ const AdressInfo = ({ setSum, setSumChecker }) => {
             </div>
           </div>
         </div>
+        {/* //todo: ilçeleri aldığım paket iphonelarda çöktüğü için iptal etmek durumunda kaldım ama kodlarını silmek istemedim */}
+
         {/* <div className="flex items-end gap-5">
           <div
             className={`h-[4rem] flex items-end justify-center duration-500 `}

@@ -41,7 +41,7 @@ const MobilProfileMenu = () => {
   };
 
   return (
-    <div className="w-screen flex flex-col gap-5 bg-[#ffffff]">
+    <div className="w-screen flex flex-col gap-5 bg-[#ffffff] mb-2">
       <div>
         {userActive && (
           <h1 className="text-xl text-gray-800 font-semibold p-3 capitalize">

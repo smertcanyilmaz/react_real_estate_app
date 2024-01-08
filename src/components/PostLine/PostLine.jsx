@@ -8,9 +8,11 @@ const PostLine = ({ custom }) => {
     return custom === page && "rgb(249 250 251)";
   };
 
+  const forMobile = window.innerWidth <= 640;
+
   return (
     <div className="w-full ">
-      <div className="flex items-center justify-center gap-12">
+      <div className="flex items-center justify-between md:justify-center gap-5 md:gap-12">
         <div
           className={`icon_containers ${
             !componentStyle("adInfo") && "opacity-40"
@@ -21,7 +23,10 @@ const PostLine = ({ custom }) => {
               componentStyle("adInfo") && "bg-gray-800"
             } `}
           >
-            <EditRoundedIcon style={{ color: componentStyle("adInfo") }} />
+            <EditRoundedIcon
+              style={{ color: componentStyle("adInfo") }}
+              fontSize={forMobile ? "small" : "medium"}
+            />
           </div>
           <p>Ad Informations</p>
         </div>

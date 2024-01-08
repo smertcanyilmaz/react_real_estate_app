@@ -3,13 +3,13 @@
 }
 
 .post_icon_borders {
-  @apply border border-gray-800 bg-gray-300/30 w-10 h-10 flex items-center justify-center rounded-full;
+  @apply border border-gray-800 bg-gray-300/30 w-8 h-8 md:w-10 md:h-10 flex items-center justify-center rounded-full;
 }
 
 .icon_containers p {
-  @apply font-semibold;
+  @apply font-semibold text-sm md:text-base;
 }
 
 .lines {
-  @apply w-36 h-[1px] bg-gray-700/50;
+  @apply w-20 md:w-36 h-[1px] bg-gray-700/50;
 }

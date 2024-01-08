@@ -37,8 +37,10 @@ const AdFeatures = ({ features, setFeatures, setSum }) => {
 
   return (
     <div className="four form_box">
-      <h1 className="text-lg font-semibold text-gray-800 mb-5">Ad Features</h1>
-      <div className="w-full flex flex-wrap gap-3 items-start">
+      <h1 className="text-sm md:text-lg font-semibold text-gray-800 mb-5">
+        Ad Features
+      </h1>
+      <div className="w-full grid grid-cols-2 gap-2 md:flex md:flex-wrap md:gap-3 md:items-start">
         {featureDatas.map((feature, index) => (
           <div key={index} className="w-44 flex items-center ">
             <input
@@ -48,7 +50,9 @@ const AdFeatures = ({ features, setFeatures, setSum }) => {
               className="w-8 h-4"
               onChange={() => featuresChangeHandler(feature)}
             />
-            <span className=" flex-1 text-sm text-gray-800">{feature}</span>
+            <span className=" flex-1 text-xs md:text-sm text-gray-800">
+              {feature}
+            </span>
           </div>
         ))}
       </div>

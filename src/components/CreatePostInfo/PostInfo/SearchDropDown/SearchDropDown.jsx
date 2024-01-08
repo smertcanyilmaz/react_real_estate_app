@@ -81,7 +81,7 @@ const SearchDropDown = ({
 
   return (
     <div
-      className={`w-60 flex flex-col items-center gap-2 p-[6px] border border-gray-500/50 rounded-[4px] cursor-pointer bg-gray-50 absolute left-0  duration-300 
+      className={`md:w-60 flex flex-col items-center gap-2 p-[6px] border border-gray-500/50 rounded-[4px] cursor-pointer bg-gray-50 absolute left-0  duration-300 
      
         ${
           countryBox || cityBox || districtBox
@@ -109,7 +109,7 @@ const SearchDropDown = ({
             {filteredData?.map((data, index) => (
               <div
                 key={index}
-                className="item w-full px-1 py-2 mx-auto cursor-pointer bg-gray-50 border-none hover:bg-gray-100"
+                className="item w-full px-1 py-2 mx-auto cursor-pointer bg-gray-50 border-none hover:bg-gray-100 text-xs md:text-base"
                 onMouseEnter={() => setScrollShow(true)}
                 onMouseLeave={() => setScrollShow(false)}
                 onClick={() => inputBoxHandler(data.name)}

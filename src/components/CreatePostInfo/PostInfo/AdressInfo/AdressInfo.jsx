@@ -141,6 +141,8 @@ const AdressInfo = ({ setSum, setSumChecker }) => {
     }));
   }, [inputBoxCountry, inputBoxCity, inputBoxDistricts]);
 
+  const forMobile = window.innerWidth <= 640;
+
   return (
     <form className="two form_box">
       <h1 className="text-sm md:text-lg font-semibold text-gray-800 mb-5">
@@ -157,11 +159,11 @@ const AdressInfo = ({ setSum, setSumChecker }) => {
               <span className=" text-red-500">*</span>
             </label>
             <div className="flex flex-col">
-              <div className="w-60 h-10 flex items-center px-2 border border-gray-500/50 rounded-[4px] cursor-pointer bg-gray-50 ">
+              <div className="w-32 h-8 md:w-60 md:h-10 flex items-center px-2 border border-gray-500/50 rounded-[4px] cursor-pointer bg-gray-50">
                 <div
                   onClick={() => arrowClickHandler("country")}
-                  className={`w-full h-full bg-gray-50 flex items-center duration-300 ${
-                    inputBoxCountry === "choose" && "text-gray-600 text-[15px]"
+                  className={`w-full h-full bg-gray-50 flex items-center duration-300 text-xs md:text-[15px] ${
+                    inputBoxCountry === "choose" && "text-gray-600"
                   }`}
                 >
                   {inputBoxCountry}
@@ -182,12 +184,18 @@ const AdressInfo = ({ setSum, setSumChecker }) => {
           </div>
         </div>
 
-        <div className="flex items-end gap-5">
+        <div className="flex items-end gap-2 md:gap-5 ">
           <div
-            className={`h-[4rem] flex items-end justify-center duration-500`}
+            className={`h-[2rem] md:h-[4rem] flex items-center md:items-end justify-center duration-500 `}
           >
-            <div className="w-8 h-8 bg-gray-50 border-2 border-gray-400/30 flex items-center justify-center rounded-full ">
-              <ArrowForwardIcon style={{ color: "var(--bg_color)" }} />
+            <div className="md:w-8 md:h-8 bg-gray-50 border-2 border-gray-500/30 flex items-center justify-center rounded-full -ml-3 md:-ml-0">
+              <ArrowForwardIcon
+                style={{
+                  color: "var(--bg_color)",
+                  width: forMobile && "1rem",
+                  height: forMobile && "1rem",
+                }}
+              />
             </div>
           </div>
           <div
@@ -201,11 +209,11 @@ const AdressInfo = ({ setSum, setSumChecker }) => {
               City <span className="text-red-500">*</span>
             </label>
             <div className="flex flex-col">
-              <div className="w-60 h-10 flex items-center px-2 border border-gray-500/50 rounded-[4px] cursor-pointer bg-gray-50">
+              <div className="w-32 h-8 md:w-60 md:h-10 flex items-center px-2 border border-gray-500/50 rounded-[4px] cursor-pointer bg-gray-50">
                 <div
                   onClick={() => arrowClickHandler("city")}
-                  className={`w-full h-full bg-gray-50 flex items-center duration-300 ${
-                    inputBoxCity === "choose" && "text-gray-600 text-[15px]"
+                  className={`w-full h-full bg-gray-50 flex items-center duration-300 text-xs md:text-[15px] ${
+                    inputBoxCity === "choose" && "text-gray-600"
                   }`}
                 >
                   {inputBoxCity}

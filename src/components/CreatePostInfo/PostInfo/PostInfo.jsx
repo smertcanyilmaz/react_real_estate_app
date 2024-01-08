@@ -104,7 +104,7 @@ const PostInfo = ({ selectedCategory }) => {
 
   return (
     <div
-      className={`max-w-6xl duration-500 flex flex-col gap-10 items-center  ${
+      className={`max-w-6xl duration-500 flex flex-col gap-3 md:gap-10 items-center  ${
         selectedCategory
           ? "translate-y-0 opacity-100 h-full"
           : "translate-y-[10%] opacity-0 -z-10 max-h-0 overflow-y-hidden"
@@ -176,14 +176,17 @@ const PostInfo = ({ selectedCategory }) => {
       <button
         onClick={() => navigate("/preview")}
         disabled={!formValid}
-        className={`w-32 h-12 rounded-md duration-200 flex gap-2 justify-center items-center bg-gray-800 text-gray-50 ${
+        className={`w-24 h-10 md:w-32 md:h-12 rounded-md duration-200 flex gap-2 justify-center items-center bg-gray-800 text-gray-50 text-sm md:text-base ${
           !formValid
             ? "opacity-60 cursor-not-allowed"
             : "opacity-100 cursor-pointer"
         }`}
       >
         Preview
-        <ArrowForwardIcon style={{ color: "rgb(249 250 251)" }} />
+        <ArrowForwardIcon
+          fontSize={window.innerWidth <= 640 ? "small" : "medium"}
+          style={{ color: "rgb(249 250 251)" }}
+        />
       </button>
     </div>
   );

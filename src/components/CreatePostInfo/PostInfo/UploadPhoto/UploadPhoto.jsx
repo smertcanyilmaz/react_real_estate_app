@@ -43,16 +43,22 @@ const UploadPhoto = ({
     setUploadImage(removeImage);
   };
 
+  const forMobile = window.innerWidth <= 640;
+
   return (
     <div className="three form_box">
-      <h1 className="text-lg font-semibold text-gray-800 mb-5">Ad Photos</h1>
-      <div className="flex flex-wrap gap-4">
-        <div className="w-36 h-24 rounded-[4px] border border-gray-400/50 flex flex-col items-center justify-center gap-2 shadow-sm relative">
+      <h1 className="text-sm md:text-lg font-semibold text-gray-800 mb-5">
+        Ad Photos
+      </h1>
+      <div className="flex flex-wrap gap-3 md:gap-4">
+        <div className="w-20 h-14 md:w-36 md:h-24 rounded-[4px] border border-gray-400/50 flex flex-col items-center justify-center gap-1 md:gap-2 shadow-sm relative">
           <PhotoCameraIcon
-            fontSize="large"
+            fontSize={forMobile ? "small" : "large"}
             style={{ color: "rgb(55 65 81)" }}
           />
-          <h3 className="text-sm text-gray-700 font-semibold">Upload Photo</h3>
+          <h3 className="text-[0.6rem] md:text-sm text-gray-700 font-semibold">
+            Upload Photo
+          </h3>
           <input
             type="file"
             className="opacity-0 absolute top-0 left-0 h-full w-full"
@@ -63,7 +69,7 @@ const UploadPhoto = ({
         </div>
 
         {selectedFiles.length === 0 ? (
-          <div className="w-36 h-24 rounded-[4px] border border-gray-400/50 flex flex-col items-center justify-center gap-2 shadow-sm ">
+          <div className="w-20 h-14 md:w-36 md:h-24 rounded-[4px] border border-gray-400/50 flex flex-col items-center justify-center gap-2 shadow-sm ">
             <div className="p-[6px] flex items-center justify-center rounded-full bg-gray-200">
               <AddIcon />
             </div>
@@ -72,14 +78,14 @@ const UploadPhoto = ({
           selectedFiles.map((photo, index) => (
             <div
               key={index}
-              className="w-36 h-24 rounded-[4px] border border-gray-400/50 flex flex-col items-center justify-center gap-2 shadow-sm relative"
+              className="w-24 h-14 md:w-36 md:h-24 rounded-[4px] border border-gray-400/50 flex flex-col items-center justify-center gap-2 shadow-sm relative "
             >
               <div className="flex items-center justify-center rounded-full bg-gray-200">
                 <img
                   key={index}
                   src={photo}
                   alt={`Image ${index}`}
-                  className="w-36 h-24 object-cover"
+                  className="w-24 h-14 md:w-36 md:h-24 object-cover"
                 />
               </div>
               <div
@@ -92,7 +98,7 @@ const UploadPhoto = ({
           ))
         )}
       </div>
-      <p className="text-sm text-gray-600/90 mt-5">
+      <p className="text-[0.6rem] md:text-sm text-gray-600/90 mt-5">
         You need to upload at least 5 photos
         <span className="text-red-500">*</span>
       </p>

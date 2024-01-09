@@ -7,7 +7,7 @@ const PreviewaProductCard = () => {
 
   return (
     <div className="flex-1 flex flex-col items-center justify-between">
-      <div className="flex flex-col md:min-w-[20rem] md:h-[20rem] bg-gray-50 rounded-2xl relative mt-3 mb-3 md:mb-0 md:mt-12">
+      <div className="flex flex-col w-[70%] mx-auto md:mx-0 md:min-w-[20rem] md:h-[20rem] bg-gray-50 rounded-2xl relative mt-3 mb-3 md:mb-0 md:mt-12">
         <img
           className="w-full h-[12rem] object-cover rounded-t-2xl"
           src={previewImages[0]}

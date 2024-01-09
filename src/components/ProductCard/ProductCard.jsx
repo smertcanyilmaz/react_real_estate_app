@@ -238,9 +238,15 @@ const ProductCard = ({ currentSlide, sale, EstatesList }) => {
             className={`flex flex-col  bg-gray-50 rounded-2xl transform transition-transform duration-300 cursor-pointer relative ${
               EstatesList
                 ? "min-w-[14.60rem] h-72 md:h-64"
-                : "min-w-[23rem] h-[24rem]"
+                : "w-[75vw] md:max-w-[23rem] h-[24rem]"
             }`}
-            style={{ transform: `translateX(-${currentSlide * 24.5}rem)` }}
+            // style={{ transform: `translateX(-${currentSlide * 24.5}rem)` }}
+            style={{
+              transform:
+                window.innerWidth <= 700
+                  ? `translateX(-${currentSlide * 81}vw)`
+                  : `translateX(-${currentSlide * 24.5}rem)`,
+            }}
           >
             <img
               src={estate?.image}

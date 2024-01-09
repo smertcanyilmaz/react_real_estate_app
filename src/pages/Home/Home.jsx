@@ -26,8 +26,8 @@ const Home = ({ setUnAuthNavbar }) => {
       <Advantages />
       <HomePremium />
       <PopularOffers sale={true} />
-      {/*<PopularOffers sale={false} />
-      <HomeBrands /> */}
+      <PopularOffers sale={false} />
+      <HomeBrands />
     </div>
   );
 };

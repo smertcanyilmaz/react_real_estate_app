@@ -24,12 +24,30 @@ const SliderSection = ({ sale }) => {
     setNavbarFilteringChecker(false);
   }, []);
 
+  const forMobile = window.innerWidth <= 700;
+
   const prevSlide = () => {
-    setCurrentSlide(currentSlide === 0 ? 2 : (prev) => prev - 1); //currentSlide - 1
+    setCurrentSlide(
+      forMobile
+        ? currentSlide === 0
+          ? 5
+          : (prev) => prev - 1
+        : currentSlide === 0
+        ? 2
+        : (prev) => prev - 1
+    ); //currentSlide - 1
   };
 
   const nextSlide = () => {
-    setCurrentSlide(currentSlide === 2 ? 0 : (prev) => prev + 1);
+    setCurrentSlide(
+      forMobile
+        ? currentSlide === 5
+          ? 0
+          : (prev) => prev + 1
+        : currentSlide === 2
+        ? 0
+        : (prev) => prev + 1
+    );
   };
 
   const showOffersClickHandler = () => {
@@ -45,11 +63,11 @@ const SliderSection = ({ sale }) => {
     <div className="flex flex-col w-full h-full items-center justify-center ">
       <div className="content-buy w-full flex flex-col">
         <div className="content flex flex-col gap-12 ">
-          <h1 className="text-4xl font-bold">
+          <h1 className="text-xl md:text-4xl font-bold text-center md:text-start">
             Featured Offers for {sale === true ? "Sale" : "Rent"}
           </h1>
           <div className="w-full flex justify-between">
-            <p className="text-lg w-1/2">
+            <p className="text-lg w-1/2 hidden md:block">
               Fulfill your career dreams, enjoy all the achievements of the city
               center and luxury housing to the fullest.
             </p>
@@ -63,7 +81,7 @@ const SliderSection = ({ sale }) => {
                 </div>
                 <div
                   onClick={nextSlide}
-                  className="w-14 h-10 border border-gray-800/30   text-gray-800 rounded-xl flex justify-center items-center cursor-pointer "
+                  className="w-14 h-10 border border-gray-800/30   text-gray-800 rounded-xl flex justify-center items-center cursor-pointer"
                 >
                   <ArrowForwardRoundedIcon />
                 </div>

@@ -61,14 +61,14 @@ const Membership = ({ setUnAuthNavbar }) => {
   }, [userSubscribe]);
 
   return (
-    <div className="w-full h-[100vh] flex">
-      <div className="left w-[60%] h-full">
+    <div className="w-full h-screen flex items-center justify-center md:items-start md:justify-start">
+      <div className="left w-[60%] h-full hidden md:block">
         <img
           src="images\pexels-fauxels-3183197.jpg"
           className="w-full h-full object-cover"
         />
       </div>
-      <div className="right h-full w-[40%] flex flex-col  justify-between py-5">
+      <div className="right h-full md:w-[40%] flex flex-col  justify-between py-5">
         <div onClick={() => navigate("/")} className="ml-6 cursor-pointer">
           <KeyboardBackspaceIcon fontSize="large" />
         </div>
@@ -99,7 +99,7 @@ const Membership = ({ setUnAuthNavbar }) => {
             )}
           </button>
         </div>
-        <div className="w-full text-center text-gray-500 text-sm">
+        <div className="w-full text-center text-gray-500 text-xs md:text-sm mb-16 md:mb-0">
           Since this is a portfolio project, there will be no fee. Just click
           and subscribe!
         </div>

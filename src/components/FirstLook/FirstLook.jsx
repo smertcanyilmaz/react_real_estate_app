@@ -41,7 +41,7 @@ const FirstLook = () => {
       </div>
       <img
         src="images/first_look.png"
-        className="md:w-full md:h-full object-cover absolute top-0 left-0 -z-10"
+        className="hidden md:block w-full h-full object-cover absolute top-0 left-0 -z-10"
       />
     </div>
   );

@@ -7,7 +7,7 @@ const PreviewaProductCard = () => {
 
   return (
     <div className="flex-1 flex flex-col items-center justify-between">
-      <div className="flex flex-col min-w-[20rem] h-[20rem] bg-gray-50 rounded-2xl relative mt-12">
+      <div className="flex flex-col md:min-w-[20rem] md:h-[20rem] bg-gray-50 rounded-2xl relative mt-3 mb-3 md:mb-0 md:mt-12">
         <img
           className="w-full h-[12rem] object-cover rounded-t-2xl"
           src={previewImages[0]}
@@ -21,7 +21,7 @@ const PreviewaProductCard = () => {
           <FavoriteRoundedIcon />
         </div>
       </div>
-      <p className="text-sm text-gray-700/60 font-semibold">
+      <p className="text-xs md:text-sm text-gray-700/60 font-semibold">
         This is estate ad card that will be seen by customers
       </p>
     </div>

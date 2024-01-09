@@ -27,15 +27,17 @@ const PreviewSum = () => {
   }
 
   return (
-    <div className="w-[50%] bg-gray-50 rounded-[4px] border border-gray-400/50 flex flex-col gap-5 p-5 text-gray-800">
+    <div className=" w-[95%] mx-auto md:mx-0 md:w-[50%] bg-gray-50 rounded-[4px] border border-gray-400/50 flex flex-col gap-5 p-5 text-gray-800">
       <div className="w-full flex justify-between items-center">
-        <p className="capitalize font-semibold text-lg">{sum?.title}</p>
-        <p className="font-semibold text-lg">€{sum?.price}</p>
+        <p className="capitalize font-semibold md:text-lg">{sum?.title}</p>
+        <p className="font-semibold md:text-lg">€{sum?.price}</p>
       </div>
 
-      <div className="flex gap-2">
-        <PlaceOutlinedIcon />
-        <p>{sum?.place?.district},</p>
+      <div className="flex items-center md:items-start gap-2 text-xs md:text-base">
+        <PlaceOutlinedIcon
+          fontSize={window.innerWidth <= 640 ? "small" : "medium"}
+        />
+        {/* <p>{sum?.place?.district},</p> */}
         <p>{sum?.place?.city},</p>
         <p>{sum?.place?.country}</p>
       </div>
@@ -68,7 +70,7 @@ const PreviewSum = () => {
           <p className="font-semibold">Features</p>
           <div className="grid grid-cols-3 gap-2">
             {sum?.specials?.map((special, index) => (
-              <div key={index} className="flex gap-1 text-sm">
+              <div key={index} className="flex gap-1 text-xs md:text-sm">
                 <CheckOutlinedIcon fontSize="small" />
                 <p>{special}</p>
               </div>

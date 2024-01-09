@@ -11,9 +11,9 @@ const Preview = () => {
 
   return (
     <>
-      <div className="w-[72rem] mt-10 flex flex-col gap-10 items-center justify-center">
+      <div className="w-screen md:w-[72rem] mt-3 md:mt-10 flex flex-col gap-3 md:gap-10 items-center justify-center">
         <PostLine custom="preview" />
-        <div className="w-full flex ">
+        <div className="w-full flex flex-col md:flex-row ">
           <PreviewSum />
           <PreviewaProductCard />
         </div>

@@ -1,7 +1,7 @@
 .ad_infos {
-  @apply w-full flex justify-between p-2;
+  @apply w-full flex justify-between p-2 text-sm md:text-base;
 }
 
 .ad_infos_res {
-  @apply w-32 text-start capitalize font-semibold;
+  @apply w-32 text-start capitalize font-semibold text-sm md:text-base;
 }

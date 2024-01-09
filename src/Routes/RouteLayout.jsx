@@ -25,12 +25,8 @@ const Membership = React.lazy(() => import("../pages/Membership/Membership"));
 
 const RouteLayout = () => {
   const [unAuthNavbar, setUnAuthNavbar] = useState(false);
-  const [toggle, setToggle] = useState(false);
   const [authMenuChecker, setAuthMenuChecker] = useState(false);
 
-  useEffect(() => {
-    window.innerWidth >= 640 && setToggle(true);
-  }, [window]);
   return (
     <AuthContext>
       <>
@@ -51,7 +47,6 @@ const RouteLayout = () => {
                       element={
                         <Layout
                           unAuthNavbar={unAuthNavbar}
-                          toggle={toggle}
                           authMenuChecker={authMenuChecker}
                           setAuthMenuChecker={setAuthMenuChecker}
                         />
@@ -59,13 +54,7 @@ const RouteLayout = () => {
                     >
                       <Route
                         index
-                        element={
-                          <Home
-                            setUnAuthNavbar={setUnAuthNavbar}
-                            toggle={toggle}
-                            setToggle={setToggle}
-                          />
-                        }
+                        element={<Home setUnAuthNavbar={setUnAuthNavbar} />}
                       />
                       <Route
                         path="estates"

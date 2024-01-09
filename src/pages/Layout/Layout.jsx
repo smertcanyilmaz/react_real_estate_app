@@ -4,12 +4,7 @@ import { Outlet } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
 import MobileMenu from "../../components/MobileMenu/MobileMenu";
 
-const Layout = ({
-  unAuthNavbar,
-  toggle,
-  authMenuChecker,
-  setAuthMenuChecker,
-}) => {
+const Layout = ({ unAuthNavbar, authMenuChecker, setAuthMenuChecker }) => {
   return (
     <div
       className={`min-h-screen max-w-full flex flex-col ${
@@ -21,7 +16,7 @@ const Layout = ({
         ${unAuthNavbar && "max-w-full"}
        `}
       >
-        {toggle && !unAuthNavbar && <Navbar />}
+        {!unAuthNavbar && <Navbar />}
 
         <Outlet />
       </div>

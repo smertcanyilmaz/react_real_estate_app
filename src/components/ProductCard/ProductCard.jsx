@@ -244,7 +244,7 @@ const ProductCard = ({ currentSlide, sale, EstatesList }) => {
             style={{
               transform:
                 window.innerWidth <= 700
-                  ? `translateX(-${currentSlide * 81}vw)`
+                  ? `translateX(-${currentSlide * 81.4}vw)`
                   : `translateX(-${currentSlide * 24.5}rem)`,
             }}
           >

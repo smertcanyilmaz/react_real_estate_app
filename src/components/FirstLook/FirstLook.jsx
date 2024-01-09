@@ -9,7 +9,7 @@ const FirstLook = () => {
   const forMobile = window.innerWidth > 700;
 
   return (
-    <div className="md:max-w-6xl h-[30vh] md:h-[90vh] flex flex-col gap-16 md:justify-normal md:gap-[10rem]">
+    <div className="md:max-w-6xl h-[35vh] md:h-[90vh] flex flex-col gap-16 md:justify-normal md:gap-[10rem]">
       <div className="md:w-[50%] flex flex-col items-center justify-center md:items-start md:justify-normal gap-5 mt-10 md:mt-[10rem] ">
         <h1 className="text-xl md:text-4xl font-bold leading-snug">
           Modern Living For Everyone

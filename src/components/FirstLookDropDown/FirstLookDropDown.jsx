@@ -5,7 +5,7 @@ const FirstLookDropDown = () => {
   const { filteredCities, clickHandler } = useContext(ContextFilter);
 
   return (
-    <div className="w-[90%] mx-auto md:mx-0 md:w-[40rem] h-32 md:max-h-[12rem] overflow-y-auto  md:bg-[#e8e8e9 z-30 rounded-lg bg-gray-100">
+    <div className="w-[90%] mx-auto md:mx-0 md:w-[40rem] max-h-32 md:max-h-[12rem] overflow-y-auto md:bg-[#e8e8e9 z-30 rounded-lg bg-gray-100 py-1 md:py-0">
       <div className="w-full h-full flex flex-col gap-2 cursor-pointer">
         {filteredCities?.map((city, index) => (
           <p

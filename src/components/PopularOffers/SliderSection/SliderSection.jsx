@@ -60,9 +60,9 @@ const SliderSection = ({ sale }) => {
   };
 
   return (
-    <div className="flex flex-col w-full h-full items-center justify-center">
+    <div className="flex flex-col w-full h-full items-center justify-center relative">
       <div className="content-buy w-full flex flex-col">
-        <div className="content flex flex-col gap-12 ">
+        <div className="content flex flex-col gap-3 md:gap-12 ">
           <h1 className="text-xl md:text-4xl font-bold text-center md:text-start">
             Featured Offers for {sale === true ? "Sale" : "Rent"}
           </h1>
@@ -71,8 +71,8 @@ const SliderSection = ({ sale }) => {
               Fulfill your career dreams, enjoy all the achievements of the city
               center and luxury housing to the fullest.
             </p>
-            <div className="flex items-center gap-10">
-              <div className="flex gap-5">
+            <div className="md:flex items-center md:gap-10 hidden ">
+              <div className="flex md:gap-5">
                 <div
                   onClick={prevSlide}
                   className="w-14 h-10 border border-gray-800/30  text-gray-800 rounded-xl flex justify-center items-center cursor-pointer "
@@ -96,6 +96,22 @@ const SliderSection = ({ sale }) => {
           <ProductCard currentSlide={currentSlide} sale={sale} />
         </div>
       </div>
+
+      <div
+        onClick={prevSlide}
+        className="w-8 h-8 border border-gray-800/30  text-gray-800 rounded-full flex justify-center items-center cursor-pointer md:hidden absolute -left-10"
+      >
+        <ArrowBackRoundedIcon fontSize="small" />
+      </div>
+      <div
+        onClick={nextSlide}
+        className="w-8 h-8 border border-gray-800/30 text-gray-800 rounded-full flex justify-center items-center cursor-pointer md:hidden absolute -right-10"
+      >
+        <ArrowForwardRoundedIcon fontSize="small" />
+      </div>
+      <Button onClick={showOffersClickHandler} showAllOffers={true}>
+        Show all offers
+      </Button>
     </div>
   );
 };

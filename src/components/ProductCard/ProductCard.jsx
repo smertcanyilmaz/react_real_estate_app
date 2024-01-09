@@ -240,7 +240,6 @@ const ProductCard = ({ currentSlide, sale, EstatesList }) => {
                 ? "min-w-[14.60rem] h-72 md:h-64"
                 : "w-[75vw] h-[20rem] md:max-w-[23rem] md:h-[24rem]"
             }`}
-            // style={{ transform: `translateX(-${currentSlide * 24.5}rem)` }}
             style={{
               transform:
                 window.innerWidth <= 700

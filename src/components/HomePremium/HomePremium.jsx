@@ -13,8 +13,8 @@ const HomePremium = () => {
       <div className="main_title font-semibold text-lg md:text-4xl text-center md:text-start tracking-wide leading-snug text-gray-800">
         Simple Plan For Everything
       </div>
-      <div className="w-full h-full flex flex-col-reverse  items-center md:flex-row gap-5 md:gap-0 ">
-        <div className="flex-1 flex flex-col items-center">
+      <div className="w-full h-full flex flex-col-reverse items-center md:flex-row gap-5 md:gap-0 ">
+        <div className="flex-1 flex flex-col items-center h-full">
           <div className="content w-[85vw] md:w-[75%] flex-1 flex flex-col justify-between text-gray-800 bg-gray-300 p-10 rounded-3xl md:ml-10 gap-1 md:gap-0">
             <h1 className="title w-full text-center text-lg md:text-2xl font-semibold text-black">
               Membership
@@ -63,7 +63,7 @@ const HomePremium = () => {
             </div>
           </div>
         </div>
-        <div className="flex-1 flex flex-col items-center gap-10 relative">
+        <div className="flex-1 flex flex-col items-center gap-10 relative h-full">
           <div className="content w-[85vw] md:w-[75%] flex-1 flex flex-col justify-between text-gray-300 bg-gray-800 p-10 rounded-3xl md:mr-10 gap-1 md:gap-0">
             <div className="title w-full text-center text-2xl font-semibold">
               Membership

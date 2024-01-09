@@ -47,8 +47,8 @@ const Advantages = () => {
         </div>
       </div>
       <div className="flex-1 flex flex-col-reverse md:flex-row">
-        <div className="w-fullmd:w-[30%] flex items-center mt-3 md:mt-0">
-          <h1 className=" md:text-3xl text-black md:w-2/3 leading-snug italic">
+        <div className="w-full md:w-[30%] flex items-center mt-3 md:mt-0">
+          <h1 className="md:text-3xl text-black md:w-2/3 leading-snug italic text-center md:text-start">
             "I make a profit from my subscription with a reliable business plan"
           </h1>
         </div>

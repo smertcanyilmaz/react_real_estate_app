@@ -60,7 +60,7 @@ const SliderSection = ({ sale }) => {
   };
 
   return (
-    <div className="flex flex-col w-full h-full items-center justify-center ">
+    <div className="flex flex-col w-full h-full items-center justify-center">
       <div className="content-buy w-full flex flex-col">
         <div className="content flex flex-col gap-12 ">
           <h1 className="text-xl md:text-4xl font-bold text-center md:text-start">

@@ -118,43 +118,47 @@ const EstatesFilters = () => {
         />
       )}
       <div className="flex items-center justify-between my-3">
-        <div onClick={() => navigate(-1)} className="md:hidden ">
-          <WestOutlinedIcon />
-        </div>
+        {forMobile && (
+          <>
+            <div onClick={() => navigate(-1)} className="md:hidden ">
+              <WestOutlinedIcon />
+            </div>
 
-        <div className="links flex text-gray-800 font-semibold gap-3">
-          <p
-            disabled={status === "all"}
-            onClick={() => navbarStatusClickHandler("all")}
-            className={`hover:bg-[#c0c6ff] duration-200 ${
-              status === "all"
-                ? "bg-[#c0c6ff] border border-[#5366ff]  cursor-default"
-                : "cursor-pointer"
-            }`}
-          >
-            All Estates
-          </p>
-          <p
-            onClick={() => navbarStatusClickHandler("sale")}
-            className={`hover:bg-[#c0c6ff] duration-200  ${
-              status === "sale"
-                ? "bg-[#c0c6ff] border border-[#5366ff]  cursor-default"
-                : "cursor-pointer"
-            }`}
-          >
-            For Sale
-          </p>
-          <p
-            onClick={() => navbarStatusClickHandler("rent")}
-            className={`hover:bg-[#c0c6ff] duration-200  ${
-              status === "rent"
-                ? "bg-[#c0c6ff] border border-[#5366ff] cursor-default"
-                : "cursor-pointer"
-            }`}
-          >
-            To Rent
-          </p>
-        </div>
+            <div className="links flex text-gray-800 font-semibold gap-3">
+              <p
+                disabled={status === "all"}
+                onClick={() => navbarStatusClickHandler("all")}
+                className={`hover:bg-[#c0c6ff] duration-200 ${
+                  status === "all"
+                    ? "bg-[#c0c6ff] border border-[#5366ff]  cursor-default"
+                    : "cursor-pointer"
+                }`}
+              >
+                All Estates
+              </p>
+              <p
+                onClick={() => navbarStatusClickHandler("sale")}
+                className={`hover:bg-[#c0c6ff] duration-200  ${
+                  status === "sale"
+                    ? "bg-[#c0c6ff] border border-[#5366ff]  cursor-default"
+                    : "cursor-pointer"
+                }`}
+              >
+                For Sale
+              </p>
+              <p
+                onClick={() => navbarStatusClickHandler("rent")}
+                className={`hover:bg-[#c0c6ff] duration-200  ${
+                  status === "rent"
+                    ? "bg-[#c0c6ff] border border-[#5366ff] cursor-default"
+                    : "cursor-pointer"
+                }`}
+              >
+                To Rent
+              </p>
+            </div>
+          </>
+        )}
 
         <div
           className={`flex items-center justify-center gap-2 w-10 h-10 md:w-28 md:h-12 rounded-full bg-[--white] border border-gray-400 hover:bg-gray-800 cursor-pointer relative text-sm md:text-base
@@ -176,7 +180,7 @@ const EstatesFilters = () => {
               </div>
             )}
           <SortOutlinedIcon fontSize={forMobile ? "small" : "medium"} />
-          {/* Filters */}
+          {forMobile ? "" : "Filters"}
         </div>
       </div>
     </div>

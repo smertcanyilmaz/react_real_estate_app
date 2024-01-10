@@ -19,15 +19,15 @@ const Preview = () => {
           <PreviewSum />
           <PreviewaProductCard />
         </div>
-        <div className="flex gap-8">
+        <div className="flex gap-8 mt-10">
           <button
             onClick={() => navigate(-1)}
-            className="w-32 h-12 rounded-md duration-200 flex gap-2 mt-10 justify-center items-center bg-red-500 text-gray-50"
+            className="w-32 h-12 rounded-md duration-200 flex gap-2  justify-center items-center bg-red-500 text-gray-50"
           >
             Cancel
           </button>
           <button
-            className={`w-32 h-12 rounded-md duration-200 flex gap-2 mt-10 justify-center items-center bg-gray-800 text-gray-50  ${
+            className={`w-32 h-12 rounded-md duration-200 flex gap-2  justify-center items-center bg-gray-800 text-gray-50  ${
               postLoading
                 ? "opacity-70 cursor-not-allowed"
                 : "opacity-100 cursor-pointer"

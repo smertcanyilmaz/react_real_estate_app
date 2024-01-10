@@ -89,6 +89,7 @@ export const CreatePostContext = ({ children }) => {
             });
             setTimeout(() => {
               navigate("/");
+              window.location.reload();
             }, 3300);
           })
           .catch((error) => {

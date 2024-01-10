@@ -6,10 +6,10 @@ const PreviewaProductCard = () => {
   const { sum, previewImages } = useContext(PostContext);
 
   return (
-    <div className="flex-1 flex flex-col items-center justify-between">
-      <div className="flex flex-col w-[70%] mx-auto md:mx-0 md:min-w-[20rem] md:h-[20rem] bg-gray-50 rounded-2xl relative mt-3 mb-3 md:mb-0 md:mt-12">
+    <div className="flex-1 flex flex-col items-center justify-between ">
+      <div className="flex flex-col w-[70%] mx-auto md:mx-0 md:min-w-[20rem] md:h-[25rem] bg-gray-50 rounded-2xl relative mt-3 mb-3 md:mt-6">
         <img
-          className="w-full h-[12rem] object-cover rounded-t-2xl"
+          className="w-full h-[12rem] md:h-[60%] object-cover rounded-t-2xl"
           src={previewImages[0]}
         />
         <div className="px-4 py-2 w-full h-full space-y-2 relative flex flex-col ">

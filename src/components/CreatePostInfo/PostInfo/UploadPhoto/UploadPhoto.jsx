@@ -69,17 +69,17 @@ const UploadPhoto = ({
         </div>
 
         {selectedFiles.length === 0 ? (
-          <div className="w-20 h-14 md:w-36 md:h-24 rounded-[4px] border border-gray-400/50 flex flex-col items-center justify-center gap-2 shadow-sm ">
+          <div className="w-20 h-14 md:w-36 md:h-24 rounded-[4px] border border-gray-400/50 flex flex-col items-center justify-center gap-2 shadow-sm relative ">
             <div className="p-[6px] flex items-center justify-center rounded-full bg-gray-200">
               <AddIcon />
-              <input
-                type="file"
-                className="opacity-0 absolute top-0 left-0 h-full w-full cursor-pointer"
-                multiple={true}
-                accept="image/*"
-                onChange={handleFileChange}
-              />
             </div>
+            <input
+              type="file"
+              className="opacity-0 absolute top-0 left-0 h-full w-full cursor-pointer"
+              multiple={true}
+              accept="image/*"
+              onChange={handleFileChange}
+            />
           </div>
         ) : (
           selectedFiles.map((photo, index) => (

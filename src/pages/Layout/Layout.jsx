@@ -12,8 +12,10 @@ const Layout = ({ unAuthNavbar, authMenuChecker, setAuthMenuChecker }) => {
       }`}
     >
       <div
-        className={`flex-1 max-w-6xl md:mx-auto flex flex-col 
-        ${unAuthNavbar && "max-w-full"}
+        className={`flex-1 max-w-6xl md:mx-auto flex flex-col ${
+          unAuthNavbar && "max-w-full"
+        }
+         
        `}
       >
         {!unAuthNavbar && <Navbar />}

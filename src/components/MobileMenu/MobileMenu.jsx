@@ -5,7 +5,7 @@ import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlin
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import { ContextFilter } from "../../Context/FilterContext";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ContextProfile } from "../../Context/ProfileContext";
 import { Context } from "../../Context/AuthContext";
 
@@ -18,8 +18,6 @@ const MobileMenu = () => {
 
   const [selectedMenuIcon, setSelectedMenuIcon] = useState("");
   const [isScrolled, setIsScrolled] = useState(true);
-
-  const pathname = useLocation();
 
   // useEffect(() => {
   //   let prevScrollPos = window.scrollY;
@@ -44,31 +42,50 @@ const MobileMenu = () => {
   // }, [pathname]);
 
   useEffect(() => {
-    setSelectedMenuIcon("home");
-  }, []);
+    switch (location.pathname) {
+      case "/":
+        setSelectedMenuIcon("home");
+        break;
+      case "/estates":
+        setSelectedMenuIcon("explore");
+        break;
+      case "/create-post":
+      case "/preview":
+        if (!userActive) {
+          setSelectedMenuIcon("profile");
+        } else {
+          setSelectedMenuIcon("postAd");
+        }
+        break;
+      case "/favorites":
+        setSelectedMenuIcon("favorites");
+        break;
+      case "/profilemenu":
+      case "/posts/actives":
+      case "/posts/pasives":
+      case "/login":
+        setSelectedMenuIcon("profile");
+        break;
+
+      default:
+        setSelectedMenuIcon("");
+        break;
+    }
+  }, [location.pathname]);
 
   const selectedIconClickHandler = (element) => {
     setStatus("");
     if (element === "home") {
       navigate("/");
-      setSelectedMenuIcon("home");
     } else if (element === "explore") {
       navbarStatusClickHandler("all");
-      setSelectedMenuIcon("explore");
     } else if (element === "postAd") {
       membershipChecker();
-      if (!userActive) {
-        setSelectedMenuIcon("profile");
-      } else {
-        setSelectedMenuIcon("postAd");
-      }
     } else if (element === "favorites") {
       if (!userActive) {
         navigate("/login");
-        setSelectedMenuIcon("profile");
       } else {
         navigate("/favorites");
-        setSelectedMenuIcon("favorites");
       }
     } else if (element === "profile") {
       if (!userActive) {
@@ -76,7 +93,6 @@ const MobileMenu = () => {
       } else {
         navigate("/profilemenu");
       }
-      setSelectedMenuIcon("profile");
     }
   };
 

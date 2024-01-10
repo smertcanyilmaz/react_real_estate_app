@@ -162,7 +162,7 @@ const Estate = ({ setUnAuthNavbar }) => {
             userActiveFavorited={userActiveFavorited}
           />
 
-          <div className="estate_infos w-full flex flex-col gap-5 px-2">
+          <div className="estate_infos w-full flex flex-col gap-5 px-5">
             <div className="w-full flex  justify-between">
               <div className="flex flex-col gap-2">
                 <h1 className="text-xl font-semibold">{item?.title}</h1>

@@ -52,6 +52,7 @@ const Membership = ({ setUnAuthNavbar }) => {
     const timeout = setTimeout(() => {
       if (userSubscribe) {
         navigate("/");
+        window.location.reload();
       }
     }, 3500);
 

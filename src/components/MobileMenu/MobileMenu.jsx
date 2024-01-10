@@ -20,6 +20,7 @@ const MobileMenu = () => {
   const [isScrolled, setIsScrolled] = useState(true);
 
   // useEffect(() => {
+  //todo: mobil menüyü scroll ile kapatıp açmak için gerekli olan kod. şimdilik bu tasarımı kullanmıyorum
   //   let prevScrollPos = window.scrollY;
 
   //   if (
@@ -64,6 +65,7 @@ const MobileMenu = () => {
       case "/posts/actives":
       case "/posts/pasives":
       case "/login":
+      case "/register":
         setSelectedMenuIcon("profile");
         break;
 

@@ -4,7 +4,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
 import MobileMenu from "../../components/MobileMenu/MobileMenu";
 
-const Layout = ({ authMenuChecker }) => {
+const Layout = () => {
   const location = useLocation();
   const path = location.pathname;
   const layoutChecker = !["/membership", "/login", "/register"].includes(path);
@@ -12,7 +12,7 @@ const Layout = ({ authMenuChecker }) => {
   return (
     <div
       className={`min-h-screen max-w-full flex flex-col  ${
-        authMenuChecker || window.innerWidth <= 640 ? "gap-0" : "gap-20"
+        window.innerWidth <= 640 ? "gap-0" : "gap-20"
       }`}
     >
       <div

@@ -6,7 +6,7 @@ import { Slide, ToastContainer, toast } from "react-toastify";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 
-const Login = ({ setAuthMenuChecker }) => {
+const Login = () => {
   const navigate = useNavigate();
 
   const [user, setUser] = useState({
@@ -75,15 +75,6 @@ const Login = ({ setAuthMenuChecker }) => {
   const passwordVisibleHandler = () => {
     setpasswordVisible(!passwordVisible);
   };
-
-  useEffect(() => {
-    //layout da gap-20 olduğundan onu login sayfasında geçersiz kılmak için yazılan state'i güncellemek gerekti
-    setAuthMenuChecker(true);
-
-    return () => {
-      setAuthMenuChecker(false);
-    };
-  }, []);
 
   return (
     <div className="flex w-screen flex-col md:flex-row bg-[#ffffff] ">

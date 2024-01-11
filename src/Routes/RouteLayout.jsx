@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, useState } from "react";
+import React, { Suspense } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "../pages/Layout/Layout";
 import Register from "../pages/Auth/Register/Register";
@@ -24,9 +24,6 @@ const Estate = React.lazy(() => import("../pages/Estate/Estate"));
 const Membership = React.lazy(() => import("../pages/Membership/Membership"));
 
 const RouteLayout = () => {
-  const [unAuthNavbar, setUnAuthNavbar] = useState(false);
-  const [authMenuChecker, setAuthMenuChecker] = useState(false);
-
   return (
     <AuthContext>
       <>
@@ -42,25 +39,12 @@ const RouteLayout = () => {
                   }
                 >
                   <Routes>
-                    <Route
-                      path="/"
-                      element={<Layout authMenuChecker={authMenuChecker} />}
-                    >
+                    <Route path="/" element={<Layout />}>
                       <Route index element={<Home />} />
                       <Route path="estates" element={<Estates />} />
                       <Route path="estates/:id" element={<Estate />} />
-                      <Route
-                        path="register"
-                        element={
-                          <Register setAuthMenuChecker={setAuthMenuChecker} />
-                        }
-                      />
-                      <Route
-                        path="login"
-                        element={
-                          <Login setAuthMenuChecker={setAuthMenuChecker} />
-                        }
-                      />
+                      <Route path="register" element={<Register />} />
+                      <Route path="login" element={<Login />} />
                       <Route path="membership" element={<Membership />} />
 
                       <Route

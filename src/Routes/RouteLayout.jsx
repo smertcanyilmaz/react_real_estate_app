@@ -12,7 +12,6 @@ import ActivePosts from "../pages/Profile/ActivePosts/ActivePosts";
 import PasivePosts from "../pages/Profile/PasivePosts/PasivePosts";
 import IncompletePosts from "../pages/Profile/IncompletePosts/IncompletePosts";
 import Favorites from "../pages/Profile/Favorites/Favorites";
-// import Home from "../pages/Home/Home";
 import { AuthContext } from "../Context/AuthContext";
 import { CreatePostContext } from "../Context/CreatePostContext";
 import { FilterContext } from "../Context/FilterContext";

@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Layout from "../pages/Layout/Layout";
+// import Layout from "../pages/Layout/Layout";
 import Register from "../pages/Auth/Register/Register";
 import Protected from "../pages/Protected/Protected";
 import CreatePost from "../pages/CreatePost/CreatePost";
@@ -18,10 +18,15 @@ import { CreatePostContext } from "../Context/CreatePostContext";
 import { FilterContext } from "../Context/FilterContext";
 import ProfileContext from "../Context/ProfileContext";
 import MobilProfileMenu from "../pages/Profile/MobilProfileMenu/MobilProfileMenu";
+import Membership from "../pages/Membership/Membership";
+import Estate from "../pages/Estate/Estate";
+import Estates from "../pages/Estates/Estates";
 
-const Estates = React.lazy(() => import("../pages/Estates/Estates"));
-const Estate = React.lazy(() => import("../pages/Estate/Estate"));
-const Membership = React.lazy(() => import("../pages/Membership/Membership"));
+// const Estates = React.lazy(() => import("../pages/Estates/Estates"));
+// const Estate = React.lazy(() => import("../pages/Estate/Estate"));
+// const Membership = React.lazy(() => import("../pages/Membership/Membership"));
+// const Home = React.lazy(() => import("../pages/Home/Home"));
+const Layout = React.lazy(() => import("../pages/Layout/Layout"));
 
 const RouteLayout = () => {
   return (

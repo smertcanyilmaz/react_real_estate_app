@@ -75,13 +75,13 @@ const SliderSection = ({ sale }) => {
               <div className="flex md:gap-5">
                 <div
                   onClick={prevSlide}
-                  className="w-14 h-10 border border-gray-800/30  text-gray-800 rounded-xl flex justify-center items-center cursor-pointer "
+                  className="w-14 h-10 border border-gray-800/30 text-gray-800 rounded-xl flex justify-center items-center cursor-pointer "
                 >
                   <ArrowBackRoundedIcon />
                 </div>
                 <div
                   onClick={nextSlide}
-                  className="w-14 h-10 border border-gray-800/30   text-gray-800 rounded-xl flex justify-center items-center cursor-pointer"
+                  className="w-14 h-10 border border-gray-800/30  text-gray-800 rounded-xl flex justify-center items-center cursor-pointer"
                 >
                   <ArrowForwardRoundedIcon />
                 </div>
@@ -109,9 +109,12 @@ const SliderSection = ({ sale }) => {
       >
         <ArrowForwardRoundedIcon fontSize="small" />
       </div>
-      <Button onClick={showOffersClickHandler} showAllOffers={true}>
-        Show all offers
-      </Button>
+
+      {window.innerWidth <= 700 && (
+        <Button onClick={showOffersClickHandler} showAllOffers={true}>
+          Show all offers
+        </Button>
+      )}
     </div>
   );
 };

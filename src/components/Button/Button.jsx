@@ -9,7 +9,7 @@ const Button = (props) => {
         disabled={props?.disabled && props?.disabled}
         className={`w-32 h-12 rounded-md duration-200 flex gap-2 justify-center items-center ${
           props.showAllOffers &&
-          "border border-[--blue] text-gray-100 bg-gray-800 text-sm md:text-base w-20 h-10 md:w-32 md:h-12 mt-3 md:mt-0"
+          "border border-[--blue] text-gray-100 bg-gray-800 text-sm md:text-base w-20 h-10 md:w-32 md:h-12 mt-5 md:mt-0"
         } ${
           props.postNav &&
           "border-2 bg-gray-800 border-gray-800  hover:bg-gray-800 duration-200 text-white"

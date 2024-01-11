@@ -5,7 +5,7 @@ import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlin
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import { ContextFilter } from "../../Context/FilterContext";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { ContextProfile } from "../../Context/ProfileContext";
 import { Context } from "../../Context/AuthContext";
 
@@ -42,12 +42,15 @@ const MobileMenu = () => {
   //   }
   // }, [pathname]);
 
+  const { id } = useParams();
+
   useEffect(() => {
     switch (location.pathname) {
       case "/":
         setSelectedMenuIcon("home");
         break;
       case "/estates":
+      case `/estates/${id}`:
         setSelectedMenuIcon("explore");
         break;
       case "/create-post":

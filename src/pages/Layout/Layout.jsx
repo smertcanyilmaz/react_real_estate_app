@@ -4,9 +4,11 @@ import { Outlet, useLocation } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
 import MobileMenu from "../../components/MobileMenu/MobileMenu";
 
-const Layout = ({ unAuthNavbar, authMenuChecker, setAuthMenuChecker }) => {
+const Layout = ({ authMenuChecker }) => {
   const location = useLocation();
   const path = location.pathname;
+  const layoutChecker = !["/membership", "/login", "/register"].includes(path);
+
   return (
     <div
       className={`min-h-screen max-w-full flex flex-col  ${
@@ -14,21 +16,15 @@ const Layout = ({ unAuthNavbar, authMenuChecker, setAuthMenuChecker }) => {
       }`}
     >
       <div
-        className={`flex-1 max-w-6xl md:mx-auto flex flex-col  ${
-          unAuthNavbar && "max-w-full"
-        }
-         
+        className={`flex-1 md:mx-auto flex flex-col  
+        ${layoutChecker ? "max-w-6xl" : "max-w-screen"}
        `}
       >
-        {path !== "/membership" &&
-          path !== "/login" &&
-          path !== "/register" && <Navbar />}
+        {layoutChecker && <Navbar />}
 
         <Outlet />
       </div>
-      {path !== "/membership" && path !== "/login" && path !== "/register" && (
-        <Footer />
-      )}
+      {layoutChecker && <Footer />}
       <MobileMenu />
     </div>
   );

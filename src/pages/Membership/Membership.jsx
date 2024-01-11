@@ -8,15 +8,11 @@ import { db } from "../../firebase-config";
 import { ContextProfile } from "../../Context/ProfileContext";
 import { Slide, ToastContainer, toast } from "react-toastify";
 
-const Membership = ({ setUnAuthNavbar }) => {
+const Membership = () => {
   const navigate = useNavigate();
   const { userActive, userActiveUid } = useContext(Context);
   const { userSubscribe, setUserSubscribe } = useContext(ContextProfile);
   const [membershipLoading, setMembershipLoading] = useState(false);
-
-  useEffect(() => {
-    setUnAuthNavbar(true);
-  }, []);
 
   const subscribeHandler = async () => {
     if (userActive) {

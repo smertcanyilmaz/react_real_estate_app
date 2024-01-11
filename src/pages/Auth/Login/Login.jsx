@@ -6,12 +6,8 @@ import { Slide, ToastContainer, toast } from "react-toastify";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 
-const Login = ({ setUnAuthNavbar, authMenuChecker, setAuthMenuChecker }) => {
+const Login = ({ setAuthMenuChecker }) => {
   const navigate = useNavigate();
-
-  useEffect(() => {
-    setUnAuthNavbar(true);
-  }, []);
 
   const [user, setUser] = useState({
     email: "",

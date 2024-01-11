@@ -44,52 +44,24 @@ const RouteLayout = () => {
                   <Routes>
                     <Route
                       path="/"
-                      element={
-                        <Layout
-                          unAuthNavbar={unAuthNavbar}
-                          authMenuChecker={authMenuChecker}
-                          setAuthMenuChecker={setAuthMenuChecker}
-                        />
-                      }
+                      element={<Layout authMenuChecker={authMenuChecker} />}
                     >
-                      <Route
-                        index
-                        element={<Home setUnAuthNavbar={setUnAuthNavbar} />}
-                      />
-                      <Route
-                        path="estates"
-                        element={<Estates setUnAuthNavbar={setUnAuthNavbar} />}
-                      />
-                      <Route
-                        path="estates/:id"
-                        element={<Estate setUnAuthNavbar={setUnAuthNavbar} />}
-                      />
+                      <Route index element={<Home />} />
+                      <Route path="estates" element={<Estates />} />
+                      <Route path="estates/:id" element={<Estate />} />
                       <Route
                         path="register"
                         element={
-                          <Register
-                            setUnAuthNavbar={setUnAuthNavbar}
-                            authMenuChecker={authMenuChecker}
-                            setAuthMenuChecker={setAuthMenuChecker}
-                          />
+                          <Register setAuthMenuChecker={setAuthMenuChecker} />
                         }
                       />
                       <Route
                         path="login"
                         element={
-                          <Login
-                            setUnAuthNavbar={setUnAuthNavbar}
-                            authMenuChecker={authMenuChecker}
-                            setAuthMenuChecker={setAuthMenuChecker}
-                          />
+                          <Login setAuthMenuChecker={setAuthMenuChecker} />
                         }
                       />
-                      <Route
-                        path="membership"
-                        element={
-                          <Membership setUnAuthNavbar={setUnAuthNavbar} />
-                        }
-                      />
+                      <Route path="membership" element={<Membership />} />
 
                       <Route
                         path="create-post"
@@ -155,7 +127,7 @@ const RouteLayout = () => {
                         path="favorites"
                         element={
                           <Protected>
-                            <Favorites setUnAuthNavbar={setUnAuthNavbar} />
+                            <Favorites />
                           </Protected>
                         }
                       />
@@ -163,9 +135,7 @@ const RouteLayout = () => {
                         path="profilemenu"
                         element={
                           <Protected>
-                            <MobilProfileMenu
-                              setUnAuthNavbar={setUnAuthNavbar}
-                            />
+                            <MobilProfileMenu />
                           </Protected>
                         }
                       />

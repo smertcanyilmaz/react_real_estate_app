@@ -5,7 +5,7 @@ import EstatesList from "../../components/EstatesList/EstatesList";
 import OverlayFilters from "../../components/OverlayFilters/OverlayFilters";
 import { ContextFilter } from "../../Context/FilterContext";
 
-const Estates = ({ setUnAuthNavbar }) => {
+const Estates = () => {
   const [startEstatesTop, setStartEstatesTop] = useState(false);
   const {
     setFirstLookChecker,
@@ -18,7 +18,6 @@ const Estates = ({ setUnAuthNavbar }) => {
 
   useEffect(() => {
     document.body.style.overflow = openFiltersOverlay ? "hidden" : "auto"; // TODO:scrollbar hidden yerine transparent olması için alternatif ara
-    setUnAuthNavbar(false);
   }, [openFiltersOverlay]);
 
   useEffect(() => {

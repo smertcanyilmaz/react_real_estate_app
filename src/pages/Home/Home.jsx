@@ -6,12 +6,8 @@ import HomePremium from "../../components/HomePremium/HomePremium";
 import HomeBrands from "../../components/HomeBrands/HomeBrands";
 import { ContextFilter } from "../../Context/FilterContext";
 
-const Home = ({ setUnAuthNavbar }) => {
+const Home = () => {
   const { setShowDropDown } = useContext(ContextFilter);
-
-  useEffect(() => {
-    setUnAuthNavbar(false); // anasayfanın navbar'ı her zaman unAuth durumunu koruması için burada false olması lazım
-  }, []);
 
   const closeDropDown = () => {
     setShowDropDown(false);

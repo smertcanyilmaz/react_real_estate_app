@@ -13,7 +13,7 @@ import { ContextFilter } from "../../Context/FilterContext";
 import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
 import MobileEstateSlider from "../../components/MobileEstateSlider/MobileEstateSlider";
 
-const Estate = ({ setUnAuthNavbar }) => {
+const Estate = () => {
   const { id } = useParams();
   const { estates } = useFetch();
   const { userActive, userActiveUid } = useContext(Context);
@@ -27,7 +27,6 @@ const Estate = ({ setUnAuthNavbar }) => {
   const [imagesIndex, setImagesIndex] = useState(null); // tıklanan seçili resmin büyütülebilmesi için index tutan state
 
   useEffect(() => {
-    setUnAuthNavbar(false);
     setStatus("");
   }, []);
 

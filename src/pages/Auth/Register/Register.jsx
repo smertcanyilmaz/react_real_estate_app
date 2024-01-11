@@ -9,7 +9,7 @@ import CheckIcon from "@mui/icons-material/Check";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 
-const Register = ({ setUnAuthNavbar, authMenuChecker, setAuthMenuChecker }) => {
+const Register = ({ setAuthMenuChecker }) => {
   const navigate = useNavigate();
   const { userActive } = useContext(Context);
 
@@ -23,10 +23,6 @@ const Register = ({ setUnAuthNavbar, authMenuChecker, setAuthMenuChecker }) => {
     favorites: [],
     subscribe: false,
   });
-
-  useEffect(() => {
-    setUnAuthNavbar(true);
-  }, []);
 
   const { firstName, lastName, email, password, favorites, subscribe } = user;
 

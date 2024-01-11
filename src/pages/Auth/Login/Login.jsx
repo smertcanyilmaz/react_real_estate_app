@@ -8,6 +8,7 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 
 const Login = ({ setUnAuthNavbar, authMenuChecker, setAuthMenuChecker }) => {
   const navigate = useNavigate();
+
   useEffect(() => {
     setUnAuthNavbar(true);
   }, []);
@@ -89,7 +90,7 @@ const Login = ({ setUnAuthNavbar, authMenuChecker, setAuthMenuChecker }) => {
   }, []);
 
   return (
-    <div className="flex w-screen flex-col md:flex-row bg-[#ffffff]">
+    <div className="flex w-screen flex-col md:flex-row bg-[#ffffff] ">
       <AuthEntranceSide />
       <div className="md:flex-1 h-[calc(100vh-13.4rem)] md:h-screen flex bg-[#ffffff] items-center justify-center">
         <div className="flex flex-col gap-5 w-full px-8 md:px-16 ">

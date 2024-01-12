@@ -7,12 +7,14 @@ import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase-config";
 import { ContextProfile } from "../../Context/ProfileContext";
 import { Slide, ToastContainer, toast } from "react-toastify";
+import { ContextFilter } from "../../Context/FilterContext";
 
 const Membership = () => {
   const navigate = useNavigate();
   const { userActive, userActiveUid } = useContext(Context);
   const { userSubscribe, setUserSubscribe } = useContext(ContextProfile);
   const [membershipLoading, setMembershipLoading] = useState(false);
+  const { setStatus } = useContext(ContextFilter);
 
   const subscribeHandler = async () => {
     if (userActive) {
@@ -57,6 +59,11 @@ const Membership = () => {
     };
   }, [userSubscribe]);
 
+  const logoClickHandler = () => {
+    setStatus("");
+    navigate(-1);
+  };
+
   return (
     <div className="w-full h-screen flex items-center justify-center md:items-start md:justify-start">
       <div className="left w-[60%] h-full hidden md:block">
@@ -66,7 +73,7 @@ const Membership = () => {
         />
       </div>
       <div className="right h-full md:w-[40%] flex flex-col  justify-between py-5">
-        <div onClick={() => navigate("/")} className="ml-6 cursor-pointer">
+        <div onClick={logoClickHandler} className="ml-6 cursor-pointer">
           <KeyboardBackspaceIcon fontSize="large" />
         </div>
         <div className="w-full flex flex-col items-center justify-center gap-14">

@@ -5,7 +5,7 @@ import Register from "../pages/Auth/Register/Register";
 import Protected from "../pages/Protected/Protected";
 import CreatePost from "../pages/CreatePost/CreatePost";
 import Preview from "../pages/Preview/Preview";
-import Login from "../pages/Auth/Login/Login";
+// import Login from "../pages/Auth/Login/Login";
 import MyProfile from "../pages/Profile/MyProfile/MyProfile";
 import MyPosts from "../pages/Profile/My Posts/MyPosts";
 import ActivePosts from "../pages/Profile/ActivePosts/ActivePosts";
@@ -22,6 +22,7 @@ const Estates = React.lazy(() => import("../pages/Estates/Estates"));
 const Estate = React.lazy(() => import("../pages/Estate/Estate"));
 const Membership = React.lazy(() => import("../pages/Membership/Membership"));
 const Home = React.lazy(() => import("../pages/Home/Home"));
+const Login = React.lazy(() => import("../pages/Auth/Login/Login"));
 
 const RouteLayout = () => {
   return (

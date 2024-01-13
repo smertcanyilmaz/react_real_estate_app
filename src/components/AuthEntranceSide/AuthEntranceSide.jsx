@@ -15,6 +15,12 @@ const AuthEntranceSide = () => {
     navigate("/");
   };
 
+  const [imageLoaded, setImageLoaded] = useState(false);
+
+  const handleImageLoad = () => {
+    setImageLoaded(true);
+  };
+
   return (
     <div className="bg-gray-900 text-gray-200 flex-1 h-40 md:h-screen flex flex-col items-center overflow-hidden ">
       <div
@@ -45,7 +51,15 @@ const AuthEntranceSide = () => {
           src="images\house2.png"
           alt=""
           className="h-[36vh] w-full mx-auto object-cover"
+          onLoad={handleImageLoad}
         />
+      </div>
+      <div
+        className={`w-20 h-20 delay-200 z-50 absolute ${
+          imageLoaded ? "bg-emerald-500" : "bg-red-500"
+        }`}
+      >
+        {imageLoaded ? "resim yüklendi" : "resim yükleniyor"}
       </div>
     </div>
   );

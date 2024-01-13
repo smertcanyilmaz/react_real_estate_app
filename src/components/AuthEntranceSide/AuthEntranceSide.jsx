@@ -44,7 +44,7 @@ const AuthEntranceSide = () => {
       </div>
       <div
         className={`hidden flex-1 w-full md:flex items-end justify-center tranform-translate  ${
-          transition ? "-translate-y-0  " : "translate-y-full"
+          transition && imageLoaded ? "-translate-y-0  " : "translate-y-full"
         } duration-[1800ms]`}
       >
         <img

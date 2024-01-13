@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { ContextFilter } from "../../Context/FilterContext";
 const AuthEntranceSide = () => {
   const [transition, setTransition] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
   const { setStatus } = useContext(ContextFilter);
   const navigate = useNavigate();
 
@@ -14,8 +15,6 @@ const AuthEntranceSide = () => {
     setStatus("");
     navigate("/");
   };
-
-  const [imageLoaded, setImageLoaded] = useState(false);
 
   const handleImageLoad = () => {
     setImageLoaded(true);
@@ -53,13 +52,6 @@ const AuthEntranceSide = () => {
           className="h-[36vh] w-full mx-auto object-cover"
           onLoad={handleImageLoad}
         />
-      </div>
-      <div
-        className={`w-20 h-20 delay-200 z-50 absolute ${
-          imageLoaded ? "bg-emerald-500" : "bg-red-500"
-        }`}
-      >
-        {imageLoaded ? "resim yüklendi" : "resim yükleniyor"}
       </div>
     </div>
   );

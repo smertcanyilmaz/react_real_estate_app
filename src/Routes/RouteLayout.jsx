@@ -28,16 +28,16 @@ const RouteLayout = () => {
     <AuthContext>
       <>
         <BrowserRouter>
-          <CreatePostContext>
-            <FilterContext>
-              <ProfileContext>
-                <Suspense
-                  fallback={
-                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                      <div className="inline-block h-10 w-10 animate-spin rounded-full border-2 border-solid border-gray-800 border-r-transparent align-[-0.125em] "></div>
-                    </div>
-                  }
-                >
+          <Suspense
+            fallback={
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                <div className="inline-block h-10 w-10 animate-spin rounded-full border-2 border-solid border-gray-800 border-r-transparent align-[-0.125em] "></div>
+              </div>
+            }
+          >
+            <CreatePostContext>
+              <FilterContext>
+                <ProfileContext>
                   <Routes>
                     <Route path="/" element={<Layout />}>
                       <Route index element={<Home />} />
@@ -125,10 +125,10 @@ const RouteLayout = () => {
                       />
                     </Route>
                   </Routes>
-                </Suspense>
-              </ProfileContext>
-            </FilterContext>
-          </CreatePostContext>
+                </ProfileContext>
+              </FilterContext>
+            </CreatePostContext>
+          </Suspense>
         </BrowserRouter>
       </>
     </AuthContext>

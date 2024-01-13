@@ -119,7 +119,7 @@ const Register = () => {
               type="text"
               name="firstName"
               id="firstName"
-              className="bg-transparent border border-gray-400/60 w-full h-12 pl-3 rounded-md"
+              className="bg-transparent border border-gray-400/60 w-full md:w-[80%]  h-12 pl-3 rounded-md"
               placeholder="First Name"
               onChange={(e) => {
                 setUser({ ...user, firstName: e.target.value });
@@ -129,7 +129,7 @@ const Register = () => {
               type="text"
               name="lastName"
               id="lastName"
-              className="bg-transparent border border-gray-400/60 w-full h-12 pl-3 rounded-md"
+              className="bg-transparent border border-gray-400/60 w-full md:w-[80%]  h-12 pl-3 rounded-md"
               placeholder="Surname"
               onChange={(e) => {
                 setUser({ ...user, lastName: e.target.value });
@@ -140,7 +140,7 @@ const Register = () => {
                 type="email"
                 name="email"
                 id="email"
-                className={`w-full h-12 pl-3 bg-transparent rounded-md ${
+                className={`w-full md:w-[80%]  h-12 pl-3 bg-transparent rounded-md ${
                   emailChecker
                     ? "border border-[#ef4a4a]"
                     : "border border-gray-400/60"

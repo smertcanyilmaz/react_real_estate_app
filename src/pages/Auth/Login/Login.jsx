@@ -87,7 +87,7 @@ const Login = () => {
               type="email"
               name="email"
               id="email"
-              className={`bg-transparent w-full h-12 pl-3 rounded-md ${
+              className={`bg-transparent w-full md:w-[80%] h-12 pl-3 rounded-md ${
                 emailPasswordChecker || emailInvalidChecker
                   ? " border border-[#ef4a4a]"
                   : "border border-gray-400/60"
@@ -98,7 +98,7 @@ const Login = () => {
               }}
             />
             <div
-              className={`w-full flex items-center  rounded-md ${
+              className={`w-full md:w-[80%] flex items-center  rounded-md ${
                 emailPasswordChecker || emailInvalidChecker
                   ? " border border-[#ef4a4a]"
                   : "border border-gray-400/60"
@@ -108,7 +108,7 @@ const Login = () => {
                 type={passwordVisible ? "string" : "password"}
                 name="password"
                 id="password"
-                className="bg-transparent border-none outline-none w-full h-12 pl-3"
+                className="bg-transparent border-none outline-none w-full  h-12 pl-3"
                 placeholder="Password"
                 onChange={(e) => {
                   setUser({ ...user, password: e.target.value });

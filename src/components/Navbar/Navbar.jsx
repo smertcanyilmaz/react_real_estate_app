@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Button from "../Button/Button";
 import "./Navbar.css";
 import { useContext, useState } from "react";
@@ -16,8 +16,18 @@ const Navbar = () => {
   const { userActive } = useContext(Context);
   const { membershipChecker } = useContext(ContextProfile);
   const navigate = useNavigate();
-  const { navbarStatusClickHandler, status, setStatus } =
-    useContext(ContextFilter);
+  const {
+    navbarStatusClickHandler,
+    status,
+    setStatus,
+    setCityStatus,
+    setSelectedButtons,
+    setFilter,
+    clearHandler,
+    setProductCardNotFound,
+    setNavbarFilteringChecker,
+    setFirstLookChecker,
+  } = useContext(ContextFilter);
 
   const mouseOn = () => {
     setShowUser(true);
@@ -31,9 +41,21 @@ const Navbar = () => {
     setShowBox((prev) => !prev);
   };
 
+  const location = useLocation();
+
   const logoClickHandler = () => {
     setStatus("");
     navigate("/");
+
+    if (location.pathname === "/estates") {
+      setCityStatus("");
+      setSelectedButtons(null);
+      setFilter("");
+      clearHandler();
+      setProductCardNotFound(false);
+      setNavbarFilteringChecker(true);
+      setFirstLookChecker(false);
+    }
   };
 
   const profileClickHandler = () => {

@@ -112,6 +112,12 @@ const ProductCard = ({ currentSlide, sale, EstatesList }) => {
         );
       }
 
+      if (filteredEstates3.length === 0) {
+        setProductCardNotFound(true);
+      } else {
+        setProductCardNotFound(false);
+      }
+
       setCity(filteredEstates3);
     }
 

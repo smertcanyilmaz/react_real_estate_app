@@ -116,6 +116,7 @@ export const FilterContext = ({ children }) => {
       clearHandler();
     }
     setProductCardNotFound(false);
+    setFirstLookChecker(false);
   };
 
   const showHandler = () => {
@@ -125,6 +126,7 @@ export const FilterContext = ({ children }) => {
     setSelectedButtons(null);
     setFilter("");
     setStatus("");
+    setFirstLookChecker(false);
   };
 
   const clearHandler = (e) => {
@@ -140,6 +142,7 @@ export const FilterContext = ({ children }) => {
     });
     setFilterTypes([]);
     setProductCardNotFound(false);
+    setCityStatus("");
   };
 
   //navbar filter section

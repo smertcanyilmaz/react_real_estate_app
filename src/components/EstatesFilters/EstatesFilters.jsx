@@ -11,7 +11,6 @@ import SortOutlinedIcon from "@mui/icons-material/SortOutlined";
 import SnowmobileOutlinedIcon from "@mui/icons-material/SnowmobileOutlined";
 import AgricultureIcon from "@mui/icons-material/Agriculture";
 import { ContextFilter } from "../../Context/FilterContext";
-import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import MobileEstatesSlider from "../MobileEstatesSlider/MobileEstatesSlider";
@@ -89,8 +88,29 @@ const EstatesFilters = () => {
 
   const navigate = useNavigate();
   const forMobile = window.innerWidth <= 640;
-  const { navbarStatusClickHandler, status, setStatus } =
-    useContext(ContextFilter);
+  const {
+    navbarStatusClickHandler,
+    status,
+    setStatus,
+    clearHandler,
+    setCityStatus,
+    setSelectedButtons,
+    setFilter,
+    setProductCardNotFound,
+    setNavbarFilteringChecker,
+    setFirstLookChecker,
+  } = useContext(ContextFilter);
+
+  const arrowClickHandler = () => {
+    navigate("/");
+    clearHandler();
+    setCityStatus("");
+    setSelectedButtons(null);
+    setFilter("");
+    setProductCardNotFound(false);
+    setNavbarFilteringChecker(true);
+    setFirstLookChecker(false);
+  };
 
   return (
     <div className="categories w-full flex flex-col-reverse  md:flex-row md:justify-between md:items-center md:gap-5">
@@ -120,7 +140,7 @@ const EstatesFilters = () => {
       <div className="flex items-center justify-between my-3">
         {forMobile && (
           <>
-            <div onClick={() => navigate(-1)} className="md:hidden ">
+            <div onClick={arrowClickHandler} className="md:hidden">
               <WestOutlinedIcon />
             </div>
 

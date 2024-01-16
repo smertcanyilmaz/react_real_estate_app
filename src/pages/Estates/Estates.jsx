@@ -17,7 +17,7 @@ const Estates = () => {
   } = useContext(ContextFilter);
 
   useEffect(() => {
-    document.body.style.overflow = openFiltersOverlay ? "hidden" : "auto"; // TODO:scrollbar hidden yerine transparent olması için alternatif ara
+    document.body.style.overflow = openFiltersOverlay ? "hidden" : "auto";
   }, [openFiltersOverlay]);
 
   useEffect(() => {

@@ -11,8 +11,18 @@ import { Context } from "../../Context/AuthContext";
 
 const MobileMenu = () => {
   const navigate = useNavigate();
-  const { navbarStatusClickHandler, status, setStatus } =
-    useContext(ContextFilter);
+  const {
+    navbarStatusClickHandler,
+    status,
+    setStatus,
+    clearHandler,
+    setCityStatus,
+    setSelectedButtons,
+    setFilter,
+    setProductCardNotFound,
+    setNavbarFilteringChecker,
+    setFirstLookChecker,
+  } = useContext(ContextFilter);
   const { membershipChecker } = useContext(ContextProfile);
   const { userActive } = useContext(Context);
 
@@ -43,6 +53,7 @@ const MobileMenu = () => {
   // }, [pathname]);
 
   const { id } = useParams();
+  const location = useLocation();
 
   useEffect(() => {
     switch (location.pathname) {
@@ -82,6 +93,15 @@ const MobileMenu = () => {
     setStatus("");
     if (element === "home") {
       navigate("/");
+      if (location.pathname === "/estates") {
+        clearHandler();
+        setCityStatus("");
+        setSelectedButtons(null);
+        setFilter("");
+        setProductCardNotFound(false);
+        setNavbarFilteringChecker(true);
+        setFirstLookChecker(false);
+      }
     } else if (element === "explore") {
       navbarStatusClickHandler("all");
     } else if (element === "postAd") {

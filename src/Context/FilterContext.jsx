@@ -11,7 +11,6 @@ export const FilterContext = ({ children }) => {
   const [country, setCountry] = useState([]);
   const [cities, setCities] = useState(null);
   const [inputValue, setInputValue] = useState("");
-  const [notFound, setNotFound] = useState(false);
   const [showDropDown, setShowDropDown] = useState(false);
   const [filteredCities, setFilteredCities] = useState([]);
   const [firstLookChecker, setFirstLookChecker] = useState(false);

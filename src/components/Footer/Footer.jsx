@@ -35,7 +35,10 @@ const Footer = () => {
         <div className="flex justify-between items-center gap-5">
           <div className="flex items-center gap-3">
             <div className="icons flex items-center justify-center md:block  ">
-              <Link to="https://www.linkedin.com/in/s%C3%BCleyman-mertcan-y%C4%B1lmaz-87312b196/">
+              <Link
+                target="_blank"
+                to="https://www.linkedin.com/in/s%C3%BCleyman-mertcan-y%C4%B1lmaz-87312b196/"
+              >
                 <IconButton>
                   <LinkedInIcon
                     className="text-[#1DA1F2]"
@@ -43,7 +46,7 @@ const Footer = () => {
                   />
                 </IconButton>
               </Link>
-              <Link to="https://twitter.com/smertcann">
+              <Link target="_blank" to="https://twitter.com/smertcann">
                 <IconButton>
                   <TwitterIcon
                     className=" text-[#1DA1F2]"
@@ -51,7 +54,7 @@ const Footer = () => {
                   />
                 </IconButton>
               </Link>
-              <Link to="https://github.com/smertcanyilmaz">
+              <Link target="_blank" to="https://github.com/smertcanyilmaz">
                 <IconButton>
                   <GitHubIcon
                     sx={{ color: "white" }}

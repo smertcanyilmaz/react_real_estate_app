@@ -78,7 +78,7 @@ const Estate = () => {
               <h1 className="text-3xl font-bold">{item?.title}</h1>
               <div className="w-full flex justify-between items-center">
                 <div className="text-sm">
-                  {item?.place?.city},{item?.place?.country} | {item?.date}
+                  {item?.place?.city}, {item?.place?.country} | {item?.date}
                 </div>
                 <div
                   className={`text-gray-800/80 rounded-lg px-3 py-2 hover:bg-gray-300/50 cursor-pointer duration-300 active:scale-90 ${

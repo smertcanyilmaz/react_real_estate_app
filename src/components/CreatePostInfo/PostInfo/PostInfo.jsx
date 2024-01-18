@@ -34,6 +34,10 @@ const PostInfo = ({ selectedCategory }) => {
   const [formValid, setFormValid] = useState(false);
 
   const adInfoChangeHandler = (e, field) => {
+    if (field === "bedrooms" || field === "bathrooms" || field === "price") {
+      const onlyNumbers = e.target.value.replace(/[^0-9]/g, "");
+      e.target.value = onlyNumbers;
+    }
     if (field === "bedrooms" || field === "bathrooms") {
       setSum((prevSum) => ({
         ...prevSum,
